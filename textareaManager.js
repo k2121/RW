@@ -58,6 +58,35 @@ async function copyToClipboard(id) {
   }
 }
 
+// Nowa funkcja do kopiowania wybranej opcji z dropdowna z prefiksem
+async function copyDropdownValueWithPrefixToClipboard(selectId, prefix) {
+  const selectElement = document.getElementById(selectId);
+  if (!selectElement) {
+    alert('Błąd: Element wyboru nie znaleziony.');
+    return;
+  }
+  
+  const selectedText = selectElement.options[selectElement.selectedIndex].textContent;
+  
+  if (!selectedText || selectedText.trim() === 'Wybierz zdarzenie...' || selectedText.trim() === 'Wybierz kontekst...') {
+    alert('Proszę wybrać opcję z listy przed skopiowaniem.');
+    return;
+  }
+
+  const textToCopy = prefix + selectedText;
+
+  try {
+    await navigator.clipboard.writeText(textToCopy);
+    alert('Skopiowano do schowka: ' + textToCopy);
+  } catch (err) {
+    console.error('Błąd podczas kopiowania:', err);
+    alert('Nie udało się skopiować do schowka.');
+  }
+}
+// Upewnij się, że nowa funkcja jest globalnie dostępna
+window.copyDropdownValueWithPrefixToClipboard = copyDropdownValueWithPrefixToClipboard;
+
+
 // Funkcja globalna do kolorowania tła, ponieważ jest używana w atrybucie oninput
 // Ważne: Warto rozważyć dodanie tej funkcji do obiektu globalnego (np. window.myApp.updateBackgroundColor)
 // lub przejście na event listenery w main.js, aby uniknąć kolizji i utrzymać czysty globalny namespace.
