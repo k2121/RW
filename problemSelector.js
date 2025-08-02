@@ -9,6 +9,10 @@
 
 function generateProblemList() {
     const container = document.getElementById('problem-list-container');
+    if (!container) {
+      console.error("Container #problem-list-container not found. Skipping problem list generation.");
+      return;
+    }
     container.innerHTML = '';
 
     for (const mainCategory in problemsData) {
@@ -64,7 +68,7 @@ function createProblemItem(problem) {
     const addButton = document.createElement('button');
     addButton.textContent = '+';
     addButton.className = 'add-problem-btn';
-    addButton.onclick = () => addToCart(problem, addButton); // Usunięto drugi argument, który był nieużywany
+    addButton.onclick = () => addToCart(problem, addButton); 
     
     const label = document.createElement('span'); 
     label.className = 'problem-label';
@@ -76,7 +80,7 @@ function createProblemItem(problem) {
     return itemDiv;
 }
 
-function addToCart(problem) { // Usunięto drugi argument (button)
+function addToCart(problem) { 
     const problemWithPrefix = "karma: " + problem;
     navigator.clipboard.writeText(problemWithPrefix).then(() => {
         alert("Skopiowano wyzwanie do schowka: " + problemWithPrefix);
@@ -88,6 +92,8 @@ function addToCart(problem) { // Usunięto drugi argument (button)
 
 function filterProblems() {
     const input = document.getElementById('problemSearch');
+    if (!input) return; // Add a check if the input exists (only in new window now)
+
     const filter = input.value.toLowerCase();
     const container = document.getElementById('problem-list-container');
     const items = container.getElementsByClassName('problem-item');
@@ -113,6 +119,9 @@ function expandAll() {
         }
     });
 }
+// Make sure these functions are globally accessible
+window.expandAll = expandAll;
+
 
 function collapseAll() {
     const headers = document.querySelectorAll('.problem-category-header');
@@ -125,20 +134,21 @@ function collapseAll() {
         }
     });
 }
+// Make sure these functions are globally accessible
+window.collapseAll = collapseAll;
 
 function clearSearch() {
   const searchInput = document.getElementById('problemSearch');
-  searchInput.value = '';
-  filterProblems();
+  if (searchInput) { // Add a check if the input exists (only in new window now)
+    searchInput.value = '';
+    filterProblems();
+  }
 }
+// Make sure these functions are globally accessible
+window.clearSearch = clearSearch;
+
 
 function openBasketInNewWindow() {
-  const basketContainer = document.getElementById('problem-selector-container');
-  if (!basketContainer) {
-    alert("Nie znaleziono kontenera problemów.");
-    return;
-  }
-
   const newWindow = window.open('', '_blank', 'width=800,height=600,scrollbars=yes,resizable=yes');
 
   if (!newWindow) {
@@ -151,23 +161,22 @@ function openBasketInNewWindow() {
     styleContent += style.outerHTML;
   });
 
-  const containerClone = basketContainer.cloneNode(true);
-  const buttonDiv = containerClone.querySelector('div[style="margin-bottom: 0px;"]');
-
-  if (buttonDiv) {
-    const openBtn = buttonDiv.querySelector('button[onclick="openBasketInNewWindow()"]');
-    if (openBtn) openBtn.remove();
-
-    // Poprawiony przycisk zamykania - działa w nowym oknie
-    const closeBtn = document.createElement('button');
-    closeBtn.innerText = '_X_';
-    closeBtn.title = 'Zamknij okno';
-    closeBtn.setAttribute('onclick', 'window.close();'); // Bezpośredni atrybut onclick
-
-    buttonDiv.appendChild(closeBtn);
-  }
-
-  const basketHTML = containerClone.outerHTML;
+  // Reconstruct the problem selector container HTML for the new window
+  const problemSelectorHTML = `
+    <div id="problem-selector-container" style="margin: 0;">
+      <h3>[614] Wybierz problemy, nad którymi chcesz pracować:</h3>
+      <div style="margin-bottom: 0px;">
+          <button onclick="expandAll()">Rozwiń wszystkie</button>
+          <button onclick="collapseAll()">Zwiń wszystkie</button>
+          <button onclick="clearSearch()">Kasuj</button>
+          <button onclick="window.close()">_X_</button>
+      </div>
+      <input type="text" id="problemSearch" onkeyup="filterProblems()" placeholder="Szukaj problemu...">
+      <div id="problem-list-container">
+        <!-- Kategorie i problemy będą wstawione tutaj dynamicznie przez JavaScript -->
+      </div>
+    </div>
+  `;
 
   newWindow.document.write(`
     <!DOCTYPE html>
@@ -180,8 +189,8 @@ function openBasketInNewWindow() {
         <link rel="stylesheet" href="style-okno.css">
       </head>
       <body>
-        ${basketHTML}
-        <script src="data.js"></script>
+        ${problemSelectorHTML}
+        <script src="data2-problemy.js"></script> <!-- Ensure problemsData is loaded -->
         <script src="problemSelector.js"></script>
         <script>
           window.addEventListener('DOMContentLoaded', () => {
