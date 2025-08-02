@@ -149,8 +149,10 @@ button {
 
 .nowa-background  {
   /* Usunięto stare właściwości background-color i background-image */
-    background: url("nowa-background.jpg") no-repeat center center;
- no-repeat center center !important;
+  background: url("nowa-background.jpg") no-repeat center center;
+  
+  justify-content: center;
+  align-items: center;
   background-size: cover !important; /* Rozciągnięcie obrazu */
 
   color: #000000 !important; /* kolor tekstu - brązowy */
@@ -175,6 +177,8 @@ th, td {
   text-align: center;
 }
 .green-cell {
+  background-color: #00ff00;
+  color: black;
   text-align: left;
   padding: 5px;
 }
@@ -225,7 +229,7 @@ th, td {
 
 
 #problem-list-container {
-  height: 1px;
+  height: 0px;
   overflow-y: auto;
   border: 1px solid #bdc3c7;
   padding: 0px;
