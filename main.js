@@ -12,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initPolaPlanszyDropdown();
     initPolaZdarzenieDropdown();
     initPolaKontekstDropdown();
+    populateKarmaDropdown();
 
     // Inicjalizacja dynamicznych pól tekstowych (notes/cards)
     const container = document.getElementById('textareas-container');
