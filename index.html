@@ -60,9 +60,7 @@
   </div>
   <!-- Usunięto: <input type="text" id="problemSearch" onkeyup="filterProblems()" placeholder="Szukaj problemu..."> -->
   
-  <div id="problem-list-container">
-    <!-- Kategorie i problemy będą wstawione tutaj dynamicznie przez JavaScript -->
-  </div>
+
 </div>
 
 
@@ -79,9 +77,12 @@
         <div class="cards-grid-container">
           <div class="card-item">
             <label for="karma">[85] Tematem Mojej życiowej lekcji jest:
-              <button type="button" onclick="copyToClipboard('karma')">Kopiuj</button>
+              <button type="button" onclick="copyDropdownValueWithPrefixToClipboard('karma', '')">Kopiuj</button>
             </label>
-            <textarea id="karma" name="karma"></textarea>
+            <select id="karma" name="karma" style="width: 100%; box-sizing: border-box;">
+              <option value="">Wybierz kartę karmy...</option>
+              <!-- Opcje będą generowane dynamicznie przez JavaScript -->
+            </select>
           </div>
           <div class="card-item">
             <label for="wyobraz_sobie">[24] Wyobraź sobie że...:
@@ -359,6 +360,8 @@ do zabawy w obwinianie (twarz i róża) JPG</div>
 <div style="text-align: left;">KONIEC<br></div>
 
 
+
+    <!-- PAMIĘTAJ: ZAWSZE ŁADUJ PLIKI Z DANYMI PRZED SKRYPTAMI, KTÓRE ICH UŻYWAJĄ -->
     <script src="data2-karty.js"></script>
     <script src="data2-problemy.js"></script>
     <script src="namePrompt.js"></script>
@@ -372,18 +375,5 @@ do zabawy w obwinianie (twarz i róża) JPG</div>
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
 </body>
 </html>
-
