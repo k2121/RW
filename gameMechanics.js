@@ -72,7 +72,7 @@ function rollDice() {
   const diceResult = Math.floor(Math.random() * 6) + 1;
   const diceResultElement = document.getElementById('diceResult');
   if (diceResultElement) { // Dodano sprawdzanie istnienia elementu
-    diceResultElement.innerText = "Wynik rzutu kostką 🎲 = " + diceResult;
+    diceResultElement.innerText = "Rzut kostką 🎲 = " + diceResult;
   }
 }
 
