@@ -225,7 +225,7 @@ th, td {
 
 
 #problem-list-container {
-  height: 0px;
+  height: 1px;
   overflow-y: auto;
   border: 1px solid #bdc3c7;
   padding: 0px;
