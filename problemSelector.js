@@ -10,7 +10,8 @@
 function generateProblemList() {
     const container = document.getElementById('problem-list-container');
     if (!container) {
-      console.error("Container #problem-list-container not found. Skipping problem list generation.");
+      //console.error("Container #problem-list-container not found. Skipping problem list generation.");//
+    
       return;
     }
     container.innerHTML = '';
