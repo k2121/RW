@@ -37,12 +37,11 @@ body, button, textarea, select, label {
   background-color: #a595c8;
 }
 #karma, #select2-karma-container {
-  width: 100%;
-  height: 40px;
+  width: 91%;
+  height: 60px;
   padding: 0;
   margin-top: 0;
   margin-bottom: 0;
-  resize: vertical;
   text-align: center;
   background: radial-gradient(circle, #f7fcf2 0%, rgb(102, 255, 153) 100%);
 }
