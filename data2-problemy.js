@@ -1,7 +1,7 @@
-//#### 1. `js/data.js`
+//#### 1. `js/data2-problemy.js`
 //Ten plik będzie przechowywał wszystkie Twoje dane problemów.
 
-// js/data.js
+// js/data2-problemy.js
 
 const problemsData = {
 "Relacja z Sobą: Ja, Tożsamość i Wewnętrzny Świat": {
@@ -805,5 +805,6 @@ const problemsData = {
     ]
   }
 }
+
 
 
