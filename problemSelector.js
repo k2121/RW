@@ -82,7 +82,7 @@ function createProblemItem(problem) {
 }
 
 function addToCart(problem) { 
-    const problemWithPrefix = "karma: " + problem;
+    const problemWithPrefix = "wyzwanie: " + problem;
     navigator.clipboard.writeText(problemWithPrefix).then(() => {
         alert("Skopiowano wyzwanie do schowka: " + problemWithPrefix);
     }, (err) => {
@@ -165,7 +165,7 @@ function openBasketInNewWindow() {
   // Reconstruct the problem selector container HTML for the new window
   const problemSelectorHTML = `
     <div id="problem-selector-container" style="margin: 0;">
-      <h3>[614] Wybierz problemy, nad którymi chcesz pracować:</h3>
+      <h3>[614] Wybierz wyzwania, nad którymi chcesz pracować:</h3>
       <div style="margin-bottom: 0px;">
           <button onclick="expandAll()">Rozwiń wszystkie</button>
           <button onclick="collapseAll()">Zwiń wszystkie</button>
