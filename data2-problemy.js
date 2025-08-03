@@ -784,9 +784,25 @@ const problemsData = {
         "613. Poczucie bycia zmuszonym do wyboru strony w konfliktach społecznych lub politycznych.",
         "614. Wypalenie wynikające z ciągłego uczestnictwa w konfliktach grupowych (np. w pracy, społecznościach online).",
   
-  
-  
-      ]
+    ],
+    "Archetypy Psychologiczne Junga": [
+    "615. Problemy wynikające z nadmiernej identyfikacji z Personą (maską społeczną) i utraty kontaktu z prawdziwym Ja.",
+    "616. Konflikty lub lęk związane z nieświadomymi, odrzuconymi aspektami własnej osobowości (Cień).",
+    "617. Trudności w relacjach z powodu nierozwiniętego archetypu Animy (dla mężczyzn) lub Animusa (dla kobiet), wpływające na postrzeganie płci przeciwnej.",
+    "618. Problemy z samorealizacją lub poczuciem pełni wynikające z braku integracji aspektów psychiki (Jaźń).",
+    "619. Problemy związane z archetypem Władcy, takie jak nadmierna kontrola, trudności z delegowaniem, lub unikanie odpowiedzialności za środowisko.",
+    "620. Blokady twórcze, brak innowacyjności lub problemy z urzeczywistnianiem pomysłów wynikające z niedostępności archetypu Twórcy/Artysty.",
+    "621. Unikanie poszukiwania prawdy, bierność intelektualna lub nadmierny dystans emocjonalny wynikający z zaburzonej relacji z archetypem Mędrca.",
+    "622. Problemy z nadmierną naiwnością, unikanie konfrontacji z rzeczywistością lub trudność w radzeniu sobie ze złem (archetyp Niewinnego).",
+    "623. Brak poczucia wolności, niemożność odkrywania nowego lub przytłoczenie możliwościami wynikające z braku połączenia z archetypem Odkrywcy.",
+    "624. Trudności w przełamywaniu sztywnych zasad, nadmierna uległość lub bunt bez konstruktywnego celu (archetyp Buntownika).",
+    "625. Problemy z udowodnieniem własnej wartości, lęk przed porażką, lub dążenie do mistrzostwa w autodestrukcyjny sposób (archetyp Bohatera).",
+    "626. Poczucie braku sprawczości, niemożność manifestowania pragnień lub nadmierne racjonalizowanie i utrata magii w życiu (archetyp Magika/Czarodzieja).",
+    "627. Niezdolność do radości z życia, nadmierna powaga lub cynizm, unikanie spontaniczności (archetyp Błazna/Jokera).",
+    "628. Lęk przed przynależnością, wycofanie społeczne, lub brak indywidualności i zlewanie się z masą (archetyp Zwyczajnego Człowieka/Każdego).",
+    "629. Problemy z intymnością, niezdolność do kochania i odczuwania przyjemności, lub nadmierna zależność w relacjach (archetyp Kochanka).",
+    "630. Brak troski o innych, nadmierne poświęcanie się dla nich (bez stawiania granic), lub lęk przed byciem bezsilnym (archetyp Opiekuna/Troskliwego)."
+    ]
   }
 }
 
