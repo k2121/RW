@@ -34,6 +34,7 @@
       <td class="blue-cell" style="padding-top: 0px;">
         <label for="pola_zdarzenie"><b>[358] Pole wyboru zdarzenie:</b>
           <button type="button" onclick="copyDropdownValueWithPrefixToClipboard('pola_zdarzenie', 'zdarzenie: ')">Kopiuj</button>
+          <button onclick="randomSelectZdarzenie()">Losuj</button>
         </label>
         <select id="pola_zdarzenie" name="pola_zdarzenie" style="width: 100%; box-sizing: border-box;">
           <option value="">Wybierz zdarzenie...</option>
@@ -41,6 +42,7 @@
         </select>
         <label for="pola_kontekst"><b>[319] Pole wyboru kontekst:</b>
           <button type="button" onclick="copyDropdownValueWithPrefixToClipboard('pola_kontekst', 'kontekst: ')">Kopiuj</button>
+          <button onclick="randomSelectKontekst()">Losuj</button>
         </label>
         <select id="pola_kontekst" name="pola_kontekst" style="width: 100%; box-sizing: border-box;">
           <option value="">Wybierz kontekst...</option>
@@ -79,8 +81,9 @@
         <!-- Nowy kontener z siatką -->
         <div class="cards-grid-container">
           <div class="card-item">
-            <label for="karma">[295] Tematem Mojej życiowej lekcji jest:
+            <label for="karma">[295] Tematem życiowej lekcji jest:
               <button type="button" onclick="copyDropdownValueWithPrefixToClipboard('karma', '')">Kopiuj</button>
+              <button onclick="randomSelectKarma()">Losuj</button>
             </label>
             <select id="karma" name="karma" style="width: 100%; box-sizing: border-box;">
               <option value="">Wybierz kartę karmy...</option>
@@ -374,6 +377,7 @@ do zabawy w obwinianie (twarz i róża) JPG</div>
     <script src="textareaManager.js"></script>
     <script src="boardFieldDescriptions.js"></script>
     <script src="main.js"></script>
+    <script src="losowanieZListy.js"></script>
 
 
 <script>
