@@ -465,8 +465,8 @@ th, td {
 .select2-selection__rendered {
   white-space: normal !important;
   word-break: break-word !important;
-  line-height: 1em;   /* wcześniej 1.3em → teraz ciaśniej */
-  padding: 0 4px 0 8px; /* góra/dół 2 px, prawa strzałka 24 px, lewa 8 px */
+  line-height: 1em !important;     /* najmniejszy możliwy odstęp */
+  padding: 0 20px 0 4px !important; /* góra/dół 2 px, prawa strzałka 24 px, lewa 8 px */
 }
 
 /* === dla telefonów: minimalny odstęp między liniami w Select2 === */
