@@ -17,7 +17,7 @@ body, button, textarea, select, label {
   text-align: left; 
 }
 #zdarzenie, #select2-pola_zdarzenie-container {
-  width: 100%;
+  width: 90%;
   height: 40px;
   padding: 0;
   margin-top: 0;
@@ -27,7 +27,7 @@ body, button, textarea, select, label {
   background-color: #68308c; color: #ffffff;
 }
 #kontekst, #select2-pola_kontekst-container {
-  width: 100%;
+  width: 90%;
   height: 40px;
   padding: 0;
   margin-top: 0;
@@ -37,8 +37,8 @@ body, button, textarea, select, label {
   background-color: #a595c8;
 }
 #karma, #select2-karma-container {
-  width: 91%;
-  height: 60px;
+  width: 90%;
+  height: 40px;
   padding: 0;
   margin-top: 0;
   margin-bottom: 0;
