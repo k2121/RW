@@ -18,7 +18,7 @@ body, button, textarea, select, label {
 }
 #zdarzenie, #select2-pola_zdarzenie-container {
   width: 90%;
-  height: 40px;
+  height: 46px;
   padding: 0;
   margin-top: 0;
   margin-bottom: 0;
@@ -27,7 +27,7 @@ body, button, textarea, select, label {
 }
 #kontekst, #select2-pola_kontekst-container {
   width: 90%;
-  height: 40px;
+  height: 46px;
   padding: 0;
   margin-top: 0;
   margin-bottom: 0;
@@ -36,7 +36,7 @@ body, button, textarea, select, label {
 }
 #karma, #select2-karma-container {
   width: 90%;
-  height: 40px;
+  height: 46px;
   padding: 0;
   margin-top: 0;
   margin-bottom: 0;
