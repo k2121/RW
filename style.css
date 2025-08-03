@@ -23,7 +23,7 @@ body, button, textarea, select, label {
   margin-top: 0;
   margin-bottom: 0;
   text-align: center; align-items: center;
-  background-color: #68308c; color: #ffffff;
+  background-color: #73349c; color: #ffffff;
 }
 #kontekst, #select2-pola_kontekst-container {
   width: 90%;
@@ -32,7 +32,7 @@ body, button, textarea, select, label {
   margin-top: 0;
   margin-bottom: 0;
   text-align: center;
-  background-color: #a595c8;
+  background-color: #cc99fe; color: #000000;
 }
 #karma, #select2-karma-container {
   width: 90%;
