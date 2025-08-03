@@ -96,7 +96,7 @@ window.updateBackgroundColor = function (textarea) {
 
     textarea.classList.remove(
       'zdarzenie-background', 'kontekst-background',
-      'karma-background', 'wyobraz-sobie-background', 'przekonanie-background',
+      'karma-background', 'wyzwanie-background', 'wyobraz-sobie-background', 'przekonanie-background',
       'blokada-energii-czerwona-background', 'blokada-energii-pomarańczowa-background', 'blokada-energii-żółta-background', 'blokada-energii-zielona-background', 'blokada-energii-błękitna-background', 'blokada-energii-indygo-background', 'blokada-energii-fioletowa-background', 'nowa-background', 'default-background'
     );
 
@@ -109,6 +109,9 @@ window.updateBackgroundColor = function (textarea) {
         break;
       case 'karma:':
         textarea.classList.add('karma-background');
+        break;
+      case 'wyzwanie:':
+        textarea.classList.add('wyzwanie-background');
         break;
       case 'wyobraźsobie:':
         textarea.classList.add('wyobraz-sobie-background');
