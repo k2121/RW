@@ -136,7 +136,7 @@ button {
 }
 .zdarzenie-background { background-color: #68308c; color: #ffffff;}
 .kontekst-background { background-color: #a595c8;}
-.karma-background { background: radial-gradient(circle, #f7fcf2 0%, rgb(102, 255, 153) 100%); }
+.karma-background, .wyzwanie-background { background: radial-gradient(circle, #f7fcf2 0%, rgb(102, 255, 153) 100%); }
 .wyobraz-sobie-background { background: radial-gradient(circle, #f8f3f7 0%, #dfb2c3 100%); }
 .przekonanie-background { background: radial-gradient(circle, #f9f6e9 0%, #f6eb4b 100%); }
 .blokada-energii-czerwona-background { background-color: #ff0000; color: #ffffff; font-weight: bold; text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px  1px 0 black, 1px  1px 0 black; }
