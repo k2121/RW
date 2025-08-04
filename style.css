@@ -451,8 +451,8 @@ th, td {
 
 /* wysokość samego pola (zamkniętego) */
 .select2-selection--single {
-  height: 46px !important;          /* dowolna wartość */
-  line-height: 46px !important;     /* wycentrowanie tekstu */
+  height: 46px;          /* dowolna wartość */
+  line-height: 46px;     /* wycentrowanie tekstu */
 }
 
 /* wysokość wierszy w rozwiniętej liście */
