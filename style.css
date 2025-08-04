@@ -486,7 +486,7 @@ th, td {
   line-height:18px !important;     /* wycentrowanie tekstu */
   background-color: #00f7ff; color: #000000;
 }
-#select2-pola_planszy-results .select2-results__option {
+#select2-pola_planszy-results {
   min-height: 18px !important;
   padding: 0px 0px !important;
 }
