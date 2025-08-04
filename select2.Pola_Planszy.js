@@ -9,14 +9,12 @@ $(document).ready(function () {
     container.find('.select2-selection--single').css({
       'height': '18px',
       'line-height': '18px',
-      'padding': '0 4px',
-      'font-size': '10px'
+      'padding': '0 0px'
     });
 
     container.find('.select2-selection__rendered').css({
       'line-height': '18px',
-      'padding': '0 4px',
-      'font-size': '10px'
+      'padding': '0 0px'
     });
 
     container.find('.select2-selection__arrow').css({
