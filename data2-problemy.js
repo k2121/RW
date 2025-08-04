@@ -812,11 +812,11 @@ const problemsData = {
       "632. Lęk przed odkryciem własnych ciemnych impulsów (agresja, seksualność, zazdrość).",
       "633. Kompulsywne potępianie w innych tego, czego nie akceptujemy w sobie.",
       "634. Niezdolność do integracji destruktywnych aspektów osobowości w zdrowy sposób.",
-      "635. Ucieczka w \"światłość\" i duchowość jako forma wypierania Cienia."
+      "635. Ucieczka w 'światłość' i duchowość jako forma wypierania Cienia."
     ],
     "Anima/Animus": [
       "636. Mężczyźni: projekcja idealizowanej kobiecości na partnerki, niemożność związku z realną kobietą.",
-      "637. Kobiety: poszukiwanie \"silnego mężczyzny\" jako projekcja własnego Animusa.",
+      "637. Kobiety: poszukiwanie 'silnego mężczyzny' jako projekcja własnego Animusa.",
       "638. Nierozwinięta intuicja i emocjonalność u mężczyzn (zablokowana Anima).",
       "639. Nadmierna racjonalizacja i agresywność u kobiet (zdominowanie przez Animus).",
       "640. Trudność w rozumieniu przeciwnej płci z powodu nieświadomych projekcji."
@@ -832,13 +832,13 @@ const problemsData = {
       "646. Całkowita identyfikacja z rolą społeczną, utrata kontaktu z prawdziwym Ja.",
       "647. Lęk przed zdjęciem maski, nawet w intymnych relacjach.",
       "648. Mnogie, sprzeczne maski prowadzące do fragmentacji tożsamości.",
-      "649. Wyczerpanie z ciągłego \"grania roli\" bez momentów autentyczności.",
+      "649. Wyczerpanie z ciągłego 'grania roli' bez momentów autentyczności.",
       "650. Niemożność funkcjonowania bez społecznej walidacji i ról."
     ],
     "Wielka Matka": [
       "651. Nadmierna opiekuńczość prowadząca do uduszenia rozwoju innych.",
       "652. Lęk przed pustym gniazdem i utratą roli macierzyńskiej.",
-      "653. Kontrolowanie przez \"troskę\" i niemożność puszczenia wolno.",
+      "653. Kontrolowanie przez 'troskę' i niemożność puszczenia wolno.",
       "654. Projekcja własnych niespełnionych marzeń na dzieci.",
       "655. Trudność w postawieniu granic między sobą a dzieckiem."
     ],
@@ -851,7 +851,7 @@ const problemsData = {
     ],
     "Dziecko (Puer/Puella)": [
       "661. Chroniczna nieodpowiedzialność i unikanie dorosłego życia.",
-      "662. Wieczne poszukiwanie \"idealnego życia\" bez podejmowania realnych kroków.",
+      "662. Wieczne poszukiwanie 'idealnego życia' bez podejmowania realnych kroków.",
       "663. Lęk przed zobowiązaniami i stałością.",
       "664. Nadmierna zależność od innych w podejmowaniu decyzji.",
       "665. Ucieczka w fantazje zamiast konfrontacji z rzeczywistością."
@@ -902,13 +902,13 @@ const problemsData = {
       "696. Destrukcyjny sprzeciw bez konstruktywnej alternatywy.",
       "697. Niemożność funkcjonowania w żadnej strukturze.",
       "698. Chroniczne poczucie bycia niezrozumianym.",
-      "699. Sabotowanie własnych sukcesów z lęku przed \"sprzedaniem się\".",
+      "699. Sabotowanie własnych sukcesów z lęku przed 'sprzedaniem się'.",
       "700. Uzależnienie tożsamości od bycia przeciwko czemuś."
     ],
     "Mędrzec/Starzec": [
       "701. Emocjonalna oziębłość w pogoni za wiedzą.",
       "702. Niezdolność do działania z powodu nadmiernej analizy.",
-      "703. Arogancja intelektualna i pogarda dla \"prostych\" ludzi.",
+      "703. Arogancja intelektualna i pogarda dla 'prostych' ludzi.",
       "704. Izolacja wynikająca z poczucia intelektualnej wyższości.",
       "705. Lęk przed tym, że wiedza nie ma praktycznego zastosowania."
     ],
@@ -921,8 +921,8 @@ const problemsData = {
     ],
     "Mag/Czarownik": [
       "711. Nadmierne poczucie własnej mocy prowadzące do manipulacji.",
-      "712. Lęk przed utratą kontroli nad \"magicznymi\" zdolnościami.",
-      "713. Izolacja wynikająca z posiadania \"tajemnej wiedzy\".",
+      "712. Lęk przed utratą kontroli nad 'magicznymi' zdolnościami.",
+      "713. Izolacja wynikająca z posiadania 'tajemnej wiedzy'.",
       "714. Wykorzystywanie duchowych zdolności do zaspokajania ego.",
       "715. Niemożność życia w zwykłej rzeczywistości."
     ],
@@ -934,7 +934,7 @@ const problemsData = {
       "720. Lęk przed tym, że wiedza stanie się przestarzała."
     ],
     "Prorok": [
-      "721. Izolacja wynikająca z posiadania \"niepopularnych prawd\".",
+      "721. Izolacja wynikająca z posiadania 'niepopularnych prawd'.",
       "722. Frustracja z powodu ignorowania ostrzeżeń.",
       "723. Depresja wynikająca z widzenia przyszłych problemów.",
       "724. Niemożność cieszenia się teraźniejszością.",
@@ -990,7 +990,7 @@ const problemsData = {
       "760. Trudność w delegowaniu zadań budowlanych."
     ],
     "Alchemik": [
-      "761. Obsesyjne poszukiwanie \"kamienia filozoficznego\" w różnych dziedzinach.",
+      "761. Obsesyjne poszukiwanie 'kamienia filozoficznego' w różnych dziedzinach.",
       "762. Frustracja z powodu braku natychmiastowych rezultatów transformacji.",
       "763. Izolacja wynikająca z niezrozumienia procesów alchemicznych.",
       "764. Lęk przed tym, że sekret transformacji zostanie utracony.",
@@ -1042,7 +1042,7 @@ const problemsData = {
       "796. Kompulsywna potrzeba destrukcji, nawet własnych osiągnięć.",
       "797. Niemożność tworzenia czegokolwiek trwałego.",
       "798. Lęk przed odpowiedzialnością za pozytywne zmiany.",
-      "799. Frustracja z powodu braku zrozumienia dla \"oczyszczającej\" roli destrukcji.",
+      "799. Frustracja z powodu braku zrozumienia dla 'oczyszczającej' roli destrukcji.",
       "800. Trudność w przekształceniu destrukcyjnych impulsów w twórcze."
     ],
     "Tyran": [
@@ -1054,7 +1054,7 @@ const problemsData = {
     ],
     "Poszukiwacz": [
       "806. Niemożność zadowolenia się żadnym osiągnięciem.",
-      "807. Lęk przed tym, że poszukiwane \"coś\" nie istnieje.",
+      "807. Lęk przed tym, że poszukiwane 'coś' nie istnieje.",
       "808. Frustracja z powodu braku jasnego kierunku poszukiwań.",
       "809. Trudność w docenieniu tego, co już zostało znalezione.",
       "810. Izolacja wynikająca z ciągłej potrzeby ruchu i zmiany."
@@ -1071,11 +1071,10 @@ const problemsData = {
       "817. Lęk przed zobowiązaniami i stałością.",
       "818. Samotność wynikająca z ciągłego przemieszczania się.",
       "819. Trudność w budowaniu głębokich relacji.",
-      "820. Frustracja z powodu braku stałego \"domu\" w sensie emocjonalnym."
+      "820. Frustracja z powodu braku stałego 'domu' w sensie emocjonalnym."
     ]
   }
         }
-
 
 
 
