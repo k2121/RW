@@ -1,24 +1,17 @@
-
 $(document).ready(function () {
-  // Inicjalizacja select2 (jeśli jeszcze nie ma)
   $('#pola_planszy').select2();
 
-  // Timeout pozwala Select2 wygenerować DOM
   setTimeout(function () {
-    const container = $('#pola_planszy').next('.select2-container');
-    container.find('.select2-selection--single').css({
-      'height': '18px',
-      'line-height': '18px',
-      'padding': '0 0px'
-    });
+    const $container = $('#pola_planszy').next('.select2-container');
 
-    container.find('.select2-selection__rendered').css({
-      'line-height': '18px',
-      'padding': '0 0px'
-    });
+    // Dodaj style jako atrybut style z !important
+    $container.find('.select2-selection--single').attr('style',
+      'height:18px !important; line-height:18px !important; padding:0 0px !important;');
 
-    container.find('.select2-selection__arrow').css({
-      'height': '18px'
-    });
+    $container.find('.select2-selection__rendered').attr('style',
+      'line-height:18px !important; padding:0 0px !important;');
+
+    $container.find('.select2-selection__arrow').attr('style',
+      'height:18px !important; top:0 !important;');
   }, 0);
 });
