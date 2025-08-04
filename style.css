@@ -455,8 +455,8 @@ th, td {
 
 /* wysokość wierszy w rozwiniętej liście */
 .select2-results__option {
-  min-height: 34px;                /* odstęp między wierszami */
-  padding: 6px 8px;                /* wewnętrzny odstęp */
+  min-height: 18px;                /* odstęp między wierszami */
+  padding: 0px 0px;                /* wewnętrzny odstęp */
 }
 
 .select2-selection__rendered {
@@ -472,4 +472,15 @@ th, td {
     line-height: 1em !important;     /* najmniejszy możliwy odstęp */
     padding: 0 20px 0 4px !important;
   }
+}
+#select2-pola_planszy-container {
+  width: 90%;
+  height: 18px;
+  padding: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+  text-align: center;
+  height: 18px !important;          /* dowolna wartość */
+  line-height:18px !important;     /* wycentrowanie tekstu */
+  background-color: #00f7ff; color: #000000;
 }
