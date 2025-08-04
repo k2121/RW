@@ -486,7 +486,7 @@ th, td {
   line-height:18px !important;     /* wycentrowanie tekstu */
   background-color: #00f7ff; color: #000000;
 }
-.select2-selection--single {
+#pola_planszy + .select2-container .select2-selection--single {
   height: 18px !important;
   line-height: 18px !important;
 }
