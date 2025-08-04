@@ -805,7 +805,6 @@ const problemsData = {
     "630. Brak troski o innych, nadmierne poświęcanie się dla nich (bez stawiania granic), lub lęk przed byciem bezsilnym (archetyp Opiekuna/Troskliwego)."
     ]
   },
-{
   "Archetypy Psychologiczne Junga": {
     "Cień (Shadow)": [
       "631. Projekcja własnego Cienia na innych, oskarżanie o cechy, które wypieramy w sobie.",
@@ -1075,6 +1074,7 @@ const problemsData = {
     ]
   }
         }
+
 
 
 
