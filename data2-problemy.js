@@ -784,8 +784,10 @@ const problemsData = {
         "613. Poczucie bycia zmuszonym do wyboru strony w konfliktach społecznych lub politycznych.",
         "614. Wypalenie wynikające z ciągłego uczestnictwa w konfliktach grupowych (np. w pracy, społecznościach online).",
   
-    ],
-    "Archetypy Psychologiczne Junga": [
+    ]
+  },
+    "Archetypy Psychologiczne Junga": {
+        "Wyzwania": [
     "615. Problemy wynikające z nadmiernej identyfikacji z Personą (maską społeczną) i utraty kontaktu z prawdziwym Ja.",
     "616. Konflikty lub lęk związane z nieświadomymi, odrzuconymi aspektami własnej osobowości (Cień).",
     "617. Trudności w relacjach z powodu nierozwiniętego archetypu Animy (dla mężczyzn) lub Animusa (dla kobiet), wpływające na postrzeganie płci przeciwnej.",
@@ -805,6 +807,7 @@ const problemsData = {
     ]
   }
 }
+
 
 
 
