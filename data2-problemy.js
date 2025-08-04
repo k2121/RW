@@ -782,8 +782,7 @@ const problemsData = {
         "611. Presja grupowa prowadząca do tłumienia indywidualnych przekonań na rzecz akceptacji społecznej.",
         "612. Trudność w nawigowaniu w toksycznych dynamikach grupowych (np. plotki, wykluczanie).",
         "613. Poczucie bycia zmuszonym do wyboru strony w konfliktach społecznych lub politycznych.",
-        "614. Wypalenie wynikające z ciągłego uczestnictwa w konfliktach grupowych (np. w pracy, społecznościach online).",
-  
+        "614. Wypalenie wynikające z ciągłego uczestnictwa w konfliktach grupowych (np. w pracy, społecznościach online)."
     ]
   },
     "Archetypy Psychologiczne Junga": {
@@ -805,8 +804,278 @@ const problemsData = {
     "629. Problemy z intymnością, niezdolność do kochania i odczuwania przyjemności, lub nadmierna zależność w relacjach (archetyp Kochanka).",
     "630. Brak troski o innych, nadmierne poświęcanie się dla nich (bez stawiania granic), lub lęk przed byciem bezsilnym (archetyp Opiekuna/Troskliwego)."
     ]
+  },
+{
+  "Archetypy Psychologiczne Junga": {
+    "Cień (Shadow)": [
+      "631. Projekcja własnego Cienia na innych, oskarżanie o cechy, które wypieramy w sobie.",
+      "632. Lęk przed odkryciem własnych ciemnych impulsów (agresja, seksualność, zazdrość).",
+      "633. Kompulsywne potępianie w innych tego, czego nie akceptujemy w sobie.",
+      "634. Niezdolność do integracji destruktywnych aspektów osobowości w zdrowy sposób.",
+      "635. Ucieczka w \"światłość\" i duchowość jako forma wypierania Cienia."
+    ],
+    "Anima/Animus": [
+      "636. Mężczyźni: projekcja idealizowanej kobiecości na partnerki, niemożność związku z realną kobietą.",
+      "637. Kobiety: poszukiwanie \"silnego mężczyzny\" jako projekcja własnego Animusa.",
+      "638. Nierozwinięta intuicja i emocjonalność u mężczyzn (zablokowana Anima).",
+      "639. Nadmierna racjonalizacja i agresywność u kobiet (zdominowanie przez Animus).",
+      "640. Trudność w rozumieniu przeciwnej płci z powodu nieświadomych projekcji."
+    ],
+    "Jaźń (Self)": [
+      "641. Lęk przed indywiduacją i odkryciem własnej unikalnej ścieżki życia.",
+      "642. Utknięcie w połowie drogi rozwoju, rezygnacja z dalszego wzrostu.",
+      "643. Nadmierna identyfikacja z jednym aspektem osobowości, brak integracji.",
+      "644. Strach przed pełnią własnego potencjału (kompleks Jonasza).",
+      "645. Niemożność pogodzenia sprzecznych aspektów własnej natury."
+    ],
+    "Persona": [
+      "646. Całkowita identyfikacja z rolą społeczną, utrata kontaktu z prawdziwym Ja.",
+      "647. Lęk przed zdjęciem maski, nawet w intymnych relacjach.",
+      "648. Mnogie, sprzeczne maski prowadzące do fragmentacji tożsamości.",
+      "649. Wyczerpanie z ciągłego \"grania roli\" bez momentów autentyczności.",
+      "650. Niemożność funkcjonowania bez społecznej walidacji i ról."
+    ],
+    "Wielka Matka": [
+      "651. Nadmierna opiekuńczość prowadząca do uduszenia rozwoju innych.",
+      "652. Lęk przed pustym gniazdem i utratą roli macierzyńskiej.",
+      "653. Kontrolowanie przez \"troskę\" i niemożność puszczenia wolno.",
+      "654. Projekcja własnych niespełnionych marzeń na dzieci.",
+      "655. Trudność w postawieniu granic między sobą a dzieckiem."
+    ],
+    "Ojciec": [
+      "656. Nadmierna surowość i wymagania prowadzące do lęku w dzieciach.",
+      "657. Emocjonalna niedostępność i niemożność okazania ciepła.",
+      "658. Narzucanie własnej wizji sukcesu bez uwzględnienia potrzeb dziecka.",
+      "659. Lęk przed pokazaniem słabości lub niepewności.",
+      "660. Trudność w przekazaniu mądrości bez dominacji."
+    ],
+    "Dziecko (Puer/Puella)": [
+      "661. Chroniczna nieodpowiedzialność i unikanie dorosłego życia.",
+      "662. Wieczne poszukiwanie \"idealnego życia\" bez podejmowania realnych kroków.",
+      "663. Lęk przed zobowiązaniami i stałością.",
+      "664. Nadmierna zależność od innych w podejmowaniu decyzji.",
+      "665. Ucieczka w fantazje zamiast konfrontacji z rzeczywistością."
+    ],
+    "Sierota": [
+      "666. Chroniczne poczucie opuszczenia, nawet w obecności bliskich.",
+      "667. Nadmierny lęk przed przywiązaniem z obawy przed stratą.",
+      "668. Trudność w zaufaniu stabilności relacji.",
+      "669. Kompensacja przez nadmierną niezależność.",
+      "670. Poszukiwanie rodziny zastępczej w niezdrowy sposób."
+    ],
+    "Syn/Córka": [
+      "671. Niemożność wyjścia z roli dziecka wobec rodziców w dorosłości.",
+      "672. Chroniczne poszukiwanie aprobaty rodzicielskiej.",
+      "673. Bunt przeciwko rodzicom, który trwa całe życie.",
+      "674. Idealizacja lub demonizacja figur rodzicielskich.",
+      "675. Powtarzanie rodzinnych wzorców bez świadomej refleksji."
+    ],
+    "Bohater": [
+      "676. Kompulsywna potrzeba ratowania innych za wszelką cenę.",
+      "677. Lęk przed pokazaniem słabości lub zwykłości.",
+      "678. Wypalenie z ciągłej potrzeby bycia silnym dla innych.",
+      "679. Niemożność przyjęcia pomocy od innych.",
+      "680. Uzależnienie samooceny od heroicznych czynów."
+    ],
+    "Król/Królowa": [
+      "681. Tyrania i niemożność delegowania odpowiedzialności.",
+      "682. Lęk przed utratą władzy i kontroli.",
+      "683. Izolacja wynikająca z pozycji władzy.",
+      "684. Nadmierne poczucie odpowiedzialności za innych.",
+      "685. Trudność w odróżnieniu służby od dominacji."
+    ],
+    "Wojownik": [
+      "686. Przemoc jako jedyny sposób rozwiązywania konfliktów.",
+      "687. Niemożność życia w pokoju, ciągłe poszukiwanie wrogów.",
+      "688. Trudność w okazywaniu czułości i wrażliwości.",
+      "689. Wypalenie z ciągłej gotowości bojowej.",
+      "690. Lęk przed pokazaniem słabości lub porażki."
+    ],
+    "Przywódca": [
+      "691. Izolacja związana z odpowiedzialnością za decyzje.",
+      "692. Trudność w znalezieniu równorzędnych partnerów.",
+      "693. Kompulsywna potrzeba kontrolowania otoczenia.",
+      "694. Lęk przed podejmowaniem błędnych decyzji.",
+      "695. Wypalenie z ciągłej presji bycia wzorem."
+    ],
+    "Buntownik": [
+      "696. Destrukcyjny sprzeciw bez konstruktywnej alternatywy.",
+      "697. Niemożność funkcjonowania w żadnej strukturze.",
+      "698. Chroniczne poczucie bycia niezrozumianym.",
+      "699. Sabotowanie własnych sukcesów z lęku przed \"sprzedaniem się\".",
+      "700. Uzależnienie tożsamości od bycia przeciwko czemuś."
+    ],
+    "Mędrzec/Starzec": [
+      "701. Emocjonalna oziębłość w pogoni za wiedzą.",
+      "702. Niezdolność do działania z powodu nadmiernej analizy.",
+      "703. Arogancja intelektualna i pogarda dla \"prostych\" ludzi.",
+      "704. Izolacja wynikająca z poczucia intelektualnej wyższości.",
+      "705. Lęk przed tym, że wiedza nie ma praktycznego zastosowania."
+    ],
+    "Pustelnik": [
+      "706. Nadmierna izolacja prowadząca do utraty zdolności społecznych.",
+      "707. Lęk przed powrotem do świata po okresie odosobnienia.",
+      "708. Arogancja duchowa i poczucie wyższości nad światem.",
+      "709. Niemożność przekazania zdobytej mądrości innym.",
+      "710. Ucieczka w duchowość jako forma unikania odpowiedzialności."
+    ],
+    "Mag/Czarownik": [
+      "711. Nadmierne poczucie własnej mocy prowadzące do manipulacji.",
+      "712. Lęk przed utratą kontroli nad \"magicznymi\" zdolnościami.",
+      "713. Izolacja wynikająca z posiadania \"tajemnej wiedzy\".",
+      "714. Wykorzystywanie duchowych zdolności do zaspokajania ego.",
+      "715. Niemożność życia w zwykłej rzeczywistości."
+    ],
+    "Nauczyciel": [
+      "716. Nadmierna potrzeba kontrolowania rozwoju uczniów.",
+      "717. Niemożność uczenia się od innych, szczególnie młodszych.",
+      "718. Frustracja z powodu braku zrozumienia ze strony uczniów.",
+      "719. Wypalenie z ciągłego dawania bez otrzymywania.",
+      "720. Lęk przed tym, że wiedza stanie się przestarzała."
+    ],
+    "Prorok": [
+      "721. Izolacja wynikająca z posiadania \"niepopularnych prawd\".",
+      "722. Frustracja z powodu ignorowania ostrzeżeń.",
+      "723. Depresja wynikająca z widzenia przyszłych problemów.",
+      "724. Niemożność cieszenia się teraźniejszością.",
+      "725. Lęk przed odpowiedzialnością za przewidziane wydarzenia."
+    ],
+    "Ratownik/Zbawca": [
+      "726. Kompulsywna potrzeba ratowania innych, nawet gdy nie chcą pomocy.",
+      "727. Wypalenie z ciągłego dawania siebie innym.",
+      "728. Niemożność przyjęcia pomocy od innych.",
+      "729. Uzależnienie samooceny od bycia potrzebnym.",
+      "730. Lęk przed tym, że bez problemów innych stanie się niepotrzebny."
+    ],
+    "Opiekun": [
+      "731. Nadmierna troski prowadząca do kontroli i uduszenia.",
+      "732. Niemożność pozwolenia innym na popełnianie błędów.",
+      "733. Wypalenie emocjonalne z ciągłego dawania.",
+      "734. Lęk przed opuszczeniem przez tych, o których się troszczy.",
+      "735. Trudność w postawieniu granic w relacjach opiekuńczych."
+    ],
+    "Anioł Stróż": [
+      "736. Nadmierne poczucie odpowiedzialności za bezpieczeństwo innych.",
+      "737. Lęk przed tym, że coś złego stanie się pod jego nieobecność.",
+      "738. Niemożność odpoczynku z powodu ciągłej czujności.",
+      "739. Frustracja z powodu braku doceniania jego ochrony.",
+      "740. Trudność w rozróżnieniu realnych zagrożeń od wyimaginowanych."
+    ],
+    "Uzdrowiciel": [
+      "741. Wypalenie z ciągłego pochłaniania bólu innych.",
+      "742. Niemożność wyleczenia siebie przy jednoczesnym leczeniu innych.",
+      "743. Frustracja z powodu przypadków, których nie można wyleczyć.",
+      "744. Lęk przed tym, że zdolności uzdrowicielskie go opuszczą.",
+      "745. Trudność w odróżnieniu własnych emocji od emocji pacjentów."
+    ],
+    "Sługa": [
+      "746. Całkowita utrata własnej tożsamości w służbie innym.",
+      "747. Niemożność wyrażenia własnych potrzeb i pragnień.",
+      "748. Resentyment wobec tych, którym służy.",
+      "749. Lęk przed byciem niepotrzebnym po zakończeniu służby.",
+      "750. Trudność w znalezieniu wartości poza służeniem innym."
+    ],
+    "Twórca/Artysta": [
+      "751. Obsesyjne dążenie do perfekcji prowadzące do braku ukończonych dzieł.",
+      "752. Lęk przed krytyką paraliżujący proces twórczy.",
+      "753. Niemożność życia bez ciągłego tworzenia.",
+      "754. Frustracja z powodu braku zrozumienia swojej sztuki.",
+      "755. Trudność w łączeniu twórczości z praktycznymi aspektami życia."
+    ],
+    "Budowniczy": [
+      "756. Obsesyjne skupienie na perfekcji konstrukcji.",
+      "757. Niemożność cieszenia się ukończonymi projektami.",
+      "758. Frustracja z powodu ograniczeń materialnych i czasowych.",
+      "759. Lęk przed tym, że dzieło zostanie zniszczone lub zaniedbane.",
+      "760. Trudność w delegowaniu zadań budowlanych."
+    ],
+    "Alchemik": [
+      "761. Obsesyjne poszukiwanie \"kamienia filozoficznego\" w różnych dziedzinach.",
+      "762. Frustracja z powodu braku natychmiastowych rezultatów transformacji.",
+      "763. Izolacja wynikająca z niezrozumienia procesów alchemicznych.",
+      "764. Lęk przed tym, że sekret transformacji zostanie utracony.",
+      "765. Trudność w przyjęciu, że niektóre rzeczy nie da się zmienić."
+    ],
+    "Przyjaciel/Towarzysz": [
+      "766. Nadmierna potrzeba bycia lubianym przez wszystkich.",
+      "767. Niemożność konfrontacji z przyjaciółmi, nawet gdy jest potrzebna.",
+      "768. Lęk przed samotnością prowadzący do toksycznych przyjaźni.",
+      "769. Trudność w postawieniu granic w relacjach przyjacielskich.",
+      "770. Frustracja z powodu powierzchowności współczesnych przyjaźni."
+    ],
+    "Kochanek": [
+      "771. Uzależnienie od intensywności emocjonalnej w relacjach.",
+      "772. Niemożność funkcjonowania bez romantycznego partnera.",
+      "773. Idealizacja miłości prowadząca do rozczarowań.",
+      "774. Lęk przed intymnością przy jednoczesnym jej pożądaniu.",
+      "775. Trudność w odróżnieniu miłości od obsesji."
+    ],
+    "Obywatel": [
+      "776. Nadmierne podporządkowanie się zasadom społecznym.",
+      "777. Lęk przed wyróżnianiem się z tłumu.",
+      "778. Frustracja z powodu niesprawiedliwości systemu.",
+      "779. Niemożność działania poza ustalonymi ramami.",
+      "780. Trudność w łączeniu indywidualności z przynależnością grupową."
+    ],
+    "Niewinny": [
+      "781. Naiwność prowadząca do bycia wykorzystywanym przez innych.",
+      "782. Lęk przed konfrontacją ze złem w świecie.",
+      "783. Niemożność rozwoju w obliczu trudnych doświadczeń.",
+      "784. Frustracja z powodu utraty wiary w dobro ludzi.",
+      "785. Trudność w rozpoznawaniu manipulacji i oszustwa."
+    ],
+    "Oszust (Trickster)": [
+      "786. Kompulsywna potrzeba zakłócania porządku, nawet gdy jest szkodliwa.",
+      "787. Niemożność budowania trwałych relacji z powodu nieprzewidywalności.",
+      "788. Lęk przed nudą prowadzący do tworzenia niepotrzebnych problemów.",
+      "789. Trudność w odróżnieniu konstruktywnego humoru od destrukcyjnej kpiny.",
+      "790. Izolacja wynikająca z braku zaufania ze strony innych."
+    ],
+    "Diabeł/Kusiciel": [
+      "791. Kompulsywna potrzeba kuszenia i prowadzenia innych na manowce.",
+      "792. Niemożność odczuwania satysfakcji z konstruktywnych działań.",
+      "793. Lęk przed odkryciem własnej pustki pod maską charyzmy.",
+      "794. Trudność w budowaniu autentycznych relacji.",
+      "795. Izolacja wynikająca z bycia postrzeganym jako zagrożenie."
+    ],
+    "Niszczyciel": [
+      "796. Kompulsywna potrzeba destrukcji, nawet własnych osiągnięć.",
+      "797. Niemożność tworzenia czegokolwiek trwałego.",
+      "798. Lęk przed odpowiedzialnością za pozytywne zmiany.",
+      "799. Frustracja z powodu braku zrozumienia dla \"oczyszczającej\" roli destrukcji.",
+      "800. Trudność w przekształceniu destrukcyjnych impulsów w twórcze."
+    ],
+    "Tyran": [
+      "801. Kompulsywna potrzeba dominacji i kontroli nad innymi.",
+      "802. Lęk przed utratą władzy prowadzący do paranoi.",
+      "803. Niemożność nawiązania równorzędnych relacji.",
+      "804. Izolacja wynikająca ze strachu podwładnych.",
+      "805. Trudność w rozróżnieniu przywództwa od tyranii."
+    ],
+    "Poszukiwacz": [
+      "806. Niemożność zadowolenia się żadnym osiągnięciem.",
+      "807. Lęk przed tym, że poszukiwane \"coś\" nie istnieje.",
+      "808. Frustracja z powodu braku jasnego kierunku poszukiwań.",
+      "809. Trudność w docenieniu tego, co już zostało znalezione.",
+      "810. Izolacja wynikająca z ciągłej potrzeby ruchu i zmiany."
+    ],
+    "Odkrywca": [
+      "811. Kompulsywna potrzeba poznawania nowego za wszelką cenę.",
+      "812. Niemożność cieszenia się znanym i bezpiecznym.",
+      "813. Lęk przed tym, że nie ma już nic do odkrycia.",
+      "814. Trudność w budowaniu stałych relacji z powodu potrzeby ruchu.",
+      "815. Frustracja z powodu ograniczeń fizycznych i czasowych."
+    ],
+    "Wędrowiec": [
+      "816. Niemożność zakorzenienia się w jednym miejscu.",
+      "817. Lęk przed zobowiązaniami i stałością.",
+      "818. Samotność wynikająca z ciągłego przemieszczania się.",
+      "819. Trudność w budowaniu głębokich relacji.",
+      "820. Frustracja z powodu braku stałego \"domu\" w sensie emocjonalnym."
+    ]
   }
-}
+        }
+
 
 
 
