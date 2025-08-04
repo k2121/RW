@@ -42,6 +42,7 @@ body, button, textarea, select, label {
   margin-bottom: 0;
   text-align: center;
   background: radial-gradient(circle, #f7fcf2 0%, rgb(102, 255, 153) 100%);
+  color: #000000;
 }
 #wyobraz_sobie {
   width: 100%;
@@ -52,6 +53,7 @@ body, button, textarea, select, label {
   resize: vertical;
   text-align: center;
   background: radial-gradient(circle, #f8f3f7 0%, #dfb2c3 100%);
+  color: #000000;
 }
 #przekonanie {
   width: 100%;
