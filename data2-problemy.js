@@ -786,7 +786,7 @@ const problemsData = {
     ]
   },
     "Archetypy Psychologiczne Junga": {
-        "Wyzwania": [
+       "Wyzwania": [
     "615. Problemy wynikające z nadmiernej identyfikacji z Personą (maską społeczną) i utraty kontaktu z prawdziwym Ja.",
     "616. Konflikty lub lęk związane z nieświadomymi, odrzuconymi aspektami własnej osobowości (Cień).",
     "617. Trudności w relacjach z powodu nierozwiniętego archetypu Animy (dla mężczyzn) lub Animusa (dla kobiet), wpływające na postrzeganie płci przeciwnej.",
@@ -803,9 +803,7 @@ const problemsData = {
     "628. Lęk przed przynależnością, wycofanie społeczne, lub brak indywidualności i zlewanie się z masą (archetyp Zwyczajnego Człowieka/Każdego).",
     "629. Problemy z intymnością, niezdolność do kochania i odczuwania przyjemności, lub nadmierna zależność w relacjach (archetyp Kochanka).",
     "630. Brak troski o innych, nadmierne poświęcanie się dla nich (bez stawiania granic), lub lęk przed byciem bezsilnym (archetyp Opiekuna/Troskliwego)."
-    ]
-  },
-  "Archetypy Psychologiczne Junga": {
+    ],
     "Cień (Shadow)": [
       "631. Projekcja własnego Cienia na innych, oskarżanie o cechy, które wypieramy w sobie.",
       "632. Lęk przed odkryciem własnych ciemnych impulsów (agresja, seksualność, zazdrość).",
@@ -1074,6 +1072,7 @@ const problemsData = {
     ]
   }
         }
+
 
 
 
