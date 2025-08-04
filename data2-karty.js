@@ -427,7 +427,7 @@ pola_zdarzenie: [
   { value: "z355", label: "z355 Zorientowałeś się, że Twoje 'racjonalne' decyzje były w rzeczywistości podyktowane głębokim lękiem." },
   { value: "z356", label: "z356 Twoje marzenie zostało skradzione lub skopiowane przez kogoś, komu ufałeś." },
   { value: "z357", label: "z357 Utraciłeś 'bezpieczne miejsce' (fizyczne lub emocjonalne), które dawało Ci poczucie stabilności." },
-  { value: "z358", label: "z358 Zostałeś zmuszony do publicznej obrony wartości, których sam zacząłeś być niepewny." }
+  { value: "z358", label: "z358 Zostałeś zmuszony do publicznej obrony wartości, których sam zacząłeś być niepewny." },
   { value: "z359", label: "z359 Byłeś bezsilnym świadkiem jawnej niesprawiedliwości." },
   { value: "z360", label: "z360 Byłeś chwalony za konformizm, czując wewnętrzną pustkę." },
   { value: "z361", label: "z361 Byłeś chwalony za coś, co było dla Ciebie nieautentyczne i budziło wewnętrzne poczucie oszustwa." },
@@ -2315,3 +2315,4 @@ nowa_opowiesc: [
 
 projekcje: ["⬆️", "↗️", "➡️", "↘️", "⬇️", "↙️", "⬅️", "↖️"]
 }
+
