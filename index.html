@@ -1,103 +1,102 @@
 <!DOCTYPE html>
 <html lang="pl">
+
 <head>
- <meta charset="UTF-8">
- <meta name="viewport"
- content="width=device-width, initial-scale=0.9">
- <title>💞SATORI💞</title>
- <link rel="icon" type="image/png" href="Ikona.png" >
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=0.9">
+    <title>💞SATORI💞</title>
+    <link rel="icon" type="image/png" href="Ikona.png">
 
 
-<link href="select2.min.css" rel="stylesheet" />
-<script src="jquery-3.6.0.min.js"></script>
-<script src="select2.min.js"></script>
+    <link href="select2.min.css" rel="stylesheet" />
+    <script src="jquery-3.6.0.min.js"></script>
+    <script src="select2.min.js"></script>
 
 
-<link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="style.css">
 
 
 
 </head>
-<body style="background-color: rgb(0, 255, 0); color: rgb(0, 0, 0);"
- alink="#ee0000" link="#0000ee" vlink="#551a8b">
 
-<!-- Sekcja nagłówka i pola wyboru Zdarzenia/Kontekstu -->
-<table>
-  <tbody>
-    <tr>
-      <td class="green-cell" style="text-align: center;">
-        Gra Radykalnego Wybaczania SATORI 💞 <br>
-        wydanie elektroniczne by KP
-      </td>
-    </tr>
-    <tr>
-      <td class="blue-cell" style="padding-top: 0px;">
-        <label for="pola_zdarzenie"><b>[649] Pole wyboru zdarzenie:</b>
+<body style="background-color: rgb(0, 255, 0); color: rgb(0, 0, 0);" alink="#ee0000" link="#0000ee" vlink="#551a8b">
+
+    <!-- Sekcja nagłówka i pola wyboru Zdarzenia/Kontekstu -->
+    <table>
+        <tbody>
+            <tr>
+                <td class="green-cell" style="text-align: center;">
+                    Gra Radykalnego Wybaczania SATORI 💞 <br> wydanie elektroniczne by KP
+                </td>
+            </tr>
+            <tr>
+                <td class="blue-cell" style="padding-top: 0px;">
+                    <label for="pola_zdarzenie"><b>[879] Pole wyboru zdarzenie:</b>
           <button type="button" onclick="copyDropdownValueWithPrefixToClipboard('pola_zdarzenie', 'zdarzenie: ')">Kopiuj</button>
           <button onclick="randomSelectZdarzenie()">Losuj</button>
         </label>
-        <select id="pola_zdarzenie" name="pola_zdarzenie" style="width: 100%; box-sizing: border-box;">
+                    <select id="pola_zdarzenie" name="pola_zdarzenie" style="width: 100%; box-sizing: border-box;">
           <option value="">Wybierz zdarzenie...</option>
           <!-- Opcje będą generowane dynamicznie -->
         </select><br><br>
-        <label for="pola_kontekst"><b>[551] Pole wyboru kontekst:</b>
+                    <label for="pola_kontekst"><b>[651] Pole wyboru kontekst:</b>
           <button type="button" onclick="copyDropdownValueWithPrefixToClipboard('pola_kontekst', 'kontekst: ')">Kopiuj</button>
           <button onclick="randomSelectKontekst()">Losuj</button>
         </label>
-        <select id="pola_kontekst" name="pola_kontekst" style="width: 100%; box-sizing: border-box;">
+                    <select id="pola_kontekst" name="pola_kontekst" style="width: 100%; box-sizing: border-box;">
           <option value="">Wybierz kontekst...</option>
           <!-- Opcje będą generowane dynamicznie -->
         </select><br><br>
-      </td>
-    </tr>
-  </tbody>
-</table>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
-<!-- Przeniesiony kontener koszyka i listy problemów - ma zerowe marginesy -->
-<div id="problem-selector-container" style="margin: 0;">
-  
-  <h3>[630] Wybierz wyzwania, nad którymi chcesz pracować:<button onclick="openBasketInNewWindow()">Nowe okno</button></h3>
-  <div style="margin-bottom: 0px;">
-      <!-- Usunięto: <button onclick="expandAll()">Rozwiń wszystkie</button> -->
-      <!-- Usunięto: <button onclick="collapseAll()">Zwiń wszystkie</button> -->
-      <!-- Usunięto: <button onclick="clearSearch()">Kasuj</button> -->
-      
-  </div>
-  <!-- Usunięto: <input type="text" id="problemSearch" onkeyup="filterProblems()" placeholder="Szukaj problemu..."> -->
-  
+    <!-- Przeniesiony kontener koszyka i listy problemów - ma zerowe marginesy -->
+    <div id="problem-selector-container" style="margin: 0;">
 
-</div>
+        <h3>[820] Wybierz wyzwania, nad którymi chcesz pracować:<button onclick="openBasketInNewWindow()">Nowe okno</button></h3>
+        <div style="margin-bottom: 0px;">
+            <!-- Usunięto: <button onclick="expandAll()">Rozwiń wszystkie</button> -->
+            <!-- Usunięto: <button onclick="collapseAll()">Zwiń wszystkie</button> -->
+            <!-- Usunięto: <button onclick="clearSearch()">Kasuj</button> -->
+
+        </div>
+        <!-- Usunięto: <input type="text" id="problemSearch" onkeyup="filterProblems()" placeholder="Szukaj problemu..."> -->
 
 
+    </div>
 
-<!-- Panel losowania kart do gry -->
-<table style="margin-top:10px;">
-  <tbody>
-    <tr>
-      <!-- Dodałem ID do komórki, aby łatwiej było ją ostylować -->
-      <td class="blue-cell" id="panel-losowania"> 
-        <div style="text-align: center; color: darkgreen;"><b>Panel losowania kart do gry</b></div>
-        
-        <!-- Nowy kontener z siatką -->
-        <div class="cards-grid-container">
-          <div class="card-item">
-            <label for="karma">[475] Życiowa lekcja to:
+
+
+    <!-- Panel losowania kart do gry -->
+    <table style="margin-top:10px;">
+        <tbody>
+            <tr>
+                <!-- Dodałem ID do komórki, aby łatwiej było ją ostylować -->
+                <td class="blue-cell" id="panel-losowania">
+                    <div style="text-align: center; color: darkgreen;"><b>Panel losowania kart do gry</b></div>
+
+                    <!-- Nowy kontener z siatką -->
+                    <div class="cards-grid-container">
+                        <div class="card-item">
+                            <label for="karma">[475] Życiowa lekcja to:
               <button type="button" onclick="copyDropdownValueWithPrefixToClipboard('karma', '')">Kopiuj</button>
               <button onclick="randomSelectKarma()">Losuj</button>
             </label>
-            <select id="karma" name="karma" style="width: 100%; box-sizing: border-box;">
+                            <select id="karma" name="karma" style="width: 100%; box-sizing: border-box;">
               <option value="">Wybierz kartę karmy...</option>
               <!-- Opcje będą generowane dynamicznie przez JavaScript -->
             </select><br>.<br>
-          </div>
-          <div class="card-item">
-            <label for="wyobraz_sobie">[24] Wyobraź sobie że...:
+                        </div>
+                        <div class="card-item">
+                            <label for="wyobraz_sobie">[24] Wyobraź sobie że...:
               <button type="button" onclick="copyToClipboard('wyobraz_sobie')">Kopiuj</button>
             </label>
-            <textarea id="wyobraz_sobie" name="wyobraz_sobie"></textarea>
-          </div>
-          <div class="card-item">
-            <label for="blokady_energii">[7] Zablokowana czakra:
+                            <textarea id="wyobraz_sobie" name="wyobraz_sobie"></textarea>
+                        </div>
+                        <div class="card-item">
+                            <label for="blokady_energii">[7] Zablokowana czakra:
               <button type="button" onclick="copyToClipboard('blokady_energii')">Kopiuj</button>
 
 <!-- Przycisk Czakry -->
@@ -115,172 +114,77 @@
 
 
             </label>
-            <textarea id="blokady_energii" name="blokady_energii"></textarea>
-          </div>
-          <div class="card-item">
-            <label for="nowa_opowiesc">[555] Oto Moja Nowa Opowieść...
+                            <textarea id="blokady_energii" name="blokady_energii"></textarea>
+                        </div>
+                        <div class="card-item">
+                            <label for="nowa_opowiesc">[555] Oto Moja Nowa Opowieść...
               <button type="button" onclick="copyToClipboard('nowa_opowiesc')">Kopiuj</button>
             </label>
-            <textarea id="nowa_opowiesc" name="nowa_opowiesc"></textarea>
-          </div>
-          <div class="card-item">
-            <label for="przekonanie">[370] Szkodliwe Przekonanie:
+                            <textarea id="nowa_opowiesc" name="nowa_opowiesc"></textarea>
+                        </div>
+                        <div class="card-item">
+                            <label for="przekonanie">[370] Szkodliwe Przekonanie:
               <button type="button" onclick="copyToClipboard('przekonanie')">Kopiuj📄</button>
             </label>
-            <!-- W Twoim kodzie to pole było ukryte, więc zachowuję to -->
-            <textarea id="przekonanie" name="przekonanie"></textarea> 
-          </div>
-          <div class="card-item">
-            <label for="projekcje">[8] Oto kierunek projekcji...</label>
-            <textarea id="projekcje" name="projekcje"></textarea>
-          </div>
-        </div>
-      </td>
-    </tr>
-  </tbody>
-</table>
+                            <!-- W Twoim kodzie to pole było ukryte, więc zachowuję to -->
+                            <textarea id="przekonanie" name="przekonanie"></textarea>
+                        </div>
+                        <div class="card-item">
+                            <label for="projekcje">[8] Oto kierunek projekcji...</label>
+                            <textarea id="projekcje" name="projekcje"></textarea>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
 
 
-<!-- Kontrolki do rzutów i pól planszy (zostały przeniesione pod główny panel gry) -->
-<label for="pola_planszy">Pole planszy:</label>
-<select id="pola_planszy" name="pola_planszy">
+    <!-- Kontrolki do rzutów i pól planszy (zostały przeniesione pod główny panel gry) -->
+    <label for="pola_planszy">Pole planszy:</label>
+    <select id="pola_planszy" name="pola_planszy">
   <option value="">Wybierz pole planszy...</option>
 </select>
-<button type="button" onclick="randomizeData()">Losuj kartę 📑</button>
-<button type="button" onclick="rollDice()">Rzut kostką 🎲</button>
-<span class="dice-result" id="diceResult"></span>
+    <button type="button" onclick="randomizeData()">Losuj kartę 📑</button>
+    <button type="button" onclick="rollDice()">Rzut kostką 🎲</button>
+    <span class="dice-result" id="diceResult"></span>
 
 
 
 
-<br>
-<button style="background-color: gray; color: rgb(64, 27, 122); border-radius: 4px;"
- onclick="pole00()">p00😓</button>
-<button
- style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;"
- onclick="pole01()">p01🕸️🕷️</button> <button
- style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;"
- onclick="pole02()">p02🔒🫀</button> <button
- style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;"
- onclick="pole03()">p03📽️</button> <button
- style="background-color: #d9e6ef; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole04()">p04👉🏻🙎🏻‍♂️</button> <button
- style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;"
- onclick="pole01()">p05🕸️🕷️</button> <button
- style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;"
- onclick="pole02()">p06🔒🫀</button> <button
- style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;"
- onclick="pole03()">p07📽️</button> <button
- style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;"
- onclick="pole08()">p08☯️</button> <button
- style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;"
- onclick="pole01()">p09🕸️🕷️</button> <button
- style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;"
- onclick="pole02()">p10🔒🫀</button> <button
- style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;"
- onclick="pole11()">p11🤔💭</button> <button
- style="background-color: #d9e6ef; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole04()">p12👉🏻🙎🏻‍♂️</button> <button
- style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;"
- onclick="pole01()">p13🕸️🕷️</button> <button
- style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;"
- onclick="pole08()">p14☯️</button> <button
- style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;"
- onclick="pole11()">p15🤔💭</button> <button
- style="background-color: #bb7caf; color: black; border: 5px solid green; border-radius: 4px;"
- onclick="pole16()">p16⛔</button> <button
- style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole17()">p17💡</button> <button
- style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole18()">p18🙋🏻‍♂️</button> <button
- style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole19()">p19🤗</button> <button
- style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole17()">p20💡</button> <button
- style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole21()">p21😮‍💨</button> <button
- style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole22()">p22😅</button> <button
- style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole18()">p23🙋🏻‍♂️</button> <button
- style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole19()">p24🤗</button> <button
- style="background-color: #d3e3b0; color: rgb(64, 27, 122); border-radius: 4px;"
- onclick="pole11()">p25🤔💭</button> <button
- style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole17()">p26💡</button> <button
- style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole18()">p27🙋🏻‍♂️</button> <button
- style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole28()">p28🚫💔</button> <button
- style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole17()">p29💡</button> <button
- style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole30()">p30🔥</button> <button
- style="background-color: #01c401; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole31()">p31⛔↪️</button>
-<button
- style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole21()">p32😮‍💨</button> <button
- style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole33()">p33📖</button> <button
- style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole17()">p34💡</button> <button
- style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole35()">p35👼🏻</button> <button
- style="background-color: #ffeec4; color: rgb(64, 27, 122); border-radius: 4px;"
- onclick="pole11()">p36🤔💭</button> <button
- style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole30()">p37🔥</button> <button
- style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole33()">p38📖</button> <button
- style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole17()">p39💡</button> <button
- style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole35()">p40👼🏻</button> <button
- style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole41()">p41⚡</button> <button
- style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole33()">p42📖</button> <button
- style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole21()">p43😮‍💨</button> <button
- style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole17()">p44💡</button> <button
- style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole33()">p45📖</button> <button
- style="background-color: #bb7caf; color: black; border: 5px solid green; border-radius: 4px;"
- onclick="pole46()">p46⛔</button> <button
- style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole21()">p47😮‍💨</button> <button
- style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole30()">p48🔥</button> <button
- style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole49()">p49💞</button> <button
- style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole50()">p50🥹</button> <button
- style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole19()">p51🤗</button> <button
- style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole28()">p52🚫💔</button> <button
- style="background-color: #f9def1; color: rgb(64, 27, 122); border-radius: 4px;"
- onclick="pole11()">p53🤔💭</button> <button
- style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole30()">p54🔥</button> <button
- style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole41()">p55⚡</button> <button
- style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole49()">p56💞</button> <button
- style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole35()">p57👼🏻</button> <button
- style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole58()">p58🌍</button> <button
- style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole19()">p59🤗</button> <button
- style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
- onclick="pole50()">p60🥹</button> <button
- style="background-color: #a2498f; color: black; border-radius: 4px;"
- onclick="pole61()">p61🧘🏻‍♂️</button>
-<br>
-<span> <label for="opis">
+    <br>
+    <button style="background-color: gray; color: rgb(64, 27, 122); border-radius: 4px;" onclick="pole00()">p00😓</button>
+    <button style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;" onclick="pole01()">p01🕸️🕷️</button> <button style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;" onclick="pole02()">p02🔒🫀</button>    <button style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;" onclick="pole03()">p03📽️</button> <button style="background-color: #d9e6ef; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole04()">p04👉🏻🙎🏻‍♂️</button>    <button style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;" onclick="pole01()">p05🕸️🕷️</button> <button style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;" onclick="pole02()">p06🔒🫀</button>    <button style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;" onclick="pole03()">p07📽️</button> <button style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;" onclick="pole08()">p08☯️</button>
+    <button
+        style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;" onclick="pole01()">p09🕸️🕷️</button> <button style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;" onclick="pole02()">p10🔒🫀</button> <button style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;" onclick="pole11()">p11🤔💭</button>        <button style="background-color: #d9e6ef; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole04()">p12👉🏻🙎🏻‍♂️</button> <button style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;"
+            onclick="pole01()">p13🕸️🕷️</button> <button style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;" onclick="pole08()">p14☯️</button> <button style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;"
+            onclick="pole11()">p15🤔💭</button> <button style="background-color: #bb7caf; color: black; border: 5px solid green; border-radius: 4px;" onclick="pole16()">p16⛔</button> <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
+            onclick="pole17()">p17💡</button> <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole18()">p18🙋🏻‍♂️</button> <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
+            onclick="pole19()">p19🤗</button> <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole17()">p20💡</button> <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
+            onclick="pole21()">p21😮‍💨</button> <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole22()">p22😅</button> <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
+            onclick="pole18()">p23🙋🏻‍♂️</button> <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole19()">p24🤗</button> <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border-radius: 4px;"
+            onclick="pole11()">p25🤔💭</button> <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole17()">p26💡</button> <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
+            onclick="pole18()">p27🙋🏻‍♂️</button> <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole28()">p28🚫💔</button> <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
+            onclick="pole17()">p29💡</button> <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole30()">p30🔥</button> <button style="background-color: #01c401; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
+            onclick="pole31()">p31⛔↪️</button>
+        <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole21()">p32😮‍💨</button> <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
+            onclick="pole33()">p33📖</button> <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole17()">p34💡</button> <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
+            onclick="pole35()">p35👼🏻</button> <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border-radius: 4px;" onclick="pole11()">p36🤔💭</button> <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
+            onclick="pole30()">p37🔥</button> <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole33()">p38📖</button> <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
+            onclick="pole17()">p39💡</button> <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole35()">p40👼🏻</button> <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
+            onclick="pole41()">p41⚡</button> <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole33()">p42📖</button> <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
+            onclick="pole21()">p43😮‍💨</button> <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole17()">p44💡</button> <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
+            onclick="pole33()">p45📖</button> <button style="background-color: #bb7caf; color: black; border: 5px solid green; border-radius: 4px;" onclick="pole46()">p46⛔</button> <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
+            onclick="pole21()">p47😮‍💨</button> <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole30()">p48🔥</button> <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
+            onclick="pole49()">p49💞</button> <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole50()">p50🥹</button> <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
+            onclick="pole19()">p51🤗</button> <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole28()">p52🚫💔</button> <button style="background-color: #f9def1; color: rgb(64, 27, 122); border-radius: 4px;"
+            onclick="pole11()">p53🤔💭</button> <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole30()">p54🔥</button> <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
+            onclick="pole41()">p55⚡</button> <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole49()">p56💞</button> <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
+            onclick="pole35()">p57👼🏻</button> <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole58()">p58🌍</button> <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;"
+            onclick="pole19()">p59🤗</button> <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole50()">p60🥹</button> <button style="background-color: #a2498f; color: black; border-radius: 4px;"
+            onclick="pole61()">p61🧘🏻‍♂️</button>
+        <br>
+        <span> <label for="opis">
 <i>MOC⚡: Pozbądź się wszystkich pozostałych kart „Przekonanie” [p30] i „Blokady energii” [p21].</i>
 <br><br>Polecenia do pól planszy:
 <button type="button" onclick="readDescription()">🔊 Czytaj</button>
@@ -301,53 +205,47 @@
 <textarea id="opis" name="opis" rows="10"
  cols="50"></textarea> </span>
 
-<br><br>
+        <br><br>
 
 
-<!-- Kontener dla dynamicznych textarea, do którego JavaScript dodaje karty -->
-<div id="textareas-container"></div>
-<br>
-<br>
-<div
- style="text-align: center; text-decoration: underline; color: rgb(0, 0, 0);">Plansza
-do zabawy w obwinianie (twarz i róża) JPG</div>
-<br>
-<br>
-<br>
-<div style="text-align: center;">
-<img style="width: 288px; height: 358px;"
- src="Satori obwinianie twarz.jpg"
- alt="Satori obwinianie twarz"></div>
-<br>
-<br>
-<br>
-<div style="text-align: center;">
-<img style="width: 283px; height: 353px;"
- src="Satori obwinianie róża.jpg"
- alt="Satori obwinianie róża">
-<br>
-<br>
-<br>
+        <!-- Kontener dla dynamicznych textarea, do którego JavaScript dodaje karty -->
+        <div id="textareas-container"></div>
+        <br>
+        <br>
+        <div style="text-align: center; text-decoration: underline; color: rgb(0, 0, 0);">Plansza do zabawy w obwinianie (twarz i róża) JPG</div>
+        <br>
+        <br>
+        <br>
+        <div style="text-align: center;">
+            <img style="width: 288px; height: 358px;" src="Satori obwinianie twarz.jpg" alt="Satori obwinianie twarz"></div>
+        <br>
+        <br>
+        <br>
+        <div style="text-align: center;">
+            <img style="width: 283px; height: 353px;" src="Satori obwinianie róża.jpg" alt="Satori obwinianie róża">
+            <br>
+            <br>
+            <br>
 
 
 
 
 
-<div id="tabela"></div>
+            <div id="tabela"></div>
 
-     <nie działa lokalnie>
-     <trzeba w folderze wywołać funkcję python:>
-     <python -m http.server>
-     <oraz przejdź do >
-     <http://localhost:8000/index.html>
+            <nie działa lokalnie>
+                <trzeba w folderze wywołać funkcję python:>
+                    <python -m http.server>
+                        <oraz przejdź do>
+                            <http://localhost:8000/index.html>
 
-<script>
-  fetch('tabela.html')
-    .then(response => response.text())
-    .then(html => {
-      document.getElementById('tabela').innerHTML = html;
-    });
-</script>
+                                <script>
+                                    fetch('tabela.html')
+                                        .then(response => response.text())
+                                        .then(html => {
+                                            document.getElementById('tabela').innerHTML = html;
+                                        });
+                                </script>
 
 
 
@@ -355,43 +253,42 @@ do zabawy w obwinianie (twarz i róża) JPG</div>
 
 
 
-<br>
-<br>
+                                <br>
+                                <br>
 
-<div style="text-align: center;">
-<img alt="Serce-mandala" src="Serce-mandala.jpg" style="width: 300px;">
-</div>
+                                <div style="text-align: center;">
+                                    <img alt="Serce-mandala" src="Serce-mandala.jpg" style="width: 300px;">
+                                </div>
 
-<br>
-<div style="text-align: left;">KONIEC<br></div>
-
-
-
-    <!-- PAMIĘTAJ: ZAWSZE ŁADUJ PLIKI Z DANYMI PRZED SKRYPTAMI, KTÓRE ICH UŻYWAJĄ -->
-    <script src="data2-karty.js"></script>
-    <script src="data2-problemy.js"></script>
-    <script src="namePrompt.js"></script>
-    <script src="speechSynthesis.js"></script>
-    <script src="problemSelector.js"></script>
-    <script src="gameMechanics.js"></script>
-    <script src="textareaManager.js"></script>
-    <script src="boardFieldDescriptions.js"></script>
-    <script src="main.js"></script>
-    <script src="losowanieZListy.js"></script>
+                                <br>
+                                <div style="text-align: left;">KONIEC<br></div>
 
 
-<script>
-  $(function () { $('select').select2({ width: '100%' }); });
-</script>
 
-    <script src="select2.Pola_Planszy.js"></script>
+                                <!-- PAMIĘTAJ: ZAWSZE ŁADUJ PLIKI Z DANYMI PRZED SKRYPTAMI, KTÓRE ICH UŻYWAJĄ -->
+                                <script src="data2-karty.js"></script>
+                                <script src="data2-problemy.js"></script>
+                                <script src="namePrompt.js"></script>
+                                <script src="speechSynthesis.js"></script>
+                                <script src="problemSelector.js"></script>
+                                <script src="gameMechanics.js"></script>
+                                <script src="textareaManager.js"></script>
+                                <script src="boardFieldDescriptions.js"></script>
+                                <script src="main.js"></script>
+                                <script src="losowanieZListy.js"></script>
 
-      
+
+                                <script>
+                                    $(function() {
+                                        $('select').select2({
+                                            width: '100%'
+                                        });
+                                    });
+                                </script>
+
+                                <script src="select2.Pola_Planszy.js"></script>
+
+
 </body>
+
 </html>
-
-
-
-
-
-
