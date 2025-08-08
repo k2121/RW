@@ -21,17 +21,7 @@ function randomizeData() {
   // Upewnij się, że używasz poprawnych ID elementów HTML (pola_zdarzenie, pola_kontekst)
   // i że odwołujesz się do istniejących pól w sampleData (pola_zdarzenie, pola_kontekst)
 
-  // Sprawdzenie dla 'pola_zdarzenie'
-  const randomZdarzenie = getRandomItem(sampleData.pola_zdarzenie);
-  if (randomZdarzenie && document.getElementById('pola_zdarzenie')) {
-    document.getElementById('pola_zdarzenie').value = randomZdarzenie.value;
-  }
-  
-  // Sprawdzenie dla 'pola_kontekst'
-  const randomKontekst = getRandomItem(sampleData.pola_kontekst);
-  if (randomKontekst && document.getElementById('pola_kontekst')) {
-    document.getElementById('pola_kontekst').value = randomKontekst.value;
-  }
+
 
   // Upewnij się, że odpowiednie tablice istnieją w sampleData (np. sampleData.karma musi być tablicą)
   // i że elementy HTML (np. 'karma', 'wyobraz_sobie') faktycznie istnieją w index.html
@@ -40,14 +30,7 @@ function randomizeData() {
 
 
 
-    // Losowanie karty Karma
-    const karmaSelect = document.getElementById('karma');
-    if (karmaSelect && sampleData.karma && sampleData.karma.length > 0) {
-        const randomKarmaIndex = Math.floor(Math.random() * sampleData.karma.length);
-        karmaSelect.value = sampleData.karma[randomKarmaIndex].value;
-    } else {
-        console.warn("Brak elementu 'karma' lub danych karmy do losowania.");
-    }
+
 
 
 
