@@ -75,7 +75,7 @@ pola_zdarzenie: [
   { value: "z003", label: "z003 Działałeś wbrew własnym interesom." },
   { value: "z004", label: "z004 Ktoś boleśnie Cię odrzucił lub porzucił." },
   { value: "z005", label: "z005 Ktoś Cię okłamał bardzo perfidnie." },
-  { value: "z006", label: "z006 Ktoś Cię zdradził very boleśnie." },
+  { value: "z006", label: "z006 Ktoś Cię zdradził bardzo boleśnie." },
   { value: "z007", label: "z007 Ktoś kogo kochałeś zmarł nieoczekiwanie." },
   { value: "z008", label: "z008 Ktoś odebrał Ci władzę." },
   { value: "z009", label: "z009 Ktoś skradł Twoje marzenia lub Ty uczyniłeś to komuś." },
