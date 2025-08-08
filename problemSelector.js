@@ -10,9 +10,9 @@
 function generateProblemList() {
     const container = document.getElementById('problem-list-container');
     if (!container) {
-      //console.error("Container #problem-list-container not found. Skipping problem list generation.");//
-    
-      return;
+        //console.error("Container #problem-list-container not found. Skipping problem list generation.");//
+
+        return;
     }
     container.innerHTML = '';
 
@@ -25,7 +25,7 @@ function generateProblemList() {
         const header = document.createElement('div');
         header.className = 'problem-category-header';
         header.textContent = mainCategory;
-        
+
         const contentDiv = document.createElement('div');
         contentDiv.className = 'problem-content';
 
@@ -43,11 +43,11 @@ function generateProblemList() {
                 contentDiv.appendChild(subDiv);
             }
         }
-        
+
         categoryDiv.appendChild(header);
         categoryDiv.appendChild(contentDiv);
         container.appendChild(categoryDiv);
-        
+
         header.addEventListener('click', function() {
             this.classList.toggle('active');
             const content = this.nextElementSibling;
@@ -65,23 +65,23 @@ function generateProblemList() {
 function createProblemItem(problem) {
     const itemDiv = document.createElement('div');
     itemDiv.className = 'problem-item';
-    
+
     const addButton = document.createElement('button');
     addButton.textContent = '+';
     addButton.className = 'add-problem-btn';
-    addButton.onclick = () => addToCart(problem, addButton); 
-    
-    const label = document.createElement('span'); 
+    addButton.onclick = () => addToCart(problem, addButton);
+
+    const label = document.createElement('span');
     label.className = 'problem-label';
     label.textContent = problem;
-    
+
     itemDiv.appendChild(addButton);
     itemDiv.appendChild(label);
-    
+
     return itemDiv;
 }
 
-function addToCart(problem) { 
+function addToCart(problem) {
     const problemWithPrefix = "wyzwanie: " + problem;
     navigator.clipboard.writeText(problemWithPrefix).then(() => {
         alert("Skopiowano wyzwanie do schowka: " + problemWithPrefix);
@@ -139,33 +139,33 @@ function collapseAll() {
 window.collapseAll = collapseAll;
 
 function clearSearch() {
-  const searchInput = document.getElementById('problemSearch');
-  if (searchInput) { // Add a check if the input exists (only in new window now)
-    searchInput.value = '';
-    filterProblems();
-  }
+    const searchInput = document.getElementById('problemSearch');
+    if (searchInput) { // Add a check if the input exists (only in new window now)
+        searchInput.value = '';
+        filterProblems();
+    }
 }
 // Make sure these functions are globally accessible
 window.clearSearch = clearSearch;
 
 
 function openBasketInNewWindow() {
-  const newWindow = window.open('', '_blank', 'width=800,height=600,scrollbars=yes,resizable=yes');
+    const newWindow = window.open('', '_blank', 'width=800,height=600,scrollbars=yes,resizable=yes');
 
-  if (!newWindow) {
-    alert("Nowe okno zostało zablokowane przez przeglądarkę.");
-    return;
-  }
+    if (!newWindow) {
+        alert("Nowe okno zostało zablokowane przez przeglądarkę.");
+        return;
+    }
 
-  let styleContent = '';
-  document.querySelectorAll('style').forEach(style => {
-    styleContent += style.outerHTML;
-  });
+    let styleContent = '';
+    document.querySelectorAll('style').forEach(style => {
+        styleContent += style.outerHTML;
+    });
 
-  // Reconstruct the problem selector container HTML for the new window
-  const problemSelectorHTML = `
+    // Reconstruct the problem selector container HTML for the new window
+    const problemSelectorHTML = `
     <div id="problem-selector-container" style="margin: 0;">
-      <h3>[630] Wybierz wyzwania, nad którymi chcesz pracować:</h3>
+      <h3>[820] Wybierz wyzwania, nad którymi chcesz pracować:</h3>
       <div style="margin-bottom: 0px;">
           <button onclick="expandAll()">Rozwiń wszystkie</button>
           <button onclick="collapseAll()">Zwiń wszystkie</button>
@@ -179,7 +179,7 @@ function openBasketInNewWindow() {
     </div>
   `;
 
-  newWindow.document.write(`
+    newWindow.document.write(`
     <!DOCTYPE html>
     <html lang="pl">
       <head>
@@ -206,7 +206,5 @@ function openBasketInNewWindow() {
     </html>
   `);
 
-  newWindow.document.close();
+    newWindow.document.close();
 }
-
-
