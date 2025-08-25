@@ -6,19 +6,19 @@
 const sampleData = {
 pola_planszy: [
 { value: "00", label: "00 😓 Kraina ofiar" },
-{ value: "01", label: "A01 🕸️🕷️ Przekonanie" },
-{ value: "02", label: "A02 🔒🫀 Blokada energii" },
+{ value: "01", label: "A01 <img src='Przekonanie.png' alt='Przekonanie' style='width:16px; height:16px; vertical-align:middle;'> Przekonanie" },
+{ value: "02", label: "A02 <img src='Blokada_energii.png' alt='Blokada energii' style='width:16px; height:16px; vertical-align:middle;'> Blokada energii" },
 { value: "03", label: "A03 📽️ Projekcja" },
 { value: "04", label: "A04 👉🏻🙎🏻‍♂️ Zabawa w obwinianie" },
-{ value: "05", label: "A05 🕸️🕷️ Przekonanie" },
-{ value: "06", label: "A06 🔒🫀 Blokada energii" },
+{ value: "05", label: "A05 <img src='Przekonanie.png' alt='Przekonanie' style='width:16px; height:16px; vertical-align:middle;'> Przekonanie" },
+{ value: "06", label: "A06 <img src='Blokada_energii.png' alt='Blokada energii' style='width:16px; height:16px; vertical-align:middle;'> Blokada energii" },
 { value: "07", label: "A07 📽️ Projekcja" },
 { value: "08", label: "A08 ☯️ KARMA" },
-{ value: "09", label: "A09 🕸️🕷️ Przekonanie" },
-{ value: "10", label: "A10 🔒🫀 Blokada energii" },
+{ value: "09", label: "A09 <img src='Przekonanie.png' alt='Przekonanie' style='width:16px; height:16px; vertical-align:middle;'> Przekonanie" },
+{ value: "10", label: "A10 <img src='Blokada_energii.png' alt='Blokada energii' style='width:16px; height:16px; vertical-align:middle;'> Blokada energii" },
 { value: "11", label: "A11 🤔💭 Wyobraź sobie!" },
 { value: "12", label: "A12 👉🏻🙎🏻‍♂️ Zabawa w obwinianie" },
-{ value: "13", label: "A13 🕸️🕷️ Przekonanie" },
+{ value: "13", label: "A13 <img src='Przekonanie.png' alt='Przekonanie' style='width:16px; height:16px; vertical-align:middle;'> Przekonanie" },
 { value: "14", label: "A14 ☯️ KARMA" },
 { value: "15", label: "A15 🤔💭 Wyobraź sobie!" },
 { value: "16", label: "=A16 ⛔ Wrota Świadomości STOP!" },
@@ -33,7 +33,7 @@ pola_planszy: [
 { value: "25", label: "B25 🤔💭 Wyobraź sobie!" },
 { value: "26", label: "B26 💡 Światło" },
 { value: "27", label: "B27 🙋🏻‍♂️ Gotowość" },
-{ value: "28", label: "B28 🚫💔 Duchowy unik" },
+{ value: "28", label: "B28 <img src='Duchowy_unik.png' alt='Duchowy unik' style='width:16px; height:16px; vertical-align:middle;'> Duchowy unik" },
 { value: "29", label: "B29 💡 Światło" },
 { value: "30", label: "B30 🔥 Pozbądź się tego" },
 { value: "31", label: "=B31 ⛔↪️ Wrota Przemiany STOP!" },
@@ -57,7 +57,7 @@ pola_planszy: [
 { value: "49", label: "D49 💞 Radykalne Wybaczenie" },
 { value: "50", label: "D50 🥹 Poddanie się" },
 { value: "51", label: "D51 🤗 Samo- akceptacja" },
-{ value: "52", label: "D52 🚫💔 Duchowy unik" },
+{ value: "52", label: "D52 <img src='Duchowy_unik.png' alt='Duchowy unik' style='width:16px; height:16px; vertical-align:middle;'> Duchowy unik" },
 { value: "53", label: "D53 🤔💭 Wyobraź sobie!" },
 { value: "54", label: "D54 🔥 Pozbądź się tego" },
 { value: "55", label: "D55 ⚡ Moc" },
@@ -2417,3 +2417,4 @@ nowa_opowiesc: [
 
 projekcje: ["⬆️", "↗️", "➡️", "↘️", "⬇️", "↙️", "⬅️", "↖️"]
 }
+
