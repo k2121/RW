@@ -12,7 +12,7 @@
         </head>
         <body>
           <button onclick="window.close()">✖</button>
-          <img src="Czakry_symbole_x7_v=MvOpK-FuAZY.jpg" alt="Czakry Full">
+          <img src="Czakry_symbole_x7_v%3DMvOpK-FuAZY.jpg" alt="Czakry Full">
         </body>
       </html>
     `);
