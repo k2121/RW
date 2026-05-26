@@ -242,6 +242,11 @@ th, td {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+	
+    
+    /* Poniższe dwie linie wymuszają działanie klawiatury na telefonach */
+    -webkit-user-select: text !important;
+    user-select: text !important;
 }
 
 .problem-category-header {
