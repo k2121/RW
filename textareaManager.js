@@ -11,7 +11,7 @@ function generateTextarea(id) {
       <button type="button" onclick="pasteFromClipboard('${id}')">📋Wklej</button>
       <button type="button" onclick="copyToClipboard('${id}')">Kopiuj</button>
     </label>
-    <textarea id="${id}" rows="2" cols="50"></textarea>
+    <textarea id="${id}" rows="1" cols="50" readonly></textarea>
   `;
 }
 
