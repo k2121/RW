@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-select=no">
+    <title>Koszyk wyzwań</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            background-color: #f0f8ff;
+            margin: 0;
+            padding: 10px;
+            display: flex;
+            flex-direction: column;
+            height: 100vh;
+            box-sizing: border-box;
+            color: #000;
+        }
+        #problem-selector-container {
+            display: flex;
+            flex-direction: column;
+            flex-grow: 1;
+            height: 100%;
+            background: #fff;
+            padding: 10px;
+            border-radius: 8px;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+        }
+        #problemSearch {
+            width: 100%;
+            padding: 12px;
+            margin-bottom: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            font-size: 16px; /* Zapobiega przybliżaniu ekranu na iOS/Android */
+            -moz-user-select: text !important;
+            -webkit-user-select: text !important;
+            user-select: text !important;
+        }
+        #problem-list-container {
+            flex-grow: 1;
+            overflow-y: auto;
+            border: 1px solid #bdc3c7;
+            background-color: #ffffff;
+            padding: 5px;
+        }
+        .buttons-row {
+            margin-bottom: 10px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 5px;
+        }
+        .buttons-row button {
+            padding: 5px 10px;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+    <div id="problem-selector-container">
+        <h3 style="color: #2c3e50; border-bottom: 2px solid #3498db; margin-top: 0; padding-bottom: 5px;">[820] Wybierz wyzwania:</h3>
+        
+        <div class="buttons-row">
+            <button onclick="expandAll()">Rozwiń wszystkie</button>
+            <button onclick="collapseAll()">Zwiń wszystkie</button>
+            <button onclick="clearSearch()">Kasuj</button>
+            <button onclick="window.close()">Zamknij okno</button>
+        </div>
+        
+        <!-- Formularz wymusza na Firefoksie podpięcie klawiatury ekranowej -->
+        <form action="javascript:void(0);" style="margin: 0; padding: 0;">
+            <input type="text" id="problemSearch" onkeyup="filterProblems()" placeholder="Szukaj problemu...">
+        </form>
+        
+        <div id="problem-list-container"></div>
+    </div>
+
+    <!-- Ładujemy tylko to, co potrzebne koszykowi, unikając konfliktów z grą -->
+    <script src="data2-problemy.js"></script>
+    <script src="problemSelector.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typeof generateProblemList === 'function') {
+                generateProblemList();
+            }
+        });
+    </script>
+</body>
+</html>
