@@ -6,12 +6,12 @@ body, button, textarea, select, label {
           height: 100%;
           margin: 0;
           padding: 0;
-          overflow: hidden;
+          overflow-x: hidden;
         }
         body {
           display: flex;
           flex-direction: column;
-          height: 100vh; /* Kluczowa zmiana: używa 100% wysokości okna przeglądarki */
+          min-height: 100vh; /* Kluczowa zmiana: używa 100% wysokości okna przeglądarki */
           padding: 10px;
           box-sizing: border-box;
           background-color: #f0f8ff;
@@ -55,6 +55,11 @@ body, button, textarea, select, label {
     border: 1px solid #ccc;
     border-radius: 4px;
     box-sizing: border-box;
+	
+    
+    /* Poniższe dwie linie wymuszają działanie klawiatury na telefonach */
+    -webkit-user-select: text !important;
+    user-select: text !important;
 }
 
 .problem-category-header {
