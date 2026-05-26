@@ -150,19 +150,15 @@ window.clearSearch = clearSearch;
 
 
 function openBasketInNewWindow() {
-    const newWindow = window.open('', '_blank', 'width=800,height=600,scrollbars=yes,resizable=yes');
-
-    if (!newWindow) {
-        alert("Nowe okno zostało zablokowane przez przeglądarkę.");
-        return;
-    }
-
     let styleContent = '';
     document.querySelectorAll('style').forEach(style => {
         styleContent += style.outerHTML;
     });
 
-    // Reconstruct the problem selector container HTML for the new window
+    // Zabezpieczenie ścieżki - dzięki temu skrypty i style załadują się z poprawnego folderu
+    const baseHref = window.location.href.split('?')[0].replace(/[^/]*$/, '');
+
+    // Struktura HTML koszyka
     const problemSelectorHTML = `
     <div id="problem-selector-container" style="margin: 0;">
       <h3>[820] Wybierz wyzwania, nad którymi chcesz pracować:</h3>
@@ -179,10 +175,12 @@ function openBasketInNewWindow() {
     </div>
   `;
 
-    newWindow.document.write(`
+    // Cały dokument w postaci tekstu
+    const fullHTML = `
     <!DOCTYPE html>
     <html lang="pl">
       <head>
+        <base href="${baseHref}">
         <meta charset="UTF-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <title>Koszyk wyzwań</title>
@@ -191,7 +189,7 @@ function openBasketInNewWindow() {
       </head>
       <body>
         ${problemSelectorHTML}
-        <script src="data2-problemy.js"></script> <!-- Ensure problemsData is loaded -->
+        <script src="data2-problemy.js"></script>
         <script src="problemSelector.js"></script>
         <script>
           window.addEventListener('DOMContentLoaded', () => {
@@ -204,7 +202,17 @@ function openBasketInNewWindow() {
         </script>
       </body>
     </html>
-  `);
+  `;
 
-    newWindow.document.close();
+    // Tworzymy wirtualny plik (Blob), omijając błąd z klawiaturą na Firefox (Android)
+    const blob = new Blob([fullHTML], { type: 'text/html;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+
+    // Otwieramy wirtualny plik jako nową kartę/okno
+    const newWindow = window.open(url, '_blank', 'width=800,height=600,scrollbars=yes,resizable=yes');
+
+    if (!newWindow) {
+        alert("Nowe okno zostało zablokowane przez przeglądarkę.");
+        return;
+    }
 }
