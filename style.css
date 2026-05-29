@@ -6,14 +6,15 @@ body, button, textarea, select, label {
 
 #opis {
   width: 100%;
-  height: 160px;
+  min-height: 40px;
+  height: auto;
   padding: 0;
   margin-top: 0;
   margin-bottom: 0;
   resize: vertical;
   background-color: #dbe7f2;
   color: black;
-  overflow-y: scroll;
+  overflow: hidden;
   text-align: left; 
 }
 #zdarzenie, #select2-pola_zdarzenie-container {
@@ -46,7 +47,8 @@ body, button, textarea, select, label {
 }
 #wyobraz_sobie {
   width: 100%;
-  height: 55px;
+  min-height: 40px;
+  height: auto;
   padding: 0;
   margin-top: 0;
   margin-bottom: 0;
@@ -54,20 +56,24 @@ body, button, textarea, select, label {
   text-align: center;
   background: radial-gradient(circle, #f8f3f7 0%, #dfb2c3 100%);
   color: #000000;
+  overflow: hidden;
 }
 #przekonanie {
   width: 100%;
-  height: 60px;
+  min-height: 40px;
+  height: auto;
   padding: 0;
   margin-top: 0;
   margin-bottom: 0;
   resize: vertical;
   display: none;
   background: radial-gradient(circle, #f9f6e9 0%, #f6eb4b 100%);
+  overflow: hidden;
 }
 #blokady_energii {
   width: 100%;
-  height: 40px;
+  min-height: 40px;
+  height: auto;
   padding: 0;
   margin-top: 0;
   margin-bottom: 0;
@@ -75,23 +81,24 @@ body, button, textarea, select, label {
   text-align: center;
   background-color: #000000;
   color: #ffffff;
-  font-weight: bold; 
+  font-weight: bold;
+  overflow: hidden;
 }
 #nowa_opowiesc {
-  /* Usunięto stare właściwości background-color i background-image */
   background: url("nowa-background2.jpg") no-repeat center center;
-  background-size: cover; /* Ta właściwość rozciągnie obraz, by pokrył cały element */
-
-  color: #000000; /* kolor tekstu - brązowy */
-  font-family: Georgia, serif; /* klasyczna czcionka */
-  border: 1px solid #d4c9b1; /* ramka w kolorze papieru */
+  background-size: cover;
+  color: #000000;
+  font-family: Georgia, serif;
+  border: 1px solid #d4c9b1;
   box-shadow: 
     0 0 10px rgba(0,0,0,0.1),
-    inset 0 0 20px rgba(0,0,0,0.05); /* delikatne cienie */
-  padding: 0px; /* większy padding */
-  line-height: 1.1; /* lepsza czytelność */
-  border-radius: 2px; /* lekko zaokrąglone rogi */
-  height: 55px;
+    inset 0 0 20px rgba(0,0,0,0.05);
+  padding: 0px;
+  line-height: 1.1;
+  border-radius: 2px;
+  min-height: 40px;
+  height: auto;
+  overflow: hidden;
 }
 #projekcje {
   width: 100px;
@@ -107,17 +114,17 @@ body, button, textarea, select, label {
 }
 textarea {
   width: 100%;
-  overflow: auto;
+  overflow: hidden;
   box-sizing: border-box; 
   padding: 0;
   margin-top: 0;
   margin-bottom: 0;
   text-align: center;
   background-color: #dbe7f2;
-  flex-grow: 1; /* Pozwala textarea rosnąć i wypełniać dostępną przestrzeń w karcie */
-  min-height: 60px; /* Minimalna wysokość, żeby małe pola nie były zbyt małe */
-  resize: vertical; /* Pozwala tylko na zmianę wysokości */
-  overflow-y: scroll; 
+  flex-grow: 1;
+  min-height: 22px;
+  height: auto;
+  resize: vertical;
 }
 label {
   padding: 0;
@@ -435,15 +442,12 @@ th, td {
   }
 
 .textarea-box textarea {
-  field-sizing: content;   /* Chrome 123+, Edge 123+, Firefox 128+ */
-  max-height: 600px;
-
-  overflow-y: auto;   /* nie hidden */
-  /*height: auto;       nie px jako wartość domyślna */
-	
+  field-sizing: content;
   width: 100%;           
-  /*height: 80px;          ## Zmieniono z 80px na 40px */
-  min-height: 22px;      /* Nadpisuje globalne 60px, pozwalając polu być niższym */
+  min-height: 22px;
+  height: auto;
+  max-height: 600px;
+  overflow: hidden;
   resize: vertical;      
   padding: 0px;
   border: 1px solid #ccc;
