@@ -277,8 +277,8 @@ nowa_opowiesc: [
  "NOWA OPOWIEŚĆ: 033. Z przekonaniem wyrażam Swoje myśli, poglądy i uczucia.",
  "NOWA OPOWIEŚĆ: 034. Zajmuję się tym, na co mam wpływ, powierzając resztę spraw Sile Wyższej.",
  "NOWA OPOWIEŚĆ: 035. Zasługuję na wszystko, czego pragnę i domagam się tego teraz!",
- "NOWA OPOWIEŚĆ: 036. Życie jest teraz takie proste. Jadę na wakacje."
- "NOWA OPOWIEŚĆ: 037. Żyję przepełniony mocą i poczuciem szczęścia."
+ "NOWA OPOWIEŚĆ: 036. Życie jest teraz takie proste. Jadę na wakacje.",
+ "NOWA OPOWIEŚĆ: 037. Żyję przepełniony mocą i poczuciem szczęścia.",
  "NOWA OPOWIEŚĆ: 038. Żyję w zgodzie ze sobą."
 	],
 
