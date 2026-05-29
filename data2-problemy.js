@@ -4,10 +4,10 @@
 // js/data2-problemy.js
 
 
-const allProblems = {
-
-
 const problemsData = {
+
+
+const problems = {
 "Relacja z Sobą: Ja, Tożsamość i Wewnętrzny Świat": {
 "Poczucie Własnej Wartości i Samoocena": [
 "001. Brak wewnętrznego poczucia bezpieczeństwa.",
@@ -2988,5 +2988,5 @@ const noweWyzwania_CzescIV = {
   }
 
 // Eksport
-export default allProblems;
+export default problemsData;
 };
