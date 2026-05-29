@@ -2982,9 +2982,9 @@ const noweWyzwania_CzescIV = {
       "1748. Protokół 30-dniowego Resetu — strukturyzowane wyzwanie z codziennym auditingiem.",
       "1749. Protokół Maintenance — comiesięczna sesja przeglądowa linii Time-Light.",
       "1750. Protokół 'Life as Auditing' — życie w ciągłej, łagodnej świadomości i rozładowywaniu engramów w real-time."
-],
+]
     // ... reszta kategorii
-  },
+  }
   // ... wszystkie pozostałe kategorie
 };
 
