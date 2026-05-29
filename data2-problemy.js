@@ -6,8 +6,6 @@
 
 const problemsData = {
 
-
-const problems = {
 "Relacja z Sobą: Ja, Tożsamość i Wewnętrzny Świat": {
 "Poczucie Własnej Wartości i Samoocena": [
 "001. Brak wewnętrznego poczucia bezpieczeństwa.",
@@ -2984,9 +2982,18 @@ const noweWyzwania_CzescIV = {
       "1748. Protokół 30-dniowego Resetu — strukturyzowane wyzwanie z codziennym auditingiem.",
       "1749. Protokół Maintenance — comiesięczna sesja przeglądowa linii Time-Light.",
       "1750. Protokół 'Life as Auditing' — życie w ciągłej, łagodnej świadomości i rozładowywaniu engramów w real-time."
-    ]
-  }
-
-// Eksport
-export default problemsData;
+],
+    // ... reszta kategorii
+  },
+  // ... wszystkie pozostałe kategorie
 };
+
+// Eksport dla przeglądarki
+if (typeof window !== 'undefined') {
+  window.problemsData = problemsData;
+}
+
+// Eksport dla modułów (opcjonalnie)
+if (typeof module !== 'undefined' && module.exports) {
+  module.exports = { problemsData };
+}
