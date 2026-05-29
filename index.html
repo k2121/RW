@@ -303,33 +303,71 @@
                                     });
                                 </script>
 <script>
-document.addEventListener('DOMContentLoaded', () => {
+(function() {
   function autoResize(el) {
+    // Zapisz poprzednie overflow żeby nie migało
     el.style.overflow = 'hidden';
-    el.style.height = '1px';
-    const h = Math.max(el.scrollHeight, 22);
-    el.style.height = Math.min(h, 600) + 'px';
-    el.style.overflow = h >= 600 ? 'auto' : 'hidden';
+    el.style.height = '0px';
+    var h = Math.max(el.scrollHeight, parseInt(el.style.minHeight) || 22);
+    h = Math.min(h, 600);
+    el.style.height = h + 'px';
+    el.style.overflow = (el.scrollHeight > 600) ? 'auto' : 'hidden';
   }
 
   function attachResize(el) {
-    el.addEventListener('input', () => autoResize(el));
-    el.addEventListener('change', () => autoResize(el)); // dla Select2/programmatic
+    if (el._autoResizeAttached) return;
+    el._autoResizeAttached = true;
+    el.addEventListener('input', function() { autoResize(el); });
+    // Nasłuchuj też zmiany value przez JS (value setter override)
+    var origDescriptor = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value');
+    if (origDescriptor) {
+      try {
+        Object.defineProperty(el, 'value', {
+          get: function() { return origDescriptor.get.call(this); },
+          set: function(v) {
+            origDescriptor.set.call(this, v);
+            // setTimeout 0 = po wyrenderowaniu przez przeglądarkę
+            setTimeout(function() { autoResize(el); }, 0);
+          }
+        });
+      } catch(e) {}
+    }
     autoResize(el);
   }
 
-  document.querySelectorAll('textarea').forEach(attachResize);
+  function resizeAll() {
+    document.querySelectorAll('textarea').forEach(autoResize);
+  }
 
-  // Jeśli pola są dodawane dynamicznie:
-  new MutationObserver(mutations => {
-    mutations.forEach(m => m.addedNodes.forEach(node => {
-      if (node.nodeType === 1) {
-        if (node.tagName === 'TEXTAREA') attachResize(node);
-        node.querySelectorAll?.('textarea').forEach(attachResize);
-      }
-    }));
-  }).observe(document.body, { childList: true, subtree: true });
-});
+  // Podłącz do istniejących textarea po DOMContentLoaded
+  document.addEventListener('DOMContentLoaded', function() {
+    document.querySelectorAll('textarea').forEach(attachResize);
+
+    // MutationObserver dla dynamicznie dodawanych textarea
+    new MutationObserver(function(mutations) {
+      mutations.forEach(function(m) {
+        m.addedNodes.forEach(function(node) {
+          if (node.nodeType !== 1) return;
+          if (node.tagName === 'TEXTAREA') attachResize(node);
+          node.querySelectorAll('textarea').forEach(attachResize);
+        });
+        // Jeśli zmienił się atrybut/property textarea (np. readonly content update)
+        if (m.type === 'characterData' || m.type === 'childList') {
+          var ta = m.target.closest ? m.target.closest('textarea') : null;
+          if (ta) autoResize(ta);
+        }
+      });
+    }).observe(document.body, { childList: true, subtree: true, characterData: true });
+
+    // Dodatkowe odpalenie po 300ms i 1s — na wypadek gdy JS ładuje dane asynchronicznie
+    setTimeout(resizeAll, 300);
+    setTimeout(resizeAll, 1000);
+  });
+
+  // Eksponuj globalnie — inne skrypty mogą wywołać window.autoResizeAll()
+  window.autoResizeAll = resizeAll;
+  window.autoResizeTextarea = autoResize;
+})();
 </script>
                                 
                                 <script src="select2.Pola_Planszy.js"></script>
