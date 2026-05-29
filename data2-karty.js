@@ -273,14 +273,14 @@ nowa_opowiesc: [
  "NOWA OPOWIEŚĆ: 029. Wszyscy kochają Mnie właśnie takim, jakim jestem.",
  "NOWA OPOWIEŚĆ: 030. Wszyscy Mnie lubią takiego jakim jestem.",
  "NOWA OPOWIEŚĆ: 031. Wszystkie aspekty Mojego życia pozostają w doskonałej równowadze.",
- "NOWA OPOWIEŚĆ: 032. Z łatwością odczuwam i wyrażam swe uczucia.",
+ "NOWA OPOWIEŚĆ: 032. Z łatwością odczuwam i wyrażam Swoje uczucia.", // Poprawiono na "Swoje" dla spójności
  "NOWA OPOWIEŚĆ: 033. Z przekonaniem wyrażam Swoje myśli, poglądy i uczucia.",
  "NOWA OPOWIEŚĆ: 034. Zajmuję się tym, na co mam wpływ, powierzając resztę spraw Sile Wyższej.",
  "NOWA OPOWIEŚĆ: 035. Zasługuję na wszystko, czego pragnę i domagam się tego teraz!",
  "NOWA OPOWIEŚĆ: 036. Życie jest teraz takie proste. Jadę na wakacje.",
  "NOWA OPOWIEŚĆ: 037. Żyję przepełniony mocą i poczuciem szczęścia.",
  "NOWA OPOWIEŚĆ: 038. Żyję w zgodzie ze sobą."
-	],
+];
 
 projekcje: ["⬆️", "↗️", "➡️", "↘️", "⬇️", "↙️", "⬅️", "↖️"]
 }
