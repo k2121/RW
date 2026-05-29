@@ -437,8 +437,10 @@ th, td {
 .textarea-box textarea {
   field-sizing: content;   /* Chrome 123+, Edge 123+, Firefox 128+ */
   max-height: 600px;
-  overflow-y: auto;
 
+  overflow-y: auto;   /* nie hidden */
+  height: auto;       /* nie px jako wartość domyślna */
+	
   width: 100%;           
   /*height: 80px;          ## Zmieniono z 80px na 40px */
   min-height: 22px;      /* Nadpisuje globalne 60px, pozwalając polu być niższym */
