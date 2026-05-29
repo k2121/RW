@@ -302,7 +302,20 @@
                                         });
                                     });
                                 </script>
-
+<script>
+                                // Fallback dla starszych przeglądarek (Safari, starszy Firefox)
+if (!CSS.supports('field-sizing', 'content')) {
+  function autoResize(el) {
+    el.style.height = 'auto';
+    el.style.height = Math.min(el.scrollHeight, 600) + 'px';
+  }
+  document.querySelectorAll('textarea').forEach(el => {
+    el.addEventListener('input', () => autoResize(el));
+    autoResize(el); // inicjalne dopasowanie
+  });
+}
+</script>
+                                
                                 <script src="select2.Pola_Planszy.js"></script>
 
 
