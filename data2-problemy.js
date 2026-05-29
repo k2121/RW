@@ -2986,7 +2986,7 @@ const noweWyzwania_CzescIV = {
     // ... reszta kategorii
   }
   // ... wszystkie pozostałe kategorie
-};
+}
 
 // Eksport dla przeglądarki
 if (typeof window !== 'undefined') {
