@@ -444,7 +444,7 @@ th, td {
 .textarea-box textarea {
   field-sizing: content;
   width: 100%;           
-  min-height: 22px;
+  min-height: 15px;
   height: auto;
   max-height: 395px;
   overflow: hidden;
