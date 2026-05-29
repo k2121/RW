@@ -334,7 +334,7 @@ th, td {
     font-size: 11pt;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 400px) {
   #problem-list-container {
     max-height: 300px;
     overflow-y: auto;
@@ -446,7 +446,7 @@ th, td {
   width: 100%;           
   min-height: 22px;
   height: auto;
-  max-height: 600px;
+  max-height: 400px;
   overflow: hidden;
   resize: vertical;      
   padding: 0px;
@@ -457,7 +457,7 @@ th, td {
 
 
   /* Dodatkowe media queries dla bardzo małych ekranów, jeśli 150px min-width to za dużo */
-  @media (max-width: 600px) {
+  @media (max-width: 400px) {
     .textarea-box {
       flex-basis: 100%; /* Na bardzo małych ekranach każda karta zajmuje całą szerokość */
       max-width: none;  /* Usuwamy max-width, aby mogły zająć całą szerokość */
