@@ -308,7 +308,7 @@
     // Zapisz poprzednie overflow żeby nie migało
     el.style.overflow = 'hidden';
     el.style.height = '0px';
-    var h = Math.max(el.scrollHeight, parseInt(el.style.minHeight) || 15);
+    var h = Math.max(el.scrollHeight, parseInt(el.style.minHeight) || 10);
     h = Math.min(h, 395);
     el.style.height = h + 5 + 'px'; /*## +5*/
     el.style.overflow = (el.scrollHeight > 395) ? 'auto' : 'hidden';
