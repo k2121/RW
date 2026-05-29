@@ -1,11 +1,11 @@
 //#### 4. `js/problemSelector.js`
-//Obsługa listy problemów, akordeonu i wyszukiwania. Zależna od `problemsData` z `data.js`.
+//Obsługa listy problemów, akordeonu i wyszukiwania. Zależna od `allProblems` z `data.js`.
 
 // js/problemSelector.js
 
-// Przyjmujemy, że problemsData jest dostępny globalnie z data.js
+// Przyjmujemy, że allProblems jest dostępny globalnie z data.js
 // Jeśli nie, należy go zaimportować w nowoczesnych modułach ES6
-// import { problemsData } from './data.js'; // Jeśli używasz ES Modules
+// import { allProblems } from './data2-problemy.js'; // Jeśli używasz ES Modules
 
 function generateProblemList() {
     const container = document.getElementById('problem-list-container');
@@ -16,8 +16,8 @@ function generateProblemList() {
     }
     container.innerHTML = '';
 
-    for (const mainCategory in problemsData) {
-        const categoryContent = problemsData[mainCategory];
+    for (const mainCategory in allProblems) {
+        const categoryContent = allProblems[mainCategory];
 
         const categoryDiv = document.createElement('div');
         categoryDiv.className = 'problem-category';
@@ -81,9 +81,17 @@ function createProblemItem(problem) {
     return itemDiv;
 }
 
-function addToCart(problem) {
+function addToCart(problem, button) {
     const problemWithPrefix = "wyzwanie: " + problem;
     navigator.clipboard.writeText(problemWithPrefix).then(() => {
+        // Wizualne potwierdzenie
+        const originalText = button.textContent;
+        button.textContent = '✓';
+        button.style.backgroundColor = '#27ae60';
+        setTimeout(() => {
+            button.textContent = originalText;
+            button.style.backgroundColor = '#2ecc71';
+        }, 1000);
         alert("Skopiowano wyzwanie do schowka: " + problemWithPrefix);
     }, (err) => {
         console.error('Błąd kopiowania do schowka:', err);
