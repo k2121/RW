@@ -247,7 +247,7 @@ nowa_opowiesc: [
  "NOWA OPOWIEŚĆ: 003. Bardzo cieszy Mnie sposób, w jaki toczy się Moje życie.",
  "NOWA OPOWIEŚĆ: 004. Bóg obdarzył Mnie wieloma darami, którymi z radością dzielę się z innymi.",
  "NOWA OPOWIEŚĆ: 005. Gdy zachodzi potrzeba, dowiaduję się o wszystkim, co muszę wiedzieć.",
- "NOWA OPOWIEŚĆ: 006. Jestem absolutnie doskonały jaki jaki jestem.",
+ "NOWA OPOWIEŚĆ: 006. Jestem absolutnie doskonały taki jaki jestem.",
  "NOWA OPOWIEŚĆ: 007. Jestem bardzo uzdolniony!",
  "NOWA OPOWIEŚĆ: 008. Jestem doskonały właśnie taki jaki jestem.",
  "NOWA OPOWIEŚĆ: 009. Jestem dostatecznie silny, by poradzić Sobie w życiu, ponieważ wierzę, że dam radę!",
