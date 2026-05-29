@@ -242,8 +242,8 @@ blokady_energii: [
 ],
 
 nowa_opowiesc: [
- "NOWA OPOWIEŚĆ: 001. +Najgorsze już minęło.",
- "NOWA OPOWIEŚĆ: 002. +W przeszłości mi się udało, więc teraz też mi się uda.",
+ "NOWA OPOWIEŚĆ: 001. _Najgorsze już minęło.",
+ "NOWA OPOWIEŚĆ: 002. _W przeszłości mi się udało, więc teraz też mi się uda.",
  "NOWA OPOWIEŚĆ: 003. Bardzo cieszy Mnie sposób, w jaki toczy się Moje życie.",
  "NOWA OPOWIEŚĆ: 004. Bóg obdarzył Mnie wieloma darami, którymi z radością dzielę się z innymi.",
  "NOWA OPOWIEŚĆ: 005. Gdy zachodzi potrzeba, dowiaduję się o wszystkim, co muszę wiedzieć.",
@@ -280,7 +280,7 @@ nowa_opowiesc: [
  "NOWA OPOWIEŚĆ: 036. Życie jest teraz takie proste. Jadę na wakacje.",
  "NOWA OPOWIEŚĆ: 037. Żyję przepełniony mocą i poczuciem szczęścia.",
  "NOWA OPOWIEŚĆ: 038. Żyję w zgodzie ze sobą."
-];
+],
 
 projekcje: ["⬆️", "↗️", "➡️", "↘️", "⬇️", "↙️", "⬅️", "↖️"]
 }
