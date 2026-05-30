@@ -306,29 +306,54 @@
 (function() {
   function autoResize(el) {
     if (!el) return;
+
+    // Obsługa ukrytych elementów (np. display: none)
+    // Jeśli element lub jego rodzic jest ukryty, scrollHeight zwróci 0.
+    // Tworzymy tymczasowe style, aby zmierzyć realną wysokość zawartości.
+    let isHidden = el.offsetWidth === 0 && el.offsetHeight === 0;
+    let originalStyle = {};
+    
+    if (isHidden) {
+      originalStyle.display = el.style.display;
+      originalStyle.visibility = el.style.visibility;
+      originalStyle.position = el.style.position;
+
+      el.style.visibility = 'hidden';
+      el.style.display = 'block';
+      el.style.position = 'absolute'; // Zapobiega rozszerzaniu layoutu podczas mierzenia
+    }
+
     el.style.overflow = 'hidden';
     el.style.height = '0px';
     
-    var h = Math.max(el.scrollHeight, parseInt(el.style.minHeight) || 10);
+    // Pobieramy realną wysokość tekstu (odrzucamy sztywne minHeight w przypadku ukrytych pól)
+    var h = el.scrollHeight;
+    
+    // Ograniczenie maksymalnej wysokości
     h = Math.min(h, 395); // maksymalna wysokość
     
     el.style.height = h + 5 + 'px';
     el.style.overflow = (el.scrollHeight > 395) ? 'auto' : 'hidden';
+
+    // Przywracamy oryginalne style, jeśli element był ukryty
+    if (isHidden) {
+      el.style.display = originalStyle.display;
+      el.style.visibility = originalStyle.visibility;
+      el.style.position = originalStyle.position;
+    }
   }
 
   function attachResize(el) {
     if (el._autoResizeAttached) return;
     el._autoResizeAttached = true;
 
-    // Podstawowe zdarzenia
     el.addEventListener('input', () => autoResize(el));
     el.addEventListener('paste', () => {
-      // Małe opóźnienie, bo paste czasem potrzebuje chwili na wyrenderowanie treści
       setTimeout(() => autoResize(el), 10);
     });
     el.addEventListener('change', () => autoResize(el));
 
-    // Obsługa programowego ustawiania wartości
+    // Obsługa programowego ustawiania wartości (.value = '...')
     const origDescriptor = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value');
     if (origDescriptor) {
       try {
@@ -336,7 +361,8 @@
           get: function() { return origDescriptor.get.call(this); },
           set: function(v) {
             origDescriptor.set.call(this, v);
-            setTimeout(() => autoResize(el), 0);
+            // Zwiększamy timeout, by upewnić się, że DOM zdążył się zaktualizować
+            setTimeout(() => autoResize(el), 50);
           }
         });
       } catch(e) {}
@@ -363,7 +389,7 @@
       });
     }).observe(document.body, { childList: true, subtree: true });
 
-    // Dodatkowe wyzwalacze
+    // Dodatkowe wyzwalacze przy ładowaniu strony
     setTimeout(resizeAll, 300);
     setTimeout(resizeAll, 1000);
   });
@@ -373,9 +399,8 @@
   window.autoResizeTextarea = autoResize;
 })();
 </script>
-                                
-                                <script src="select2.Pola_Planszy.js"></script>
 
+<script src="select2.Pola_Planszy.js"></script>
 
 </body>
 
