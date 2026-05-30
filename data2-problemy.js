@@ -2523,8 +2523,8 @@ const allProblems = {
       "1746. Protokół Maintenance — comiesięczna sesja przeglądowa linii Time-Light.",
       "1747. Protokół 'Life as Auditing' — życie w ciągłej, łagodnej świadomości i rozładowywaniu engramów w real-time."
 ]
-  },
-
+  }
+},
 
   "Psychologia Czasu i Orientacja Temporalna (Zimbardo)": {
     "Zniekształcenia Perspektywy Czasowej": [
