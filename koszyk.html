@@ -192,20 +192,20 @@
             flex-grow: 1;
         }
         .sub-category-title::after {
-            content: '▾';
+            content: '▸';
             font-size: 13px;
             color: #64748b;
             flex-shrink: 0;
         }
-        .sub-category-title.collapsed::after {
-            content: '▸';
+        .sub-category-title.expanded::after {
+            content: '▾';
         }
 
         .sub-category-items {
-            display: block; /* domyślnie rozwinięte */
+            display: none; /* domyślnie zwinięte */
         }
-        .sub-category-items.hidden {
-            display: none;
+        .sub-category-items.expanded {
+            display: block;
         }
         
         .problem-item {
@@ -408,8 +408,8 @@
             // Toggle przy kliknięciu nagłówka podkategorii
             subTitle.onclick = (e) => {
                 e.stopPropagation();
-                const isCollapsed = itemsContainer.classList.toggle('hidden');
-                subTitle.classList.toggle('collapsed', isCollapsed);
+                const isExpanded = itemsContainer.classList.toggle('expanded');
+                subTitle.classList.toggle('expanded', isExpanded);
             };
 
             items.forEach(problem => {
@@ -507,8 +507,8 @@
                     // Przy filtrowaniu pokaż też kontener itemów
                     const itemsContainer = section.querySelector('.sub-category-items');
                     if (sectionHasVisible && query !== '') {
-                        itemsContainer.classList.remove('hidden');
-                        section.querySelector('.sub-category-title').classList.remove('collapsed');
+                        itemsContainer.classList.add('expanded');
+                        section.querySelector('.sub-category-title').classList.add('expanded');
                     }
                     section.style.display = sectionHasVisible ? 'block' : 'none';
                 });
@@ -548,10 +548,10 @@
                     });
                     // Rozwiń też wszystkie podkategorie
                     document.querySelectorAll('.sub-category-items').forEach(el => {
-                        el.classList.remove('hidden');
+                        el.classList.add('expanded');
                     });
                     document.querySelectorAll('.sub-category-title').forEach(el => {
-                        el.classList.remove('collapsed');
+                        el.classList.add('expanded');
                     });
                 };
 
@@ -559,6 +559,12 @@
                     document.querySelectorAll('.problem-category').forEach(cat => {
                         cat.querySelector('.problem-category-header').classList.remove('active');
                         cat.querySelector('.problem-content').style.display = 'none';
+                    });
+                    document.querySelectorAll('.sub-category-items').forEach(el => {
+                        el.classList.remove('expanded');
+                    });
+                    document.querySelectorAll('.sub-category-title').forEach(el => {
+                        el.classList.remove('expanded');
                     });
                 };
 
