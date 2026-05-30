@@ -2523,8 +2523,273 @@ const allProblems = {
       "1746. Protokół Maintenance — comiesięczna sesja przeglądowa linii Time-Light.",
       "1747. Protokół 'Life as Auditing' — życie w ciągłej, łagodnej świadomości i rozładowywaniu engramów w real-time."
 ]
+  },
+
+
+  "Psychologia Czasu i Orientacja Temporalna (Zimbardo)": {
+    "Zniekształcenia Perspektywy Czasowej": [
+      "1748. Dominacja orientacji na przeszłość negatywną — stałe filtrowanie teraźniejszości przez soczewkę dawnych krzywd, porażek i strat.",
+      "1749. Pułapka przeszłości pozytywnej — idealizacja 'złotych lat', które nie powrócą, jako jedynego punktu odniesienia dla wartości życia.",
+      "1750. Hedonizm teraźniejszości bez hamulca — życie wyłącznie impulsom chwili, niemożność uwzględnienia przyszłych konsekwencji.",
+      "1751. Fatalizm teraźniejszości — poczucie, że przyszłość jest z góry przesądzona i żadne działanie nie zmieni trajektorii losu.",
+      "1752. Przyszłościowy perfekcjonizm — niemożność działania w teraźniejszości, bo plan musi być najpierw 'doskonały' w głowie.",
+      "1753. Desynchronizacja wewnętrznych zegarów — różne części Ja żyją w różnych temporalnościach: ciało w przeszłości, umysł w przyszłości, dusza nigdzie.",
+      "1754. Chronofobia — nieartykułowany lęk przed samym przepływem czasu, nawet poza konkretną treścią przeszłości lub przyszłości.",
+      "1755. Paradoks wiecznej teraźniejszości — próba 'ucieczki od czasu' przez praktykę mindfulness przeradza się w nową formę unikania odpowiedzialności za ciągłość życia."
+    ]
+  },
+ 
+  "Psychologia Pieniędzy i Relacja z Obfitością (Klontz, Kiyosaki, Twist)": {
+    "Skrypty Finansowe i Nieświadome Przekonania": [
+      "1756. Skrypt 'pieniądze = miłość' — dawanie i otrzymywanie pieniędzy jako jedyny znany język miłości, konfundujący transakcję z więzią.",
+      "1757. Skrypt 'bogactwo = izolacja' — głębokie przekonanie, że stanie się bogatym oznacza utratę autentycznych relacji i przynależności.",
+      "1758. Kompulsywne wydawanie jako regulacja nastroju — zakupy jako natychmiastowa ulga od dyskomfortu, tworząca spiralę wstydu i zadłużenia.",
+      "1759. Finansowe zamrożenie — niemożność otwarcia wyciągów bankowych, odpowiadania na faktury lub planowania budżetu z powodu skrajnego lęku.",
+      "1760. Syndrom 'tyle ile potrzebuję' — nieświadomy sabotaż zarobków zawsze do poziomu 'wystarczającego', by nie przekroczyć psychologicznego pułapu bezpieczeństwa.",
+      "1761. Pieniądze jako tabu emocjonalne — całkowita niemożność rozmawiania o pieniądzach w związku lub rodzinie bez eskalacji konfliktu.",
+      "1762. Toksyczna hojność — dawanie pieniędzy innym ponad własne możliwości jako forma kupowania miłości lub unikania własnej wartości.",
+      "1763. Lęk przed widocznym dostatkiem — ukrywanie zamożności, kupowanie tanich ubrań, unikanie dobrego jedzenia, gdy stać — by nie wzbudzić zazdrości ani nie 'wypaść z roli'."
+    ]
+  },
+ 
+  "Neuropsychologia Podejmowania Decyzji (Kahneman, Ariely, Thaler)": {
+    "Błędy Decyzyjne i Pułapki Poznawcze": [
+      "1764. Efekt zakotwiczenia jako życiowa pułapka — pierwsze usłyszana 'liczba' (co zarabiają inni, ile powinno trwać małżeństwo, kiedy mieć dzieci) staje się punktem odniesienia, który zniekształca wszystkie późniejsze wybory.",
+      "1765. Awersja do straty jako hamulec życiowy — ból potencjalnej straty jest psychologicznie dwa razy silniejszy niż radość z równoważnego zysku, co paraliżuje ryzyko i zmiany.",
+      "1766. Pułapka kosztów utopionych — trwanie w niedziałającym związku, pracy lub projekcie, bo 'za dużo już zainwestowałem', zamiast oceniać przyszłość na podstawie przyszłości.",
+      "1767. Błąd planowania w życiu osobistym — chroniczne przecenianie własnych możliwości i niedocenianie czasu, zasobów i trudności, prowadzące do wypalenia i wstydu za 'niewykonanie'.",
+      "1768. Efekt domyślny jako pułapka bierności — nieświadome trwanie w domyślnych ustawieniach życia (praca, relacje, miejsce zamieszkania) tylko dlatego, że zmiana wymagałaby aktywnego wyboru.",
+      "1769. Myślenie systemem 1 w relacjach — automatyczne, heurystyczne ocenianie partnerów, przyjaciół i sytuacji na podstawie skrótów poznawczych zamiast deliberatywnej refleksji.",
+      "1770. Iluzja planowania — szczegółowe plany życiowe dające złudne poczucie kontroli, które zastępuje rzeczywiste działanie i adaptację do nieznanego."
+    ]
+  },
+ 
+  "Psychologia Granicy Bólu i Rezyliencji Skrajnej (Posttraumatyczny Wzrost)": {
+    "Wzrost przez Adversity i jego Cienie": [
+      "1771. Fałszywy posttraumatyczny wzrost — deklarowanie transformacji po trudnym doświadczeniu zanim faktycznie się ona dokonała, jako forma społecznie akceptowalnego radzenia sobie.",
+      "1772. Wstyd z powodu braku wzrostu po traumie — presja, że 'po takim doświadczeniu powinnam/powinienem być silniejszy/mądrzejszy', prowadząca do wtórnego zawstydzenia.",
+      "1773. Pułapka narracji 'co mnie nie zabije...' — używanie tej mantry do uzasadniania nadmiernego cierpienia zamiast jego redukcji.",
+      "1774. Paradoks odporności — osoby, które przeżyły wiele trudności, mogą rozwinąć tak silną adaptację do bólu, że przestają rozpoznawać kiedy sytuacja wymaga pomocy.",
+      "1775. Nemezis rezyliencji — chroniczne poleganie na własnej sile w radzeniu sobie z trudnościami prowadzi do głębokiej niemożności proszenia o pomoc i wzmacnia izolację.",
+      "1776. Wzrost po traumie a porzucenie przeszłości — niektóre osoby po traumatycznym wzroście czują się obco wobec dawnych przyjaciół i środowisk, co tworzy egzystencjalną samotność pozytywnej przemiany."
+    ]
+  },
+ 
+  "Filozofia Troski i Etyka Opiekuńczości (Nel Noddings, Carol Gilligan)": {
+    "Etyka Troski i jej Pułapki": [
+      "1777. Wyczerpanie troski — chroniczne dawanie opieki bez jej otrzymywania, prowadzące do głębokiego emocjonalnego opróżnienia i resentymentu.",
+      "1778. Tożsamość zbudowana wyłącznie na trosce — niemożność definiowania siebie poza rolą opiekuna, partnera, rodzica lub pomagacza.",
+      "1779. Asymetria troski w związkach — jeden partner stale daje, drugi stale bierze, bez świadomości tej dynamiki przez żadną ze stron.",
+      "1780. Etyczna niemożność odejścia — przekonanie, że troska raz podjęta staje się wiecznym zobowiązaniem moralnym, z którego nie wolno zrezygnować.",
+      "1781. Troska jako narzędzie kontroli — nadopiekuńczość jako forma utrzymywania władzy i niemożność zniesienia autonomii osoby, o którą się troszczymy.",
+      "1782. Zanik samoopieki w imię altruizmu — kulturowe przekonanie, że troska o siebie jest egoistyczna, prowadzące do chronicznego samozaniedbania.",
+      "1783. Troska bez granic jako trauma — brak zdolności do odmawiania pomocy, nawet gdy prośba o nią jest manipulacją lub nas niszczy."
+    ]
+  },
+ 
+  "Psychologia Ekologii Głębokiej i Relacja z Naturą (Roszak, Abram)": {
+    "Rozłączenie z Naturą i jego Skutki": [
+      "1784. Ekologiczna dysocjacja — głęboka separacja od świata naturalnego, przejawiająca się niemożnością przebywania na zewnątrz bez bodźców cyfrowych.",
+      "1785. Natura jako obca — lęk przed ciszą, ciemnością, deszczem, błotem, zwierzętami — naturalnymi elementami środowiska, które przodkowie znali jako dom.",
+      "1786. Psychologiczny skutek urbanizacji pełnej — wychowanie w środowisku wyłącznie ludzkim prowadzi do niemożności intuicyjnego odczytywania rytmów ciała i natury.",
+      "1787. Utrata biologicznej wspólnoty — brak poczucia bycia częścią ekosystemu jako jeden z ciemnych korzeni egzystencjalnej samotności nowoczesności.",
+      "1788. Shinrin-yoku jako niedostępny lek — kulturowe bariery przed spędzaniem czasu w lesie lub naturze (wstyd, 'bezproduktywność', strach) u osób, które tego pilnie potrzebują.",
+      "1789. Przyroda jako lustro Cienia — spotkanie z dziką naturą (burzą, śmiercią zwierzęcia, zimą) jako lustro wypieranych aspektów siebie, które wywołuje lęk zamiast kontemplacji."
+    ]
+  },
+ 
+  "Psychologia Śmiechu, Absurdu i Lekkości (Bergson, Frankl, Kierkegaard)": {
+    "Utrata Zdolności do Humoru i Lekkości": [
+      "1790. Chroniczna powaga — niemożność śmiania się z siebie lub sytuacji, każde wydarzenie przeżywane z pełną wagą dramatyczną.",
+      "1791. Humor jako dysocjacja — używanie ironii, sarkazmu i żartu jako jedynego sposobu na unikanie kontaktu z prawdziwymi emocjami.",
+      "1792. Utrata zdolności do zabawy — dorosłość jako permanentne wygnanie z lekkości, spontaniczności i absurdalnego śmiechu.",
+      "1793. Wstyd za radość — poczucie winy w momencie autentycznej radości, jakby radość w niedoskonałym świecie była moralnym przekroczeniem.",
+      "1794. Terapeutyczny absurd — niemożność uznania, że niekiedy śmiech z sytuacji jest głębszą formą integracji niż jej analiza.",
+      "1795. Kierkegaardowski stadion estetyczny jako pułapka — życie wyłącznie w poszukiwaniu intensywnych doznań i śmiechu jako ucieczka przed etycznym i religijnym wymiarem egzystencji."
+    ]
+  },
+ 
+  "Psychologia Ciszy i Samotności (Rilke, May, Storr)": {
+    "Niemożność Bycia w Ciszy i Samotności Twórczej": [
+      "1796. Samotność versus osamotnienie — niemożność odróżnienia konstruktywnej samotności (niezbędnej do tworzenia i integracji) od destrukcyjnego osamotnienia.",
+      "1797. Cisza jako lęk egzystencjalny — w chwili ciszy pojawia się nagłe, nieznośne poczucie nicości, wymagające natychmiastowego wypełnienia hałasem.",
+      "1798. Zależność od zewnętrznego świadka — niemożność przeżywania własnych doświadczeń bez natychmiastowego opowiadania o nich komuś lub dokumentowania ich.",
+      "1799. Brak wewnętrznego domu — niemożność powrotu do siebie, bo 'w środku' nie ma nikogo lub jest tylko krytyk, przez co samotność jest torturą, a nie azylem.",
+      "1800. Strach przed własnymi myślami w ciszy — unikanie medytacji, długich spacerów bez słuchawek, samotnych kolacji, bo to co pojawia się w ciszy jest nie do zniesienia.",
+      "1801. Twórcza samotność jako luksus — przekonanie, że prawo do bycia sam ze sobą należy się tylko po spełnieniu wszystkich obowiązków, co oznacza nigdy."
+    ]
+  },
+ 
+  "Neurodiversity Affirming — Tożsamość Neuroatypowa jako Zasób": {
+    "Wyzwania Afirmatywnego Podejścia do Neuroatypowości": [
+      "1802. Żałoba po 'straconej' wersji siebie neurotypowej — po diagnozie ADHD/autyzmu w dorosłości, ból za latami, gdy można było żyć 'prościej', gdyby tylko wiedzieć.",
+      "1803. Konflikt między dumą neuroróżnorodności a cierpieniem — kulturowy nacisk na celebrowanie inności, podczas gdy codzienne funkcjonowanie jest naprawdę trudne.",
+      "1804. Diagnostyczna niepewność tożsamości — brak pewnej diagnozy lub jej kwestionowanie przez otoczenie podważa zdolność do zrozumienia siebie i szukania odpowiedniego wsparcia.",
+      "1805. Internalizacja ableistycznych standardów sukcesu — ocenianie siebie według neurotypowych norm produktywności, linearności kariery i 'normalnych' relacji.",
+      "1806. Przemęczenie adwokatem — konieczność ciągłego wyjaśniania, edukowania i walczenia o swoje prawa w systemach edukacji, pracy i opieki zdrowotnej.",
+      "1807. Podwójna wyjątkowość (twice exceptional) — bycie jednocześnie wysoce zdolnym i posiadającym specjalne potrzeby, co sprawia, że ani system dla zdolnych, ani system wsparcia nie jest dopasowany.",
+      "1808. Autystyczne wypalenie — długotrwałe maskowanie i adaptacja do neurotypowego świata prowadzące do głębokiego, trudno odwracalnego wyczerpania."
+    ]
+  },
+ 
+  "Psychologia Zemsty, Sprawiedliwości i Odpłaty": {
+    "Dynamika Zemsty i jej Psychologiczne Korzenie": [
+      "1809. Rewanżyzm jako tożsamość — organizowanie całego życia wokół pragnienia odpłaty za doznaną krzywdę, które staje się sensem istnienia.",
+      "1810. Sprawiedliwość jako nałóg — kompulsywna potrzeba, by każda krzywda spotkała się z proporcjonalną karą, uniemożliwiająca zaakceptowanie nieidealnego świata.",
+      "1811. Proxy revenge — mściwy osąd wobec osób, które tylko przypominają pierwotnego krzywdziciela, prowadzący do serii niesprawiedliwości.",
+      "1812. Niemożność cieszenia się z kary sprawcy — gdy sprawca zostaje ukarany, oczekiwana ulga nie przychodzi, co ujawnia, że zemsta nigdy nie była o sprawiedliwości.",
+      "1813. Poczucie skradzionej zemsty — gdy ktoś inny 'ukarał' krzywdziciela zanim ofiara zdążyła, pozostaje paradoksalny żal i brak zamknięcia.",
+      "1814. Sprawiedliwość naprawcza jako niemożliwa koncepcja — głęboki opór przed ideą, że naprawienie krzywdy jest ważniejsze niż ukaranie sprawcy."
+    ]
+  },
+ 
+  "Psychologia Wdzięczności i jej Patologizacja (Emmons, Watkins)": {
+    "Wdzięczność jako Wymóg, Narzędzie i Paradoks": [
+      "1815. Wymuszona wdzięczność jako przemoc symboliczna — presja, by być wdzięcznym za coś, co obiektywnie było niewystarczające lub krzywdzące.",
+      "1816. Toxic gratitude jako spiritual bypassing — używanie wdzięczności do tłumienia uzasadnionych negatywnych emocji ('powinieneś być wdzięczny, że w ogóle....').",
+      "1817. Niemożność odczuwania autentycznej wdzięczności — wdzięczność jako pusty gest społeczny bez emocjonalnego rezonansu, co budzi wtórny wstyd.",
+      "1818. Wdzięczność jako manipulacja — doświadczenie wdzięczności narzucanej przez instytucje (religia, firma) w celu utrzymania lojalności mimo doznanej krzywdy.",
+      "1819. Paradoks wdzięczności i ambicji — przekonanie, że bycie wdzięcznym za to, co się ma, wyklucza chcenie czegoś więcej, blokujące zdrowy rozwój.",
+      "1820. Chroniczna niewdzięczność jako obrona — niemożność odczuwania wdzięczności jako strategia ochrony przed rozczarowaniem i bólem po ich odebraniu."
+    ]
+  },
+ 
+  "Psychologia Uwagi i Kontemplacji (Weil, Murdoch, Dreyfus)": {
+    "Kryzys Głębokiej Uwagi w Świecie Rozproszonym": [
+      "1821. Utrata zdolności do głębokiej uwagi — niemożność skupienia się na jednej rzeczy dłużej niż kilka minut bez cyfrowego impulsowania.",
+      "1822. Uwaga jako forma miłości (Weil) — nierozumienie, że naprawdę widzieć drugiego człowieka wymaga wysiłku wyciszenia siebie, do którego nowoczesność nas niezdolnych czyni.",
+      "1823. Skimming jako styl życia — stała powierzchowność kontaktu z tekstami, rozmowami, jedzeniem, naturą — niemożność bycia 'całym' w żadnym miejscu.",
+      "1824. Rozproszenie jako nowa normalność — akceptacja chronicznego braku skupienia jako cechy charakteru zamiast jako objawu wymagającego troski.",
+      "1825. Kontemplacja jako elitaryzm — przekonanie, że spokój, skupienie i kontemplacja są dostępne tylko dla uprzywilejowanych, a nie prawem każdego.",
+      "1826. Uważność bez uwagi — paradoks osób regularnie medytujących, które mimo to pozostają niezdolne do prawdziwej, pełnej obecności w codziennych relacjach."
+    ]
+  },
+ 
+  "Psychologia Wstydu Kulturowego i Dziedzictwa (Goffman, Bourdieu rozszerzenie)": {
+    "Wstyd Kolektywny i Tożsamościowy": [
+      "1827. Wstyd za kulturę pochodzenia — zinternalizowana pogarda dla tradycji, kuchni, dialektu, zwyczajów własnej rodziny lub narodu po kontakcie z 'wyższą' kulturą.",
+      "1828. Podwójne wykorzenienie migranta drugiego pokolenia — nieprzynależność ani do kultury rodziców, ani do kultury kraju urodzenia.",
+      "1829. Wstyd za historię zbiorową — niemożność identyfikowania się ze swoją kulturą z powodu jej historycznych zbrodni lub upokorzeń.",
+      "1830. Imperatyw asymilacji jako trauma — presja na całkowite zatarcie kulturowej tożsamości jako warunek akceptacji w nowym środowisku.",
+      "1831. Tęsknota za utraconym językiem — kiedy po migracji lub asymilacji dziecko traci język przodków, gubi razem z nim dostęp do części własnej psychiki i emocji.",
+      "1832. Wstyd za religię przodków — niemożność ani odrzucenia, ani przyjęcia dziedzictwa religijnego, prowadząca do trwałej ambiwalencji tożsamościowej."
+    ]
+  },
+ 
+  "Intersubiektywność i Interpsychologia (Stolorow, Orange)": {
+    "Niepowodzenie Intersubiektywne i Izolacja Fenomenologiczna": [
+      "1833. Niemożność doświadczenia bycia naprawdę zrozumianym — każda próba komunikacji doświadczenia wewnętrznego kończy się poczuciem, że 'coś ważnego zginęło w tłumaczeniu'.",
+      "1834. Intersubiektywna pułapka samotności — paradoks, że im bardziej dzielimy się przeżyciami, tym bardziej uświadamiamy sobie nieprzystawalność wewnętrznych światów.",
+      "1835. Niemożność zaakceptowania, że inni naprawdę mają inne wnętrze — głęboka projekcja własnych stanów na innych, prowadząca do chronicznych rozczarowań.",
+      "1836. Wstyd za potrzebę potwierdzenia — poczucie, że potrzeba bycia rozumianym i potwierdzanym przez innych jest słabością, a nie podstawową ludzką potrzebą.",
+      "1837. Kontekstualizacja traumy — niemożność zrozumienia, że trauma nie jest 'w głowie', ale rodzi się zawsze w przestrzeni relacyjnej i wymaga relacyjnego uzdrowienia.",
+      "1838. Izolacja fenomenologiczna — głęboka pewność, że własne doświadczenia bólu, radości czy lęku są tak unikalne, że nikt nie jest w stanie ich naprawdę dotknąć."
+    ]
+  },
+ 
+  "Psychologia Żalu i Niepodjętych Dróg (Landman, Gilovich)": {
+    "Żal jako Kompas i Pułapka": [
+      "1839. Paralityczny żal za działaniem — skupienie na żalu za tym, co się zrobiło, nie za tym, czego się nie spróbowało, wypaczające ocenę przeszłości.",
+      "1840. Żal za niedokonanymi wyborami jako trwały zapis w ciele — chroniczny ból w klatce, ciągłe 'a gdybym...' nierozróżnialne od objawów somatycznych.",
+      "1841. Żal-pętla bez dostępu do działania — chroniczne rozmyślanie o przeszłych decyzjach połączone z niemożnością podjęcia nowych, co tworzy paraliż.",
+      "1842. Niemożność żałowania po swojemu — kulturowa narracja, że żal jest 'negatywny' i trzeba go 'przezwyciężyć', uniemożliwiająca jego pełne przeżycie i integrację.",
+      "1843. Żal prospektywny — antycypowanie przyszłego żalu w teraźniejszości jako kryterium decyzji, co paraliżuje spontaniczność i kreuje z góry pesymistyczne życie.",
+      "1844. Projekt 'cofnięcia się w przeszłość' — obsesyjne wyobrażanie powrotu w czasie jako ucieczka przed odpowiedzialnością za teraźniejszość."
+    ]
+  },
+ 
+  "Psychologia Głęboka Snu i Snów (Jung, Hillman, Bosnak)": {
+    "Niemożność Pracy ze Snami i Nieświadomością Nocną": [
+      "1845. Utrata snów jako objaw patologiczny — chroniczne niebadanie śpiące treści snów jako odcięcie od komunikacji nieświadomości.",
+      "1846. Lęk przed treścią snów — unikanie snów, wybudzanie się przed ich zakończeniem, odrzucanie wglądów jako 'tylko sen'.",
+      "1847. Praca ze snami jako zadanie na zawsze odłożone — świadomość wartości snów bez gotowości do poświęcenia im czasu i uwagi.",
+      "1848. Koszmary senne jako nieprzetworzona informacja — powtarzające się koszmary traktowane jako uciążliwość zamiast jako zaproszenie do przepracowania.",
+      "1849. Jednorodna interpretacja snów — redukowanie wieloznacznych obrazów sennych do jednego 'właściwego' wyjaśnienia, tracąc bogactwo symbolu.",
+      "1850. Niemożność odróżnienia snu od jawy w traumie — rozmycie granicy między wspomnieniami traumatycznymi a codziennym doświadczeniem (dissociative)."
+    ]
+  },
+ 
+  "Psychologia Władzy i Dominacji w Codziennym Życiu (Foucault, Lukes)": {
+    "Mikrodynamiki Władzy i Ich Internalizacja": [
+      "1851. Biopower jako uwewnętrzniony nadzorca — internalizacja norm ciała, zdrowia i produktywności jako własnych pragnień, choć są narzędziami kontroli.",
+      "1852. Panoptyzm psychiczny — zachowywanie się tak, jakby ktoś zawsze patrzył, nawet gdy nikt nie obserwuje — stała wewnętrzna cenzura.",
+      "1853. Trzeci wymiar władzy (Lukes) — zmanipulowanie pragnień tak głęboko, że nie rozpoznaje się własnych interesów i popieramy to, co nam szkodzi.",
+      "1854. Władza za zgodą — nierozumienie, że uczestniczenie w systemie opresji 'dobrowolnie' nie czyni go mniej opresyjnym.",
+      "1855. Niemożność wyobrażenia sobie inaczej — najgłębsza władza działa przez naturalizację: 'tak jest i tak musi być', unicestwia możliwość alternatyw.",
+      "1856. Poczucie winy za rozpoznanie władzy — stygmatyzacja jako 'paranoja' lub 'teoria spiskowa' osób, które dostrzegają dynamiki dominacji."
+    ]
+  },
+ 
+  "Psychologia Dojrzewania Duchowego i Integracji Cienia Sacrum": {
+    "Dojrzałość Duchowa versus Infantylizm Religijny": [
+      "1857. Magiczne myślenie religijne u dorosłych — oczekiwanie, że modlitwa automatycznie zmieni zewnętrzne okoliczności bez wewnętrznej pracy.",
+      "1858. Bóg jako idealny rodzic — projekcja niezaspokojonych potrzeb z dzieciństwa (bezwarunkowej miłości, ochrony, sprawiedliwości) na obraz bóstwa.",
+      "1859. Niemożność modlenia się do Boga, który nie spełnił prośby — utrata wiary po niespełnieniu oczekiwań wskazuje, że relacja była transakcyjna, nie duchowa.",
+      "1860. Religia jako uzależnienie od wspólnoty — uczestnictwo w praktykach religijnych wyłącznie ze strachu przed wykluczeniem z grupy, bez własnej wiary.",
+      "1861. Duchowa inflacja — poczucie bycia 'wybranym', 'przebudzonym' lub 'specjalnym' jako obrona ego przed pracą nad cieniem.",
+      "1862. Dojrzała wiara jako 'ciemne zaangażowanie' — zdolność do trwania w niepewności, pytaniach bez odpowiedzi i obecności Boga ukrytego, której brak powoduje religijne kryzysy.",
+      "1863. Integracja cienia sacrum — zrozumienie, że duchowość musi zawierać zarówno jasność jak i ciemność, zarówno miłość jak i gniew, by była autentyczna."
+    ]
+  },
+ 
+  "Psychologia Piękna, Estetyki i Tęsknoty za Transcendencją (Scruton, Stendhal)": {
+    "Piękno jako Droga i Pułapka": [
+      "1864. Anhedonia estetyczna — utrata zdolności do wzruszania się muzyką, sztuką, naturą lub architekturą, jako wczesny sygnał depresji lub wypalenia.",
+      "1865. Obsesja estetyczna jako ucieczka — kolekcjonowanie piękna (sztuki, podróży, doświadczeń) zamiast budowania własnego pięknego życia.",
+      "1866. Wstyd za wrażliwość estetyczną — tłumienie łez na koncercie, wzruszenia w kościele lub radości z zachodu słońca jako 'słabości' lub 'sentymentalizmu'.",
+      "1867. Piękno jako ból (Stendhal) — intensywne doświadczenia estetyczne jako wyzwalacze głębokiego smutku lub tęsknoty za czymś nieuchwytnym.",
+      "1868. Estetyczna kompulsja — niemożność zniesienia brzydoty w środowisku, prowadząca do nadkontrolowania przestrzeni życiowej.",
+      "1869. Transcendencja przez estetykę versus integracja przez relacje — używanie sztuki jako jedynej drogi do doświadczenia sensu, przy jednoczesnym unikaniu głębokiego kontaktu z ludźmi."
+    ]
+  },
+ 
+  "Psychologia Transformacji i Inicjacji (van Gennep, Turner)": {
+    "Rytuały Przejścia i Ich Brak w Nowoczesności": [
+      "1870. Brak rytuałów inicjacji w nowoczesności — dorastanie, wejście w dorosłość, menopauza, emeryta, żałoba bez zbiorowych rytuałów uznania i przejścia.",
+      "1871. Utknięcie w liminalności — trwanie w stanie pomiędzy (limbo), gdy stara tożsamość się rozpadła, ale nowa jeszcze nie powstała, bez wspólnotowego wsparcia.",
+      "1872. Kompulsywne tworzenie własnych rytuałów — obsesyjne ceremonie i rytuały jako próba zastąpienia brakujących społecznych form przejścia.",
+      "1873. Lęk przed transformacją — głęboka obawa przed 'umarciem' starego siebie jako koniecznym elementem wzrostu, interpretowanego jako realna destrukcja.",
+      "1874. Terapia jako jedyne dostępne inicjacyjne naczynie — paradoks, że we współczesnym świecie gabinet terapeutyczny stał się jedynym miejscem zbiorowej inicjacji (choć jest prywatny).",
+      "1875. Nierozpoznana inicjacja przez chorobę — doświadczenie poważnej choroby lub kryzysu jako niezatytułowanego rytuału przejścia, który pozostaje nieintegrowany."
+    ]
+  },
+ 
+  "Paradoksy Psychoterapii i Samorozwoju": {
+    "Cienie Pomocy i Pracy nad Sobą": [
+      "1876. Terapeutyczna jatrogenia — uraz spowodowany przez terapeutę, który otworzył rany bez zapewnienia odpowiednich zasobów do ich zamknięcia.",
+      "1877. Uzależnienie od terapii — niemożność zakończenia terapii, ponieważ relacja terapeutyczna stała się jedynym bezpiecznym przywiązaniem.",
+      "1878. Racjonalizacja jako produkt terapii — zdobycie języka i konceptów, które służą teraz do uzasadniania starych zachowań zamiast ich zmiany.",
+      "1879. Diagnostyczna tożsamość — totalne zidentyfikowanie się z diagnozą psychiatryczną lub psychologiczną, która staje się nie narzędziem zrozumienia, lecz ostateczną definicją.",
+      "1880. Samorozwój jako nałóg — kompulsywne uczestnictwo w szkoleniach, warsztatach, terapiach jako forma unikania życia, które wymaga zastosowania zdobytych narzędzi.",
+      "1881. Psychologizacja wszystkiego — niemożność przeżycia zwykłego smutku, złości lub nudy bez natychmiastowej analizy, interpretacji i 'przepracowania'.",
+      "1882. Tyrania autentyczności — presja, by każde słowo, decyzja i relacja były 'autentyczne', prowadząca do paraliżu i permanentnego poczucia fałszywości.",
+      "1883. Feedback loop samoświadomości — im bardziej pracujemy nad sobą, tym więcej problemów dostrzegamy, co prowadzi do przekonania, że zawsze będziemy 'w procesie' bez możliwości po prostu żyć."
+    ]
+  },
+ 
+  "Oryginalne Koncepty — Propozycje Autorskie": {
+    "Nowe Kategorie Cierpienia Nieopisane w Literaturze": [
+      "1884. Syndrom Pełnego Kalendarza — chroniczne zapełnianie czasu zobowiązaniami jako forma lęku przed spotkaniem z sobą w pustej chwili.",
+      "1885. Efekt Głębokiej Wody — im więcej wiemy o własnej psychice, tym bardziej świadomi jesteśmy jej głębokości i ciemności, co paradoksalnie może zwiększać lęk zamiast go zmniejszać.",
+      "1886. Pułapka Pierwszego Kroku — nieskończone przygotowywanie się do zmiany (czytanie, planowanie, rozmawianie) jako substytut samej zmiany, dający złudzenie działania.",
+      "1887. Syndrom Przekroczenia Progu — po długo oczekiwanej życiowej zmianie (nowa praca, przeprowadzka, związek) pojawia się rozczarowanie, bo rzeczywistość nie dorównuje wyobrażeniu.",
+      "1888. Tęsknota za nieznanym — nostalgiczne tęsknienie nie za konkretną przeszłością, ale za nieznaną przyszłością, która nigdy nie nadeszła, za niespełnionymi wersjami siebie.",
+      "1889. Emocjonalne opóźnienie — zdolność do odczuwania trudnych emocji dopiero tygodnie lub miesiące po zdarzeniu, gdy otoczenie już 'przeszło dalej'.",
+      "1890. Intymność przez konflikty — wzorzec relacyjny, w którym jedynym dostępnym sposobem bycia blisko drugiej osoby jest kłótnia lub dramat, bo spokojną bliskość przodkowie nigdy nie modelowali.",
+      "1891. Presja ostatecznej odpowiedzi — nietolerancja paradoksów, ambiwalencji i pytań otwartych, wymuszająca przedwczesne zamknięcia, które sabotują autentyczne rozumienie.",
+      "1892. Zmęczenie własną historią — moment, w którym terapeutyczna narracja o przeszłości staje się samą przeszłością, którą trzeba przepracować, bo zaczyna więzić.",
+      "1893. Lęk przed własną śmiercią jako impuls życiowy — niemożność przekształcenia świadomości skończoności w motywację do życia pełniej, zamiast w paraliżujący lęk egzystencjalny.",
+      "1894. Chroniczny stan gotowości do odczuwania — głęboka potrzeba intensywnych doświadczeń emocjonalnych połączona z chronicznie niskim poziomem pobudzenia, tworząca wewnętrzną pustkę.",
+      "1895. Kolaps wyobraźni moralnej — niemożność wyobrażenia sobie własnego życia, które byłoby jednocześnie dobre etycznie i pełne radości, jakby te dwa wymiary były wzajemnie wykluczające.",
+      "1896. Niemożność przyjęcia do siebie słów 'kocham cię' — słyszenie ich wywołuje lęk, nieufność lub pustkę, bo ciało i psychika nie mają schematu ich przyjęcia.",
+      "1897. Paradoks terapeutyczny wybaczania — im więcej pracujemy nad wybaczeniem, tym bardziej uświadamiamy sobie głębię krzywdy, co sprawia, że wybaczenie staje się odleglejsze, nie bliższe.",
+      "1898. Tęsknota za własną przyszłą żałobą — nieświadome przeczucie straty, która jeszcze się nie wydarzyła, przesycające teraźniejszość smutkiem bez konkretnego przedmiotu.",
+      "1899. Syndrom Późnego Zrozumienia — odkrywanie w dojrzałości lat doświadczeń, które w dzieciństwie były 'normalne', a teraz okazują się naruszeniem — i związany z tym ból wtórnego uznania.",
+      "1900. Uwięzienie w czasie łaski — niemożność opuszczenia roli 'dobrego dziecka', 'dobrego pracownika' lub 'dobrego przyjaciela', bo utrata tej roli wydaje się tożsama z utratą miłości."
+    ]
   }
 };
+
 
 if (typeof window !== 'undefined') {
   window.allProblems = allProblems;
