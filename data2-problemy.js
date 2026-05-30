@@ -2809,7 +2809,7 @@ const allProblems = {
       "1912. Picie funkcjonalne jako niewidzialne uzależnienie — osoba, która 'normalnie funkcjonuje' w pracy i rodzinie mimo codziennego picia, długo nie rozpoznaje siebie jako osoby uzależnionej.",
       "1913. Alkohol jako lek na bezsenność — picie wieczorne jako jedyna znana metoda zasypiania, prowadzące do fragmentacji snu i eskalacji dawek.",
       "1914. Syndrom poniedziałkowego postanowienia — cykliczne obiecywanie sobie 'od jutra nie piję', które podtrzymuje iluzję kontroli i opóźnia szukanie pomocy.",
-      "1915. Picie samotnicze jako cień wstydu — ukrywanie ilości wypijanego alkoholu, chowanie butelek, picie w samochodzie lub w piwnicy jako eskalacja izolacji.",
+      "1915. Picie w samotnosci jako cień wstydu — ukrywanie ilości wypijanego alkoholu, chowanie butelek, picie w samochodzie lub w piwnicy jako eskalacja izolacji.",
       "1916. Dziedzictwo DDA w ciele — dorosłe dziecko alkoholika, które samo nie pije, nosi w układzie nerwowym wzorce hiperczujności, dysregulacji i wstydu jakby piło.",
       "1917. Alkohol jako most do emocji — jedynym momentem, gdy mężczyzna płacze, kobiety jest jej złość — pod wpływem alkoholu, który chwilowo znosi chroniczną dysocjację.",
       "1918. Powrót do picia po długiej abstynencji jako katastrofa tożsamościowa — jeden kieliszek po pięciu latach trzeźwości niszczy narrację 'nowego ja' i uwalnia lawinę wstydu."
@@ -2920,7 +2920,7 @@ const allProblems = {
     "Myślenie, Analiza i Intelekt": [
       "1993. Uzależnienie od ruminacji — kompulsywne powracanie do tych samych myśli, problemów i scenariuszy, odczuwane jako obowiązek (jeśli przestanę myśleć, stanie się coś złego).",
       "1994. Uzależnienie od analizy (analysis paralysis) — niemożność podjęcia decyzji bez uprzedniego zebrania absolutnie wszystkich informacji, jako nałóg kontroli przez wiedzę.",
-      "1995. Uzależnienie od teorii spiskowych — mózg uzależniony od wzorców: każda nowa 'prawda' dostarcza dopaminowego kopa odkrycia, niezależnie od jej wartości poznawczej.",
+      "1995. Uzależnienie od teorii spiskowych — mózg uzależniony od wzorców: każda nowa 'prawda' dostarcza dopaminowego skoku odkrycia, niezależnie od jej wartości poznawczej.",
       "1996. Uzależnienie od autorefleksji — kompulsywna introspekcja, w której każde działanie musi być natychmiast przeanalizowane, co blokuje spontaniczność i kontakt ze światem.",
       "1997. Intelektualne uzależnienie od debaty — niemożność konwersacji bez eskalowania jej do sporu, bo wygranie argumentu daje dopaminowy kop niedostępny w spokojnej rozmowie.",
       "1998. Uzależnienie od planowania — obsesyjne tworzenie list, planów i systemów organizacji jako forma iluzji kontroli, gdzie sam akt planowania zastępuje działanie."
@@ -2930,7 +2930,7 @@ const allProblems = {
   "Dynamika Cyklu Uzależnienia: Wstyd, Ulga i Nawrót": {
     "Spirala Wstydu i Nawrotów": [
       "1999. Wstyd jako centralny mechanizm uzależnienia — wstyd po epizodzie kompulsywnym nie mobilizuje do zmiany, lecz jest tak nieznośny, że wymaga natychmiastowego uśmierzenia przez kolejny epizod.",
-      "2000. Nawrót jako katastrofa tożsamościowa — jeden 'slip' po długiej abstynencji przeżywany jako totalne unicestwienie wszystkich postępów, prowadzący do efektu abstinence violation effect.",
+      "2000. Nawrót jako katastrofa tożsamościowa — jeden 'slip' po długiej abstynencji przeżywany jako totalne unicestwienie wszystkich postępów, prowadzący do efektu naruszenia abstynencji (abstinence violation effect).",
       "2001. Cykl: napięcie → kompulsja → ulga → wstyd → napięcie — automatyczna pętla, w której każdy element wzmacnia następny, działająca szybciej niż świadoma interwencja.",
       "2002. Sekretność jako paliwо uzależnienia — ukrywanie zachowania generuje dodatkowy ładunek wstydu i izolacji, który eskaluje kompulsję.",
       "2003. Fałszywa kontrola — okresy 'zarządzanego' używania jako dowód dla siebie, że problem nie istnieje, przerywane eskalacjami.",
@@ -2943,7 +2943,7 @@ const allProblems = {
   "Współuzależnienie Rodziny i Systemu": {
     "Rodzina w Systemie Uzależnienia": [
       "2007. Enabling jako miłość — bliscy robiący wszystko, by chronić osobę uzależnioną przed konsekwencjami jej zachowania, tym samym usuwając jedyne motywatory do zmiany.",
-      "2008. Rola identyfikatora (Family Hero) — dorosłe dziecko z rodziny uzależnieniowej, które swoimi sukcesami 'ratuje' honor rodziny i kompensuje chaos.",
+      "2008. Rola bohatera rodzinnego (Family Hero) — dorosłe dziecko z rodziny uzależnieniowej, które swoimi sukcesami 'ratuje' honor rodziny i kompensuje chaos.",
       "2009. Rola maskotki w rodzinie uzależnieniowej — dziecko, które rozładowuje napięcie w rodzinie humorem i żartami, nie mając pozwolenia na wyrażenie własnego bólu.",
       "2010. Rola kozła ofiarnego — dziecko, na które rodzina projekuje swój wstyd i dysfunkcję; jego 'problemy' odwracają uwagę od uzależnienia rodzica.",
       "2011. Rola niewidzialnego dziecka — dziecko, które radzi sobie przez znikanie: ciche, bezproblemowe, doskonale niewidzialne, obciążone izolacją na całe życie.",
@@ -3013,7 +3013,7 @@ const allProblems = {
       "2053. Uzależnienie od bycia chorym — tożsamość i przynależność zbudowana na chorobie lub bólu chronicznym; zdrowie jest nieświadomie sabotowane, bo oznaczałoby utratę tej tożsamości.",
       "2054. Uzależnienie od nowych początków — seryjne zaczynanie od nowa (nowe miasto, nowy związek, nowa praca) bez zdolności do trwania w dojrzałej, trudnej fazie czegokolwiek.",
       "2055. Uzależnienie od cierpienia innych — kompulsywne angażowanie się w pomoc osobom w kryzysie jako jedyna dostępna forma poczucia własnej wartości i obecności.",
-      "2056. Astroturfing emocjonalny — kompulsywne kreowanie fałszywej wersji siebie w mediach społecznościowych jako jedyna forma, w której można znieść własne istnienie.",
+      "2056. Tworzenie sztucznej autentyczności — kompulsywne kreowanie fałszywej wersji siebie w mediach społecznościowych jako jedyna forma, w której można znieść własne istnienie.",
       "2057. Uzależnienie od szumu informacyjnego — niemożność tolerowania ciszy lub nudy bez natychmiastowego wypełniania umysłu podcastami, muzyką lub treściami jako forma unikania własnych myśli.",
       "2058. Uzależnienie od ostrości zmysłowej — kompulsywne poszukiwanie bardzo pikantnych, głośnych, jasnych lub intensywnych bodźców sensorycznych jako substytut emocjonalnej żywotności.",
       "2059. Uzależnienie od samotności jako ucieczka — izolacja od innych jako kompulsywny mechanizm ochronny, który staje się nałogiem unikania kontaktu.",
@@ -3047,5 +3047,3 @@ const allProblems = {
 if (typeof window !== 'undefined') {
   window.allProblems = allProblems;
 }
-
-window.allProblems = allProblems;
