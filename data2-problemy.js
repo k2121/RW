@@ -2523,8 +2523,7 @@ const allProblems = {
       "1746. Protokół Maintenance — comiesięczna sesja przeglądowa linii Time-Light.",
       "1747. Protokół 'Life as Auditing' — życie w ciągłej, łagodnej świadomości i rozładowywaniu engramów w real-time."
 ]
-  }
-},
+  },
 
   "Psychologia Czasu i Orientacja Temporalna (Zimbardo)": {
     "Zniekształcenia Perspektywy Czasowej": [
@@ -2787,9 +2786,263 @@ const allProblems = {
       "1899. Syndrom Późnego Zrozumienia — odkrywanie w dojrzałości lat doświadczeń, które w dzieciństwie były 'normalne', a teraz okazują się naruszeniem — i związany z tym ból wtórnego uznania.",
       "1900. Uwięzienie w czasie łaski — niemożność opuszczenia roli 'dobrego dziecka', 'dobrego pracownika' lub 'dobrego przyjaciela', bo utrata tej roli wydaje się tożsama z utratą miłości."
     ]
+  },
+
+  "Neurobiologia Uzależnienia: Układ Nagrody i Pragnienie": {
+    "Mechanizmy Mózgowe i Ich Psychologiczne Przejawy": [
+      "1901. Tolerancja jako egzystencjalny problem — to, co kiedyś dawało radość (alkohol, adrenalina, seks, praca), przestało działać, ale mechanizm poszukiwania nie gaśnie.",
+      "1902. Dysregulacja dopaminowa jako codzienność — mózg przyzwyczajony do skoków dopaminy ze źródeł sztucznych traci zdolność do czerpania przyjemności z naturalnych nagród (jedzenie, dotyk, natura, rozmowa).",
+      "1903. Craving jako przejęcie świadomości — stan głodu substancji lub zachowania, w którym cała architektura myślenia zostaje podporządkowana jednemu celowi.",
+      "1904. Efekt incubation of craving — pragnienie substancji lub zachowania narasta przez tygodnie lub miesiące abstynencji, nie opada, co zaskakuje i załamuje osoby w trzeźwości.",
+      "1905. Allostaza uzależnieniowa — mózg uzależniony ustala nowy 'punkt neutralny' znacznie poniżej naturalnego dobrostanu, sprawiając że abstynencja = chroniczna anhedonia.",
+      "1906. Błąd predykcji nagrody — mózg w uzależnieniu jest zaprogramowany, by oczekiwania poprzedzające używanie były silniejsze niż samo używanie, przez co 'następny raz' zawsze jest nieosiągalnym ideałem.",
+      "1907. Neurologiczny hijacking pamięci — wspomnienia związane z używaniem mają neurobiologicznie wyższy priorytet niż inne wspomnienia, dlatego triggerują się nieproporcjonalnie często.",
+      "1908. Desensytyzacja receptorów — długotrwałe używanie substancji lub zachowań kompulsywnych trwale zmienia gęstość i wrażliwość receptorów, co sprawia że powrót do 'normalnego' czucia może trwać lata.",
+      "1909. Salience hijacking — substancja lub zachowanie przejmuje status 'najważniejszego na świecie' w hierarchii mózgu, wypierając dzieci, relacje, wartości.",
+      "1910. Kompulsywna konsumpcja mimo negatywnych konsekwencji — jądro uzależnienia: kontynuowanie pomimo wiedzy, że niszczy zdrowie, relacje, finanse, jako dowód, że wola 'nie wystarczy'."
+    ]
+  },
+ 
+  "Uzależnienia od Substancji: Wymiary Kliniczne i Egzystencjalne": {
+    "Alkohol": [
+      "1911. Alkohol jako regulacja lęku społecznego — niemożność funkcjonowania na spotkaniach, imprezach i w relacjach bez napicia się, zinternalizowana jako 'wada charakteru'.",
+      "1912. Picie funkcjonalne jako niewidzialne uzależnienie — osoba, która 'normalnie funkcjonuje' w pracy i rodzinie mimo codziennego picia, długo nie rozpoznaje siebie jako osoby uzależnionej.",
+      "1913. Alkohol jako lek na bezsenność — picie wieczorne jako jedyna znana metoda zasypiania, prowadzące do fragmentacji snu i eskalacji dawek.",
+      "1914. Syndrom poniedziałkowego postanowienia — cykliczne obiecywanie sobie 'od jutra nie piję', które podtrzymuje iluzję kontroli i opóźnia szukanie pomocy.",
+      "1915. Picie samotnicze jako cień wstydu — ukrywanie ilości wypijanego alkoholu, chowanie butelek, picie w samochodzie lub w piwnicy jako eskalacja izolacji.",
+      "1916. Dziedzictwo DDA w ciele — dorosłe dziecko alkoholika, które samo nie pije, nosi w układzie nerwowym wzorce hiperczujności, dysregulacji i wstydu jakby piło.",
+      "1917. Alkohol jako most do emocji — jedynym momentem, gdy mężczyzna płacze, kobiety jest jej złość — pod wpływem alkoholu, który chwilowo znosi chroniczną dysocjację.",
+      "1918. Powrót do picia po długiej abstynencji jako katastrofa tożsamościowa — jeden kieliszek po pięciu latach trzeźwości niszczy narrację 'nowego ja' i uwalnia lawinę wstydu."
+    ],
+    "Inne Substancje": [
+      "1919. Kokaina jako nagroda za perfekcjonizm — substancja, która chwilowo daje poczucie wystarczalności, kompetencji i wartości, przez co jest szczególnie pociągająca dla osób z syndromem oszusta.",
+      "1920. Heroina jako jedyne doświadczenie pełnego spokoju — dla osób z chroniczną wewnętrzną bólem i niepokojem opiaty dają pierwszy raz w życiu odczucie, że 'wszystko jest w porządku'.",
+      "1921. Marihuana jako anestezja egzystencjalna — chroniczne używanie konopi jako sposób na stępienie pytań o sens, cel i przyszłość, maskujące głębszą depresję lub lęk.",
+      "1922. Amfetamina i ADHD: leczenie czy nałóg — cienka granica między terapeutycznym wsparciem a uzależnieniem od stymulantów u osób z nierozpoznaną neuroatypowością.",
+      "1923. Benzodiazepiny jako medyczne uwięzienie — uzależnienie od leków przepisanych przez psychiatrę, rozwijające się niepostrzeżenie, trudniejsze do odstawienia niż heroina.",
+      "1924. Mikrodozowanie jako nowa normalizacja — kulturowa fascynacja 'funkcjonalnym' używaniem psychedelików bez refleksji nad granicą między terapią a unikaniem.",
+      "1925. Uzależnienie od leków przeciwbólowych jako trauma medyczna — uzależnienie rozwinięte w następstwie leczenia bólu chronicznego, obciążone podwójnym wstydem."
+    ]
+  },
+ 
+  "Uzależnienia Behawioralne: Działania jako Substancja": {
+    "Uzależnienie od Jedzenia i Zaburzenia Odżywiania": [
+      "1926. Jedzenie jako jedyna bezpieczna przyjemność — gdy wszystkie inne formy nagrody zostały wyeliminowane przez wstyd, lęk lub traumę, jedzenie pozostaje jako ostatnie schronienie.",
+      "1927. Binge eating jako reset emocjonalny — napad jedzenia nie jest o głodzie, lecz o niemożności zniesienia napięcia wewnętrznego bez zewnętrznego rozładowania.",
+      "1928. Restrykcja jako kontrola i kara jednocześnie — głodzenie siebie jako jedyny obszar, w którym można 'panować', gdy reszta życia wydaje się chaosem.",
+      "1929. Purging jako rytuał oczyszczenia — wymiotowanie lub inne formy przeczyszczania pełniące funkcję symboliczną: wyrzucanie tego, co 'złe' we mnie.",
+      "1930. Ortoreksja jako uzależnienie od czystości — obsesja na punkcie 'zdrowego' jedzenia, która z troski o siebie przeradza się w więzienie rytuałów i wykluczeń społecznych.",
+      "1931. Kompulsywne podjadanie nocne — noc jako jedyny czas, gdy 'wewnętrzny cenzor' zasypia i można wreszcie zjeść, obciążone ogromnym wstydem porannym.",
+      "1932. Jedzenie jako jedyna dostępna miłość — karmienie siebie jako substytut miłości, której nie można ani dać, ani dostać w relacjach.",
+      "1933. Dieta jako wtórne uzależnienie po odstawieniu — przejście z uzależnienia od substancji na kompulsywną kontrolę jedzenia jako nową formę zarządzania lękiem."
+    ],
+    "Uzależnienie od Seksu i Pornografii": [
+      "1934. Pornografia jako szkoła dysocjacji — regularne oglądanie pornografii trenuje mózg do oddzielenia seksualności od emocji, obecności i relacji.",
+      "1935. Eskalacja treści jako neurologiczna konieczność — mechanizm tolerancji sprawia, że potrzebne są coraz bardziej ekstremalne treści, by osiągnąć ten sam efekt, niezależnie od wartości.",
+      "1936. Kompulsywny seks jako anestezja relacyjna — korzystanie z seksu (z partnerami lub solo) jako sposób na natychmiastowe stłumienie lęku, pustki lub bólu.",
+      "1937. Uzależnienie od sexting i wirtualnych relacji — emocjonalne i seksualne zaangażowanie w kontakty online jako substytut intymności fizycznej, rozwijające swoją własną logikę uzależnienia.",
+      "1938. Wstyd jako paliwo uzależnienia seksualnego — im większy wstyd po epizodzie kompulsywnym, tym silniejsze pragnienie kolejnego, bo wstyd jest nie do zniesienia bez regulatora.",
+      "1939. Uzależnienie od nowych partnerów (novelty seeking) — neurologiczny mechanizm nagrody premiuje nowość, prowadząc do niemożności budowania głębokiej intymności z jedną osobą.",
+      "1940. PIED (Porn-Induced Erectile Dysfunction) — zaburzenia erekcji wywołane pornografią, nierozpoznane przez lekarzy i generujące wtórne kryzysy tożsamości.",
+      "1941. Kompulsywna masturbacja jako regulacja dysforii — nie jako wyrażenie popędu, lecz jako automatyczne działanie przy każdym dyskomforcie emocjonalnym."
+    ],
+    "Uzależnienie od Technologii i Mediów Cyfrowych": [
+      "1942. Scrolling jako kompulsja bez celu — odruchowe, automatyczne scrollowanie bez żadnego konkretnego poszukiwania, jako forma opróżnienia umysłu przez bodźce.",
+      "1943. Dopaminowa pętla powiadomień — każde powiadomienie jako nieprzewidywalna nagroda (variable ratio reinforcement), stwarzająca najsilniejszy ze znanych schematów warunkowania.",
+      "1944. FOMO jako stan chroniczny — permanentne poczucie, że gdzieś indziej coś ważniejszego się dzieje, napędzane przez media społecznościowe do poziomu wewnętrznej tortury.",
+      "1945. Lęk przed odłączeniem (nomofobia) — paniczny lęk przy braku dostępu do telefonu, internetu lub sieci jako objaw pełnoobjawowego uzależnienia.",
+      "1946. Uzależnienie od sprawdzania — kompulsywne sprawdzanie maili, wiadomości, statystyk, nowości kilkadziesiąt razy na godzinę jako rytuał redukcji lęku.",
+      "1947. Cyfrowy binge jako dysregulacja — wielogodzinne oglądanie seriali, granie lub scrollowanie jako odpowiednik napadu jedzenia: przerwanie funkcjonowania na rzecz kompulsywnej konsumpcji.",
+      "1948. Uzależnienie od lajków jako walidacja — poczucie własnej wartości uzależnione od metryki zaangażowania, gdzie brak lajków jest fizycznie odczuwanym bólem.",
+      "1949. Granie jako ucieczka od bezsilności — gry wideo dają poczucie sprawczości, postępu i kompetencji niedostępne w realnym życiu, stając się jego bardziej satysfakcjonującym substytutem.",
+      "1950. Tworzenie contentu jako kompulsja — przymus produkowania postów, filmów, treści jako forma regulacji tożsamości, w której przestanie produkować = przestać istnieć.",
+      "1951. Uzależnienie od newsów i dooming — kompulsywne śledzenie złych wiadomości jako paradoksalna forma kontroli: wiedza o katastrofach daje złudzenie przygotowania."
+    ],
+    "Hazard i Ryzyko": [
+      "1952. Uzależnienie od hazardu jako terapia traumy porzucenia — każda gra jest emocjonalnie ekwiwalentna oczekiwaniu na powrót matki: napięcie, nadzieja, katastrofa, reset.",
+      "1953. Bliskie chybienie jako silniejszy wyzwalacz niż wygrana — near-miss aktywuje układ nagrody silniej niż faktyczna wygrana, co jest kluczem do biologicznej pułapki hazardu.",
+      "1954. Hazard jako jedyne doświadczenie bycia w 'flow' — dla wielu osób hazard jest jedyną sytuacją pełnego pochłonięcia i wyłączenia ruminacji.",
+      "1955. Krypto-hazard i trading jako społecznie akceptowalna forma nałogu — kompulsywny trading kryptowalutami lub akcjami, celebrowany jako 'inwestowanie'.",
+      "1956. Uzależnienie od ryzyka i adrenaliny — szybka jazda, sporty ekstremalne, zawieranie niebezpiecznych znajomości jako poszukiwanie neurobiologicznego stanu przytomności.",
+      "1957. Finansowe dno jako wyzwalacz trzeźwości i wstydliwy sekret — wielu hazardzistów zgłasza się po pomoc dopiero gdy długi stają się absolutnie niemożliwe do ukrycia."
+    ]
+  },
+ 
+  "Uzależnienia Relacyjne i Emocjonalne": {
+    "Ko-dependencja i Uzależnienie od Relacji": [
+      "1958. Ko-dependencja jako tożsamość, nie cecha — głęboka identyfikacja z rolą opiekuna, ratownika lub 'lepszej połowy', w której własne Ja znikło całkowicie.",
+      "1959. Uzależnienie od konkretnej osoby (limerence) — obsesyjne, niekontrolowane przywiązanie do jednej osoby, z pełną świadomością jego destrukcyjności i niemożnością przerwania.",
+      "1960. Trauma bonding jako złudzenie miłości — biologiczne uzależnienie od naprzemiennych cykli nagrody i kary w toksycznej relacji, odczuwane jako 'najsilniejsza miłość w życiu'.",
+      "1961. Uzależnienie od konfliktu — niemożność funkcjonowania w spokojnym związku, kompulsywne wywoływanie kłótni jako jedynej znane formy głębokiego kontaktu.",
+      "1962. Uzależnienie od ratowania — kompulsywna potrzeba wchodzenia w relacje z osobami w kryzysie, po których 'uratowaniu' relacja staje się zbędna lub sami zostajemy porzuceni.",
+      "1963. Uzależnienie od sprawdzania partnera — kompulsywne przeglądanie telefonu, e-maili, profili partnera jako forma regulacji lęku przywiązaniowego.",
+      "1964. Uzależnienie od potwierdzenia — niemożność podjęcia żadnej decyzji bez uprzedniego uzyskania aprobaty od kilku osób, połączona z lękiem przed samodzielnym istnieniem.",
+      "1965. Uzależnienie od miłości romantycznej (love addiction) — chroniczne chodzenie od jednej intensywnej relacji do następnej, nie wytrzymując w fazie stabilności.",
+      "1966. Withdrawal z relacji jak odstawienie substancji — fizyczne objawy rozstania (drżenie, bezsenność, ból w klatce, obsesyjne myśli) jako neurologicznie realne zjawisko, a nie słabość charakteru.",
+      "1967. Uzależnienie od bycia potrzebnym — poczucie własnej wartości całkowicie zależne od tego, czy ktoś nas aktualnie potrzebuje; bez bycia niezbędnym — pustkość i panika."
+    ],
+    "Uzależnienia Emocjonalne i Stany Wewnętrzne": [
+      "1968. Uzależnienie od dramatu — neurobiologiczne uzależnienie od hormonalnych skoków towarzyszących kryzysom: kortyzol i adrenalina w stanie stresu stają się 'normalnym' stanem bazowym.",
+      "1969. Uzależnienie od złości — chroniczny gniew jako forma regulacji: złość daje poczucie siły, granic i energii, których bez niej nie ma dostępu.",
+      "1970. Uzależnienie od smutku — kultywowanie melancholii jako tożsamości artystycznej lub duchowej, gdzie wyjście z niej byłoby zdradą 'prawdziwego Ja'.",
+      "1971. Uzależnienie od lęku — paradoks, w którym permanentne martwienie się daje złudzenie kontroli, a spokój jest odczuwany jako niebezpieczny i obcy.",
+      "1972. Uzależnienie od wstydu — kompulsywne powracanie do wspomnień wstydliwych jako forma samoukarania, która paradoksalnie reguluje lęk przed powtórzeniem błędu.",
+      "1973. Uzależnienie od euforu intensywnych doświadczeń — niemożność zniesienia przeciętności i spokoju: wakacje muszą być ekstremalne, muzyka głośna, jedzenie ekskluzywne, relacje namiętne.",
+      "1974. Uzależnienie od bycia ofiarą — tożsamość zbudowana na krzywdzie jako jedyna dostępna forma przynależności i unikania odpowiedzialności."
+    ]
+  },
+ 
+  "Uzależnienia Społecznie Akceptowane i Niewidoczne": {
+    "Pracoholizm i Produktywność": [
+      "1975. Pracoholizm jako cnota w masce — społeczna nagroda za uzależnienie od pracy sprawia, że jest ono najtrudniejszym do leczenia spośród uzależnień behawioralnych.",
+      "1976. Produktywność jako stan trzeźwości dla innych uzależnień — osoby wychodzące z uzależnień często wpadają w pracoholizm jako 'bezpieczny' substytut.",
+      "1977. Uzależnienie od zajętości — niemożność pozostawania bezczynnym bez poczucia winy, lęku i dyskomfortu; obsesyjne zapełnianie czasu jako unikanie spotkania z sobą.",
+      "1978. Perfekcjonizm jako kompulsja — przymus powtarzania, poprawiania i doskonalenia zadań poza punkt racjonalnej poprawy, generujący wyczerpanie i paraliż.",
+      "1979. Uzależnienie od kryzysu w pracy — funkcjonowanie wyłącznie pod presją deadline'ów, tworzenie sytuacji kryzysowych jako jedynej znane formy mobilizacji.",
+      "1980. Sabotuję odpoczynek — niemożność realnego urlopu, wakacji, weekendu bez sprawdzania telefonu, myślenia o pracy lub planowania kolejnych zadań."
+    ],
+    "Zakupy, Posiadanie i Konsumpcja": [
+      "1981. Kompulsywne zakupy jako regulacja nastroju — moment zakupu (nie posiadania) jako jedyny moment ulgi; zakupiony przedmiot traci wartość po wyjściu ze sklepu.",
+      "1982. Oniomania online — dostępność 24/7 sklepów internetowych jako środowisko idealne do eskalacji kompulsywnych zakupów bez społecznej kontroli.",
+      "1983. Uzależnienie od 'deal' — kompulsywne kupowanie rzeczy na wyprzedaży, których się nie potrzebuje, bo 'okazja' wyzwala ten sam mechanizm nagrody co hazard.",
+      "1984. Hoarding jako uzależnienie od posiadania — kompulsywne gromadzenie przedmiotów jako forma regulacji lęku przed utratą, stratą i pustką.",
+      "1985. Uzależnienie od zwrotów — kupowanie i odsyłanie jako pętla kompulsywna, dająca chwilowy dreszcz zakupu bez finansowej konsekwencji, ale z eskalacją zachowania.",
+      "1986. Kolekcjonowanie jako obsesja — granica między pasją a kompulsją: niemożność zatrzymania, poczucie pustki bez nowego eksponatu, dominacja kolekcji nad życiem."
+    ],
+    "Ruch, Sport i Ciało": [
+      "1987. Uzależnienie od ćwiczeń (exercise addiction) — kompulsywne trenowanie mimo kontuzji, choroby, zmęczenia, zniszczonych relacji, jako forma kontroli i regulacji lęku.",
+      "1988. Ortoreksja sportowa — obsesja na punkcie perfekcyjnego treningu, suplementacji i regeneracji przerastająca radość z ruchu i prowadząca do wypalenia.",
+      "1989. Uzależnienie od bólu mięśni (DOMS) — niemożność odczucia że trening 'był dobry' bez bólu następnego dnia, prowadząca do chronicznego przetrenowania.",
+      "1990. Uzależnienie od diety i 'czystości' — każde odstępstwo od rygorystycznych zasad żywienia traktowane jak moralna klęska, wymagająca natychmiastowej pokuty przez trening.",
+      "1991. Bieganie jako ucieczka — używanie długich biegów jako jedynej dostępnej formy medytacji i przetwarzania emocji, prowadzące do niemożności zatrzymania się.",
+      "1992. Uzależnienie od sauny, lodowatej wody lub ekstremalnych technik ciała — protokoły biohackingu eskalujące z troski o zdrowie do kompulsji i rytualistycznego zniewolenia."
+    ],
+    "Myślenie, Analiza i Intelekt": [
+      "1993. Uzależnienie od ruminacji — kompulsywne powracanie do tych samych myśli, problemów i scenariuszy, odczuwane jako obowiązek (jeśli przestanę myśleć, stanie się coś złego).",
+      "1994. Uzależnienie od analizy (analysis paralysis) — niemożność podjęcia decyzji bez uprzedniego zebrania absolutnie wszystkich informacji, jako nałóg kontroli przez wiedzę.",
+      "1995. Uzależnienie od teorii spiskowych — mózg uzależniony od wzorców: każda nowa 'prawda' dostarcza dopaminowego kopa odkrycia, niezależnie od jej wartości poznawczej.",
+      "1996. Uzależnienie od autorefleksji — kompulsywna introspekcja, w której każde działanie musi być natychmiast przeanalizowane, co blokuje spontaniczność i kontakt ze światem.",
+      "1997. Intelektualne uzależnienie od debaty — niemożność konwersacji bez eskalowania jej do sporu, bo wygranie argumentu daje dopaminowy kop niedostępny w spokojnej rozmowie.",
+      "1998. Uzależnienie od planowania — obsesyjne tworzenie list, planów i systemów organizacji jako forma iluzji kontroli, gdzie sam akt planowania zastępuje działanie."
+    ]
+  },
+ 
+  "Dynamika Cyklu Uzależnienia: Wstyd, Ulga i Nawrót": {
+    "Spirala Wstydu i Nawrotów": [
+      "1999. Wstyd jako centralny mechanizm uzależnienia — wstyd po epizodzie kompulsywnym nie mobilizuje do zmiany, lecz jest tak nieznośny, że wymaga natychmiastowego uśmierzenia przez kolejny epizod.",
+      "2000. Nawrót jako katastrofa tożsamościowa — jeden 'slip' po długiej abstynencji przeżywany jako totalne unicestwienie wszystkich postępów, prowadzący do efektu abstinence violation effect.",
+      "2001. Cykl: napięcie → kompulsja → ulga → wstyd → napięcie — automatyczna pętla, w której każdy element wzmacnia następny, działająca szybciej niż świadoma interwencja.",
+      "2002. Sekretność jako paliwо uzależnienia — ukrywanie zachowania generuje dodatkowy ładunek wstydu i izolacji, który eskaluje kompulsję.",
+      "2003. Fałszywa kontrola — okresy 'zarządzanego' używania jako dowód dla siebie, że problem nie istnieje, przerywane eskalacjami.",
+      "2004. High-bottom versus low-bottom — mit, że uzależnienie musi doprowadzić do 'dna', zanim możliwe jest szukanie pomocy; wysokie dno (utrata relacji, sensu) jest równie realnym dnem.",
+      "2005. Zaplanowany nawrót — świadome planowanie 'ostatniego razu' jako forma pożegnania z substancją, które prawie nigdy nie jest ostatnim.",
+      "2006. Dry drunk syndrome — abstynencja bez pracy nad sobą: osoba nie pije, ale zachowuje wszystkie emocjonalne wzorce uzależnienia, przenosząc je na relacje i pracę."
+    ]
+  },
+ 
+  "Współuzależnienie Rodziny i Systemu": {
+    "Rodzina w Systemie Uzależnienia": [
+      "2007. Enabling jako miłość — bliscy robiący wszystko, by chronić osobę uzależnioną przed konsekwencjami jej zachowania, tym samym usuwając jedyne motywatory do zmiany.",
+      "2008. Rola identyfikatora (Family Hero) — dorosłe dziecko z rodziny uzależnieniowej, które swoimi sukcesami 'ratuje' honor rodziny i kompensuje chaos.",
+      "2009. Rola maskotki w rodzinie uzależnieniowej — dziecko, które rozładowuje napięcie w rodzinie humorem i żartami, nie mając pozwolenia na wyrażenie własnego bólu.",
+      "2010. Rola kozła ofiarnego — dziecko, na które rodzina projekuje swój wstyd i dysfunkcję; jego 'problemy' odwracają uwagę od uzależnienia rodzica.",
+      "2011. Rola niewidzialnego dziecka — dziecko, które radzi sobie przez znikanie: ciche, bezproblemowe, doskonale niewidzialne, obciążone izolacją na całe życie.",
+      "2012. Systemowy zakaz mówienia — niepisana reguła rodziny uzależnieniowej: 'nie mów, nie ufaj, nie czuj', przenoszona przez pokolenia jako styl relacyjny.",
+      "2013. Koalicja dziecko–trzeźwy rodzic — dziecko przejmujące rolę partnera emocjonalnego trzeźwego rodzica, sojusznika przeciw uzależnionemu, z konsekwencjami parentyfikacji.",
+      "2014. Nieprzewidywalność jako traumatyczna normalność — dorastanie w domu z osobą uzależnioną, gdzie nastrój zmienia się co godzinę, kształtuje układ nerwowy wyspecjalizowany w hiperczujności.",
+      "2015. Miłość warunkowa uzależnionego rodzica — dzieci uzależnionych rodziców uczą się, że miłość jest dostępna tylko gdy rodzic jest 'w dobrym stanie', co kształtuje styl przywiązania na całe życie."
+    ]
+  },
+ 
+  "Tożsamość w Uzależnieniu i Trzeźwości": {
+    "Kim Jestem bez Nałogu": [
+      "2016. Uzależnienie jako tożsamość — 'jestem alkoholikiem' jako jedyna pewna definicja siebie, z której nie wiadomo jak wyjść nawet w trzeźwości.",
+      "2017. Pustka po odstawieniu — po odstawieniu substancji lub zachowania znika nie tylko ból, ale i jedyna forma intensywności, kolorów i znaczenia w życiu.",
+      "2018. Trzeźwość jako żałoba — wejście w abstynencję jako konieczność opłakiwania substancji jako 'przyjaciela', 'kochanka' i 'regulatora', bez którego świat jest szary.",
+      "2019. Strach przed sukcesem trzeźwości — nieświadome sabotowanie długotrwałej abstynencji, bo sukces oznaczałby 'nie mam już wymówki' na niespełnione życie.",
+      "2020. Wspólnoty AA/NA jako nowa rodzina i ich pułapki — głęboka przynależność do wspólnoty trzeźwości, która może stać się nowym systemem zamkniętym zamiast przejściowym wsparciem.",
+      "2021. Trzeźwość bez radości — abstynencja jako stan neutralny lub bolesny, bez dostępu do autentycznej satysfakcji i sensu, prowadząca do powrotu po latach.",
+      "2022. Tożsamość po wyjściu z nałogu — próba odpowiedzi na pytanie: 'Jeśli już nie piję/ćpam/hazarduję, kim właściwie jestem?' jako głęboki kryzys egzystencjalny.",
+      "2023. Stygmat uzależnienia jako bariera powrotu — wstyd przed ujawnieniem historii uzależnienia w miejscu pracy, rodzinie i relacjach romantycznych blokujący pełną reintegrację."
+    ]
+  },
+ 
+  "Zaawansowane Wymiary Kliniczne Uzależnień": {
+    "Podwójne Diagnozy (Dual Diagnosis)": [
+      "2024. Uzależnienie jako samoleczenie nieleczonego ADHD — stymulacja narkotykami lub adrenaliną jako niediagnozowana próba regulacji układu dopaminowego.",
+      "2025. Alkohol na nieleczony PTSD — używanie alkoholu jako jedynego dostępnego środka na flashbacki, hiperpobudzenie i bezsenność pourazową.",
+      "2026. Uzależnienie jako maska depresji — substancja utrzymuje pozornie funkcjonujące życie przez lata, maskując ciężką depresję, którą ujawnia dopiero odstawienie.",
+      "2027. Uzależnienie w spektrum autyzmu — używanie substancji jako strategia maskowania trudności sensorycznych i społecznych przez osoby z nierozpoznanym ASD.",
+      "2028. Borderline i uzależnienie — ekstremalny ból emocjonalny charakterystyczny dla BPD czyni uzależnienie od substancji statystycznie jednym z najczęstszych współwystępowań.",
+      "2029. Uzależnienie a choroba afektywna dwubiegunowa — alkohol i narkotyki w fazie maniakalnej jako 'paliwo', w depresji jako 'ulga', przez co obydwa stany nasilają używanie.",
+      "2030. Uzależnienie a zaburzenia odżywiania — współwystępowanie bulimii z alkoholizmem lub uzależnieniem od substancji jako podwójna regulacja wstydu i bólu."
+    ],
+    "Uzależnienie a Trauma": [
+      "2031. Continuum trauma-uzależnienie — prawie wszystkie głębokie uzależnienia mają w tle nieprzepracowaną traumę; leczenie samego uzależnienia bez pracy z traumą daje ograniczone efekty.",
+      "2032. Substancja jako most do traumy — pod wpływem substancji część osób doświadcza pierwszego dostępu do wypartych wspomnień traumatycznych, co tworzy paradoksalną więź.",
+      "2033. Retraumatyzacja przez odstawienie — odstawienie substancji może nagle 'odsłonić' traumatyczne wspomnienia chronione przez znieczulenie, prowadząc do kryzysu bez wsparcia.",
+      "2034. Ciało jako archiwa uzależnienia i traumy — somatyczne objawy odstawienia (drżenie, ból, mdłości) mogą jednocześnie aktywować traumatyczne ślady w ciele.",
+      "2035. ACE (Adverse Childhood Experiences) jako predyktor uzależnienia — badania Felittiego wykazują, że każde dodatkowe niekorzystne doświadczenie dzieciństwa wielokrotnie zwiększa ryzyko uzależnienia."
+    ]
+  },
+ 
+  "Filozofia i Egzystencja Uzależnienia": {
+    "Sens, Wolność i Nałóg": [
+      "2036. Uzależnienie jako odpowiedź na pustkę egzystencjalną — w świecie bez sensu substancja lub zachowanie jest jedyną dostępną odpowiedzią na pytanie 'po co wstawać rano'.",
+      "2037. Nałóg jako odmowa wolności — paradoks Sartre'owski: uzależnienie jest wyborem radykalnie ograniczającym wszystkie inne wybory, a świadomość tego może być paraliżująca.",
+      "2038. Substancja jako jedyne transcendentne doświadczenie — dla osób pozbawionych dostępu do głębszych form transcendencji (mistycyzmu, sztuki, natury) substancja jest jedynym rozszerzeniem świadomości.",
+      "2039. Uzależnienie jako protest egzystencjalny — używanie jako forma buntu wobec niesprawiedliwego świata, nieakceptowalnych warunków życia lub niemożności zmiany sytuacji.",
+      "2040. William James i intoksykacja jako mistycyzm — obserwacja, że wiele substancji psychoaktywnych daje dostęp do stanów zbliżonych do mistycznych, tworząc głęboką potrzebę powtórzenia.",
+      "2041. Gabor Maté: 'Nie dlaczego uzależnienie, lecz dlaczego ból' — uzależnienie nie jest problemem samym w sobie, lecz odpowiedzią na ból, który nie miał innej drogi wyjścia.",
+      "2042. Uzależnienie jako problem łączności (connection) — Johann Hari: przeciwieństwem uzależnienia nie jest trzeźwość, lecz połączenie z innymi ludźmi i sensem.",
+      "2043. Uzależnienie w kulturze bez inicjacji — młodzi mężczyźni bez rytuałów przejścia i dróg do transcendencji sięgają po substancje jako jedyną dostępną inicjację."
+    ]
+  },
+ 
+  "Uzależnienia Rzadko Nazywane i Nowe Formy": {
+    "Nowe i Nieoczywiste Kompulsje": [
+      "2044. Uzależnienie od myślenia o jedzeniu bez jedzenia — objawy obsesyjnego myślenia o żywności, przepisach, restauracjach bez objadania się, jako nowa forma zaburzenia odżywiania.",
+      "2045. Uzależnienie od plotek i cudzych problemów — kompulsywna potrzeba angażowania się w problemy innych ludzi jako zastępstwo kontaktu z własnym życiem.",
+      "2046. Uzależnienie od duchowości i 'przebudzeń' — hopping między tradycjami, nauczycielami i technikami duchowymi jako forma uzależnienia od nowości i euforii inicjalnego doświadczenia.",
+      "2047. Uzależnienie od kryzysów zdrowotnych (factitious disorder light) — kompulsywne szukanie objawów, diagnoz i leczenia jako forma otrzymywania uwagi i struktury.",
+      "2048. Uzależnienie od terapii i coachingu — ciągłe przechodzenie od jednego do kolejnego terapeuty, metody lub intensywu jako forma unikania realnej zmiany przy zachowaniu tożsamości 'pracującego nad sobą'.",
+      "2049. Uzależnienie od podróży — kompulsywna ucieczka w nowe miejsca jako niemożność zaakceptowania codzienności; każdy powrót do domu jest intolerowalny.",
+      "2050. Uzależnienie od komplimentów i walidacji — niemożność regulacji nastroju bez regularnych zewnętrznych potwierdzeń wartości, siły lub atrakcyjności.",
+      "2051. Uzależnienie od bycia ekspertem — kompulsywna potrzeba posiadania opinii na każdy temat, 'nauczania' innych i demonstrowania wiedzy jako regulacja niskiej samooceny.",
+      "2052. Uzależnienie od remontów i projektów — nieskończona seria projektów domowych, przeprowadzek lub redesignów jako forma unikania przebywania w 'skończonym' życiu.",
+      "2053. Uzależnienie od bycia chorym — tożsamość i przynależność zbudowana na chorobie lub bólu chronicznym; zdrowie jest nieświadomie sabotowane, bo oznaczałoby utratę tej tożsamości.",
+      "2054. Uzależnienie od nowych początków — seryjne zaczynanie od nowa (nowe miasto, nowy związek, nowa praca) bez zdolności do trwania w dojrzałej, trudnej fazie czegokolwiek.",
+      "2055. Uzależnienie od cierpienia innych — kompulsywne angażowanie się w pomoc osobom w kryzysie jako jedyna dostępna forma poczucia własnej wartości i obecności.",
+      "2056. Astroturfing emocjonalny — kompulsywne kreowanie fałszywej wersji siebie w mediach społecznościowych jako jedyna forma, w której można znieść własne istnienie.",
+      "2057. Uzależnienie od szumu informacyjnego — niemożność tolerowania ciszy lub nudy bez natychmiastowego wypełniania umysłu podcastami, muzyką lub treściami jako forma unikania własnych myśli.",
+      "2058. Uzależnienie od ostrości zmysłowej — kompulsywne poszukiwanie bardzo pikantnych, głośnych, jasnych lub intensywnych bodźców sensorycznych jako substytut emocjonalnej żywotności.",
+      "2059. Uzależnienie od samotności jako ucieczka — izolacja od innych jako kompulsywny mechanizm ochronny, który staje się nałogiem unikania kontaktu.",
+      "2060. Uzależnienie od kontroli otoczenia — kompulsywne porządkowanie, reorganizacja i kontrolowanie przestrzeni fizycznej jako jedyna dostępna forma panowania nad życiem."
+    ]
+  },
+ 
+  "Drogi Wyjścia: Psychologia Zmiany i Uzdrowienia z Uzależnienia": {
+    "Przeszkody w Szukaniu Pomocy": [
+      "2061. Stygmat jako bariera leczenia — wstyd przed ujawnieniem uzależnienia lekarzowi, terapeucie lub bliskim jako jeden z głównych powodów braku szukania pomocy.",
+      "2062. Iluzja kontroli jako bariera — 'mogę przestać kiedy chcę' jako myśl ochronna, chroniąca przed koniecznością konfrontacji z utratą kontroli.",
+      "2063. Minimalizowanie — 'piję jak wszyscy', 'to tylko papierosy', 'hazard to tylko rozrywka' — porównywanie swojego uzależnienia z cięższymi przypadkami jako forma zaprzeczenia.",
+      "2064. Lęk przed bólem trzeźwości — wiele osób wie, że jest uzależnionych, ale boi się bólu i pustki, które czekają po odstawieniu bardziej niż samego uzależnienia.",
+      "2065. Brak dostępnej, bezpiecznej i nieoceniającej pomocy — systemowe bariery: brak miejsc, kolejki, koszty, strach przed dokumentacją medyczną.",
+      "2066. Jednorazowe doznanie terapii po przymusie — leczenie podjęte pod presją rodziny lub prawa bez własnej motywacji rzadko prowadzi do trwałej zmiany.",
+      "2067. Niemożność wyobrażenia sobie życia bez substancji — brak wizji pozytywnej alternatywy ('co zamiast'), nie tylko negatywna motywacja ('muszę przestać').",
+      "2068. Wypalenie terapeutyczne partnera lub rodziny — bliscy, którzy wielokrotnie próbowali wspierać, ustawiać granice i 'ratować', mogą być tak wypaleni, że nie mają już zasobów gdy osoba uzależniona jest gotowa."
+    ],
+    "Modele Zmiany i Uzdrowienia": [
+      "2069. Prochaska i DiClemente: spirala zmian — rozumienie, że zmiana w uzależnieniu nie jest linią prostą, lecz spiralą: prekontemplacją, kontemplacją, przygotowaniem, działaniem, utrzymaniem i nawrotem.",
+      "2070. Harm reduction jako etap — ograniczanie szkód (clean needles, bezpieczniejsze używanie) nie jako rezygnacja z celu trzeźwości, lecz jako ratowanie życia i budowanie mostów do zmiany.",
+      "2071. Motivational Interviewing jako alternatywa konfrontacji — zmiana motywacji do zmiany nie przez konfrontację i strach, lecz przez rozwijanie własnej ambiwalencji i wartości.",
+      "2072. SMART Recovery jako alternatywa 12 kroków — racjonalne, oparte na dowodach podejście do uzależnień dla osób, którym model duchowy AA/NA nie odpowiada.",
+      "2073. Terapia schematów w uzależnieniu — leczenie głębszych schematów wczesnomaladaptacyjnych (deprywacja, porzucenie, wadliwość) jako korzeni uzależnienia.",
+      "2074. EMDR w uzależnieniu — przetwarzanie traumatycznych wspomnień leżących u podstaw uzależnienia jako warunek trwałej zmiany, nie tylko radzenia sobie z objawami.",
+      "2075. Posttraumatyczny wzrost po uzależnieniu — możliwość, że przepracowane uzależnienie staje się katalizatorem głębokiej przemiany, empatii i sensu życia niedostępnych przed kryzysem."
+    ]
   }
 };
-
 
 if (typeof window !== 'undefined') {
   window.allProblems = allProblems;
