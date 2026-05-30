@@ -75,6 +75,23 @@
         .btn-danger:hover {
             background-color: #c0392b;
         }
+        /* Przycisk zamknij w nagłówku */
+        #closeBtn {
+            padding: 4px 11px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            background-color: #e74c3c;
+            color: white;
+            font-size: 13px;
+            line-height: 1.4;
+            transition: background-color 0.1s;
+            flex-shrink: 0;
+        }
+        #closeBtn:hover {
+            background-color: #c0392b;
+        }
         .controls {
             display: flex;
             gap: 5px;
@@ -141,6 +158,7 @@
             width: 100%;
         }
 
+        /* Podkategorie – nagłówek klikalny */
         .sub-category-section {
             padding: 2px 0 6px 0;
             border-bottom: 1px dashed #e2e8f0;
@@ -160,6 +178,34 @@
             margin-top: 5px;
             margin-bottom: 2px;
             word-break: break-word;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 8px;
+            transition: background-color 0.15s;
+        }
+        .sub-category-title:hover {
+            background-color: #eef2f7;
+        }
+        .sub-category-title span {
+            flex-grow: 1;
+        }
+        .sub-category-title::after {
+            content: '▾';
+            font-size: 13px;
+            color: #64748b;
+            flex-shrink: 0;
+        }
+        .sub-category-title.collapsed::after {
+            content: '▸';
+        }
+
+        .sub-category-items {
+            display: block; /* domyślnie rozwinięte */
+        }
+        .sub-category-items.hidden {
+            display: none;
         }
         
         .problem-item {
@@ -254,6 +300,7 @@
     <div id="problem-selector-container">
         <h3>
             <span>🛒 Koszyk Wyzwań</span>
+            <button id="closeBtn" onclick="window.close()">✕ Zamknij</button>
         </h3>
 
         <div class="search-box">
@@ -321,17 +368,11 @@
             div.onclick = (e) => {
                 e.stopPropagation();
                 
-                // Doklejenie przedrostka "wyzwanie: "
                 const formattedText = "wyzwanie: " + problemText;
                 
-                // Kopiowanie sformatowanego tekstu do schowka
                 navigator.clipboard.writeText(formattedText).then(() => {
                     logToPanel(`Skopiowano: "${formattedText.substring(0, 35)}..."`, 'success');
-                    
-                    // Pokazanie dymku powiadomienia na ekranie
                     showToast(`📋 Skopiowano:\n${formattedText.substring(0, 50)}...`);
-                    
-                    // Efekt podświetlenia elementu na liście
                     div.classList.add('copied');
                     setTimeout(() => {
                         div.classList.remove('copied');
@@ -340,7 +381,6 @@
                     logToPanel('Błąd kopiowania do schowka: ' + err, 'error');
                 });
 
-                // Przesyłanie sformatowanego tekstu do okna głównego (jeśli połączone)
                 if (window.opener && !window.opener.closed) {
                     if (typeof window.opener.addFromSelector === 'function') {
                         window.opener.addFromSelector(formattedText);
@@ -349,6 +389,36 @@
                 }
             };
             return div;
+        }
+
+        function createSubCategorySection(subCategory, items) {
+            const subSection = document.createElement('div');
+            subSection.className = 'sub-category-section';
+
+            const subTitle = document.createElement('div');
+            subTitle.className = 'sub-category-title';
+
+            const titleSpan = document.createElement('span');
+            titleSpan.textContent = subCategory;
+            subTitle.appendChild(titleSpan);
+
+            const itemsContainer = document.createElement('div');
+            itemsContainer.className = 'sub-category-items';
+
+            // Toggle przy kliknięciu nagłówka podkategorii
+            subTitle.onclick = (e) => {
+                e.stopPropagation();
+                const isCollapsed = itemsContainer.classList.toggle('hidden');
+                subTitle.classList.toggle('collapsed', isCollapsed);
+            };
+
+            items.forEach(problem => {
+                itemsContainer.appendChild(createProblemItem(problem));
+            });
+
+            subSection.appendChild(subTitle);
+            subSection.appendChild(itemsContainer);
+            return subSection;
         }
 
         function renderTree() {
@@ -394,20 +464,10 @@
                 } else {
                     for (const subCategory in categoryContent) {
                         subCatCount++;
-                        const subSection = document.createElement('div');
-                        subSection.className = 'sub-category-section';
-
-                        const subTitle = document.createElement('div');
-                        subTitle.className = 'sub-category-title';
-                        subTitle.textContent = subCategory;
-                        subSection.appendChild(subTitle);
-
-                        categoryContent[subCategory].forEach(problem => {
-                            totalItemsCount++;
-                            subSection.appendChild(createProblemItem(problem));
-                        });
-
-                        contentDiv.appendChild(subSection);
+                        totalItemsCount += categoryContent[subCategory].length;
+                        contentDiv.appendChild(
+                            createSubCategorySection(subCategory, categoryContent[subCategory])
+                        );
                     }
                 }
 
@@ -444,6 +504,12 @@
                     sectionItems.forEach(si => {
                         if (si.style.display !== 'none') sectionHasVisible = true;
                     });
+                    // Przy filtrowaniu pokaż też kontener itemów
+                    const itemsContainer = section.querySelector('.sub-category-items');
+                    if (sectionHasVisible && query !== '') {
+                        itemsContainer.classList.remove('hidden');
+                        section.querySelector('.sub-category-title').classList.remove('collapsed');
+                    }
                     section.style.display = sectionHasVisible ? 'block' : 'none';
                 });
 
@@ -479,6 +545,13 @@
                     document.querySelectorAll('.problem-category').forEach(cat => {
                         cat.querySelector('.problem-category-header').classList.add('active');
                         cat.querySelector('.problem-content').style.display = 'block';
+                    });
+                    // Rozwiń też wszystkie podkategorie
+                    document.querySelectorAll('.sub-category-items').forEach(el => {
+                        el.classList.remove('hidden');
+                    });
+                    document.querySelectorAll('.sub-category-title').forEach(el => {
+                        el.classList.remove('collapsed');
                     });
                 };
 
