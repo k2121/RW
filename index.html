@@ -305,33 +305,43 @@
 <script>
 (function() {
   function autoResize(el) {
-    // Zapisz poprzednie overflow żeby nie migało
+    if (!el) return;
     el.style.overflow = 'hidden';
     el.style.height = '0px';
+    
     var h = Math.max(el.scrollHeight, parseInt(el.style.minHeight) || 10);
-    h = Math.min(h, 395);
-    el.style.height = h + 5 + 'px'; /*## +5*/
+    h = Math.min(h, 395); // maksymalna wysokość
+    
+    el.style.height = h + 5 + 'px';
     el.style.overflow = (el.scrollHeight > 395) ? 'auto' : 'hidden';
   }
 
   function attachResize(el) {
     if (el._autoResizeAttached) return;
     el._autoResizeAttached = true;
-    el.addEventListener('input', function() { autoResize(el); });
-    // Nasłuchuj też zmiany value przez JS (value setter override)
-    var origDescriptor = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value');
+
+    // Podstawowe zdarzenia
+    el.addEventListener('input', () => autoResize(el));
+    el.addEventListener('paste', () => {
+      // Małe opóźnienie, bo paste czasem potrzebuje chwili na wyrenderowanie treści
+      setTimeout(() => autoResize(el), 10);
+    });
+    el.addEventListener('change', () => autoResize(el));
+
+    // Obsługa programowego ustawiania wartości
+    const origDescriptor = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value');
     if (origDescriptor) {
       try {
         Object.defineProperty(el, 'value', {
           get: function() { return origDescriptor.get.call(this); },
           set: function(v) {
             origDescriptor.set.call(this, v);
-            // setTimeout 0 = po wyrenderowaniu przez przeglądarkę
-            setTimeout(function() { autoResize(el); }, 0);
+            setTimeout(() => autoResize(el), 0);
           }
         });
       } catch(e) {}
     }
+
     autoResize(el);
   }
 
@@ -339,32 +349,26 @@
     document.querySelectorAll('textarea').forEach(autoResize);
   }
 
-  // Podłącz do istniejących textarea po DOMContentLoaded
   document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('textarea').forEach(attachResize);
 
-    // MutationObserver dla dynamicznie dodawanych textarea
+    // MutationObserver dla dynamicznie dodawanych pól
     new MutationObserver(function(mutations) {
       mutations.forEach(function(m) {
         m.addedNodes.forEach(function(node) {
           if (node.nodeType !== 1) return;
           if (node.tagName === 'TEXTAREA') attachResize(node);
-          node.querySelectorAll('textarea').forEach(attachResize);
+          node.querySelectorAll && node.querySelectorAll('textarea').forEach(attachResize);
         });
-        // Jeśli zmienił się atrybut/property textarea (np. readonly content update)
-        if (m.type === 'characterData' || m.type === 'childList') {
-          var ta = m.target.closest ? m.target.closest('textarea') : null;
-          if (ta) autoResize(ta);
-        }
       });
-    }).observe(document.body, { childList: true, subtree: true, characterData: true });
+    }).observe(document.body, { childList: true, subtree: true });
 
-    // Dodatkowe odpalenie po 300ms i 1s — na wypadek gdy JS ładuje dane asynchronicznie
+    // Dodatkowe wyzwalacze
     setTimeout(resizeAll, 300);
     setTimeout(resizeAll, 1000);
   });
 
-  // Eksponuj globalnie — inne skrypty mogą wywołać window.autoResizeAll()
+  // Globalne funkcje
   window.autoResizeAll = resizeAll;
   window.autoResizeTextarea = autoResize;
 })();
