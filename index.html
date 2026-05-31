@@ -352,26 +352,56 @@
                                         });
                                     });
                                 </script>
+
+
 <script>
 (function() {
   function autoResize(el) {
     if (!el) return;
-    var MAX_H = 395;
+    var MAX_H = (el.id === 'projekcje') ? 90 : 395;
+    var isHidden = el.offsetWidth === 0 && el.offsetHeight === 0;
+    var originalStyle = {};
+    if (isHidden) {
+      originalStyle.display = el.style.display;
+      originalStyle.visibility = el.style.visibility;
+      originalStyle.position = el.style.position;
+      el.style.visibility = 'hidden';
+      el.style.display = 'block';
+      el.style.position = 'absolute';
+    }
     el.style.boxSizing = 'border-box';
     el.style.overflow = 'hidden';
     el.style.height = 'auto';
     el.style.minHeight = '0';
-    void el.offsetHeight; // wymusza synchroniczny reflow
+    void el.offsetHeight;
     var h = Math.min(el.scrollHeight, MAX_H);
     el.style.height = h + 'px';
     el.style.overflow = (el.scrollHeight >= MAX_H) ? 'auto' : 'hidden';
+    if (isHidden) {
+      el.style.display = originalStyle.display;
+      el.style.visibility = originalStyle.visibility;
+      el.style.position = originalStyle.position;
+    }
   }
 
   function attachResize(el) {
     if (el._autoResizeAttached) return;
     el._autoResizeAttached = true;
     el.addEventListener('input', function() { autoResize(el); });
+    el.addEventListener('paste', function() { setTimeout(function() { autoResize(el); }, 10); });
     el.addEventListener('change', function() { autoResize(el); });
+    const origDescriptor = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value');
+    if (origDescriptor) {
+      try {
+        Object.defineProperty(el, 'value', {
+          get: function() { return origDescriptor.get.call(this); },
+          set: function(v) {
+            origDescriptor.set.call(this, v);
+            setTimeout(function() { autoResize(el); }, 50);
+          }
+        });
+      } catch(e) {}
+    }
     autoResize(el);
   }
 
@@ -381,7 +411,6 @@
 
   document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('textarea').forEach(attachResize);
-
     new MutationObserver(function(mutations) {
       mutations.forEach(function(m) {
         m.addedNodes.forEach(function(node) {
@@ -391,7 +420,6 @@
         });
       });
     }).observe(document.body, { childList: true, subtree: true });
-
     setTimeout(resizeAll, 300);
     setTimeout(resizeAll, 1000);
   });
@@ -400,6 +428,7 @@
   window.autoResizeTextarea = autoResize;
 })();
 </script>
+                                
 
                                 
 <script src="select2.Pola_Planszy.js"></script>
