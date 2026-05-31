@@ -353,7 +353,6 @@
                                     });
                                 </script>
 
-
 <script>
 (function() {
   function autoResize(el) {
@@ -364,7 +363,7 @@
     // Tworzymy tymczasowe style, aby zmierzyć realną wysokość zawartości.
     let isHidden = el.offsetWidth === 0 && el.offsetHeight === 0;
     let originalStyle = {};
-
+    
     if (isHidden) {
       originalStyle.display = el.style.display;
       originalStyle.visibility = el.style.visibility;
@@ -377,13 +376,13 @@
 
     el.style.overflow = 'hidden';
     el.style.height = '0px';
-
+    
     // Pobieramy realną wysokość tekstu (odrzucamy sztywne minHeight w przypadku ukrytych pól)
-    var h = el.scrollHeight;
-
+    var h = el.scrollHeight + 5;
+    
     // Ograniczenie maksymalnej wysokości
     h = Math.min(h, 395); // maksymalna wysokość
-
+    
     el.style.height = h + 'px';
     el.style.overflow = (el.scrollHeight > 395) ? 'auto' : 'hidden';
 
