@@ -29,8 +29,9 @@ function toggleVisibility(textareaId, button) {
 async function clearTextarea(id) {
   const textarea = document.getElementById(id);
   try {
-    textarea.value = ''; // Uproszczone bezpośrednie czyszczenie
-    updateBackgroundColor(textarea); // Zależność od updateBackgroundColor
+    textarea.value = '';
+    textarea.dispatchEvent(new Event('input')); // ← DODAJ TĘ LINIĘ
+    updateBackgroundColor(textarea);
   } catch (err) {
     console.error('Błąd podczas kasowania:', err);
   }
@@ -41,6 +42,18 @@ async function pasteFromClipboard(id) {
   try {
     const text = await navigator.clipboard.readText();
     textarea.value = text;
+    async function pasteFromClipboard(id) {
+  const textarea = document.getElementById(id);
+  try {
+    const text = await navigator.clipboard.readText();
+    textarea.value = text;
+    textarea.dispatchEvent(new Event('input')); // ← DODAJ TĘ LINIĘ
+    updateBackgroundColor(textarea);
+    alert('Karta została wklejona.');
+  } catch (err) {
+    console.error('Błąd podczas wklejania:', err);
+  }
+}
     updateBackgroundColor(textarea); // Zależność od updateBackgroundColor
     alert('Karta została wklejona.');
   } catch (err) {
