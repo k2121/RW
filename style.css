@@ -24,7 +24,7 @@ body, button, textarea, select, label {
   margin-top: 0;
   margin-bottom: 0;
   text-align: center; align-items: center;
-  background-color: #621C38; color: #ffffff;
+  background-color: #391451; color: #ffffff;
 }
 #kontekst, #select2-pola_kontekst-container {
   width: 100%;
@@ -141,7 +141,7 @@ button {
   margin-top: 0px;
   margin-bottom: 0px;
 }
-.zdarzenie-background { background-color: #621C38; color: #ffffff; }
+.zdarzenie-background { background-color: #391451; color: #ffffff; }
 .kontekst-background { background-color: #cc99fe; color: #000000; }
 .karma-background, .wyzwanie-background { background: radial-gradient(circle, #f7fcf2 0%, rgb(102, 255, 153) 100%); }
 .wyobraz-sobie-background { background: radial-gradient(circle, #f8f3f7 0%, #dfb2c3 100%); }
