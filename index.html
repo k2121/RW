@@ -362,7 +362,7 @@
     // Obsługa ukrytych elementów (np. display: none)
     // Jeśli element lub jego rodzic jest ukryty, scrollHeight zwróci 0.
     // Tworzymy tymczasowe style, aby zmierzyć realną wysokość zawartości.
-    let isHidden = el.offsetWidth === 0 && el.offsetHeight === 5;
+    let isHidden = el.offsetWidth === 0 && el.offsetHeight === 0;
     let originalStyle = {};
 
     if (isHidden) {
