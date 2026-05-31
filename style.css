@@ -147,11 +147,11 @@ button {
 .wyobraz-sobie-background { background: radial-gradient(circle, #f8f3f7 0%, #dfb2c3 100%); }
 .przekonanie-background { background: radial-gradient(circle, #f9f6e9 0%, #f6eb4b 100%); }
 .blokada-energii-czerwona-background { background-color: #ff0000; color: #ffffff; font-weight: bold; text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px  1px 0 black, 1px  1px 0 black; }
-.blokada-energii-pomarańczowa-background { background-color: #ffa500; color: #ffffff; font-weight:  bold; text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px  1px 0 black, 1px  1px 0 black; }
+.blokada-energii-pomarańczowa-background { background-color: #F25E0D; color: #ffffff; font-weight:  bold; text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px  1px 0 black, 1px  1px 0 black; }
 .blokada-energii-żółta-background { background-color: #ffff4d; color: #ffffff; font-weight:  bold; text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px  1px 0 black, 1px  1px 0 black; }
 .blokada-energii-zielona-background { background-color: #1c8f4d; color: #ffffff; font-weight:  bold; text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px  1px 0 black, 1px  1px 0 black; }
-.blokada-energii-błękitna-background { background-color: #00ffff; color: #ffffff; font-weight:  bold; text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px  1px 0 black, 1px  1px 0 black; }
-.blokada-energii-indygo-background { background-color: #4000ff; color: #ffffff; font-weight:  bold; text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px  1px 0 black, 1px  1px 0 black; }
+.blokada-energii-błękitna-background { background-color: #0D79F2; color: #ffffff; font-weight:  bold; text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px  1px 0 black, 1px  1px 0 black; }
+.blokada-energii-indygo-background { background-color: #19005B; color: #ffffff; font-weight:  bold; text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px  1px 0 black, 1px  1px 0 black; }
 .blokada-energii-fioletowa-background { background-color: #8000ff; color: #ffffff; font-weight:  bold; text-shadow: -1px -1px 0 black, 1px -1px 0 black, -1px  1px 0 black, 1px  1px 0 black; }
 
 .nowa-background  {
