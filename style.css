@@ -88,7 +88,7 @@ body, button, textarea, select, label {
   background: url("nowa-background2.jpg") no-repeat center center;
   background-size: cover;
   color: #000000;
-  font-family: Georgia, serif;
+  /*font-family: Georgia, serif;*/
   border: 1px solid #d4c9b1;
   box-shadow: 
     0 0 10px rgba(0,0,0,0.1),
@@ -163,7 +163,7 @@ button {
   background-size: cover !important; /* Rozciągnięcie obrazu */
 
   color: #000000 !important; /* kolor tekstu - brązowy */
-  font-family: Georgia, serif !important; /* klasyczna czcionka */
+  /*font-family: Georgia, serif !important;*/ /* klasyczna czcionka */
   text-shadow: none !important; /* usunięcie cienia tekstu */
   border: 1px solid #d4c9b1 !important; /* ramka w kolorze papieru */
   box-shadow: 
