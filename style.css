@@ -171,7 +171,7 @@ button {
     inset 0 0 20px rgba(0,0,0,0.05) !important; /* delikatne cienie */
   border-radius: 2px !important; /* lekko zaokrąglone rogi */
   line-height: 1 !important; /* lepsza czytelność */
-  padding: 0px !important; /* większy padding */
+  padding: 0px; /* większy padding */
 }
 table {
   border-collapse: collapse;
