@@ -170,7 +170,7 @@ button {
     0 0 10px rgba(0,0,0,0.1),
     inset 0 0 20px rgba(0,0,0,0.05) !important; /* delikatne cienie */
   border-radius: 2px !important; /* lekko zaokrąglone rogi */
-  line-height: 1.1 !important; /* lepsza czytelność */
+  line-height: 1 !important; /* lepsza czytelność */
   padding: 0px !important; /* większy padding */
 }
 table {
@@ -519,7 +519,7 @@ span.select2-pola_planszy-container .select2-selection__arrow {
 
 
 * {
-  padding: 0 0 7px 0 !important;   /* top right bottom left */
+  padding: 0 0 5px 0 !important;   /* top right bottom left */
 }
 a, button {
   padding: 0px !important;
