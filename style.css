@@ -516,3 +516,11 @@ span.select2-pola_planszy-container .select2-selection__rendered {
 span.select2-pola_planszy-container .select2-selection__arrow {
   height: 18px !important;
 }
+
+
+* {
+  padding: 0 0 7px 0 !important;   /* top right bottom left */
+}
+a, button {
+  padding: 0px !important;
+}
