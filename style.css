@@ -521,7 +521,7 @@ span.select2-pola_planszy-container .select2-selection__arrow {
 * {
   padding: 0 0 5px 0 !important;   /* top right bottom left */
   min-height: 20px;
-  height: auto;
+  /*height: auto;*/
 }
 a, button {
   padding: 0px !important;
