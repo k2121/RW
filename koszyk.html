@@ -485,44 +485,71 @@
             const categories = document.querySelectorAll('.problem-category');
 
             categories.forEach(category => {
+                const mainHeader = category.querySelector('.problem-category-header');
+                const mainCategoryTitle = mainHeader.querySelector('span').textContent.toLowerCase();
+                const mainCategoryMatch = mainCategoryTitle.includes(query);
+
                 const items = category.querySelectorAll('.problem-item');
                 const subSections = category.querySelectorAll('.sub-category-section');
                 let categoryHasVisibleItems = false;
 
-                items.forEach(item => {
-                    if (item.textContent.toLowerCase().includes(query)) {
-                        item.style.display = 'block';
-                        categoryHasVisibleItems = true;
-                    } else {
-                        item.style.display = 'none';
-                    }
-                });
-
+                // Handle Subcategories
                 subSections.forEach(section => {
+                    const subTitleEl = section.querySelector('.sub-category-title');
+                    const subCategoryTitle = subTitleEl.querySelector('span').textContent.toLowerCase();
+                    const subCategoryMatch = mainCategoryMatch || subCategoryTitle.includes(query);
+                    
                     const sectionItems = section.querySelectorAll('.problem-item');
                     let sectionHasVisible = false;
+
                     sectionItems.forEach(si => {
-                        if (si.style.display !== 'none') sectionHasVisible = true;
+                        if (subCategoryMatch || si.textContent.toLowerCase().includes(query)) {
+                            si.style.display = 'block';
+                            sectionHasVisible = true;
+                            categoryHasVisibleItems = true;
+                        } else {
+                            si.style.display = 'none';
+                        }
                     });
-                    // Przy filtrowaniu pokaż też kontener itemów
+
+                    // Manage sub-category expansion and visibility
                     const itemsContainer = section.querySelector('.sub-category-items');
                     if (sectionHasVisible && query !== '') {
                         itemsContainer.classList.add('expanded');
-                        section.querySelector('.sub-category-title').classList.add('expanded');
+                        subTitleEl.classList.add('expanded');
+                        section.style.display = 'block';
+                    } else if (query !== '') {
+                        section.style.display = 'none';
+                    } else {
+                        // Reset when query is empty
+                        itemsContainer.classList.remove('expanded');
+                        subTitleEl.classList.remove('expanded');
+                        section.style.display = 'block';
                     }
-                    section.style.display = sectionHasVisible ? 'block' : 'none';
                 });
 
-                const header = category.querySelector('.problem-category-header');
+                // Handle items directly under main category (if any)
+                items.forEach(item => {
+                    // Check if item is directly in problem-content (not in sub-section)
+                    if (item.parentElement.classList.contains('problem-content')) {
+                        if (mainCategoryMatch || item.textContent.toLowerCase().includes(query)) {
+                            item.style.display = 'block';
+                            categoryHasVisibleItems = true;
+                        } else {
+                            item.style.display = 'none';
+                        }
+                    }
+                });
+
                 const content = category.querySelector('.problem-content');
 
-                if (categoryHasVisibleItems || query === '') {
+                if (categoryHasVisibleItems || mainCategoryMatch || query === '') {
                     category.style.display = 'block';
                     if (query !== '') {
-                        header.classList.add('active');
+                        mainHeader.classList.add('active');
                         content.style.display = 'block';
                     } else {
-                        header.classList.remove('active');
+                        mainHeader.classList.remove('active');
                         content.style.display = 'none';
                     }
                 } else {
