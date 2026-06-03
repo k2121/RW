@@ -55,7 +55,7 @@
     <!-- Przeniesiony kontener koszyka i listy problemów - ma zerowe marginesy -->
     <div id="problem-selector-container" style="margin: 0;">
 
-        <b>[2075] Wybierz wyzwania, nad którymi chcesz pracować:</b> 
+        <b>[2099] Wybierz wyzwania, nad którymi chcesz pracować:</b>
     <a href="koszyk.html" target="_blank" style="display:inline-block; background-color: #efefef; border: 1px solid #767676; padding: 2px 6px; text-decoration: none; color: black; border-radius: 3px; font-size: 11pt; margin-left: 5px; cursor: pointer; font-weight: normal;">Nowe okno</a>
 
        <!-- <div style="margin-bottom: 0px;"> -->
@@ -109,7 +109,7 @@
 
 
 <!-- Przycisk Czakry -->
-<button onclick="otworzCzakryFull()">Czakry Full 🌈</button>
+<button onclick="otworzCzakryFull()">Znaki Czakr 🌈</button>
 
 <script src="otworzCzakryFull.js"></script>
 
@@ -153,6 +153,15 @@
     <label for="pola_planszy">Pola planszy:
         <button type="button" style="background-color: #e0f0ff; color: black; border-radius: 4px;" onclick="shiftCardsUp()">PRZEPISZ ⬆️</button>
         <button type="button" style="background-color: #ffcccc; color: black; border-radius: 4px;" onclick="resetGameState()">RESET 🔄</button>
+
+        <!-- Przyciski Audio -->
+        <button type="button" id="btnAudio1" style="border-radius: 4px;" onclick="toggleAudio('btnAudio1', 'audio1', '8▶️', '8⏹️')">8▶️</button>
+        <button type="button" id="btnAudio2" style="border-radius: 4px;" onclick="toggleAudio('btnAudio2', 'audio2', '2▶️', '2⏹️')">2▶️</button>
+        <button type="button" id="btnAudio3" style="border-radius: 4px;" onclick="toggleAudio('btnAudio3', 'audio3', '3▶️', '3⏹️')">3▶️</button>
+
+        <audio id="audio1" loop src="'Cho Ku Rei' from REIKI CHANTS by Jonathan Goldman.mp3"></audio>
+        <audio id="audio2" loop src="The Lord Of The Rings - The Two Towers - 08 - Evenstar (feat. Isabel Bayrakdarian).mp3"></audio>
+        <audio id="audio3" loop src="Hans Zimmer - Gladiator [Complete] - CD02 - 16 - Now We Are Free_.mp3"></audio>
     </label>
     <select id="pola_planszy" name="pola_planszy">
          <option value="">Wybierz pole planszy...</option>
@@ -255,7 +264,7 @@
 
 
 </label>
-<textarea id="opis" name="opis" rows="10"
+<textarea id="opis" name="opis" rows="1"
  cols="50" readonly></textarea> </span>
 
         <br><br>
@@ -302,7 +311,7 @@
 
 
 
-            
+
             <br><br>
 
 
@@ -329,7 +338,7 @@
 
 
 
-            
+
             <br><br>
 
 
@@ -394,14 +403,33 @@
 
 <script src="autoResize.js"></script>
 
-                                
 
-                                
+
+
 <script src="select2.Pola_Planszy.js"></script>
 <script src="persistence.js"></script>
 
-                        
-                                
+<script>
+// Ustawienie znormalizowanej głośności po załadowaniu strony
+window.addEventListener('DOMContentLoaded', (event) => {
+    document.getElementById('audio1').volume = 0.5; // Jonathan Goldman
+    document.getElementById('audio2').volume = 0.6; // Evenstar
+    document.getElementById('audio3').volume = 0.5; // Now We Are Free
+});
+
+function toggleAudio(btnId, audioId, playLabel, stopLabel) {
+    const audio = document.getElementById(audioId);
+    const btn = document.getElementById(btnId);
+    if (audio.paused) {
+        audio.play();
+        btn.innerText = stopLabel;
+    } else {
+        audio.pause();
+        btn.innerText = playLabel;
+    }
+}
+</script>
+
 </body>
 
 </html>
