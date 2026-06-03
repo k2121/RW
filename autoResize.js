@@ -41,8 +41,8 @@
         }
 
         // Minimalna i maksymalna wysokość
-        if (newHeight < 30) newHeight = 30;
-        const maxHeight = 450;
+        if (newHeight < 15) newHeight = 15;
+        const maxHeight = 311;
         
         if (newHeight > maxHeight) {
             el.style.height = maxHeight + 'px';
