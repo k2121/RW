@@ -167,7 +167,11 @@
          <option value="">Wybierz pole planszy...</option>
     </select>
     <button type="button" onclick="randomizeData()">Losuj kartę 📑</button>
-    <button type="button" onclick="rollDice()">Rzut kostką 🎲</button>
+    <span style="border: 2px solid black; padding: 0px; display: inline-block; border-radius: 0px;">
+        <input type="checkbox" id="reverseMove"> ◀️
+    </span>
+    <button type="button" onclick="moveMinus16()">-16</button>
+    <button type="button" onclick="rollDice()">Kostka 🎲</button>
     <span class="dice-result" id="diceResult"></span>
 
 
@@ -178,7 +182,7 @@
     <button style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;" onclick="pole01()">p01🕸️🕷️</button>
     <button style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;" onclick="pole02()">p02🔒🫀</button>
     <button style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;" onclick="pole03()">p03📽️</button>
-    <button style="background-color: #d9e6ef; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole04()">p04👉🏻🙎🏻‍♂️</button>
+    <button style="background-color: #d9e6ef; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole04(); pole04a();">p04👉🏻🙎🏻‍♂️</button>
     <button style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;" onclick="pole01()">p05🕸️🕷️</button>
     <button style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;" onclick="pole02()">p06🔒🫀</button>
     <button style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;" onclick="pole03()">p07📽️</button>
@@ -186,68 +190,70 @@
     <button style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;" onclick="pole01()">p09🕸️🕷️</button>
     <button style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;" onclick="pole02()">p10🔒🫀</button>
     <button style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;" onclick="pole11()">p11🤔💭</button>
-    <button style="background-color: #d9e6ef; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole04()">p12👉🏻🙎🏻‍♂️</button>
+    <button style="background-color: #d9e6ef; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole04(); pole04a();">p12👉🏻🙎🏻‍♂️</button>
     <button style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;" onclick="pole01()">p13🕸️🕷️</button>
     <button style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;" onclick="pole08()">p14☯️</button>
     <button style="background-color: #d9e6ef; color: rgb(64, 27, 122); border-radius: 4px;" onclick="pole11()">p15🤔💭</button>
-    <button style="background-color: #bb7caf; color: black; border: 5px solid green; border-radius: 4px;" onclick="pole16()">p16⛔</button>
-    <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole17()">p17💡</button>
-    <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole18()">p18🙋🏻‍♂️</button>
-    <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole19()">p19🤗</button>
-    <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole17()">p20💡</button>
-    <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole21()">p21😮‍💨</button>
-    <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole22()">p22😅</button>
-    <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole18()">p23🙋🏻‍♂️</button>
-    <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole19()">p24🤗</button>
+    <button style="background-color: #bb7caf; color: black; border: 5px solid green; border-radius: 4px;" onclick="pole16(); pole16a();">p16⛔</button>
+    <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole17(); pole17a();">p17💡</button>
+    <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole18(); pole18a();">p18🙋🏻‍♂️</button>
+    <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole19(); pole19a();">p19🤗</button>
+    <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole17(); pole17a();">p20💡</button>
+    <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole21(); pole21a();">p21😮‍💨</button>
+    <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole22(); pole22a();">p22😅</button>
+    <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole18(); pole18a();">p23🙋🏻‍♂️</button>
+    <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole19(); pole19a();">p24🤗</button>
     <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border-radius: 4px;" onclick="pole11()">p25🤔💭</button>
-    <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole17()">p26💡</button>
-    <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole18()">p27🙋🏻‍♂️</button>
-    <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole28()">p28🚫💔</button>
-    <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole17()">p29💡</button>
-    <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole30()">p30🔥</button>
-    <button style="background-color: #bb7caf; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole31()">p31⛔↪️</button>
-    <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole21()">p32😮‍💨</button>
-    <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole33()">p33📖</button>
-    <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole17()">p34💡</button>
-    <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole35()">p35👼🏻</button>
+    <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole17(); pole17a();">p26💡</button>
+    <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole18(); pole18a();">p27🙋🏻‍♂️</button>
+    <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole28(); pole28a();">p28🚫💔</button>
+    <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole17(); pole17a();">p29💡</button>
+    <button style="background-color: #d3e3b0; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole30(); pole30a();">p30🔥</button>
+    <button style="background-color: #bb7caf; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole31(); pole31a();">p31⛔↪️</button>
+    <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole21(); pole21a();">p32😮‍💨</button>
+    <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole33(); pole33a();">p33📖</button>
+    <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole17(); pole17a();">p34💡</button>
+    <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole35(); pole35a();">p35👼🏻</button>
     <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border-radius: 4px;" onclick="pole11()">p36🤔💭</button>
-    <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole30()">p37🔥</button>
-    <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole33()">p38📖</button>
-    <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole17()">p39💡</button>
-    <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole35()">p40👼🏻</button>
-    <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole41()">p41⚡</button>
-    <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole33()">p42📖</button>
-    <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole21()">p43😮‍💨</button>
-    <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole17()">p44💡</button>
-    <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole33()">p45📖</button>
-    <button style="background-color: #bb7caf; color: black; border: 5px solid green; border-radius: 4px;" onclick="pole46()">p46⛔</button>
-    <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole21()">p47😮‍💨</button>
-    <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole30()">p48🔥</button>
-    <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole49()">p49💞</button>
-    <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole50()">p50🥹</button>
-    <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole19()">p51🤗</button>
-    <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole28()">p52🚫💔</button>
+    <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole30(); pole30a();">p37🔥</button>
+    <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole33(); pole33a();">p38📖</button>
+    <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole17(); pole17a();">p39💡</button>
+    <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole35(); pole35a();">p40👼🏻</button>
+    <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole41(); pole41a();">p41⚡</button>
+    <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole33(); pole33a();">p42📖</button>
+    <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole21(); pole21a();">p43😮‍💨</button>
+    <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole17(); pole17a();">p44💡</button>
+    <button style="background-color: #ffeec4; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole33(); pole33a();">p45📖</button>
+    <button style="background-color: #bb7caf; color: black; border: 5px solid green; border-radius: 4px;" onclick="pole46(); pole46a();">p46⛔</button>
+    <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole21(); pole21a();">p47😮‍💨</button>
+    <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole30(); pole30a();">p48🔥</button>
+    <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole49(); pole49a();">p49💞</button>
+    <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole50(); pole50a();">p50🥹</button>
+    <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole19(); pole19a();">p51🤗</button>
+    <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole28(); pole28a();">p52🚫💔</button>
     <button style="background-color: #f9def1; color: rgb(64, 27, 122); border-radius: 4px;" onclick="pole11()">p53🤔💭</button>
-    <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole30()">p54🔥</button>
-    <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole41()">p55⚡</button>
-    <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole49()">p56💞</button>
-    <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole35()">p57👼🏻</button>
-    <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole58()">p58🌍</button>
-    <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole19()">p59🤗</button>
-    <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole50()">p60🥹</button>
+    <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole30(); pole30a();">p54🔥</button>
+    <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole41(); pole41a();">p55⚡</button>
+    <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole49(); pole49a();">p56💞</button>
+    <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole35(); pole35a();">p57👼🏻</button>
+    <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole58(); pole58a();">p58🌍</button>
+    <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole19(); pole19a();">p59🤗</button>
+    <button style="background-color: #f9def1; color: rgb(64, 27, 122); border: 5px solid green; border-radius: 4px;" onclick="pole50(); pole50a();">p60🥹</button>
     <button style="background-color: #a2498f; color: black; border-radius: 4px;" onclick="pole61()">p61🧘🏻‍♂️</button>
         <br>
         <span> <label for="opis">
 <i>MOC⚡: Pozbądź się wszystkich pozostałych kart „Przekonanie” [p30] i „Blokady energii” [p21].</i>
 <br><br>Polecenia do pól planszy:
 <button type="button" onclick="readDescription()">🔊 Czytaj</button>
-<!-- Aplauz -->
+<span id="mp3-container"></span>
+<!-- Aplauz 
 <button onclick="document.getElementById('applause').play()">Aplauz 👏</button>
 <audio id="applause" src="applause-cheer-236786=pixabay.com.mp3"></audio>
 
-<!-- Westchnienie -->
+ Westchnienie 
 <button onclick="document.getElementById('sigh').play()">Westchnienie 😮‍💨</button>
 <audio id="sigh" src="female-sigh-medium-distance-6853=pixabay.com.mp3"></audio>
+-->
 
 <!-- Przycisk Emocje -->
 <button onclick="otworzEmocje()">Emocje 😊</button>
@@ -388,6 +394,7 @@
                                 <script src="boardFieldDescriptions.js"></script>
                                 <script src="main.js"></script>
                                 <script src="losowanieZListy.js"></script>
+                                <script src="boardFields.js"></script>
 
 
                                 <script>
