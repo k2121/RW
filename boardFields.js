@@ -1,4 +1,4 @@
-const audioPath = '.';
+const audioPath = '';
 
 function createMp3Button(filename, label = 'mp3') {
     const btn = document.createElement('button');
