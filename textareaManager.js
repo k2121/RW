@@ -128,6 +128,17 @@ async function pasteFromClipboard(id) {
 
     textarea.value = text;
 
+    // Auto-hide if it's a "Przekonanie" card
+    if (text.toLowerCase().startsWith('przekonanie:')) {
+        textarea.style.display = 'none';
+        // Find the toggle button (it's the first button in the label's parent)
+        const label = document.querySelector(`label[for="${id}"]`);
+        if (label) {
+            const hideBtn = label.querySelector('button[onclick*="toggleVisibility"]');
+            if (hideBtn) hideBtn.innerText = '👁️';
+        }
+    }
+
     // Wywołujemy zdarzenia dla auto-resize i zapisu
     textarea.dispatchEvent(new Event('input'));
 
