@@ -95,7 +95,7 @@ function rollDice() {
   const nextFieldData = sampleData.pola_planszy.find(p => parseInt(p.value) === nextPos);
   const nextLabel = nextFieldData ? nextFieldData.label : nextPos;
 
-  diceResultElement.innerText = `🎲 = ${diceResult} (${nextLabel})`;
+  diceResultElement.innerText += `🎲 = ${diceResult} (${nextLabel})`;
 }
 
 function moveMinus16() {
@@ -113,7 +113,7 @@ function moveMinus16() {
   const nextFieldData = sampleData.pola_planszy.find(p => parseInt(p.value) === nextPos);
   const nextLabel = nextFieldData ? nextFieldData.label : nextPos;
 
-  diceResultElement.innerText = `⏪ = -16 (${nextLabel})`;
+  diceResultElement.innerText += `⏪ = -16 (${nextLabel})`;
 }
 
 function initPolaPlanszyDropdown() {
