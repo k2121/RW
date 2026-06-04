@@ -34,9 +34,86 @@ function randomizeData() {
 function rollDice() {
   const diceResult = Math.floor(Math.random() * 6) + 1;
   const diceResultElement = document.getElementById('diceResult');
-  if (diceResultElement) { // Dodano sprawdzanie istnienia elementu
-    diceResultElement.innerText = "Rzut kostką 🎲 = " + diceResult;
+  const polaSelect = document.getElementById('pola_planszy');
+  const reverseCheckbox = document.getElementById('reverseMove');
+  
+  if (!polaSelect || !diceResultElement) return;
+
+  let currentPos = parseInt(polaSelect.value) || 0;
+  let isReversing = reverseCheckbox ? reverseCheckbox.checked : false;
+  let moveSteps = diceResult;
+  let nextPos = currentPos;
+
+  // Check if player has any "Przekonanie" or "Blokada" cards in fields textarea01-39
+  function hasRemainingCards() {
+    // Select only the dynamic card fields
+    const textareas = Array.from(document.querySelectorAll('textarea[id^="textarea"]'));
+    const regexPrzekonanie = /przekonanie:/i;
+    const regexBlokada = /\([1-7]\)/;
+    
+    return textareas.some(ta => {
+      const val = ta.value.trim();
+      return val !== "" && (regexPrzekonanie.test(val) || regexBlokada.test(val));
+    });
   }
+
+  const stops = [16, 31, 46];
+  const hasCards = hasRemainingCards();
+
+  for (let i = 0; i < moveSteps; i++) {
+    if (!isReversing) {
+      nextPos++;
+      if (nextPos > 61) {
+        if (hasCards) {
+          // Bounce back if cards remain
+          nextPos = 60; 
+          isReversing = true;
+          if (reverseCheckbox) reverseCheckbox.checked = true;
+          alert("Musisz się cofać.");
+        } else {
+          // Stop at 61 if no cards
+          nextPos = 61;
+          break;
+        }
+      }
+    } else {
+      nextPos--;
+    }
+
+    // Stop at specific fields
+    if (stops.includes(nextPos)) {
+      break;
+    }
+  }
+
+  // Reverse auto-reset logic
+  if (isReversing && nextPos <= 31) {
+    if (reverseCheckbox) reverseCheckbox.checked = false;
+  }
+
+  // Find the label for the next position to display it
+  const nextFieldData = sampleData.pola_planszy.find(p => parseInt(p.value) === nextPos);
+  const nextLabel = nextFieldData ? nextFieldData.label : nextPos;
+
+  diceResultElement.innerText = `🎲 = ${diceResult} (${nextLabel})`;
+}
+
+function moveMinus16() {
+  const diceResultElement = document.getElementById('diceResult');
+  const polaSelect = document.getElementById('pola_planszy');
+  
+  if (!polaSelect || !diceResultElement) return;
+
+  let currentPos = parseInt(polaSelect.value) || 0;
+  let nextPos = currentPos - 16;
+  
+  if (nextPos < 0) nextPos = 0;
+
+  // Find the label for the next position
+  const nextFieldData = sampleData.pola_planszy.find(p => parseInt(p.value) === nextPos);
+  const nextLabel = nextFieldData ? nextFieldData.label : nextPos;
+
+  diceResultElement.innerText = `⏪ = -16 (${nextLabel})`;
 }
 
 function initPolaPlanszyDropdown() {
