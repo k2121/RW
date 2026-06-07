@@ -359,10 +359,10 @@ ofiary” na nowo i na samym końcu gry doświadczamy SATORI
    </td>
   </tr>
   <tr>
-   <td style="background-color: #00ff00;">
+   <td>
 
 
-<br>
+&nbsp;
 
 
        
