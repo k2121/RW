@@ -42,7 +42,7 @@
 
         // Minimalna i maksymalna wysokość
         if (newHeight < 15) newHeight = 15;
-        const maxHeight = 311;
+        const maxHeight = (el.id === 'opis') ? 155 : 311;
         
         if (newHeight > maxHeight) {
             el.style.height = maxHeight + 'px';
