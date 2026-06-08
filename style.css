@@ -523,7 +523,7 @@ span.select2-pola_planszy-container .select2-selection__arrow {
   padding: 0 0 5px 0 !important;   /* top right bottom left */
   min-height: 15px !important;
 }
-a, button {
+a, button, #tabela {
   padding: 0px !important;
 }
 /* === Styles for embedded tabela === */
