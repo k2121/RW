@@ -562,3 +562,46 @@ a, button, #tabela {
   line-height: 1;
   color: black;
 }
+
+/* --- Media Grid (twarz, róża, youtube) --- */
+.media-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+  padding: 15px;
+  align-items: start;
+  justify-items: center;
+}
+
+.media-item {
+  width: 100%;
+  max-width: 480px;
+  text-align: center;
+}
+
+.media-item img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  display: block;
+  margin: 0 auto;
+}
+
+.youtube-column {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+  width: 100%;
+}
+
+.youtube-link-card {
+  display: inline-flex !important;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (min-width: 992px) {
+  .media-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
