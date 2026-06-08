@@ -198,7 +198,7 @@ Zimnicki, 2006<br>
    </td>
   </tr>
   <tr>
-   <td> </td>
+   <td>&nbsp;</td>
   </tr>
   <tr style="color: rgb(0, 153, 0);">
    <td style="background-color: rgb(255, 255, 255);">
