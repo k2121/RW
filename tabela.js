@@ -1419,13 +1419,13 @@ Wtedy właśnie następuje transformacja: <b>kiedy rozpoznajemy karmiczne lekcje
 </div></td>
 </tr>
 <tr>
-<td></td>
+<td>&nbsp;</td>
 </tr>
 
 
 
     <tr>
-   <td></td>
+   <td><&nbsp;/td>
   </tr>
 
             </tbody>
