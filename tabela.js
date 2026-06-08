@@ -1425,7 +1425,7 @@ Wtedy właśnie następuje transformacja: <b>kiedy rozpoznajemy karmiczne lekcje
 
 
     <tr>
-   <td><&nbsp;/td>
+   <td><&nbsp;</td>
   </tr>
 
             </tbody>
