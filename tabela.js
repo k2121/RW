@@ -1373,7 +1373,7 @@ wybaczanie"</span></i></b>.</span><span style='font-size:11.0pt'><o:p></o:p></sp
 </div></td>
 </tr>
 <tr>
-<td> </td>
+<td>&nbsp;</td>
 </tr>
 <tr>
 <td style="background-color: rgb(102, 255, 153);"><div style="text-align: left;">
