@@ -219,10 +219,8 @@ function startMatrix() {
   const COLS = Math.floor(W / FONT_SIZE);
   const ROWS = Math.floor(H / FONT_SIZE);
 
-  // Katakana + latin + digits mix
-  const CHARS =
-    'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲン' +
-    'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&';
+  // Katakana only
+  const CHARS = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンァィゥェォッャュョヴガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ';
 
   // Each column: current head row position (float), speed, trail array
   // trail[row] = alpha 0..1 (1=bright, 0=gone)
