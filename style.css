@@ -529,7 +529,7 @@ a, button, #tabela {
 /* === Styles for embedded tabela === */
 .container-tabeli {
   width: 100%;
-  padding: 0px;
+  padding: 0px !important;
   box-sizing: border-box;
   background-color: #fff;
 }
