@@ -55,7 +55,7 @@ const CDaHTML = `
     </div>
     <span style="text-align: left;">
 		<button id="masterToggleBtn" class="master-box-cda">DLA MISTRZA GRY</button>
-		🧘 Przed rozpoczęciem gry niech wszyscy wysłuchają nagrania pierwszego.</span>
+		Przed rozpoczęciem gry niech wszyscy wysłuchają nagrania pierwszego.</span>
    <div id="expandedMasterContent" class="expandable-content-cda" style="text-align:left;">
         <span class="warning-text-cda">⚠️ <strong>Ważne:</strong> Wysłuchaj wszystkich trzech nagrań zanim przystąpisz do prowdzenia gry. Służy to zapewnieniu komfortu wszystkim uczestnikom.</span>
         <strong>🎯 Rola Mistrza Gry:</strong>
