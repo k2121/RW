@@ -5,7 +5,7 @@
 // js/boardFieldDescriptions.js
 
 function pole00() {
-document.getElementById("opis").value = "Rozpoczynanie gry w Krainie ofiar:\n    „Oj, ja biedny...”, „taki biedny...”, „taki biedny...”\n   Kraina ofiar to miejsce, które zamieszkujemy, ilekroć jesteśmy pogrążeni w swojej „opowieści”. Dzieje się tak zawsze, gdy winnymi lub odpowiedzialnymi za nasze uczucia czynimy inne osoby, gdy innych obwiniamy, mamy wobec nich oczekiwania, pragniemy, aby się zmienili itp. Ważne jest, aby uświadomić sobie swoją sytuację i najpierw pokochać siebie w swej własnej krainie ofiar. Dopiero wówczas można przejść do etapu wybaczania. Czynienie tego wcześniej jest próbą wykonania duchowego uniku.";
+document.getElementById("opis").value = "Rozpoczynanie gry w Krainie ofiar:\n    „O, ja biedny..., taki biedny..., taki biedny...”\n   Kraina ofiar to miejsce, które zamieszkujemy, ilekroć jesteśmy pogrążeni w swojej „opowieści”. Dzieje się tak zawsze, gdy winnymi lub odpowiedzialnymi za nasze uczucia czynimy inne osoby, gdy innych obwiniamy, mamy wobec nich oczekiwania, pragniemy, aby się zmienili itp. Ważne jest, aby uświadomić sobie swoją sytuację i najpierw pokochać siebie w swej własnej krainie ofiar. Dopiero wówczas można przejść do etapu wybaczania. Czynienie tego wcześniej jest próbą wykonania duchowego uniku.";
 };
 function pole01() {
 document.getElementById("opis").value = "Przekonanie:\n   Wyciągnij kartę „Przekonanie” (przekonania są częścią twojej opowieści o życiu w roli ofiary). Nie czytaj jej! Musi pozostać w nieświadomości, dopóki nie staniesz na polu „Światło” [p17]. Wówczas możesz ją odczytać i tym samym „wydobyć na światło dzienne”. Połóż ją tekstem do dołu w lewej części planszy gracza, odnoszącej się do starej wersji TWOJEJ OPOWIEŚCI.";
