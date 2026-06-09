@@ -278,8 +278,8 @@ nowa_opowiesc: [
  "NOWA OPOWIEŚĆ: 034. Życie jest teraz takie proste. Jadę na wakacje.",  
  "NOWA OPOWIEŚĆ: 035. Żyję przepełniony mocą i poczuciem szczęścia.",  
  "NOWA OPOWIEŚĆ: 036. Żyję w zgodzie ze sobą.",  
- "NOWA OPOWIEŚĆ: 037. _Najgorsze już minęło.",  
- "NOWA OPOWIEŚĆ: 038. _W przeszłości mi się udało, więc teraz też mi się uda."  
+ "NOWA OPOWIEŚĆ: 037. Najgorsze już minęło. Teraz może być tylko lepiej.",  
+ "NOWA OPOWIEŚĆ: 038. W przeszłości mi się udało, więc teraz też mi się uda."  
 ],
 
 projekcje: ["⬆️", "↗️", "➡️", "↘️", "⬇️", "↙️", "⬅️", "↖️"]
