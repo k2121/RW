@@ -285,7 +285,7 @@ function startMatrix() {
         }
       }
 
-      for (let r = 0; r < ROWS; r++) {
+    for (let r = 0; r < ROWS; r++) {
         const alpha = col.trail[r];
         if (alpha <= 0.01) continue;
         let color;
@@ -302,11 +302,18 @@ function startMatrix() {
       if (col.head <= ROWS + TRAIL_LEN + 5 || anyAlpha) activeCols++;
     }
 
-    if (!fadingOut && cols.every(c => c.head > ROWS + 30)) {
+    // Start fading out when more than 50% of columns have left the screen
+    const finishedCols = COLS - activeCols;
+    const finishedRatio = finishedCols / COLS;
+    
+    if (finishedRatio > 0.5) {
+      const fadeRatio = (finishedRatio - 0.5) * 2; // 0 at 50%, 1 at 100%
+      canvas.style.opacity = 1 - fadeRatio;
+    }
+
+    if (!fadingOut && activeCols === 0) {
       fadingOut = true;
-      canvas.style.transition = 'opacity 500ms linear';
-      canvas.style.opacity = '0';
-      canvas.addEventListener('transitionend', () => canvas.remove(), { once: true });
+      canvas.remove();
       return;
     }
 
