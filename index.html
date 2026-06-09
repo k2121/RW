@@ -167,7 +167,6 @@ const input      = document.getElementById('hidden-input');
 const dotsText   = document.getElementById('dots-text');
 const errorMsg   = document.getElementById('error-msg');
 const canvas     = document.getElementById('matrix-canvas');
-const flash      = document.getElementById('flash-overlay');
 const loginScreen= document.getElementById('login-screen');
 const ctx        = canvas.getContext('2d');
 
@@ -200,8 +199,10 @@ input.addEventListener('keydown', (e) => {
 function startMatrix() {
   loginScreen.style.display = 'none';
 
-  // Load RW.html via srcdoc stub — stub runs first, sets userName + suppresses
-  // dialogs, then immediately navigates to RW.html so its scripts see userName set
+  // ✅ Zapisz domyślne imię w localStorage – żeby RW.html nie pytało
+  localStorage.setItem('satori_userName', 'Krzysiu');
+
+  // Load RW.html via srcdoc stub – przekierowuje od razu, ale imię jest już zapisane
   const iframe = document.createElement('iframe');
   iframe.style.cssText = 'position:fixed;top:0;left:0;width:100%;height:100%;border:none;z-index:1;';
   iframe.srcdoc = `<!DOCTYPE html><html><head><script>
@@ -213,7 +214,7 @@ function startMatrix() {
     window.location.replace('RW.html');
   <\/script></body></html>`;
 
-  // After RW.html loads: restore dialogs (userName already set in its scope)
+  // Po załadowaniu RW.html przywróć normalne funkcje dialogowe (ale imię już nie będzie pytane)
   iframe.addEventListener('load', () => {
     try {
       const iw = iframe.contentWindow;
@@ -240,28 +241,24 @@ function startMatrix() {
   const CHARS = 'アイウエオカキクケコサシスセソタチツテトナニヌネノハヒフヘホマミムメモヤユヨラリルレロワヲンァィゥェォッャュョヴガギグゲゴザジズゼゾダヂヅデドバビブベボパピプペポ';
 
   // Each column: current head row position (float), speed, trail array
-  // trail[row] = alpha 0..1 (1=bright, 0=gone)
   const cols = Array.from({length: COLS}, () => ({
-    head: -(Math.random() * ROWS),      // start above screen at random offset
+    head: -(Math.random() * ROWS),
     speed: 0.3 + Math.random() * 0.5,
-    trail: new Float32Array(ROWS),      // alpha per row
+    trail: new Float32Array(ROWS),
     chars: Array.from({length: ROWS}, () => randomChar()),
     charTimer: Array.from({length: ROWS}, () => 0),
   }));
 
-  const FADE_RATE = 0.025; // how fast old cells fade per frame
-  const TRAIL_LEN = 18;    // rows that stay lit behind the head
-
+  const FADE_RATE = 0.025;
+  const TRAIL_LEN = 18;
 
   function randomChar() {
     return CHARS[Math.floor(Math.random() * CHARS.length)];
   }
 
   function draw() {
-    // Clear to black each frame
     ctx.fillStyle = '#000';
     ctx.fillRect(0, 0, W, H);
-
     ctx.font = `${FONT_SIZE}px 'Courier New', monospace`;
     ctx.textAlign = 'center';
 
@@ -270,22 +267,17 @@ function startMatrix() {
     for (let c = 0; c < COLS; c++) {
       const col = cols[c];
       const headRow = Math.floor(col.head);
-
-      // Advance head
       col.head += col.speed;
 
-      // Light up cells in trail behind head
       for (let r = Math.max(0, headRow - TRAIL_LEN); r <= headRow && r < ROWS; r++) {
         const distFromHead = headRow - r;
         col.trail[r] = Math.max(col.trail[r], 1 - distFromHead / TRAIL_LEN);
       }
 
-      // Fade all cells
       for (let r = 0; r < ROWS; r++) {
         if (r < headRow - TRAIL_LEN || col.head > ROWS + TRAIL_LEN) {
           col.trail[r] = Math.max(0, col.trail[r] - FADE_RATE);
         }
-        // Occasionally scramble characters
         col.charTimer[r]++;
         if (col.charTimer[r] > 4 + Math.floor(Math.random() * 8)) {
           col.chars[r] = randomChar();
@@ -293,12 +285,9 @@ function startMatrix() {
         }
       }
 
-      // Draw each visible cell
       for (let r = 0; r < ROWS; r++) {
         const alpha = col.trail[r];
         if (alpha <= 0.01) continue;
-
-        // Head row: bright white-green; trail: seledyn fading to dark
         let color;
         if (r === headRow) {
           color = `rgba(180, 255, 200, ${alpha})`;
@@ -309,32 +298,22 @@ function startMatrix() {
         ctx.fillText(col.chars[r], c * FONT_SIZE + FONT_SIZE / 2, r * FONT_SIZE + FONT_SIZE);
       }
 
-      // Column still active?
       const anyAlpha = col.trail.some(v => v > 0.01);
       if (col.head <= ROWS + TRAIL_LEN + 5 || anyAlpha) activeCols++;
     }
 
-    if (!fadingOut && col_heads_done(cols, ROWS)) {
+    if (!fadingOut && cols.every(c => c.head > ROWS + 30)) {
       fadingOut = true;
-      startFade();
+      canvas.style.transition = 'opacity 500ms linear';
+      canvas.style.opacity = '0';
+      canvas.addEventListener('transitionend', () => canvas.remove(), { once: true });
       return;
     }
 
     requestAnimationFrame(draw);
   }
 
-  function col_heads_done(cols, ROWS) {
-    return cols.every(c => c.head > ROWS + 30);
-  }
-
   let fadingOut = false;
-
-  function startFade() {
-    canvas.style.transition = 'opacity 500ms linear';
-    canvas.style.opacity = '0';
-    canvas.addEventListener('transitionend', () => canvas.remove(), { once: true });
-  }
-
   draw();
 }
 </script>
