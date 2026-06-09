@@ -302,12 +302,12 @@ function startMatrix() {
       if (col.head <= ROWS + TRAIL_LEN + 5 || anyAlpha) activeCols++;
     }
 
-    // Start fading out when more than 50% of columns have left the screen
+    // Start fading out when more than 25% of columns have left the screen
     const finishedCols = COLS - activeCols;
     const finishedRatio = finishedCols / COLS;
     
-    if (finishedRatio > 0.5) {
-      const fadeRatio = (finishedRatio - 0.5) * 2; // 0 at 50%, 1 at 100%
+    if (finishedRatio > 0.25) {
+      const fadeRatio = (finishedRatio - 0.25) / 0.75; // 0 at 25%, 1 at 100%
       canvas.style.opacity = 1 - fadeRatio;
     }
 
