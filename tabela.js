@@ -1442,16 +1442,16 @@ Wtedy właśnie następuje transformacja: <b>kiedy rozpoznajemy karmiczne lekcje
 `;
 
 
-const tabelaDiv = document.getElementById('tabela');
-tabelaDiv.innerHTML = tabelaHTML;
+const mainTabelaDiv = document.getElementById('tabela');
+mainTabelaDiv.innerHTML = tabelaHTML;
 
 // ------------------------------------------------------------
 // TYLKO ZIELONE TŁO DLA PUSTYCH KOMÓREK – BEZ ZMIANY WYRÓWNANIA
 // ------------------------------------------------------------
 
 // 1. Dodanie stylu tylko dla pustych komórek (nie dotyka text-align)
-const style = document.createElement('style');
-style.textContent = `
+const tabelaStyle = document.createElement('style');
+tabelaStyle.textContent = `
     /* Zielone tło dla pustych komórek – nie zmieniamy wyrównania */
     #tabela td:empty,
     #tabela td:has(> br):empty,
@@ -1464,11 +1464,11 @@ style.textContent = `
         background-color: #00ff00 !important;
     }
 `;
-document.head.appendChild(style);
+document.head.appendChild(tabelaStyle);
 
 // 2. Ręczne sprawdzenie każdej komórki – jeśli pusta, dodajemy zielone tło
-const tableCells = tabelaDiv.querySelectorAll('td');
-tableCells.forEach(cell => {
+const tabelaTableCells = mainTabelaDiv.querySelectorAll('td');
+tabelaTableCells.forEach(cell => {
     const content = cell.innerHTML.replace(/&nbsp;/g, '').trim();
     if (content === '') {
         cell.style.setProperty('background-color', '#00ff00', 'important');
