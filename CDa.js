@@ -73,8 +73,8 @@ const CDaHTML = `
 </div>
 `;
 
-const tabelaDiv = document.getElementById('CDa');
-tabelaDiv.innerHTML = CDaHTML;
+const cdaDiv = document.getElementById('CDa');
+cdaDiv.innerHTML = CDaHTML;
 
 // Funkcja przełączająca widoczność rozwiniętej treści dla Mistrza Gry
 (function() {
@@ -100,8 +100,8 @@ tabelaDiv.innerHTML = CDaHTML;
 // ------------------------------------------------------------
 
 // 1. Dodanie stylu tylko dla pustych komórek (nie dotyka text-align)
-const style = document.createElement('style');
-style.textContent = `
+const cdaStyle = document.createElement('style');
+cdaStyle.textContent = `
     /* Zielone tło dla pustych komórek – nie zmieniamy wyrównania */
     #tabela td:empty,
     #tabela td:has(> br):empty,
@@ -114,11 +114,11 @@ style.textContent = `
         background-color: #00ff00 !important;
     }
 `;
-document.head.appendChild(style);
+document.head.appendChild(cdaStyle);
 
 // 2. Ręczne sprawdzenie każdej komórki – jeśli pusta, dodajemy zielone tło
-const tableCells = tabelaDiv.querySelectorAll('td');
-tableCells.forEach(cell => {
+const cdaTableCells = cdaDiv.querySelectorAll('td');
+cdaTableCells.forEach(cell => {
     const content = cell.innerHTML.replace(/&nbsp;/g, '').trim();
     if (content === '') {
         cell.style.setProperty('background-color', '#00ff00', 'important');
