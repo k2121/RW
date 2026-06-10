@@ -242,9 +242,9 @@ CD.<br>
    <span style="font-style: italic; color: rgb(75, 0, 130);">Zinterpretuj
 na nowo</span><br
  style="font-style: italic; color: rgb(75, 0, 130);">
-   <big style="color: rgb(75, 0, 130);"><span
- style="font-weight: bold; font-style: italic;">swoją
-przeszłość</span></big><br
+   <style="color: rgb(75, 0, 130);"><span
+ style="font-weight: bold; font-style: italic; color: rgb(75, 0, 130);">swoją
+przeszłość</span><br
  style="font-style: italic; color: rgb(75, 0, 130);">
    <br style="font-style: italic; color: rgb(75, 0, 130);">
    <span style="font-style: italic; color: rgb(75, 0, 130);">Dokonaj</span><br
