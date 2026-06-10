@@ -256,6 +256,9 @@ function startMatrix() {
     return CHARS[Math.floor(Math.random() * CHARS.length)];
   }
 
+  let firstColFinished = false;
+  let fadeProgress = 0;
+
   function draw() {
     ctx.fillStyle = '#000';
     ctx.fillRect(0, 0, W, H);
@@ -285,7 +288,7 @@ function startMatrix() {
         }
       }
 
-    for (let r = 0; r < ROWS; r++) {
+      for (let r = 0; r < ROWS; r++) {
         const alpha = col.trail[r];
         if (alpha <= 0.01) continue;
         let color;
@@ -299,20 +302,22 @@ function startMatrix() {
       }
 
       const anyAlpha = col.trail.some(v => v > 0.01);
-      if (col.head <= ROWS + TRAIL_LEN + 5 || anyAlpha) activeCols++;
+      const colActive = col.head <= ROWS + TRAIL_LEN + 5 || anyAlpha;
+      if (colActive) activeCols++;
+
+      // Pierwsza kolumna która całkowicie zniknęła startuje fading
+      if (!firstColFinished && col.head > ROWS + TRAIL_LEN + 5 && !anyAlpha) {
+        firstColFinished = true;
+      }
     }
 
-    // Start fading out when more than 10% of columns have left the screen
-    const finishedCols = COLS - activeCols;
-    const finishedRatio = finishedCols / COLS;
-    
-    if (finishedRatio > 0.10) {
-      const fadeRatio = (finishedRatio - 0.10) / 0.90; // 0 at 10%, 1 at 100%
-      canvas.style.opacity = 1 - fadeRatio;
+    // Fading canvas opacity gdy pierwsza kolumna skończyła
+    if (firstColFinished) {
+      fadeProgress = Math.min(1, fadeProgress + 0.012); // ~83 klatki ≈ 1.4s
+      canvas.style.opacity = 1 - fadeProgress;
     }
 
-    if (!fadingOut && activeCols === 0) {
-      fadingOut = true;
+    if (activeCols === 0 || fadeProgress >= 1) {
       canvas.remove();
       return;
     }
@@ -320,7 +325,6 @@ function startMatrix() {
     requestAnimationFrame(draw);
   }
 
-  let fadingOut = false;
   draw();
 }
 </script>
