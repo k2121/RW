@@ -191,7 +191,7 @@ Gra radykalnego wybaczania Satori to gra planszowa, która ma na celu pomóc gra
 
   <tr>
    <td style="background-color: #F6F8D5;"><div style="text-align: left;">
-(mp3 06m02s) Wprowadzenie do gry Radykalnego Wybaczania SATORI.
+(mp3 06m02s) 💿1. Wprowadzenie do gry Radykalnego Wybaczania SATORI.
 <br>
 <br>&nbsp;&nbsp;&nbsp;&nbsp;Witajcie. Zanim rozpoczniecie grę, chcemy powiedzieć Wam kilka słów na jej temat.
 <br>
@@ -244,7 +244,7 @@ Gra radykalnego wybaczania Satori to gra planszowa, która ma na celu pomóc gra
 
   <tr>
    <td style="background-color: #B4EBE6;"><div style="text-align: left;">
-(mp3 06m06s) DOŚWIADCZENIE RADYKALNEGO WYBACZANIA
+(mp3 06m06s) 💿3. Doświadczenie Radykalnego Wybaczania
 <br>
 <br>&nbsp;&nbsp;&nbsp;&nbsp;Wiele osób pyta, czym jest to Radykalne Wybaczanie, co w nim jest radykalnego, czym różni się od tradycyjnego wybaczania. Oto krótkie wyjaśnienie.
 <br>
@@ -292,7 +292,7 @@ Gra radykalnego wybaczania Satori to gra planszowa, która ma na celu pomóc gra
 
   <tr>
    <td style="background-color: #FFEDFA;"><div style="text-align: left;">
-(mp3 20m37s) Instruktarz dla Mistrza Gry
+(mp3 20m37s) 💿2. Instruktarz dla Mistrza Gry
 <br>
 <br>&nbsp;&nbsp;&nbsp;&nbsp;Jak wspomnieliśmy we wprowadzeniu, głównym celem gry Radykalnego Wybaczania SATORI, podobnie jak wszystkich gier, jest dobra zabawa oraz spędzenie czasu w miłym towarzystwie. W trakcie gry zapewne przekonasz się, że rzeczywiście stwarza ona ku temu okazję. Może również stanowić okazję do tego, aby ludzie w bezpieczny sposób ujawnili sprawy, którymi nie podzieliliby się w zwykłej rozmowie. Oczywiście jest to możliwe tylko wtedy, jeśli gracze tego zechcą. Gra nie prowadzi do konfrontacji, ani nie zmusza grających do ujawniania informacji, które chcieliby zachować dla siebie.
 <br>
