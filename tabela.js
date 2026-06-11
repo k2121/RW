@@ -369,7 +369,7 @@ ofiary” na nowo i na samym końcu gry doświadczamy SATORI
    </td>
   </tr>
   <tr>
-   <td style="background-color: #B7B1F2;"><div style="text-align: left;">(czas czytania tej sekcji: około 09min51sek)....    
+   <td style="background-color: #ffacff;"><div style="text-align: left;">(czas czytania tej sekcji: około 09min51sek)....    
 <br>
 <b>(czas czytania całości tej strony www: około 01godz32min21sek)</b>
 <br><br>
