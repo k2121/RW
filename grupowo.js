@@ -106,7 +106,7 @@
                 <div style="flex:1; min-width:300px;">
                     <label style="display:block; font-weight:bold; font-size:12px; margin-bottom:4px;">[48] Przekonanie:
                         <button onclick="randomPrzekonanie()" style="font-size:10px;">Losuj</button>
-                        <button onclick="copyVal('pola_przekonanie', 'przekonanie: ')" style="font-size:10px;">Kopiuj</button>
+                        <button onclick="copyVal('pola_przekonanie', '')" style="font-size:10px;">Kopiuj</button>
                     </label>
                     <select id="pola_przekonanie"></select>
                 </div>
