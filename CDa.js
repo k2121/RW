@@ -1,7 +1,7 @@
 const CDaHTML = `
 <style>
     .page-container-cda {
-        max-width: 1280px; margin: 0 auto; background: #ccccff; border-radius: 10px;
+        max-width: 2280px; margin: 0 auto; background: #ccccff; border-radius: 10px;
         padding: 4px; color: #000 !important; font-size: 11pt !important;
     }
     .audio-grid-cda { display: grid; grid-template-columns: 1fr 1fr; gap: 4px; margin-bottom: 4px; }
