@@ -17,7 +17,7 @@
         ["", "Przekonanie", "Wyciągnij kartę ”Przekonanie” (przekonania są częścią twojej opowieści o życiu w roli ofiary). Nie czytaj jej! Musi pozostać w nieświadomości, dopóki nie staniesz na polu ”Światło”. Wówczas możesz ją odczytać i tym samym ”wydobyć na światło dzienne”. Połóż ją tekstem do dołu w lewej części planszy gracza, odnoszącej się do starej wersji TWOJEJ OPOWIEŚCI."],
         ["„Oto prawdziwe poddanie się Sile Wyższej!”", "Radykalne Wybaczenie", "Wybacz swoim rzekomym wrogom. Powiedz: ” ____________ , całkowicie ci/ wam wybaczam. Rozumiem teraz, że nie zrobiłeś/ nie zrobiliście nic złego. Wszystko pozostaje w Boskim Porządku. Bezwarunkowo wspieram cię takim, jaki jesteś/ was takimi, jacy jesteście w całej wspaniałości swego istnienia."],
         ["„(Imię), kochamy cię taką, jaką jesteś!”", "Samoakceptacja", "Powiedz: ”Kocham siebie, czując to, co odczuwam w związku z tą sprawą. Wiem, że gdy będę gotów/gotowa, mogę wybrać spokój”."],
-        ["”Przecież to nieprawda”, lub jeśli gracz się cofa, ”O tak”.", "Światło", "Odkryj jedną z kart ”Przekonanie” leżących w lewej części planszy gracza (aby wydobyć ją na światło dzienne) i odczytaj jej treść. Odłóż ją na miejsce tekstem do góry. Jeśli nie masz tego typu karty, wylosuj jedną i dokonaj procesu pozbywania się przekonania (patrz instrukcja ”Pozbądź się tego”). (Jeśli gracz cofa się, może pozbyć się karty ”Przekonanie” lub ”Blokady energii”)."],
+        ["”Przecież to nieprawda”, lub jeśli gracz się cofa, ”O tak”.", "Światło", "{poszukaj swoich kart z ikoną otwartego oka 👁️}<br>Odkryj jedną z kart ”Przekonanie” leżących w lewej części planszy gracza (aby wydobyć ją na światło dzienne) i odczytaj jej treść. Odłóż ją na miejsce tekstem do góry. Jeśli nie masz tego typu karty, wylosuj jedną i dokonaj procesu pozbywania się przekonania (patrz instrukcja ”Pozbądź się tego”). (Jeśli gracz cofa się, może pozbyć się karty ”Przekonanie” lub ”Blokady energii”)."],
         ["„Dla nich TY także jesteś uzdrawiającym aniołem!”", "Uzdrawiający anioł", "Spójrz na swych dawnych wrogów jak na uzdrawiające anioły. Powiedz tak: ”Choć być może nie wiem, dlaczego tak się dzieje, uświadamiam sobie teraz, że ____________ i ja wykonujemy razem uzdrawiający taniec, i rozumiem, że jesteśmy dla siebie nawzajem uzdrawiającymi aniołami."],
         ["Głęboki wdech i głośne westchnienie ulgi.", "Westchnienie ulgi", "Pozbądź się jednej karty ”Blokady energii”, mówiąc: ”Uwalniam teraz wszystkie blokady związane z ____________ (odczytaj kartę)”. Jeśli otrzymałeś tę kartę, stając na polu ”Blokada energii”, odłóż ją do pudełka. Jeśli zaś była wynikiem projekcji, zwróć ją osobie, która dokonała przeniesienia swych cech na ciebie. Jeśli nie masz karty, czekasz kolejkę."],
         ["”Skoro widzisz u innych własne cechy, musisz to mieć!”", "Widzisz u innych własne cechy", "Przyjrzyj się wszystkim odkrytym kartom ”Przekonanie” i ”Blokady energii” (u wszystkich graczy). Wybierz tę z nich, która najbardziej do Ciebie przemawia, i weź ją. Połóż ją tekstem do góry w lewej części planszy gracza. Jeśli dokonałeś projekcji swych osądów na innego gracza, dobrze się zastanów, czy chcesz wziąć tę właśnie kartę. Jeśli nie ma żadnej odkrytej karty tego typu, wyciągnij jedną kartę ”Przekonanie”, odczytaj na głos i połóż w lewej części swojej planszy gracza."],
@@ -102,6 +102,7 @@
         }
 
         container.innerHTML = `
+            <div id="grupowo-textareas-container"></div>
             <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:10px; background:#f0f0f0; padding:10px; border-radius:8px; border:1px solid #ccc;">
                 <div style="flex:1; min-width:300px;">
                     <label style="display:block; font-weight:bold; font-size:12px; margin-bottom:4px;">[48] Przekonanie:
@@ -123,6 +124,37 @@
                 <div class="grid" id="instr-cards"></div>
             </div>
         `;
+
+        const groupTextareaContainer = document.getElementById('grupowo-textareas-container');
+        if (groupTextareaContainer) {
+            const numberOfTextareas = 39;
+            for (let i = 1; i <= numberOfTextareas; i++) {
+                const textareaId = `czyjasTextarea${i.toString().padStart(2, '0')}`;
+                const textareaHTML = `
+                    <label for="${textareaId}">Czyjaś karta ${textareaId.slice(-2)}:
+                      <button type="button" onclick="toggleVisibility('${textareaId}', this)">🫣</button>
+                      <button type="button" onclick="saveBackup('${textareaId}'); clearTextarea('${textareaId}')">🗑️</button>
+                      <button type="button" onclick="saveBackup('${textareaId}'); pasteFromClipboard('${textareaId}')">📋Wklej</button>
+                      <button type="button" onclick="undoField('${textareaId}')">Cofnij ↩️</button>
+                      <button type="button" onclick="copyToClipboard('${textareaId}')">Kopiuj</button>
+                    </label>
+                    <textarea id="${textareaId}" rows="1" cols="50" readonly></textarea>
+                `;
+                const div = document.createElement('div');
+                div.className = 'textarea-box';
+                div.innerHTML = textareaHTML;
+                groupTextareaContainer.appendChild(div);
+            }
+
+            const groupTextareas = groupTextareaContainer.querySelectorAll('textarea');
+            groupTextareas.forEach(textarea => {
+                textarea.addEventListener('input', () => {
+                    if (typeof window.updateBackgroundColor === 'function') {
+                        window.updateBackgroundColor(textarea);
+                    }
+                });
+            });
+        }
 
         if (data) {
             populateSelect('pola_przekonanie', data.przekonanie, 'Wybierz przekonanie...');
