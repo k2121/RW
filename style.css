@@ -413,7 +413,7 @@ th, td {
 
 
 
-  #textareas-container {
+  #textareas-container, #grupowo-textareas-container {
     display: flex;         /* Zmienia kontener w elastyczny kontener */
     flex-wrap: wrap;       /* Pozwala elementom zawijać się do następnej linii */
     justify-content: center; /* Wyśrodkowuje elementy, gdy nie wypełniają całej linii */
