@@ -101,6 +101,7 @@
             document.body.prepend(container);
         }
 
+        // Najpierw wypełniamy kontener główny strukturą (ale bez przycisków "dodaj czyjąś kartę" – dodamy je później w odpowiednim miejscu)
         container.innerHTML = `
             <div id="grupowo-textareas-container"></div>
             <div style="display:flex; flex-wrap:wrap; gap:10px; margin-bottom:10px; background:#f0f0f0; padding:10px; border-radius:8px; border:1px solid #ccc;">
@@ -127,7 +128,7 @@
 
         const groupTextareaContainer = document.getElementById('grupowo-textareas-container');
         if (groupTextareaContainer) {
-            const numberOfTextareas = 39;
+            const numberOfTextareas = 4;   // <--- zmienione na 4
             for (let i = 1; i <= numberOfTextareas; i++) {
                 const textareaId = `czyjasTextarea${i.toString().padStart(2, '0')}`;
                 const textareaHTML = `
@@ -155,6 +156,78 @@
                 });
             });
         }
+
+        // ------------------------------
+        // Przyciski do dodawania/usuwania „Czyjaś karta” – umieszczone ZARAZ za kontenerem z kartami, przed selectami
+        // ------------------------------
+        const groupButtonsDiv = document.createElement('div');
+        groupButtonsDiv.style.marginTop = '10px';
+        groupButtonsDiv.style.textAlign = 'center';
+        groupButtonsDiv.innerHTML = `
+            <button type="button" id="addTheirCardBtn" style="margin-right:10px; padding:4px 12px;">➕ Dodaj czyjąś kartę</button>
+            <button type="button" id="removeTheirCardBtn" style="padding:4px 12px;">➖ Usuń czyjąś kartę</button>
+        `;
+        // Wstawiamy przyciski bezpośrednio za kontenerem "grupowo-textareas-container"
+        groupTextareaContainer.insertAdjacentElement('afterend', groupButtonsDiv);
+
+        // Poprawiona funkcja getNextTheirCardId (usunięty błąd slice)
+        function getNextTheirCardId() {
+            const boxes = groupTextareaContainer.querySelectorAll('.textarea-box');
+            let max = 0;
+            boxes.forEach(box => {
+                const ta = box.querySelector('textarea');
+                if (ta && ta.id.startsWith('czyjasTextarea')) {
+                    // id ma format "czyjasTextareaXX" – długość "czyjasTextarea" = 14
+                    const num = parseInt(ta.id.slice(14), 10);
+                    if (!isNaN(num) && num > max) max = num;
+                }
+            });
+            return max + 1;
+        }
+
+        function generateCzyjasTextarea(id) {
+            return `
+                <label for="${id}">Czyjaś karta ${id.slice(-2)}:
+                  <button type="button" onclick="toggleVisibility('${id}', this)">🫣</button>
+                  <button type="button" onclick="saveBackup('${id}'); clearTextarea('${id}')">🗑️</button>
+                  <button type="button" onclick="saveBackup('${id}'); pasteFromClipboard('${id}')">📋Wklej</button>
+                  <button type="button" onclick="undoField('${id}')">Cofnij ↩️</button>
+                  <button type="button" onclick="copyToClipboard('${id}')">Kopiuj</button>
+                </label>
+                <textarea id="${id}" rows="1" cols="50" readonly></textarea>
+            `;
+        }
+
+        function addTheirCard() {
+            const nextId = getNextTheirCardId();
+            if (nextId > 999) { alert('Osiągnięto limit 999 kart'); return; }
+            const id = `czyjasTextarea${nextId.toString().padStart(2, '0')}`;
+            const html = generateCzyjasTextarea(id);
+            const div = document.createElement('div');
+            div.className = 'textarea-box';
+            div.innerHTML = html;
+            groupTextareaContainer.appendChild(div);
+            
+            const newTextarea = div.querySelector('textarea');
+            newTextarea.addEventListener('input', () => {
+                if (typeof window.updateBackgroundColor === 'function')
+                    window.updateBackgroundColor(newTextarea);
+            });
+            if (typeof window.autoResizeTextarea === 'function')
+                setTimeout(() => window.autoResizeTextarea(newTextarea), 10);
+        }
+
+        function removeTheirCard() {
+            const boxes = groupTextareaContainer.querySelectorAll('.textarea-box');
+            if (boxes.length <= 1) {
+                alert('Nie można usunąć ostatniej karty.');
+                return;
+            }
+            boxes[boxes.length - 1].remove();
+        }
+
+        document.getElementById('addTheirCardBtn').onclick = addTheirCard;
+        document.getElementById('removeTheirCardBtn').onclick = removeTheirCard;
 
         if (data) {
             populateSelect('pola_przekonanie', data.przekonanie, 'Wybierz przekonanie...');
@@ -197,7 +270,6 @@
                     const isHidden = cont.style.display === 'none';
                     cont.style.display = isHidden ? 'block' : 'none';
                     
-                    // Re-inicjalizacja Select2 po pokazaniu (wymagana dla poprawnej szerokości)
                     if (isHidden && typeof window.initGrupowoSelect2 === 'function') {
                         window.initGrupowoSelect2();
                     }

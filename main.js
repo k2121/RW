@@ -14,9 +14,9 @@ document.addEventListener('DOMContentLoaded', () => {
     initPolaKontekstDropdown();
     populateKarmaDropdown();
 
-    // Inicjalizacja dynamicznych pól tekstowych (notes/cards)
+    // Inicjalizacja dynamicznych pól tekstowych (notes/cards) – „Moja karta”
     const container = document.getElementById('textareas-container');
-    const numberOfTextareas = 39;
+    const numberOfTextareas = 6;   // <--- zmienione na 6
     for (let i = 1; i <= numberOfTextareas; i++) {
         const textareaId = `textarea${i.toString().padStart(2, '0')}`;
         const textareaHTML = generateTextarea(textareaId);
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', () => {
         container.appendChild(div);
     }
 
-    // Obsługa inputów - kolorowanie przy wpisywaniu
+    // Obsługa inputów – kolorowanie przy wpisywaniu
     // Zapewnienie, że updateBackgroundColor jest globalnie dostępna
     const textareas = container.querySelectorAll('textarea');
     textareas.forEach(textarea => {
@@ -36,6 +36,63 @@ document.addEventListener('DOMContentLoaded', () => {
             }
         });
     });
+
+    // ------------------------------
+    // Przyciski do dodawania/usuwania „Moja karta”
+    // ------------------------------
+    const addRemoveDiv = document.createElement('div');
+    addRemoveDiv.style.marginTop = '10px';
+    addRemoveDiv.style.textAlign = 'center';
+    addRemoveDiv.innerHTML = `
+        <button type="button" id="addMyCardBtn" style="margin-right:10px; padding:4px 12px;">➕ Dodaj moją kartę</button>
+        <button type="button" id="removeMyCardBtn" style="padding:4px 12px;">➖ Usuń moją kartę</button>
+    `;
+    container.parentNode.insertBefore(addRemoveDiv, container.nextSibling);
+
+    function getNextMyCardId() {
+        const boxes = document.querySelectorAll('#textareas-container .textarea-box');
+        let max = 0;
+        boxes.forEach(box => {
+            const ta = box.querySelector('textarea');
+            if (ta && ta.id.startsWith('textarea')) {
+                const num = parseInt(ta.id.slice(8), 10);
+                if (!isNaN(num) && num > max) max = num;
+            }
+        });
+        return max + 1;
+    }
+
+    function addMyCard() {
+        const nextId = getNextMyCardId();
+        if (nextId > 999) { alert('Osiągnięto limit 999 kart'); return; }
+        const id = `textarea${nextId.toString().padStart(2, '0')}`;
+        const html = generateTextarea(id);
+        const div = document.createElement('div');
+        div.className = 'textarea-box';
+        div.innerHTML = html;
+        document.getElementById('textareas-container').appendChild(div);
+
+        const newTextarea = div.querySelector('textarea');
+        newTextarea.addEventListener('input', () => {
+            if (typeof window.updateBackgroundColor === 'function')
+                window.updateBackgroundColor(newTextarea);
+        });
+        if (typeof window.autoResizeTextarea === 'function')
+            setTimeout(() => window.autoResizeTextarea(newTextarea), 10);
+    }
+
+    function removeMyCard() {
+        const container = document.getElementById('textareas-container');
+        const boxes = container.querySelectorAll('.textarea-box');
+        if (boxes.length <= 1) {
+            alert('Nie można usunąć ostatniej karty.');
+            return;
+        }
+        boxes[boxes.length - 1].remove();
+    }
+
+    document.getElementById('addMyCardBtn').onclick = addMyCard;
+    document.getElementById('removeMyCardBtn').onclick = removeMyCard;
 
     // Inicjalizacja listy problemów z akordeonem i wyszukiwaniem
     generateProblemList();

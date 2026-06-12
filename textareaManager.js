@@ -1,5 +1,5 @@
 //#### 6. `js/textareaManager.js`
-//Obsługa dynamicznych pól tekstowych: widoczność, czyszczenie, kopiowanie, wklejanie, kolorowanie.
+// Obsługa dynamicznych pól tekstowych: widoczność, czyszczenie, kopiowanie, wklejanie, kolorowanie.
 // Dodano: auto-resize oraz wskaźnik nadmiaru tekstu (🔻)
 
 // ======================== BACKUP & UNDO ========================
@@ -30,51 +30,43 @@ function undoField(id) {
 window.undoField = undoField;
 window.saveBackup = saveBackup;
 
-// ======================== PRZEPISYWANIE KART ========================
+// ======================== PRZEPISYWANIE KART (dynamiczne) ========================
 function shiftCardsUp() {
-  const numberOfTextareas = 39;
-  const cards = [];
-  
-  for (let i = 1; i <= numberOfTextareas; i++) {
-    const id = `textarea${i.toString().padStart(2, '0')}`;
-    const el = document.getElementById(id);
-    if (el && el.value.trim() !== '') {
-      cards.push(el.value);
+    const container = document.getElementById('textareas-container');
+    if (!container) return;
+    
+    const textareas = Array.from(container.querySelectorAll('textarea'));
+    if (textareas.length === 0) {
+        alert('Brak kart do przepisania.');
+        return;
     }
-  }
-  
-  if (cards.length === 0) {
-    alert('Brak kart do przepisania.');
-    return;
-  }
-
-  for (let i = 1; i <= numberOfTextareas; i++) {
-    const id = `textarea${i.toString().padStart(2, '0')}`;
-    const el = document.getElementById(id);
-    if (el) {
-      el.value = '';
-      if (typeof window.updateBackgroundColor === 'function') {
-        window.updateBackgroundColor(el);
-      }
+    
+    const cards = textareas
+        .map(ta => ta.value.trim())
+        .filter(content => content !== '');
+    
+    if (cards.length === 0) {
+        alert('Brak kart do przepisania.');
+        return;
     }
-  }
-  
-  cards.forEach((content, index) => {
-    const id = `textarea${(index + 1).toString().padStart(2, '0')}`;
-    const el = document.getElementById(id);
-    if (el) {
-      el.value = content;
-      if (typeof window.updateBackgroundColor === 'function') {
-        window.updateBackgroundColor(el);
-      }
-    }
-  });
-  
-  const triggerEl = document.getElementById('textarea01');
-  if (triggerEl) triggerEl.dispatchEvent(new Event('input', { bubbles: true }));
-  alert('Karty zostały przepisane w górę.');
+    
+    textareas.forEach(ta => {
+        ta.value = '';
+        if (typeof window.updateBackgroundColor === 'function')
+            window.updateBackgroundColor(ta);
+    });
+    
+    cards.forEach((content, index) => {
+        if (textareas[index]) {
+            textareas[index].value = content;
+            if (typeof window.updateBackgroundColor === 'function')
+                window.updateBackgroundColor(textareas[index]);
+        }
+    });
+    
+    if (textareas[0]) textareas[0].dispatchEvent(new Event('input', { bubbles: true }));
+    alert('Karty zostały przepisane w górę.');
 }
-
 window.shiftCardsUp = shiftCardsUp;
 
 // ======================== GENEROWANIE KART DYNAMICZNYCH ========================
@@ -222,7 +214,6 @@ window.updateBackgroundColor = function (textarea) {
     function autoResize(el) {
         if (!el) return;
 
-        // Rodzic musi mieć position: relative, aby znacznik 🔻 był pozycjonowany względem niego
         const parent = el.parentElement;
         if (parent && window.getComputedStyle(parent).position === 'static') {
             parent.style.position = 'relative';
@@ -256,7 +247,6 @@ window.updateBackgroundColor = function (textarea) {
         if (newHeight < minHeight) newHeight = minHeight;
         const finalHeight = Math.min(newHeight, maxHeight);
 
-        // Zarządzanie znacznikiem 🔻
         let indicator = parent ? parent.querySelector('.overflow-indicator') : null;
         if (newHeight > maxHeight) {
             if (!indicator) {
@@ -293,7 +283,6 @@ window.updateBackgroundColor = function (textarea) {
         el.addEventListener('paste', () => setTimeout(() => autoResize(el), 10));
         el.addEventListener('change', () => autoResize(el));
 
-        // Przechwycenie programowego ustawiania .value
         const origDescriptor = Object.getOwnPropertyDescriptor(HTMLTextAreaElement.prototype, 'value');
         if (origDescriptor) {
             try {
@@ -314,11 +303,9 @@ window.updateBackgroundColor = function (textarea) {
         document.querySelectorAll('textarea').forEach(autoResize);
     }
 
-    // Inicjalizacja po załadowaniu DOM
     document.addEventListener('DOMContentLoaded', function() {
         document.querySelectorAll('textarea').forEach(attachResize);
 
-        // Obserwator dla dynamicznie dodawanych textarea
         new MutationObserver(function(mutations) {
             mutations.forEach(function(m) {
                 m.addedNodes.forEach(function(node) {
