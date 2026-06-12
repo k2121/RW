@@ -214,6 +214,12 @@ window.updateBackgroundColor = function (textarea) {
     function autoResize(el) {
         if (!el) return;
 
+        // If element is not in DOM or has no width and it's not explicitly hidden, 
+        // it's likely inside a hidden parent. Measurement will be wrong.
+        if (el.offsetWidth === 0 && window.getComputedStyle(el).display !== 'none') {
+            return; 
+        }
+
         const parent = el.parentElement;
         if (parent && window.getComputedStyle(parent).position === 'static') {
             parent.style.position = 'relative';
@@ -232,15 +238,22 @@ window.updateBackgroundColor = function (textarea) {
             el.style.display = 'block';
             el.style.visibility = 'hidden';
             el.style.position = 'absolute';
+            
+            // Try to get width from parent or previous sibling to avoid 0-width scrollHeight calculation
             const parentWidth = parent ? parent.clientWidth : 0;
             if (parentWidth > 0) {
                 el.style.width = parentWidth + 'px';
+            } else {
+                // Fallback to a reasonable default if parent is also hidden
+                el.style.width = '300px'; 
             }
         }
 
-        const oldHeight = el.offsetHeight;
         el.style.height = 'auto';
         let newHeight = el.scrollHeight;
+
+        // If scrollHeight is 0, the element is truly hidden and cannot be measured
+        if (newHeight === 0 && !isHidden) return;
 
         let minHeight = 15;
         let maxHeight = (el.id && el.id.includes('tabela')) ? 10000 : 103;
@@ -260,12 +273,8 @@ window.updateBackgroundColor = function (textarea) {
             if (indicator) indicator.style.display = 'none';
         }
 
-        if (Math.abs(oldHeight - finalHeight) > 2) {
-            el.style.height = finalHeight + 'px';
-            el.style.overflowY = (newHeight > maxHeight) ? 'auto' : 'hidden';
-        } else {
-            el.style.height = oldHeight + 'px';
-        }
+        el.style.height = finalHeight + 'px';
+        el.style.overflowY = (newHeight > maxHeight) ? 'auto' : 'hidden';
 
         if (isHidden) {
             el.style.display = originalStyles.display;

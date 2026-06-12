@@ -3,44 +3,56 @@
 
 const STORAGE_KEY = 'satori_game_state';
 
+/**
+ * Saves the current state of the game to localStorage.
+ * Scans for all relevant selects and textareas dynamically.
+ */
 function saveGameState() {
     const state = {
         selects: {},
         textareas: {},
-        texts: {}
+        visibility: {},
+        counts: {
+            myCards: 0,
+            theirCards: 0
+        }
     };
 
-    // Save standard selects
-    ['pola_zdarzenie', 'pola_kontekst', 'karma', 'pola_planszy'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) state.selects[id] = el.value;
+    // Save all selects with an ID
+    document.querySelectorAll('select[id]').forEach(el => {
+        state.selects[el.id] = el.value;
     });
 
-    // Save standard textareas
-    ['wyobraz_sobie', 'blokady_energii', 'nowa_opowiesc', 'przekonanie', 'projekcje', 'opis'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) state.textareas[id] = el.value;
+    // Save all textareas with an ID
+    document.querySelectorAll('textarea[id]').forEach(el => {
+        state.textareas[el.id] = el.value;
+        state.visibility[el.id] = el.style.display;
     });
 
-    // Save dynamic textareas (textarea01 to textarea39)
-    for (let i = 1; i <= 39; i++) {
-        const id = `textarea${i.toString().padStart(2, '0')}`;
-        const el = document.getElementById(id);
-        if (el) {
-            state.textareas[id] = el.value;
-            // Save visibility
-            state.texts[id + '_display'] = el.style.display;
+    // Save all inputs with an ID (checkboxes, radios, text)
+    document.querySelectorAll('input[id]').forEach(el => {
+        if (el.type === 'checkbox' || el.type === 'radio') {
+            state.selects[el.id] = el.checked;
+        } else {
+            state.selects[el.id] = el.value;
         }
-    }
+    });
+
+    // Count dynamic cards to help with reconstruction
+    state.counts.myCards = document.querySelectorAll('#textareas-container .textarea-box').length;
+    state.counts.theirCards = document.querySelectorAll('#grupowo-textareas-container .textarea-box').length;
 
     // Save dice result
     const diceResult = document.getElementById('diceResult');
-    if (diceResult) state.texts['diceResult'] = diceResult.innerText;
+    if (diceResult) state.textareas['diceResult_text'] = diceResult.innerText;
 
     localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     console.log('Game state saved');
 }
 
+/**
+ * Loads the game state from localStorage and restores it to the UI.
+ */
 function loadGameState() {
     const savedState = localStorage.getItem(STORAGE_KEY);
     if (!savedState) return;
@@ -48,47 +60,100 @@ function loadGameState() {
     try {
         const state = JSON.parse(savedState);
 
-        // Restore selects
-        for (const id in state.selects) {
-            const el = document.getElementById(id);
-            if (el) {
-                el.value = state.selects[id];
-                // Trigger select2 update if it's a select2 element
-                if (window.jQuery && jQuery(el).data('select2')) {
-                    jQuery(el).trigger('change.select2');
+        // 1. Recreate or prune dynamic cards
+        if (state.counts) {
+            // My Cards
+            const currentMyCards = document.querySelectorAll('#textareas-container .textarea-box').length;
+            if (state.counts.myCards > currentMyCards) {
+                if (typeof window.addMyCard === 'function') {
+                    for (let i = currentMyCards; i < state.counts.myCards; i++) {
+                        window.addMyCard();
+                    }
+                }
+            } else if (state.counts.myCards < currentMyCards) {
+                if (typeof window.removeMyCard === 'function') {
+                    for (let i = currentMyCards; i > state.counts.myCards; i--) {
+                        window.removeMyCard(true);
+                    }
+                }
+            }
+
+            // Their Cards
+            const currentTheirCards = document.querySelectorAll('#grupowo-textareas-container .textarea-box').length;
+            if (state.counts.theirCards > currentTheirCards) {
+                if (typeof window.addTheirCard === 'function') {
+                    for (let i = currentTheirCards; i < state.counts.theirCards; i++) {
+                        window.addTheirCard();
+                    }
+                }
+            } else if (state.counts.theirCards < currentTheirCards) {
+                if (typeof window.removeTheirCard === 'function') {
+                    for (let i = currentTheirCards; i > state.counts.theirCards; i--) {
+                        window.removeTheirCard(true);
+                    }
                 }
             }
         }
 
-        // Restore textareas
+        // 2. Restore Textareas and Visibility
         for (const id in state.textareas) {
+            if (id === 'diceResult_text') {
+                const diceResult = document.getElementById('diceResult');
+                if (diceResult) diceResult.innerText = state.textareas[id];
+                continue;
+            }
+
             const el = document.getElementById(id);
-            if (el) {
+            if (el && el.tagName === 'TEXTAREA') {
                 el.value = state.textareas[id];
-                if (typeof window.updateBackgroundColor === 'function') {
-                    window.updateBackgroundColor(el);
-                }
                 
-                // Restore visibility for dynamic textareas
-                if (state.texts[id + '_display']) {
-                    el.style.display = state.texts[id + '_display'];
-                    // Update button text if it exists
-                    const label = el.previousElementSibling;
-                    if (label && label.tagName === 'LABEL') {
+                // Restore visibility
+                if (state.visibility[id]) {
+                    el.style.display = state.visibility[id];
+                    // Update button icon in the label
+                    const label = document.querySelector(`label[for="${id}"]`);
+                    if (label) {
                         const btn = Array.from(label.querySelectorAll('button')).find(b => b.textContent === '👁️' || b.textContent === '🫣');
                         if (btn) {
                             btn.innerText = (el.style.display === 'none') ? '👁️' : '🫣';
                         }
                     }
                 }
+
+                // Trigger background color update
+                if (typeof window.updateBackgroundColor === 'function') {
+                    window.updateBackgroundColor(el);
+                }
+                
+                // Trigger auto-resize
+                if (typeof window.autoResizeTextarea === 'function') {
+                    window.autoResizeTextarea(el);
+                }
             }
         }
 
-        // Restore dice result
-        if (state.texts['diceResult']) {
-            const diceResult = document.getElementById('diceResult');
-            if (diceResult) diceResult.innerText = state.texts['diceResult'];
-        }
+        // 3. Restore Selects and Inputs (with a small delay to ensure options are populated)
+        setTimeout(() => {
+            for (const id in state.selects) {
+                const el = document.getElementById(id);
+                if (el) {
+                    if (el.tagName === 'SELECT') {
+                        el.value = state.selects[id];
+                        // Trigger select2 update if it's a select2 element
+                        if (window.jQuery && jQuery(el).data('select2')) {
+                            jQuery(el).trigger('change.select2');
+                        }
+                    } else if (el.tagName === 'INPUT') {
+                        if (el.type === 'checkbox' || el.type === 'radio') {
+                            el.checked = state.selects[id];
+                        } else {
+                            el.value = state.selects[id];
+                        }
+                    }
+                }
+            }
+            console.log('Inputs and selects restored');
+        }, 200);
 
         console.log('Game state loaded');
     } catch (e) {
@@ -96,28 +161,39 @@ function loadGameState() {
     }
 }
 
+/**
+ * Resets the game state by clearing localStorage and resetting UI elements.
+ */
 function resetGameState() {
     if (!confirm('Czy na pewno chcesz zresetować grę i wyczyścić wszystkie pola?')) return;
 
     localStorage.removeItem(STORAGE_KEY);
 
-    // Clear selects
-    ['pola_zdarzenie', 'pola_kontekst', 'karma', 'pola_planszy'].forEach(id => {
-        const el = document.getElementById(id);
-        if (el) {
-            el.value = '';
-            if (window.jQuery && jQuery(el).data('select2')) {
-                jQuery(el).trigger('change.select2');
-            }
+    // Reset all selects
+    document.querySelectorAll('select').forEach(el => {
+        el.value = '';
+        if (window.jQuery && jQuery(el).data('select2')) {
+            jQuery(el).trigger('change.select2');
         }
     });
 
-    // Clear textareas
-    const allTextareas = document.querySelectorAll('textarea');
-    allTextareas.forEach(el => {
+    // Reset all textareas
+    document.querySelectorAll('textarea').forEach(el => {
         el.value = '';
         if (typeof window.updateBackgroundColor === 'function') {
             window.updateBackgroundColor(el);
+        }
+        if (typeof window.autoResizeTextarea === 'function') {
+            window.autoResizeTextarea(el);
+        }
+    });
+
+    // Reset all inputs
+    document.querySelectorAll('input').forEach(el => {
+        if (el.type === 'checkbox' || el.type === 'radio') {
+            el.checked = false;
+        } else {
+            el.value = '';
         }
     });
 
@@ -129,11 +205,13 @@ function resetGameState() {
     saveGameState(); // Save the cleared state
 }
 
-// Initialize persistence
+/**
+ * Initializes the persistence module.
+ */
 function initPersistence() {
     loadGameState();
 
-    // Listen for changes on all inputs, selects and textareas
+    // Listen for changes on all inputs, selects and textareas using event delegation
     document.addEventListener('input', (e) => {
         if (e.target.tagName === 'TEXTAREA' || e.target.tagName === 'INPUT') {
             saveGameState();
@@ -141,7 +219,7 @@ function initPersistence() {
     });
 
     document.addEventListener('change', (e) => {
-        if (e.target.tagName === 'SELECT') {
+        if (e.target.tagName === 'SELECT' || e.target.tagName === 'INPUT') {
             saveGameState();
         }
     });
@@ -150,7 +228,7 @@ function initPersistence() {
     document.addEventListener('click', (e) => {
         if (e.target.tagName === 'BUTTON') {
             // Delay slightly to allow the original click handler to update the DOM
-            setTimeout(saveGameState, 100);
+            setTimeout(saveGameState, 200);
         }
     });
 
@@ -162,11 +240,14 @@ function initPersistence() {
     }
 }
 
-// Wait for dynamic content to be generated
+// Wait for dynamic content to be generated before loading state
+// Increase timeout slightly to ensure all scripts have run
 if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', () => setTimeout(initPersistence, 800));
+    document.addEventListener('DOMContentLoaded', () => setTimeout(initPersistence, 1000));
 } else {
-    setTimeout(initPersistence, 800);
+    setTimeout(initPersistence, 1000);
 }
 
+window.saveGameState = saveGameState;
+window.loadGameState = loadGameState;
 window.resetGameState = resetGameState;

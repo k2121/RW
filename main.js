@@ -81,18 +81,23 @@ document.addEventListener('DOMContentLoaded', () => {
             setTimeout(() => window.autoResizeTextarea(newTextarea), 10);
     }
 
-    function removeMyCard() {
+    function removeMyCard(force = false) {
         const container = document.getElementById('textareas-container');
         const boxes = container.querySelectorAll('.textarea-box');
         if (boxes.length <= 1) {
-            alert('Nie można usunąć ostatniej karty.');
+            if (!force) alert('Nie można usunąć ostatniej karty.');
             return;
         }
         boxes[boxes.length - 1].remove();
+        if (!force) saveGameState();
     }
 
     document.getElementById('addMyCardBtn').onclick = addMyCard;
     document.getElementById('removeMyCardBtn').onclick = removeMyCard;
+
+    // Expose to window for persistence.js
+    window.addMyCard = addMyCard;
+    window.removeMyCard = removeMyCard;
 
     // Inicjalizacja listy problemów z akordeonem i wyszukiwaniem
     generateProblemList();

@@ -217,17 +217,24 @@
                 setTimeout(() => window.autoResizeTextarea(newTextarea), 10);
         }
 
-        function removeTheirCard() {
+        function removeTheirCard(force = false) {
             const boxes = groupTextareaContainer.querySelectorAll('.textarea-box');
             if (boxes.length <= 1) {
-                alert('Nie można usunąć ostatniej karty.');
+                if (!force) alert('Nie można usunąć ostatniej karty.');
                 return;
             }
             boxes[boxes.length - 1].remove();
+            if (!force) {
+                if (typeof window.saveGameState === 'function') window.saveGameState();
+            }
         }
 
         document.getElementById('addTheirCardBtn').onclick = addTheirCard;
         document.getElementById('removeTheirCardBtn').onclick = removeTheirCard;
+
+        // Expose to window for persistence.js
+        window.addTheirCard = addTheirCard;
+        window.removeTheirCard = removeTheirCard;
 
         if (data) {
             populateSelect('pola_przekonanie', data.przekonanie, 'Wybierz przekonanie...');
@@ -272,6 +279,11 @@
                     
                     if (isHidden && typeof window.initGrupowoSelect2 === 'function') {
                         window.initGrupowoSelect2();
+                    }
+
+                    // Trigger resize for textareas when becoming visible
+                    if (isHidden && typeof window.autoResizeAll === 'function') {
+                        setTimeout(window.autoResizeAll, 100);
                     }
                 }
             };
