@@ -80,7 +80,7 @@ window.shiftCardsUp = shiftCardsUp;
 // ======================== GENEROWANIE KART DYNAMICZNYCH ========================
 function generateTextarea(id) {
   return `
-    <label for="${id}">Karta ${id.slice(-2)}:
+    <label for="${id}">Moja karta ${id.slice(-2)}:
       <button type="button" onclick="toggleVisibility('${id}', this)">🫣</button>
       <button type="button" onclick="saveBackup('${id}'); clearTextarea('${id}')">🗑️</button>
       <button type="button" onclick="saveBackup('${id}'); pasteFromClipboard('${id}')">📋Wklej</button>
@@ -122,7 +122,7 @@ async function pasteFromClipboard(id) {
     saveBackup(id);
     textarea.value = text;
 
-    if (text.toLowerCase().startsWith('przekonanie:')) {
+    if (text.toLowerCase().startsWith('przekonanie:') && !id.startsWith('czyjasTextarea')) {
         textarea.style.display = 'none';
         const label = document.querySelector(`label[for="${id}"]`);
         if (label) {
