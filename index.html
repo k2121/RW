@@ -306,13 +306,13 @@ function startMatrix() {
       const colActive = col.head <= ROWS + TRAIL_LEN + 5 || anyAlpha;
       if (colActive) activeCols++;
 
-      // Pierwsza kolumna która całkowicie zniknęła startuje fading
-      if (!firstColFinished && col.head > ROWS + TRAIL_LEN + 5 && !anyAlpha) {
+      // Fading startuje gdy pierwsza kolumna osiągnie 60% długości poza ekranem
+      if (!firstColFinished && col.head > ROWS + TRAIL_LEN * 0.6) {
         firstColFinished = true;
       }
     }
 
-    // Fading canvas opacity gdy pierwsza kolumna skończyła
+    // Fading canvas opacity gdy pierwsza kolumna spełniła warunek
     if (firstColFinished) {
       fadeProgress = Math.min(1, fadeProgress + 0.012); // ~83 klatki ≈ 1.4s
       canvas.style.opacity = 1 - fadeProgress;
