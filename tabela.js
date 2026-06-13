@@ -426,7 +426,7 @@ widziałem od szesnastu lat. W 1972 roku John wyemigrował do Australii, ja
 natomiast, dwanaście lat później, przeniosłem się do Ameryki. <span
 class=SpellE>Jill</span> jako jedyna z rodzeństwa została w Anglii. John
 właśnie wracał do domu, a wizyta w Atlancie stanowiła ostatni etap jego
-podróży. <span class=SpellE>Jill</span> towarzyszyła mu, by go wyprawić do
+podróży. <span class=SpellE>Jill</span> towarzyszyła mu, by wyprawić go do
 Australii, a przy okazji odwiedzić mnie i moją żonę, Joannę. Po powitalnych
 uściskach i pocałunkach, czując się nieco niezręcznie, udaliśmy się
 do hotelu. Zarezerwowałem pokoje na jedną noc, bo chcieliśmy pokazać
@@ -447,8 +447,8 @@ class=SpellE>Jill</span> - czworo. Tylko jej najmłodszy syn, Paul,
 mieszkał jeszcze z nimi.<span style='color:green'> </span><span
 style='color:blue'>-Co się dzieje?</span><span style='color:green'> </span>-spytałem.<span
 style='color:green'> </span><span style='color:#00B050'>-Nie wiem, od czego
-zacząć. To wszystko jest trochę zaskakujące </span>-odparła<span
-style='color:lime'>. </span><span style='color:#00B050'>-Jeff zachowuje się
+zacząć. To wszystko jest trochę zaskakujące </span>-odparła.<span
+style='color:lime'> </span><span style='color:#00B050'>-Jeff zachowuje się
 dziwacznie, nie mogę go dłużej znieść. Doszło do tego,
 że przestaliśmy się do siebie odzywać. To mnie wykańcza. Całkiem się ode
 mnie odwrócił, a na dodatek twierdzi, że to moja wina. </span><span
@@ -472,13 +472,13 @@ odtrącona i niepotrzebna.</span><span style='color:lime'> </span><span
 class=SpellE>Jill</span> mówiła długo, szczegółowo opisując dziwną sytuację w
 rodzinie, a my z Joanną słuchaliśmy uważnie. Głośno zastanawialiśmy się nad
 przyczyną <span class=SpellE>zachowań</span> Jeffa i staraliśmy się wyrazić
-nasze współczucie. Jak przystało na brata i szwagierkę, sugerowali jej, jak
+nasze współczucie. Jak przystało na brata i szwagierkę, sugerowaliśmy jej, jak
 rozmawiać z mężem i rozważaliśmy, co można zrobić w tej sytuacji. Również John
 włączył się do rozmowy, podając swój punkt widzenia. Zachowanie męża <span
 class=SpellE>Jill</span>, sprzeczne z jego naturą, zastanawiało mnie
-i dziwiło. Jeff, jakiego znałem, był uczuciowo związany ze swymi córkami i
+i dziwiło. Jeff, jakiego znałem, był uczuciowo związany ze swoimi córkami i
 na tyle niepewny siebie, by bardzo potrzebować ich miłości i aprobaty, to
-prawda. Nigdy jednak nie widziałem, by zachowywał się tak jak to opisała moja
+prawda. Nigdy jednak nie widziałem, by zachowywał się tak, jak to opisała moja
 siostra. Zawsze był dla niej czuły i troskliwy. Prawdę mówiąc, trudno mi było
 uwierzyć, że traktuje ją w tak okrutny sposób. Dobrze rozumiałem,
 dlaczego <span class=SpellE>Jill</span> jest nieszczęśliwa. Przekonanie Jeffa,
@@ -487,7 +487,7 @@ poprawiało sytuacji. Do rozmowy wróciliśmy następnego dnia. Zaczynałem się
 domyślać, co się dzieje między <span class=SpellE>Jill</span> i Jeffem z punktu
 widzenia Radykalnego Wybaczania, ale postanowiłem na razie o tym nie
 mówić. Siostra była zbyt przejęta dramatyczną sytuacją i nie potrafiłaby
-wysłuchać ani zrozumieć tego co do niej mówię. Radykalne Wybaczanie opiera się
+wysłuchać, ani zrozumieć tego co do niej mówię. Radykalne Wybaczanie opiera się
 na bardzo szerokiej perspektywie duchowej, której nie znaliśmy, mieszkając w
 Anglii. Wiedząc, że moje rodzeństwo nie ma pojęcia o tym procesie,
 doszedłem do wniosku, iż nie nadszedł jeszcze czas, żeby ich zapoznać z tą
@@ -526,7 +526,7 @@ był świadkiem wielu z tych zdarzeń i wszystko potwierdza, prawda John?</span>
 -zwróciłem się do brata. <span style='color:red'>-Jak najbardziej</span>
 -powiedział. <span style='color:red'>-Widziałem to i szczerze mówiąc, czułem
 się dziwnie w domu <span class=SpellE>Jill</span>.</span> <span
-style='color:blue'>-To mnie nie zaskakuje</span> -odparłem. <span
+style='color:blue'>-To mnie zaskakuje</span> -odparłem. <span
 style='color:blue'>-<span class=SpellE>Jill</span>, chciałbym, żebyś wiedziała,
 że nie lekceważę, ani nie neguję twojej opowieści. Jestem przekonany, że było
 tak, jak mówisz. Pozwól jednak, że zasugeruję ci, jaki podtekst może mieć ta
@@ -544,8 +544,8 @@ spojrzeć na to, jak na okazję do uleczenia i rozwoju? To byłaby całkiem
 inna interpretacja, nie sądzisz?</span> Moje rodzeństwo spojrzało na mnie,
 jakbym mówił w obcym języku. Postanowiłem dać sobie spokój z wyjaśnieniami i od
 razu przejść do rzeczy. <span style='color:blue'>-<span class=SpellE>Jill</span>,
-przypomnij sobie ostatnie trzy miesiące</span> -powiedziałem<span
-style='color:blue'>. -Co czułaś, widząc zachowanie Jeffa wobec córki?</span> <span
+przypomnij sobie ostatnie trzy miesiące</span> -powiedziałem.<span
+style='color:blue'> -Co czułaś, widząc zachowanie Jeffa wobec córki?</span> <span
 style='color:#00B050'>-Głównie gniew</span> -odparła. <span
 style='color:#00B050'>-Frustrację</span> -dodała, a po dłuższej chwili:<span
 style='color:lime'> </span><span style='color:#00B050'>-I smutek. Naprawdę było
@@ -573,13 +573,13 @@ Przypadkowo ona i najstarsza córka Jeffa noszą to samo imię. Płacz pomógł 
 class=SpellE>Jill</span>. Łzy przyniosły ulgę i prawdopodobnie stały się
 dla niej punktem zwrotnym. Pomyślałem, że prawdziwy przełom może być już
 blisko. Musiałem kontynuować. <span style='color:blue'>-Opowiedz mi o tym
-incydencie z moją córką i tatą </span>­poprosiłem. <span style='color:#00B050'>-Dobrze</span>
+incydencie z moją córką i tatą </span>-poprosiłem. <span style='color:#00B050'>-Dobrze</span>
 -odparła <span class=SpellE>Jill</span>, uspokajając się. <span
 style='color:#00B050'>-Zawsze czułam, że tata mnie nie kocha, i szaleńczo
 pragnęłam jego miłości. Nigdy mnie nie wziął za rękę, nie posadził na kolanach.
 Zawsze wydawało mi się, że to moja wina. Kiedy byłam starsza, mama powiedziała
 mi, że według niej tata nie potrafi kochać nikogo, nawet jej. Wtedy pogodziłam
-się z tym do pewnego stopnia. Wytłumaczyłam sobie, że skoro nie jest zdolny do
+się z tym, do pewnego stopnia. Wytłumaczyłam sobie, że skoro nie jest zdolny do
 miłości, to nie jest to moja wina. Naprawdę nikogo nie kochał. Ledwo zauważał
 moje dzieci a swoje wnuki, a jeszcze mniej innych ludzi, czy obce dzieci.
 Nie był złym ojcem. Po prostu nie umiał kochać. Było mi go żal. </span>Znowu
@@ -588,11 +588,11 @@ miała na myśli, mówiąc tak o ojcu. Był dobrym, łagodnym człowiekiem,
 ale bardzo cichym i zamkniętym w sobie. Najczęściej zdawał się być
 emocjonalnie niedostępny dla nikogo. Kiedy <span class=SpellE>Jill</span> się
 opanowała, ponownie podjęła wątek. <span style='color:#00B050'>-Pamiętam
-szczególnie jeden dzień u ciebie w domu. Twoja córka, Lorraine, miała wtedy
+szczególnie jeden dzień, u ciebie w domu. Twoja córka, Lorraine, miała wtedy
 cztery czy pięć lat. Rodzice przyjechali z Leicester i wszyscy udaliśmy się do
 ciebie. Zobaczyłam, jak Lorraine bierze tatę za rękę i mówi:</span><span
 style='color:lime'> </span><span style='color:red'>„Chodź, dziadku, pokażę ci
-ogród i moje kwiaty”</span>.<span style='color:yellow'>.</span><span
+ogród i moje kwiaty”</span>.<span
 style='color:lime'> </span><span style='color:#00B050'>Był niczym plastelina w
 jej dłoniach. Oprowadziła go po całym ogrodzie i mówiła, mówiła,
 mówiła, pokazując mu swoje kwiaty. Oczarowała go. Przez cały czas obserwowałam
@@ -621,14 +621,14 @@ Zaśmiałem się i odparłem: <span style='color:blue'>-Oczywiście, to klucz do
 zrozumienia całej sytuacji.</span> Spojrzała na mnie ostro. <span
 style='color:#00B050'>-Co chcesz przez to powiedzieć?</span> <span
 style='color:blue'>-Sama się domyśl </span>-odparłem. <span style='color:blue'>-Jakie
-inne podobieństwa widzisz między zdarzeniem z tatą i moją Lorraine a twoim
+inne podobieństwa widzisz między zdarzeniem z tatą i moją Lorraine, a twoim
 dzisiejszym położeniem?</span> <span style='color:#00B050'>-<span class=SpellE>Hm</span>.
 Obie dziewczyny mają to samo imię. I obie dostają to, czego ja nie dostaję od
 mężczyzn. </span><span style='color:blue'>-Co to jest?</span> -zapytałem. <span
 style='color:#00B050'>-Miłość</span> -wyszeptała. <span style='color:blue'>-No
 i...?</span> -podpowiedziałem łagodnie. <span style='color:#00B050'>-Wygląda na
 to, że twoja Lorraine potrafiła zdobyć miłość taty, a ja nie. Również córka
-Jeffa dostaje tyle miłości od swego ojca, ile zapragnie, ale moim kosztem. O
+Jeffa dostaje tyle miłości od swego ojca, ile zapragnie, ale moim kosztem... O
 mój Boże!</span> ­wykrzyknęła. Coś zaczynało do niej docierać. <span
 style='color:#00B050'>-Ale dlaczego? Nie rozumiem. To trochę przerażające! Co
 się, u licha, dzieje?</span> -zapytała przestraszona. <span>   </span>Nadeszła chwila, by wszystko jej wyjaśnić. <span style='color:
@@ -636,13 +636,13 @@ blue'>-Słuchaj, <span class=SpellE>Jill</span>. Zaraz ci to wytłumaczę. Masz
 doskonały dowód, że pod dramatem, który nazywamy życiem, kryje się całkiem inna
 rzeczywistość. Uwierz mi, nie ma się czego bać. Kiedy zobaczysz, jak to działa,
 będziesz bardziej ufna, poczujesz się bezpieczniej i spokojniej, niż
-kiedykolwiek wydawało ci się możliwe. Zdasz sobie sprawę jak dobrze nas wspiera
+kiedykolwiek wydawało ci się to możliwe. Zdasz sobie sprawę jak dobrze nas wspiera
 Wszechświat albo Bóg, jakkolwiek to nazwiesz. Czyni to w każdej chwili,
 każdego dnia chociaż sytuacja może się czasem wydawać bardzo trudna.
 Z duchowego punktu widzenia </span>-ciągnąłem <span style='color:blue'>-Nasz
 dyskomfort w jakiejś sytuacji jest sygnałem, że działamy niezgodnie z duchowym
 prawem i właśnie mamy okazję coś poprawić. Może chodzić o jakiś głęboki ból
-albo szkodliwe przekonanie, które nie pozwala nam żyć w zgodzie z sobą samym.
+albo szkodliwe przekonanie, które nie pozwala nam żyć w zgodzie z samym sobą.
 Nieczęsto patrzymy na to z tej perspektywy. Osądzamy raczej sytuację i
 obwiniamy innych za to, co się dzieje, a takie podejście nie pozwala nam
 odebrać i zrozumieć przesłania i zagradza nam drogę do uzdrowienia. Jeśli nie
@@ -704,7 +704,7 @@ sobie: </span></span><i><span
 style='font-size:10.0pt;font-family:"Bookman Old Style",serif;color:blue'>„Mój
 ojciec potrafi kochać, ale nie mnie. To wyraźnie moja wina. Nie jestem dość
 dobra dla niego i nigdy nie będę dość dobra dla żadnego mężczyzny”.</span></i>
-<i><span style='font-size:11.0pt;color:blue'> </span></i><span
+</i><span
 style='font-size:11.0pt;color:#00B050'>-Ale jak do tego doszło?</span><span
 style='font-size:11.0pt'> -przerwała <span class=SpellE>Jill</span>. <span
 style='color:#00B050'>-Nie potrafię zrozumieć, w jaki sposób przekonałam
@@ -718,7 +718,7 @@ siebie za ofiarę. Tymczasem ściągnęłaś go do swojego życia, bo w
 gruncie rzeczy wiedziałaś, że potwierdzi twoje przekonanie, iż nie jesteś dość
 dobra. Jego niewierność utwierdzała cię tylko w słuszności osądu
 własnej osoby</span><span style='color:#00B050'>. -Chcesz powiedzieć, że Henry
-czynił mi przysługę?! No nie! Tego już za wiele!</span> --powiedziała
+czynił mi przysługę?! No nie! Tego już za wiele!</span> -powiedziała
 ze śmiechem ale czułem, że jest zła. <span style='color:blue'>-Przecież
 utwierdzał cię w twoim przekonaniu </span>-odparłem. <span style='color:blue'>-Tak bardzo
 nie byłaś dość dobra, że ciągle szukał innych kobiet, by uzupełnić twoje braki.
@@ -741,7 +741,7 @@ nie będziesz dość dobra dla żadnego mężczyzny. Na początku raniło cię t
 tak bardzo, że miałaś okazję dotrzeć do tego podstawowego bólu i zrozumieć swój
 system przekonań na własny temat. Te pierwsze akty zdrady były pierwszą szansą
 na wprowadzenie w życie zasad Radykalnego Wybaczania i na uzdrowienie, ale ty
-jej nie dostrzegłaś. Coraz bardziej obciążałaś męża winą, a z siebie
+jej nie dostrzegałaś. Coraz bardziej obciążałaś męża winą, a z siebie
 robiłaś ofiarę, co uniemożliwiało uleczenie. </span><span style='color:#00B050'>-Co
 rozumiesz przez „<i>wybaczanie</i>”?</span>
 -zapytała <span class=SpellE>Jill</span>, nadal zbulwersowana. <span
@@ -769,7 +769,7 @@ Trudno ci zaakceptować myśl, że twój pierwszy mąż starał się przekazać 
 wielki dar, wiem o tym. Nie tak nas uczono myśleć. Nie mówi się nam,
 byśmy przyglądali się zdarzeniom i komentowali: „<i>Popatrzcie tylko co stworzyłem w swoim życiu! Czy to nie ciekawe?</i>”.
 Uczy się nas natomiast osądzać, potępiać, oskarżać, grać rolę ofiary i mścić
-się. Niekontyku nam również nie mówi, że naszym życiem kierują inne siły
+się. Nikt nam również nie mówi, że naszym życiem kierują inne siły
 niż świadomość, a przecież tak właśnie jest. W rzeczywistości to
 umysł Henry’ego próbował ci pomóc w uzdrowieniu. Twój pierwszy mąż
 poddawał się swemu uzależnieniu od seksu, ale <i>jego jaźń, we współpracy z twoją, postanowiła tę jego słabość wykorzystać
@@ -778,7 +778,7 @@ Radykalnego Wybaczania, którego celem jest dostrzec prawdę za pozorami i
 zrozumieć, że ową prawdą zawsze jest miłość.</span> Czułem, że rozmowa o
 obecnej sytuacji pomoże <span class=SpellE>Jill</span> dokładnie zrozumieć
 opisane przeze mnie zasady. <span style='color:blue'>-Przyjrzyjmy się teraz
-Jeffowi</span> --zaproponowałem <span style='color:blue'>-i zobaczmy, jak
+Jeffowi</span> -zaproponowałem <span style='color:blue'>-i zobaczmy, jak
 to, co powiedziałem, ma się do twojego aktualnego związku. Na początku
 Jeff bardzo cię kochał. Świata poza tobą nie widział, zabiegał o twoje
 względy i dużo z tobą rozmawiał. Pozornie życie z nim było wspaniałe.
@@ -787,13 +787,13 @@ z twoim najgłębszym przekonaniem, żaden mężczyzna nie powinien okazywać ci
 tyle miłości. Nie jesteś dość dobra, pamiętasz? </span><span class=SpellE>Jill</span>
 przytaknęła, ale widziałem, że wciąż ma wątpliwości.<span
 style='color:blue'> -Twoja jaźń wie, że musisz się pozbyć tego przekonania,
-dogaduje się więc z jaźnią Jeffa, by jakoś ci to unaocznić. Pozornie Jeff
+dogaduje się więc z jaźnią Jeffa, by jakoś ci to uświadomić. Pozornie Jeff
 zaczyna zachowywać się dziwnie i zupełnie inaczej niż zwykle. Na dodatek
 kocha inną Lorraine, wywołując w tobie takie same przeżycia jak ojciec
 wiele lat wstecz. Prześladuje cię bez litości, a ty czujesz się
 jego<span>  </span>bezbronną ofiarą. Czy tak w
 przybliżeniu opisałabyś swoją dzisiejszą sytuację?</span> <span
-style='color:#00B050'>-Chyba tak</span> --powiedziała <span class=SpellE>Jill</span>
+style='color:#00B050'>-Chyba tak</span> -powiedziała <span class=SpellE>Jill</span>
 cicho. Zmarszczyła czoło, starając się zatrzymać w głowie nowy obraz swych
 doświadczeń. <span style='color:blue'>-No i znowu musisz
 dokonać wyboru. Albo się uleczysz i rozwiniesz, albo będziesz miała rację</span><span
@@ -818,13 +818,13 @@ pod przykrywką zdarzeń dzieje się coś bardziej znaczącego, co może ci napr
 pomóc. Drugi wybór polega na zaakceptowaniu faktu,
 że w zachowaniu Jeffa ukryte może być przesłanie, znaczenie czy
 zamiar i że ta sytuacja jest darem dla ciebie. </span><span class=SpellE>Jill</span> pomyślała
-przez chwilę, po czym powiedziała<span style='color:#00B050'>: -Zachowanie
+przez chwilę, po czym powiedziała:<span style='color:#00B050'> -Zachowanie
 Jeffa jest tak dziwaczne, że trudno będzie znaleźć jakieś sensowne
 wyjaśnienie. Może coś się pod tym kryje, czego nie widzę. Przypuszczam, że jest
 podobnie jak z Henrym, ale nie potrafię odnieść tego do Jeffa, bo na
 razie nie mogę się w tym wszystkim odnaleźć i nie dostrzegam nic poza
 bezpośrednimi zdarzeniami. </span><span style='color:blue'>-Nic nie szkodzi</span>
--uspokoiłem ją<span style='color:blue'>. -Wcale nie musisz tego problemu
+-uspokoiłem ją.<span style='color:blue'> -Wcale nie musisz tego problemu
 rozwiązywać od razu. Już sama chęć zrozumienia, że dzieje się coś więcej niż
 to, co widzisz, jest ogromnym krokiem naprzód. W gruncie rzeczy <i>
 Twoja gotowość spojrzenia na swoje położenie
@@ -849,14 +849,14 @@ nie przytulał, nie bawił się z tobą, nie obejmował i nie sadzał na
 kolanach. Nie zaspokajał twojej potrzeby czułości. Takie są fakty. Na ich
 podstawie oparłaś swoje najważniejsze założenie: „<i>Tata mnie nie kocha</i>”. Czy tak?</span> <span class=SpellE>Jill</span>
 przytaknęła. <span style='color:blue'>-Tymczasem to, że nie zaspokajał twoich
-potrzeb</span> -mówiłem dalej -<span style='color:blue'>wcale nie znaczy,
+potrzeb</span> -mówiłem dalej <span style='color:blue'>-wcale nie znaczy,
 że cię nie kochał. To twoja interpretacja, a Nie prawda. Taty seksualność
 była stłumiona i bliskość go przerażała, wiemy przecież o tym. Być
 może po prostu nie potrafił wyrazić swojej miłości tak, jakbyś tego
 chciała. Czy pamiętasz ten wspaniały dom dla lalek, który ci zrobił którejś
 zimy? Pracował nad nim długie godziny, gdy Ty już byłaś w
 łóżku. Może tylko tak potrafił pokazać, że cię kocha. Nie próbuję
-go usprawiedliwić, ani wykazać, że to, co powiedziałaś, czy to, co
+go usprawiedliwiać, ani wykazać, że to, co powiedziałaś, czy to, co
 czujesz, jest błędne. Po prostu staram się zwrócić ci uwagę na fakt,
 że wszyscy popełniamy błąd, biorąc swoją interpretację faktów za
 rzeczywistość…<o:p></o:p></span></span></p>
@@ -885,7 +885,7 @@ odczuwające ten ból. Tak właśnie się stało, gdy zobaczyłaś, że ojciec o
 miłość mojej córce. Miałaś wtedy dwadzieścia siedem lat, ale stałaś się
 dwuletnią <span class=SpellE>Jill</span>, która czuła się niekochana
 i która postępowała zgodnie z tym odczuciem. I nadal tak postępujesz, tyle
-że tym razem chodzi o twego męża. Twoje związki z mężczyznami oparte są na
+że tym razem chodzi o twojego męża. Twoje związki z mężczyznami oparte są na
 pozbawionej realnych podstaw interpretacji dwuletniej dziewczynki. Czy to dostrzegasz?</span>
 <span style='color:#00B050'>-Teraz tak</span> -odparła. <span style='color:
 #00B050'>-Podjęłam kilka niemądrych decyzji, opierając się na tych
@@ -919,7 +919,7 @@ z innego punktu widzenia sprawia, że uwalniasz tę energię. Nic dziwnego,
 że czujesz się lżej!</span> -powiedziałem z uśmiechem. <span
 style='color:#00B050'>-A co by się stało, gdybym nie zrozumiała tego, co się
 dzieje, i po prostu odeszła od Jeffa?</span> <span style='color:blue'>-Twoja jaźń
-wprowadziłaby do twojego życia kogoś innego, kto pomógłby ci w uzdrowieniu --</span>odpowiedziałem
+wprowadziłaby do twojego życia kogoś innego, kto pomógłby ci w uzdrowieniu </span>-odpowiedziałem
 szybko. <span style='color:blue'>-Ale przecież nie zostawiłaś Jeffa, lecz
 przyjechałaś tutaj. Zrozum, ta twoja podróż to nie przypadek.
 W tym systemie przypadki nie istnieją. Ty, czy raczej twoja jaźń,

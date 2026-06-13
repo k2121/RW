@@ -8,7 +8,11 @@ gh repo clone k2121/RW
 cd RW
 
 =========================
+git add .
+git commit -m "Opis zmian"
+git push origin main
 
+======================
 
 # Dodaj pliki do stage
 git add nazwa_pliku.txt
