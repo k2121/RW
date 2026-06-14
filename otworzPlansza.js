@@ -30,19 +30,7 @@ function otworzPlansza() {
               border-radius: 8px;
               box-shadow: 0 4px 8px rgba(0,0,0,0.3);
             }
-            button {
-              position: fixed;
-              top: 10px;
-              right: 10px;
-              font-size: 60px;
-              background: rgba(0,0,0,0.6);
-              color: white;
-              border: none;
-              border-radius: 50%;
-              width: 70px;
-              height: 70px;
-              cursor: pointer;
-              z-index: 1000;
+            button { position: absolute; top: 10px; right: 10px; font-size: 60px; }
             }
             button:hover {
               background: rgba(255,0,0,0.7);
@@ -68,4 +56,5 @@ function otworzPlansza() {
         </body>
       </html>
     `);
+    return win;
   }

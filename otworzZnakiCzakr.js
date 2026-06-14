@@ -1,9 +1,10 @@
-  function otworzCzakryFull() {
-    const win = window.open('', 'Czakry Full', 'width=800,height=600');
+  function otworzZnakiCzakr() {
+    const win = window.open('', 'Znaki Czakr', 'width=800,height=815');
+
     win.document.write(`
       <html>
         <head>
-          <title>Czakry Full</title>
+          <title>Znaki Czakr</title>
           <style>
             body { margin: 0; text-align: center; background: #000; }
             img { max-width: 100%; height: auto; }
@@ -12,8 +13,9 @@
         </head>
         <body>
           <button onclick="window.close()">✖</button>
-          <img src="Czakry_symbole_x7_v%3DMvOpK-FuAZY.jpg" alt="Czakry Full">
+          <img src="Czakry_symbole_x7_v%3DMvOpK-FuAZY.jpg" alt="Znaki Czakr">
         </body>
       </html>
     `);
+    return win;
   }

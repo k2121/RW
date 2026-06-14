@@ -1,6 +1,6 @@
 function otworzEmocje() {
   // 1. Otwiera plik emocje.html w nowej karcie
-  window.open('emocje.html', '_blank');
+  const win = window.open('emocje.html', '_blank');
 
   // 2. Otwiera wyskakujące okno z obrazkiem JPG (Twoja oryginalna część)
   /*const win = window.open('', 'Emocje', 'width=800,height=600');
@@ -20,4 +20,5 @@ function otworzEmocje() {
       </body>
     </html>
   `);*/
+  return win;
 }
