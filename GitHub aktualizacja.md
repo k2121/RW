@@ -4,6 +4,9 @@
 # 1. Upewnij się, że jesteś zalogowany (jeśli nie, gh poprosi o token)
 gh auth status
 
+
+rm -r RW
+
 gh repo clone k2121/RW
 cd RW
 
