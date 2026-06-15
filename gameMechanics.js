@@ -107,6 +107,15 @@ function rollDice() {
   const nextFieldData = sampleData.pola_planszy.find(p => parseInt(p.value) === nextPos);
   const nextLabel = nextFieldData ? nextFieldData.label : nextPos;
 
+  // Log the roll result BEFORE triggering selection change
+  if (window.SatoriLogger) {
+    const actionName = isReversing ? "Rzut kostką do tyłu" : "Rzut kostką do przodu";
+    const rollLog = `(${currentLabel}) -> 🎲 = ${diceResult} (=${nextLabel})`;
+    window.SatoriLogger.log(actionName, rollLog);
+    // Copy to clipboard
+    navigator.clipboard.writeText(rollLog).catch(e => {});
+  }
+
   // Update dropdown and trigger change (format with leading zero if needed)
   const nextPosStr = nextPos.toString().padStart(2, '0');
   $(polaSelect).val(nextPosStr).trigger('change');
@@ -131,6 +140,14 @@ function moveMinus16() {
   // Find the label for the next position
   const nextFieldData = sampleData.pola_planszy.find(p => parseInt(p.value) === nextPos);
   const nextLabel = nextFieldData ? nextFieldData.label : nextPos;
+
+  // Log BEFORE triggering change
+  if (window.SatoriLogger) {
+    const rollLog = `(${currentLabel}) -> ⏪ = -16 (=${nextLabel})`;
+    window.SatoriLogger.log("Wynik kostki (-16)", rollLog);
+    // Copy to clipboard
+    navigator.clipboard.writeText(rollLog).catch(e => {});
+  }
 
   // Update dropdown and trigger change (format with leading zero if needed)
   const nextPosStr = nextPos.toString().padStart(2, '0');

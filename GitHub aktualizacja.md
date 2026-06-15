@@ -14,6 +14,10 @@ cd RW
 git add .
 git commit -m "Opis zmian"
 git push origin main
+===========================
+
+sudo trash-empty
+rm -f ~/.config/trashrc
 
 ======================
 

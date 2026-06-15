@@ -25,7 +25,7 @@ const SatoriLogger = (function() {
         const timestamp = `${pad(now.getDate())}.${pad(now.getMonth() + 1)}.${now.getFullYear()} ${dayName}, ` +
                           `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())},${padMs(now.getMilliseconds())}`;
         
-        const entry = `[${timestamp}] AKCJA: ${action}${details ? ' | SZCZEGÓŁY: ' + details : ''}\n`;
+        const entry = `   [${timestamp}] AKCJA: ${action}${details ? ' | SZCZEGÓŁY: ' + details : ''}\n`;
         
         logBuffer += entry;
         saveBuffer();
@@ -47,7 +47,7 @@ const SatoriLogger = (function() {
     }
 
     async function logSeparator() {
-        const separator = "\n\n" + "=".repeat(20) + "\n\n";
+        const separator = "\n\n   " + "=".repeat(20) + "\n\n";
         logBuffer += separator;
         saveBuffer();
 
@@ -62,6 +62,80 @@ const SatoriLogger = (function() {
             }
         }
         updateUI();
+    }
+
+    async function logEndGame(source) {
+        const separator = "   " + "=".repeat(20);
+        let content = "\n" + separator + "\n";
+        
+        const fieldMappings = [
+            { id: 'pola_zdarzenie', label: 'Zdarzenie' },
+            { id: 'pola_kontekst', label: 'Kontekst' },
+            { id: 'karma', label: 'Karma' },
+            { id: 'wyobraz_sobie', label: 'Wyobraź sobie' },
+            { id: 'blokady_energii', label: 'Blokada energii' },
+            { id: 'nowa_opowiesc', label: 'Nowa opowieść' },
+            { id: 'przekonanie', label: 'Przekonanie' },
+            { id: 'projekcje', label: 'Projekcje' }
+        ];
+
+        fieldMappings.forEach(f => {
+            const el = document.getElementById(f.id);
+            if (el) {
+                let val = "";
+                if (el.tagName === 'SELECT') {
+                    if (window.jQuery) {
+                        val = window.jQuery(el).find('option:selected').text();
+                    } else {
+                        val = el.options[el.selectedIndex]?.textContent || "";
+                    }
+                    if (val && (val.includes("Wybierz") || val.trim() === "")) val = "";
+                } else {
+                    val = el.value.trim();
+                }
+                
+                if (val) {
+                    // Prepend spaces to every single line of the value
+                    const indentedLines = val.split('\n').map(line => "   " + line).join('\n');
+                    content += `   ${f.label}: ${indentedLines.trimStart()}\n`;
+                }
+            }
+        });
+
+        const dynamicBoxes = document.querySelectorAll('#textareas-container .textarea-box');
+        dynamicBoxes.forEach(box => {
+            const labelEl = box.querySelector('label');
+            let label = "Moja karta";
+            if (labelEl) {
+                label = Array.from(labelEl.childNodes)
+                    .filter(node => node.nodeType === 3)
+                    .map(node => node.textContent.trim())
+                    .join(' ')
+                    .replace(':', '')
+                    .trim() || "Moja karta";
+            }
+            const textarea = box.querySelector('textarea');
+            if (textarea && textarea.value.trim()) {
+                const val = textarea.value.trim();
+                const indentedLines = val.split('\n').map(line => "   " + line).join('\n');
+                content += `   ${label}: ${indentedLines.trimStart()}\n`;
+            }
+        });
+
+        logBuffer += content;
+        saveBuffer();
+        
+        if (fileHandle) {
+             try {
+                const writable = await fileHandle.createWritable({ keepExistingData: true });
+                const file = await fileHandle.getFile();
+                await writable.write({ type: 'write', position: file.size, data: content });
+                await writable.close();
+            } catch (err) {}
+        }
+        
+        console.log(`[Log] ${source} - Karta gracza zapisana`);
+        updateUI(); // In case we want to show something, though updateUI is currently empty
     }
 
     async function connectFile() {
@@ -81,12 +155,7 @@ const SatoriLogger = (function() {
     }
 
     function updateUI() {
-        const statusEl = document.getElementById('logger-status');
-        if (statusEl) {
-            statusEl.innerHTML = fileHandle ? 
-                `🟢 Logowanie do: <b>${fileHandle.name}</b>` : 
-                `🟡 Logowanie do pamięci (brak pliku)`;
-        }
+        // Status display removed per user request
     }
 
     function initUI() {
@@ -99,8 +168,7 @@ const SatoriLogger = (function() {
         div.style = "background: #f0f0f0; border: 1px solid #ccc; padding: 5px; margin-bottom: 10px; font-family: sans-serif; font-size: 12px; display: flex; align-items: center; gap: 10px;";
         div.innerHTML = `
             <b>LOG GRY:</b>
-            <span id="logger-status">🟡 Logowanie do pamięci</span>
-            <button type="button" onclick="SatoriLogger.connectFile()" style="font-size: 11px;">Połącz z plikiem</button>
+            <button type="button" onclick="SatoriLogger.logEndGame('Ręczny koniec gry')" style="font-size: 11px; font-weight: bold; background: #ffffcc; border: 1px solid #999;">KONIEC GRY</button>
             <button type="button" onclick="SatoriLogger.logSeparator()" style="font-size: 11px;">Kolejna gra (separator)</button>
             <button type="button" onclick="SatoriLogger.downloadLog()" style="font-size: 11px;">Pobierz Log</button>
             <button type="button" onclick="SatoriLogger.clearLog()" style="font-size: 11px; color: red;">Wyczyść</button>
@@ -144,25 +212,8 @@ const SatoriLogger = (function() {
             return result;
         };
 
-        // 1. Dice Roll
-        const originalRollDice = window.rollDice;
-        if (originalRollDice) {
-            window.rollDice = function() {
-                const result = originalRollDice.apply(this, arguments);
-                const diceRes = document.getElementById('diceResult').innerText;
-                const isReversing = document.getElementById('reverseMove')?.checked;
-                
-                const actionName = isReversing ? "Rzut kostką do tyłu" : "Rzut kostką do przodu";
-                log(actionName, diceRes);
-                
-                // Automatyczne kopiowanie wyniku kostki do schowka
-                if (diceRes) {
-                    navigator.clipboard.writeText(diceRes).catch(e => {});
-                }
-                
-                return result;
-            };
-        }
+        // 1. Dice Roll and Move -16 are now logged directly from gameMechanics.js 
+        // to ensure correct order (Roll -> Selection -> Summary).
 
         // 2. Randomize Data (Losuj kartę)
         const originalRandomizeData = window.randomizeData;
@@ -170,22 +221,6 @@ const SatoriLogger = (function() {
             window.randomizeData = function() {
                 log("Kliknięto 'Losuj kartę 📑'");
                 return originalRandomizeData.apply(this, arguments);
-            };
-        }
-
-        // 3. Move -16
-        const originalMoveMinus16 = window.moveMinus16;
-        if (originalMoveMinus16) {
-            window.moveMinus16 = function() {
-                const result = originalMoveMinus16.apply(this, arguments);
-                const diceRes = document.getElementById('diceResult').innerText;
-                log("Wynik kostki (-16)", diceRes);
-                
-                if (diceRes) {
-                    navigator.clipboard.writeText(diceRes).catch(e => {});
-                }
-                
-                return result;
             };
         }
 
@@ -271,6 +306,11 @@ const SatoriLogger = (function() {
         document.addEventListener('change', (e) => {
             if (e.target.tagName === 'SELECT') {
                 logSelectChange(e.target);
+
+                // Trigger End Game on SATORI field (ID 61)
+                if (e.target.id === 'pola_planszy' && parseInt(e.target.value, 10) === 61) {
+                    logEndGame('Pole SATORI');
+                }
             }
         }, true); // Use capture phase
 
@@ -284,6 +324,11 @@ const SatoriLogger = (function() {
                 localStorage.setItem('satori_last_select_log', currentVal);
                 
                 logSelectChange(this);
+
+                // Trigger End Game on SATORI field (ID 61)
+                if (this.id === 'pola_planszy' && parseInt(this.value, 10) === 61) {
+                    logEndGame('Pole SATORI');
+                }
             });
         }
 
@@ -453,57 +498,94 @@ const SatoriLogger = (function() {
             }
         });
 
-        const masterToggleBtn = document.getElementById('masterToggleBtn');
-        if (masterToggleBtn) {
-            masterToggleBtn.addEventListener('click', () => {
+        // Event delegation for masterToggleBtn clicks
+        document.addEventListener('click', (e) => {
+            const btn = e.target.closest('#masterToggleBtn');
+            if (btn) {
                 const expandDiv = document.getElementById('expandedMasterContent');
-                const isVisible = expandDiv && expandDiv.classList.contains('show');
-                // We log the state AFTER the click event processed (which toggles the class)
-                // but since we are adding a listener, it might run before or after.
-                // Let's use setTimeout to be sure.
                 setTimeout(() => {
                     const nowVisible = expandDiv && expandDiv.classList.contains('show');
                     log("Widoczność: MISTRZ GRY", nowVisible ? "POKAZANO" : "UKRYTO");
                 }, 10);
-            });
-        }
-
-        // 11. Generic Button Clicks
-        document.addEventListener('mousedown', (e) => {
-            const btn = e.target.closest('button');
-            if (btn) {
-                // Store the label BEFORE any click handlers change it
-                btn._preClickLabel = (btn.innerText || btn.title || btn.id || "przycisk bez tekstu").trim();
             }
         }, true);
 
-        document.addEventListener('click', (e) => {
-            if (e.target.tagName === 'BUTTON' || e.target.closest('button')) {
-                const btn = e.target.tagName === 'BUTTON' ? e.target : e.target.closest('button');
+        // 11. Generic Button Clicks - using mousedown to log BEFORE the action
+        document.addEventListener('mousedown', (e) => {
+            const btn = e.target.closest('button');
+            if (btn) {
+                // Ignore our own logger buttons
+                if (btn.closest('#logger-panel')) return;
+
+                const text = (btn.innerText || btn.title || btn.id || "przycisk bez tekstu").trim();
                 
-                // Ignore our own logger buttons or if we are currently opening a sub-window
-                if (btn.closest('#logger-panel') || window._satoriWindowOpening) return;
+                // Ignore buttons that are handled specifically or trigger windows
+                const ignoredLabels = ['Czakry 🌈', 'Znaki Czakr 🕉️', 'Plansza💞', 'Emocje 😊', 'Maska 🎭', 'Róża 🌹', 'Gra grupowa'];
+                if (ignoredLabels.includes(text)) return;
                 
-                // Special handling for Group Game instruction buttons (those on black background)
+                const handledIds = ['masterToggleBtn', 'addMyCardBtn', 'removeMyCardBtn', 'addTheirCardBtn', 'removeTheirCardBtn'];
+                if (handledIds.includes(btn.id)) return;
+
+                // Special handling for Group Game instruction buttons
                 const instrBtn = btn.closest('#instr-btns button');
                 if (instrBtn) {
-                    log("Instrukcja: KLIKNIĘTO POLE", instrBtn.innerText.trim());
+                    const fieldName = instrBtn.innerText.trim();
+                    const btns = Array.from(document.querySelectorAll('#instr-btns button'));
+                    const btnIndex = btns.indexOf(instrBtn);
+                    const cards = document.querySelectorAll('#instr-cards .pair');
+                    let descText = "";
+                    let reakcjaText = "";
+                    if (btnIndex !== -1 && cards[btnIndex]) {
+                        const descEl = cards[btnIndex].querySelector('.pole p');
+                        const reakcjaEl = cards[btnIndex].querySelector('.reakcja');
+                        if (descEl) descText = descEl.innerText.trim();
+                        if (reakcjaEl) reakcjaText = reakcjaEl.innerText.replace("Reakcja grupy:", "").trim();
+                    }
+                    
+                    let details = fieldName;
+                    if (descText) details += ` | OPIS: ${descText}`;
+                    if (reakcjaText && reakcjaText !== '—' && reakcjaText !== '-') details += ` | REAKCJA: ${reakcjaText}`;
+                    
+                    log("Instrukcja: KLIKNIĘTO POLE", details);
                     return;
                 }
 
-                // Ignore buttons that are handled specifically (to avoid double logging)
-                const handledIds = ['btn-gra-grupowa', 'masterToggleBtn', 'addMyCardBtn', 'removeMyCardBtn', 'addTheirCardBtn', 'removeTheirCardBtn'];
-                if (handledIds.includes(btn.id)) return;
-
-                const text = btn._preClickLabel || (btn.innerText || btn.title || btn.id || "przycisk bez tekstu").trim();
-                
-                // Ignore buttons that trigger windows (already logged by Widoczność: OTWARTO OKNO)
-                const windowButtonLabels = ['Czakry 🌈', 'Znaki Czakr 🕉️', 'Plansza💞', 'Emocje 😊', 'Maska 🎭', 'Róża 🌹'];
-                if (windowButtonLabels.includes(text)) return;
-
                 log("Kliknięto przycisk", text);
             }
-        });
+        }, true);
+
+        // Re-assign button onclick handlers to use the wrapped versions
+        const addMyCardBtn = document.getElementById('addMyCardBtn');
+        if (addMyCardBtn) {
+            addMyCardBtn.onclick = window.addMyCard;
+        }
+        const removeMyCardBtn = document.getElementById('removeMyCardBtn');
+        if (removeMyCardBtn) {
+            removeMyCardBtn.onclick = window.removeMyCard;
+        }
+        const addTheirCardBtn = document.getElementById('addTheirCardBtn');
+        if (addTheirCardBtn) {
+            addTheirCardBtn.onclick = window.addTheirCard;
+        }
+        const removeTheirCardBtn = document.getElementById('removeTheirCardBtn');
+        if (removeTheirCardBtn) {
+            removeTheirCardBtn.onclick = window.removeTheirCard;
+        }
+
+        // Intercepting challenge cards selector click from embedded list
+        const originalAddToCart = window.addToCart;
+        if (originalAddToCart) {
+            window.addToCart = function(problem, button) {
+                log("Wybrano wyzwanie", problem);
+                return originalAddToCart.apply(this, arguments);
+            };
+        }
+
+        // Expose function for external challenge basket (koszyk.html) to call
+        window.addFromSelector = function(formattedText) {
+            const challengeText = formattedText.replace(/^wyzwanie:\s*/, '');
+            log("Wybrano wyzwanie", challengeText);
+        };
     }
 
     async function logSessionStart() {
@@ -516,8 +598,8 @@ const SatoriLogger = (function() {
         const timestamp = `${pad(now.getDate())}.${pad(now.getMonth() + 1)}.${now.getFullYear()} ${dayName}, ` +
                           `${pad(now.getHours())}:${pad(now.getMinutes())}:${pad(now.getSeconds())},${padMs(now.getMilliseconds())}`;
         
-        const separator = "=".repeat(20);
-        const entry = `\n\n${separator}\n\n[${timestamp}] AKCJA: Sesja gry rozpoczęta\n\n\n${separator}\n\n\n`;
+        const separator = "   " + "=".repeat(20);
+        const entry = `\n\n${separator}\n\n   [${timestamp}] AKCJA: Sesja gry rozpoczęta\n\n\n${separator}\n\n\n`;
         
         logBuffer += entry;
         saveBuffer();
@@ -549,6 +631,7 @@ const SatoriLogger = (function() {
     return {
         log,
         logSeparator,
+        logEndGame,
         connectFile,
         downloadLog,
         clearLog
