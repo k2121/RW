@@ -65,42 +65,7 @@ const SatoriLogger = (function() {
     }
 
     async function logEndGame(source) {
-        const separator = "   " + "=".repeat(20);
-        let content = "\n" + separator + "\n";
-        
-        const fieldMappings = [
-            { id: 'pola_zdarzenie', label: 'Zdarzenie' },
-            { id: 'pola_kontekst', label: 'Kontekst' },
-            { id: 'karma', label: 'Karma' },
-            { id: 'wyobraz_sobie', label: 'Wyobraź sobie' },
-            { id: 'blokady_energii', label: 'Blokada energii' },
-            { id: 'nowa_opowiesc', label: 'Nowa opowieść' },
-            { id: 'przekonanie', label: 'Przekonanie' },
-            { id: 'projekcje', label: 'Projekcje' }
-        ];
-
-        fieldMappings.forEach(f => {
-            const el = document.getElementById(f.id);
-            if (el) {
-                let val = "";
-                if (el.tagName === 'SELECT') {
-                    if (window.jQuery) {
-                        val = window.jQuery(el).find('option:selected').text();
-                    } else {
-                        val = el.options[el.selectedIndex]?.textContent || "";
-                    }
-                    if (val && (val.includes("Wybierz") || val.trim() === "")) val = "";
-                } else {
-                    val = el.value.trim();
-                }
-                
-                if (val) {
-                    // Prepend spaces to every single line of the value
-                    const indentedLines = val.split('\n').map(line => "   " + line).join('\n');
-                    content += `   ${f.label}: ${indentedLines.trimStart()}\n`;
-                }
-            }
-        });
+        let content = "\n   ==========Koniec Gry==========\n\n";
 
         const dynamicBoxes = document.querySelectorAll('#textareas-container .textarea-box');
         dynamicBoxes.forEach(box => {
@@ -117,8 +82,9 @@ const SatoriLogger = (function() {
             const textarea = box.querySelector('textarea');
             if (textarea && textarea.value.trim()) {
                 const val = textarea.value.trim();
-                const indentedLines = val.split('\n').map(line => "   " + line).join('\n');
-                content += `   ${label}: ${indentedLines.trimStart()}\n`;
+                // Indent every line except the first one (which follows the label)
+                const indentedLines = val.split('\n').map((line, index) => index === 0 ? line : "   " + line).join('\n');
+                content += `   ${label}: ${indentedLines}\n`;
             }
         });
 
