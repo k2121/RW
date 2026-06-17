@@ -1,10 +1,10 @@
 // persistence.js
-// Handles saving and loading game state to/from localStorage
+// Handles saving and loading game state to/from safeStorage
 
 const STORAGE_KEY = 'satori_game_state';
 
 /**
- * Saves the current state of the game to localStorage.
+ * Saves the current state of the game to safeStorage.
  * Scans for all relevant selects and textareas dynamically.
  */
 function saveGameState() {
@@ -46,15 +46,15 @@ function saveGameState() {
     const diceResult = document.getElementById('diceResult');
     if (diceResult) state.textareas['diceResult_text'] = diceResult.innerText;
 
-    localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    safeStorage.setItem(STORAGE_KEY, JSON.stringify(state));
     console.log('Game state saved');
 }
 
 /**
- * Loads the game state from localStorage and restores it to the UI.
+ * Loads the game state from safeStorage and restores it to the UI.
  */
 function loadGameState() {
-    const savedState = localStorage.getItem(STORAGE_KEY);
+    const savedState = safeStorage.getItem(STORAGE_KEY);
     if (!savedState) return;
 
     try {
@@ -162,12 +162,12 @@ function loadGameState() {
 }
 
 /**
- * Resets the game state by clearing localStorage and resetting UI elements.
+ * Resets the game state by clearing safeStorage and resetting UI elements.
  */
 function resetGameState() {
     if (!confirm('Czy na pewno chcesz zresetować grę i wyczyścić wszystkie pola?')) return;
 
-    localStorage.removeItem(STORAGE_KEY);
+    safeStorage.removeItem(STORAGE_KEY);
 
     // Reset all selects
     document.querySelectorAll('select').forEach(el => {

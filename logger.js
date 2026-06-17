@@ -1,16 +1,16 @@
 /**
  * Satori Game Logger
- * Handles logging of all game actions to localStorage and optionally a local file.
+ * Handles logging of all game actions to safeStorage and optionally a local file.
  */
 
 const SatoriLogger = (function() {
     const LOG_KEY = 'satori_game_log_buffer';
     let fileHandle = null;
-    let logBuffer = localStorage.getItem(LOG_KEY) || "";
+    let logBuffer = safeStorage.getItem(LOG_KEY) || "";
 
-    // Sync with localStorage
+    // Sync with safeStorage
     function saveBuffer() {
-        localStorage.setItem(LOG_KEY, logBuffer);
+        safeStorage.setItem(LOG_KEY, logBuffer);
     }
 
     async function log(action, details = "") {
@@ -105,19 +105,23 @@ const SatoriLogger = (function() {
     }
 
     function getDeviceName() {
-        // 1. Check localStorage
-        const storedDevice = localStorage.getItem('satori_deviceName');
+        // 1. Check safeStorage
+        const storedDevice = safeStorage.getItem('satori_deviceName');
         if (storedDevice && storedDevice.trim() !== "") {
             return storedDevice.trim();
         }
 
         // 2. Check cookies
-        const cookieValue = document.cookie
-            .split("; ")
-            .find((row) => row.startsWith("satori_deviceName="))
-            ?.split("=")[1];
-        if (cookieValue && cookieValue.trim() !== "") {
-            return decodeURIComponent(cookieValue.trim());
+        try {
+            const cookieValue = document.cookie
+                .split("; ")
+                .find((row) => row.startsWith("satori_deviceName="))
+                ?.split("=")[1];
+            if (cookieValue && cookieValue.trim() !== "") {
+                return decodeURIComponent(cookieValue.trim());
+            }
+        } catch (e) {
+            console.warn("Accessing cookies is blocked or insecure in this context:", e);
         }
 
         // 3. Detect PC vs Tel (Mobile)
@@ -177,8 +181,6 @@ const SatoriLogger = (function() {
             <button type="button" onclick="SatoriLogger.logSeparator()" style="font-size: 11px;">Kolejna gra (separator)</button>
             <button type="button" onclick="SatoriLogger.downloadLog()" style="font-size: 11px;">Pobierz Log</button>
             <button type="button" onclick="SatoriLogger.clearLog()" style="font-size: 11px; color: red;">Wyczyść</button>
-            Możesz ustawić własną nazwę urządzenia, wpisując w konsoli przeglądarki:<br><b>  localStorage.setItem('satori_deviceName', 'MojaWlasnaNazwa')</b>
-
         `;
         document.body.prepend(div);
         updateUI();
@@ -325,10 +327,10 @@ const SatoriLogger = (function() {
         if (window.jQuery) {
             jQuery(document).on('change', 'select', function() {
                 // To avoid double logging if native event also fires
-                const lastLog = localStorage.getItem('satori_last_select_log');
+                const lastLog = safeStorage.getItem('satori_last_select_log');
                 const currentVal = this.id + ":" + this.value;
                 if (lastLog === currentVal) return;
-                localStorage.setItem('satori_last_select_log', currentVal);
+                safeStorage.setItem('satori_last_select_log', currentVal);
                 
                 logSelectChange(this);
 

@@ -94,6 +94,7 @@
 <canvas id="matrix-canvas"></canvas>
 <input id="hidden-input" type="text" autocomplete="off" autocorrect="off" spellcheck="false">
 
+<script src="safeStorage.js"></script>
 <script>
 // ── MD5 implementation (pure JS) ──────────────────────────────────────────────
 function md5(string) {
@@ -200,8 +201,8 @@ input.addEventListener('keydown', (e) => {
 function startMatrix() {
   loginScreen.style.display = 'none';
 
-  // ✅ Zapisz domyślne imię w localStorage – żeby RW.html nie pytało
-  localStorage.setItem('satori_userName', 'Krzysiu');
+  // ✅ Zapisz domyślne imię w safeStorage – żeby RW.html nie pytało
+  safeStorage.setItem('satori_userName', 'Krzysiu');
 
   // Load RW.html via srcdoc stub – przekierowuje od razu, ale imię jest już zapisane
   const iframe = document.createElement('iframe');

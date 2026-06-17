@@ -58,6 +58,7 @@ const CDaHTML = `
 		Przed rozpoczęciem gry niech wszyscy wysłuchają nagrania pierwszego.</span>
    <div id="expandedMasterContent" class="expandable-content-cda" style="text-align:left;">
         <span class="warning-text-cda">⚠️ <strong>Ważne:</strong> Wysłuchaj wszystkich trzech nagrań zanim przystąpisz do prowdzenia gry. Służy to zapewnieniu komfortu wszystkim uczestnikom.</span>
+        <span class="warning-text-cda">Możesz ustawić własną nazwę urządzenia, wpisując w konsoli przeglądarki: <b>  safeStorage.setItem('satori_deviceName', 'MojaWlasnaNazwa')</b></span>
         <strong>🎯 Rola Mistrza Gry:</strong>
         <div class="role-grid-cda">
             <span class="role-item-cda">🎯  Kieruj grą i wyjaśniaj grającym skutki znalezienia się na konkretnych polach.</span>
