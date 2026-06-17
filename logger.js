@@ -104,10 +104,44 @@ const SatoriLogger = (function() {
         updateUI(); // In case we want to show something, though updateUI is currently empty
     }
 
+    function getDeviceName() {
+        // 1. Check localStorage
+        const storedDevice = localStorage.getItem('satori_deviceName');
+        if (storedDevice && storedDevice.trim() !== "") {
+            return storedDevice.trim();
+        }
+
+        // 2. Check cookies
+        const cookieValue = document.cookie
+            .split("; ")
+            .find((row) => row.startsWith("satori_deviceName="))
+            ?.split("=")[1];
+        if (cookieValue && cookieValue.trim() !== "") {
+            return decodeURIComponent(cookieValue.trim());
+        }
+
+        // 3. Detect PC vs Tel (Mobile)
+        const ua = navigator.userAgent;
+        const isMobile = /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(ua);
+        return isMobile ? "Tel" : "PC";
+    }
+
+    function getDynamicFileName() {
+        const now = new Date();
+        const pad = (n) => n.toString().padStart(2, '0');
+        const yy = now.getFullYear().toString().slice(-2);
+        const mm = pad(now.getMonth() + 1);
+        const dd = pad(now.getDate());
+        const hh = pad(now.getHours());
+        const mi = pad(now.getMinutes());
+        const device = getDeviceName(); 
+        return `Satori_Log r${yy}${mm}${dd} g${hh}${mi} ${device}.txt`;
+    }
+
     async function connectFile() {
         try {
             fileHandle = await window.showSaveFilePicker({
-                suggestedName: 'Satori_Log.txt',
+                suggestedName: getDynamicFileName(),
                 types: [{
                     description: 'Plik tekstowy logu',
                     accept: { 'text/plain': ['.txt'] },
@@ -121,7 +155,12 @@ const SatoriLogger = (function() {
     }
 
     function updateUI() {
-        // Status display removed per user request
+        const label = document.getElementById('log-label');
+        if (label) {
+            const count = logBuffer.split('\n').length - 1;
+            const paddedCount = Math.max(0, count).toString().padStart(4, '0');
+            label.innerText = `LOG ${paddedCount}`;
+        }
     }
 
     function initUI() {
@@ -133,11 +172,13 @@ const SatoriLogger = (function() {
         div.id = 'logger-panel';
         div.style = "background: #f0f0f0; border: 1px solid #ccc; padding: 5px; margin-bottom: 10px; font-family: sans-serif; font-size: 12px; display: flex; align-items: center; gap: 10px;";
         div.innerHTML = `
-            <b>LOG GRY:</b>
+            <b id="log-label">LOG 0000</b>
             <button type="button" onclick="SatoriLogger.logEndGame('Ręczny koniec gry')" style="font-size: 11px; font-weight: bold; background: #ffffcc; border: 1px solid #999;">KONIEC GRY</button>
             <button type="button" onclick="SatoriLogger.logSeparator()" style="font-size: 11px;">Kolejna gra (separator)</button>
             <button type="button" onclick="SatoriLogger.downloadLog()" style="font-size: 11px;">Pobierz Log</button>
             <button type="button" onclick="SatoriLogger.clearLog()" style="font-size: 11px; color: red;">Wyczyść</button>
+            Możesz ustawić własną nazwę urządzenia, wpisując w konsoli przeglądarki:<br><b>  localStorage.setItem('satori_deviceName', 'MojaWlasnaNazwa')</b>
+
         `;
         document.body.prepend(div);
         updateUI();
@@ -148,7 +189,7 @@ const SatoriLogger = (function() {
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
-        a.download = 'Satori_Log.txt';
+        a.download = getDynamicFileName();
         a.click();
         URL.revokeObjectURL(url);
     }
