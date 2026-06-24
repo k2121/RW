@@ -62,6 +62,7 @@ window.pole46a = function() { createMp3Button('Wrota trzecie.mp3'); };
 window.pole49a = function() { createMp3Button('Radykalne Wybaczenie.mp3'); };
 window.pole50a = function() { createMp3Button('Poddanie się.mp3'); };
 window.pole58a = function() { createMp3Button('Jedność.mp3'); };
+window.pole61a = function() { createMp3Button('Satori.mp3'); };
 
 window.triggerFieldAction = function(val) {
     const container = document.getElementById('mp3-container');
@@ -118,6 +119,7 @@ window.triggerFieldAction = function(val) {
     else if ([49, 56].includes(num)) mp3Num = 49;
     else if ([50, 60].includes(num)) mp3Num = 50;
     else if (num === 58) mp3Num = 58;
+    else if (num === 61) mp3Num = 61;
 
     if (mp3Num !== null) {
         const mp3FuncName = 'pole' + mp3Num.toString().padStart(2, '0') + 'a';
