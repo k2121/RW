@@ -74,7 +74,7 @@ function generateTextarea(id) {
   return `
     <label for="${id}">Moja karta ${id.slice(-2)}:
       <button type="button" onclick="toggleVisibility('${id}', this)">🫣</button>
-      <button type="button" onclick="saveBackup('${id}'); clearTextarea('${id}')">🗑️</button>
+      <button type="button" onclick="saveBackup('${id}'); burnElement('${id}')">🗑️</button>
       <button type="button" onclick="saveBackup('${id}'); pasteFromClipboard('${id}')">📋Wklej</button>
       <button type="button" onclick="undoField('${id}')">Cofnij ↩️</button>
       <button type="button" onclick="copyToClipboard('${id}')">Kopiuj</button>
