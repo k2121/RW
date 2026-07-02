@@ -166,7 +166,7 @@
   .privacy strong{ color:var(--ink); }
 
   .toolbar{
-    display:flex; gap:10px; flex-wrap:wrap; margin:18px 0 40px;
+    display:flex; gap:10px; flex-wrap:wrap; margin:34px 0 20px;
   }
   .btn{
     appearance:none; cursor:pointer; border-radius:999px;
@@ -212,6 +212,34 @@
   .item p.note{
     font-family:'Spectral',serif; font-style:italic; color:var(--ink-soft);
     font-size:14.5px; margin:6px 0 14px;
+  }
+
+  /* Checkbox list styles for point 3 */
+  .emotions-list {
+    margin: 8px 0 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+  }
+  .emotion-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Spectral', serif;
+    color: var(--ink-soft);
+    font-size: 15.5px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .emotion-item input[type="checkbox"] {
+    accent-color: var(--rose-deep);
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+    margin: 0;
+  }
+  .emotion-item:hover {
+    color: var(--ink);
   }
 
   textarea{
@@ -291,6 +319,7 @@
     .stage{ break-before:page; margin-top:0; padding-top:18px; }
     .stage:first-of-type{ break-before:auto; }
     textarea{ border:1px solid #ccc; }
+    .emotion-item input[type="checkbox"] { border: 1px solid #000; }
   }
 </style>
 </head>
@@ -322,10 +351,10 @@
       <p class="subtitle">Narzędzie do uwalniania poczucia winy i wstydu</p>
 
       <div class="meta-card">
-        <div class="field"><label for="fData">Data</label><input id="fData" type="date"></div>
-        <div class="field"><label for="fNr">Arkusz nr</label><input id="fNr" type="text" placeholder="np. 1"></div>
+        <div class="field"><label for="fData">Data,</label><input id="fData" type="date"></div>
+        <div class="field"><label for="fNr">Arkusz nr,</label><input id="fNr" type="text" placeholder="np. 1"></div>
         <div class="field wide">
-          <label for="yourName">Twoje Imię</label>
+          <label for="yourName">Twoje Imię,</label>
           <input id="yourName" type="text" placeholder="Wpisz swoje imię…">
         </div>
       </div>
@@ -333,11 +362,6 @@
       <p class="privacy"><strong>Dane z tego arkusza nie są nigdzie przesyłane ani zapisywane.</strong> Wszystko, co wpiszesz, pozostaje wyłącznie w tej przeglądarce, na czas tej sesji — możesz wypełniać go zupełnie bezpiecznie i anonimowo.</p>
 
       <p class="hint">Podpowiedź: aby w pełni utrwalić transformację, mów na głos wszystko, co zapisujesz.</p>
-
-      <div class="toolbar">
-        <button class="btn primary" id="printBtn">Drukuj / zapisz jako PDF</button>
-        <button class="btn ghost" id="clearBtn">Wyczyść arkusz</button>
-      </div>
 
       <section class="stage" id="stage-1">
         <div class="stage-head"><span class="snum">1</span><h2>Wyznanie i uczucia</h2></div>
@@ -354,15 +378,74 @@
 
         <div class="item">
           <p class="lead"><span class="inum">3.</span>Moje uczucia wobec siebie, związane z tą sytuacją albo w ogólności, są następujące (zakreśl ile chcesz):</p>
-          <p class="note"><strong>a) Gdy myślę o sobie, czuję:</strong> odrzucenie, pogardę, złość, dystans, sarkazm, frustrację, krytycyzm, irytację, sceptycyzm, wstyd, bezradność, smutek, zranienie, wrogość, nienawiść, zazdrość, pragnienie zemsty, wściekłość, apatię, izolację, głupotę, wyrzuty sumienia, osamotnienie, depresję, poczucie winy, chęć samobójstwa.</p>
-          <p class="note"><strong>b) Gdy patrzę na swoje życie, czuję:</strong> apatię, izolację, niższość, głupotę, wyrzuty sumienia, zmęczenie, nudę, osamotnienie, przygnębienie, wstyd, winę, chęć samobójstwa.</p>
-          <p class="note"><strong>c) W ogólności czuję:</strong> dezorientację, zniechęcenie, bezsens, niedoskonałość, beznadzieję, zakłopotanie, przytłoczenie, zamęt, bezradność, uległość, zagrożenie, niepokój.</p>
+          
+          <p class="note" style="margin-bottom:4px;"><strong>a) Gdy myślę o sobie, czuję:</strong></p>
+          <div class="emotions-list">
+            <label class="emotion-item"><input type="checkbox" name="em_a"> odrzucenie,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_a"> pogardę,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_a"> złość,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_a"> dystans,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_a"> sarkazm,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_a"> frustrację,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_a"> krytycyzm,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_a"> irytację,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_a"> sceptycyzm,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_a"> wstyd,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_a"> bezradność,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_a"> smutek,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_a"> zranienie,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_a"> wrogość,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_a"> nienawiść,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_a"> zazdrość,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_a"> pragnienie zemsty,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_a"> wściekłość,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_a"> apatię,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_a"> izolację,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_a"> głupotę,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_a"> wyrzuty sumienia,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_a"> osamotnienie,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_a"> depresję,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_a"> poczucie winy,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_a"> chęć samobójstwa.</label>
+          </div>
+
+          <p class="note" style="margin-bottom:4px;"><strong>b) Gdy patrzę na swoje życie, czuję:</strong></p>
+          <div class="emotions-list">
+            <label class="emotion-item"><input type="checkbox" name="em_b"> apatię,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_b"> izolację,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_b"> niższość,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_b"> głupotę,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_b"> wyrzuty sumienia,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_b"> zmęczenie,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_b"> nudę,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_b"> osamotnienie,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_b"> przygnębienie,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_b"> wstyd,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_b"> winę,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_b"> chęć samobójstwa.</label>
+          </div>
+
+          <p class="note" style="margin-bottom:4px;"><strong>c) W ogólności czuję:</strong></p>
+          <div class="emotions-list">
+            <label class="emotion-item"><input type="checkbox" name="em_c"> dezorientację,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_c"> zniechęcenie,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_c"> bezsens,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_c"> niedoskonałość,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_c"> beznadzieję,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_c"> zakłopotanie,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_c"> przytłoczenie,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_c"> zamęt,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_c"> bezradność,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_c"> uległość,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_c"> zagrożenie,</label>
+            <label class="emotion-item"><input type="checkbox" name="em_c"> niepokój.</label>
+          </div>
           
           <p class="note" style="margin-top:24px; font-weight: 500;">Trzy niżej wymienione emocje ustaw w kolejności od najbardziej do najmniej dominującej w Twoim życiu. Każdej z nich przydziel punkty w skali 1 do 10 (1 oznacza bardzo małą intensywność):</p>
           <div class="score-grid">
-            <div class="score-row"><label>Poczucie winy</label><input type="number" min="1" max="10" placeholder="1-10"></div>
-            <div class="score-row"><label>Złość</label><input type="number" min="1" max="10" placeholder="1-10"></div>
-            <div class="score-row"><label>Lęk</label><input type="number" min="1" max="10" placeholder="1-10"></div>
+            <div class="score-row"><label>Poczucie winy,</label><input type="number" min="1" max="10" placeholder="1-10"></div>
+            <div class="score-row"><label>Złość,</label><input type="number" min="1" max="10" placeholder="1-10"></div>
+            <div class="score-row"><label>Lęk,</label><input type="number" min="1" max="10" placeholder="1-10"></div>
           </div>
         </div>
 
@@ -370,28 +453,28 @@
           <p class="lead"><span class="inum">4.</span>Z życzliwością rozpoznaję i akceptuję swoje emocje i już dłużej ich nie osądzam.</p>
           <div class="rgroup-scale" data-name="r4"></div>
           <div class="score-grid" style="margin-top:16px;">
-            <div class="score-row" style="max-width:100%;"><label>Moja samoocena w skali od 1 do 10 (1 oznacza bardzo niską) wynosi:</label><input type="number" min="1" max="10" placeholder="1-10"></div>
+            <div class="score-row" style="max-width:100%;"><label>Moja samoocena w skali od 1 do 10 (1 oznacza bardzo niską) wynosi:,</label><input type="number" min="1" max="10" placeholder="1-10"></div>
           </div>
         </div>
 
         <div class="item">
-          <p class="lead"><span class="inum">5.</span>Mam określone uczucia. Skoro emocje są myślami (lub przekonaniami), to moje uczucia:</p>
+          <p class="lead"><span class="inum">5.</span>Mam określone uczucia. Skoro emocje są myślami (lub przekonaniami), oto moje uczucia:</p>
           <textarea rows="3" placeholder="Uzupełnij lub opisz swoje spostrzeżenia…"></textarea>
           <div class="score-grid" style="margin-top:16px;">
-            <div class="score-row" style="max-width:100%;"><label>Moja samoocena w skali od 1 do 10 (1 oznacza bardzo niską) wynosi:</label><input type="number" min="1" max="10" placeholder="1-10"></div>
+            <div class="score-row" style="max-width:100%;"><label>Moja samoocena w skali od 1 do 10 (1 oznacza bardzo niską) wynosi:,</label><input type="number" min="1" max="10" placeholder="1-10"></div>
           </div>
         </div>
 
         <div class="item">
           <p class="lead"><span class="inum">6.</span>Czuję się winna/y. Moje poczucie winy w skali od 1 do 10 wynosi (1 oznacza bardzo małą intensywność):</p>
           <div class="score-grid" style="margin-bottom:16px;">
-            <div class="score-row"><label>Skala poczucia winy:</label><input type="number" min="1" max="10" placeholder="1-10"></div>
+            <div class="score-row"><label>Skala poczucia winy:,</label><input type="number" min="1" max="10" placeholder="1-10"></div>
           </div>
           <p class="note" style="font-weight: 500;">Moje poczucie winy w stosunku do tego wydarzenia jest:</p>
           <fieldset class="readiness">
-            <label class="pill"><input type="radio" name="wina_rodzaj" value="sluszne"><span>słuszne</span></label>
-            <label class="pill"><input type="radio" name="wina_rodzaj" value="niesluszne"><span>niesłuszne</span></label>
-            <label class="pill"><input type="radio" name="wina_rodzaj" value="mieszane"><span>mieszane</span></label>
+            <label class="pill"><input type="radio" name="wina_rodzaj" value="sluszne"><span>słuszne</span>,</label>
+            <label class="pill"><input type="radio" name="wina_rodzaj" value="niesluszne"><span>niesłuszne</span>,</label>
+            <label class="pill"><input type="radio" name="wina_rodzaj" value="mieszane"><span>mieszane</span>,</label>
           </fieldset>
         </div>
       </section>
@@ -431,7 +514,7 @@
 
         <div class="item">
           <p class="lead"><span class="inum">13.</span>Uwalniam swoją świadomość od wszelkich osądów.</p>
-          <textarea rows="3" placeholder="Zapisz dodatkowe refleksje o uwolnieniu osądów…"></textarea>
+          <div class="rgroup-scale" data-name="r13"></div>
         </div>
       </section>
 
@@ -471,28 +554,33 @@
         </div>
 
         <div class="affirmation">
-          <p style="margin:0;"><span class="inum">20.</span> Całkowicie sobie wybaczam, bo teraz rozumiem, że nie uczyniłam/em nic złego i wszystko dzieje się zgodnie z Boskim Porządkiem. Uznaję, akceptuję i kocham siebie bezwarunkowo takim/ą jakim/ą jestem. Wiem, że jestem istotą duchową doświadczającą ludzkiego losu i kocham siebie i wspieram w każdym aspekcie mojego człowieczeństwa.</p>
+          <p style="margin:0;"><span class="inum">20.</span> Całkowicie sobie wybaczam, bo teraz rozumiem, że nie uczyniłam/em nic złego i everything dzieje się zgodnie z Boskim Porządkiem. Uznaję, akceptuję i kocham siebie bezwarunkowo takim/ą jakim/ą jestem. Wiem, że jestem istotą duchową doświadczającą ludzkiego losu i kocham siebie i wspieram w każdym aspekcie mojego człowieczeństwa.</p>
         </div>
 
         <div class="item">
           <p class="lead">Podsumowanie po zakończeniu arkusza:</p>
           <div class="score-grid" style="margin-bottom:16px;">
-            <div class="score-row" style="max-width:100%;"><label>Moja samoocena w skali od 1 do 10 (1 oznacza bardzo niską) wynosi:</label><input type="number" min="1" max="10" placeholder="1-10"></div>
+            <div class="score-row" style="max-width:100%;"><label>Moja samoocena w skali od 1 do 10 (1 oznacza bardzo niską) wynosi:,</label><input type="number" min="1" max="10" placeholder="1-10"></div>
           </div>
           <p class="note" style="font-weight: 500;">Każdej z poniższych emocji przydziel punkty w skali 1 do 10 (1 oznacza bardzo małą intensywność):</p>
           <div class="score-grid">
-            <div class="score-row"><label>Poczucie winy</label><input type="number" min="1" max="10" placeholder="1-10"></div>
-            <div class="score-row"><label>Złość</label><input type="number" min="1" max="10" placeholder="1-10"></div>
-            <div class="score-row"><label>Lęk</label><input type="number" min="1" max="10" placeholder="1-10"></div>
+            <div class="score-row"><label>Poczucie winy,</label><input type="number" min="1" max="10" placeholder="1-10"></div>
+            <div class="score-row"><label>Złość,</label><input type="number" min="1" max="10" placeholder="1-10"></div>
+            <div class="score-row"><label>Lęk,</label><input type="number" min="1" max="10" placeholder="1-10"></div>
           </div>
         </div>
 
         <div class="signoff">
-          <div class="field"><label for="signDate">Data</label><input id="signDate" type="date"></div>
-          <div class="field" style="flex:1;"><label for="signName">Podpis</label><input id="signName" type="text" placeholder="Twój podpis…"></div>
+          <div class="field"><label for="signDate">Data,</label><input id="signDate" type="date"></div>
+          <div class="field" style="flex:1;"><label for="signName">Podpis,</label><input id="signName" type="text" placeholder="Twój podpis…"></div>
           <div style="font-family:'Fraunces',serif; font-style:italic; font-size:24px; color:var(--rose-deep); width:100%; text-align:right;">NAMASTE!</div>
         </div>
       </section>
+
+      <div class="toolbar">
+        <button class="btn primary" id="printBtn">Drukuj / zapisz jako PDF</button>
+        <button class="btn ghost" id="clearBtn">Wyczyść arkusz</button>
+      </div>
 
       <footer>
         Instytut Metody Tippinga — jedyny autoryzowany oddział Institute for Radical Forgiveness Therapy &amp; Coaching, Inc.<br>
