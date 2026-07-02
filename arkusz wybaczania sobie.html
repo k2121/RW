@@ -652,6 +652,24 @@
   sections.forEach(s=> io.observe(s));
   setActive('stage-1');
 
+  // Kopiowanie daty z początku arkusza do daty na końcu (podpis)
+  const fData = document.getElementById('fData');
+  const signDate = document.getElementById('signDate');
+  fData.addEventListener('input', ()=>{ signDate.value = fData.value; });
+
+  // Dynamiczny tytuł strony (widoczny też jako domyślna nazwa pliku PDF przy druku)
+  const BASE_TITLE = document.title;
+  const fNr = document.getElementById('fNr');
+  const yourName = document.getElementById('yourName');
+  function updateTitle(){
+    let parts = [BASE_TITLE];
+    if(fNr.value.trim()) parts.push('nr ' + fNr.value.trim());
+    if(yourName.value.trim()) parts.push(yourName.value.trim());
+    document.title = parts.join(' - ');
+  }
+  fNr.addEventListener('input', updateTitle);
+  yourName.addEventListener('input', updateTitle);
+
   // Drukowanie pliku
   document.getElementById('printBtn').addEventListener('click', ()=> window.print());
 
@@ -662,6 +680,7 @@
     document.querySelectorAll('input[type=text], input[type=date], input[type=number]').forEach(i=> i.value='');
     document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach(i=> i.checked=false);
     autosizeAll();
+    document.title = BASE_TITLE;
   });
 })();
 </script>
