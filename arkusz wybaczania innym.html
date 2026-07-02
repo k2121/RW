@@ -168,7 +168,7 @@
   .privacy strong{ color:var(--ink); }
 
   .toolbar{
-    display:flex; gap:10px; flex-wrap:wrap; margin:18px 0 40px;
+    display:flex; gap:10px; flex-wrap:wrap; margin:30px 0 30px;
   }
   .btn{
     appearance:none; cursor:pointer; border-radius:999px;
@@ -362,17 +362,12 @@
 
       <p class="hint">Podpowiedź: aby w pełni utrwalić transformację, mów na głos wszystko, co zapisujesz.</p>
 
-      <div class="toolbar">
-        <button class="btn primary" id="printBtn">Drukuj / zapisz jako PDF</button>
-        <button class="btn ghost" id="clearBtn">Wyczyść arkusz</button>
-      </div>
-
       <!-- ================= STAGE 1 ================= -->
       <section class="stage" id="stage-1">
         <div class="stage-head"><span class="snum">1</span><h2>Opowiedz swoją wersję zdarzenia</h2></div>
 
         <div class="item">
-          <p class="lead"><span class="inum">1.</span>Przykra dla mnie sytuacja, tak jak ją widzę w tej chwili, wygląda następująco:</p>
+          <p class="lead"><span class="inum">1.</span>Przykra dla mnie sytuacja, tak jak jã widzę w tej chwili, wygląda następująco:</p>
           <p class="note">Opowiedz historię wyłącznie z punktu widzenia świata ofiary. Weź dodatkową kartkę papieru, jeśli potrzebujesz.</p>
           <textarea rows="5" placeholder="Opisz, co się wydarzyło…"></textarea>
         </div>
@@ -385,7 +380,7 @@
         <div class="item">
           <p class="lead"><span class="inum">2b.</span>Z powodu tego, co zrobiłeś(-łaś), CZUJĘ:</p>
           <p class="note">Określ swoje prawdziwe uczucia.</p>
-          <textarea rows="4" placeholder="Czuję się…"></textarea>
+          <textarea id="t2b" rows="4" placeholder="Czuję się…"></textarea>
         </div>
       </section>
 
@@ -408,7 +403,6 @@
           <p class="lead"><span class="inum">5.</span>Moje złe samopoczucie było sygnałem, że nie dopuszczam miłości do siebie i do <span class="name-fill">X</span>, osądzam, oczekuję, że <span class="name-fill">X</span> się zmieni, i postrzegam <span class="name-fill">X</span> jako kogoś gorszego.</p>
           <p class="note">Wylicz osądy, oczekiwania i zachowania, które wskazują, że chciałeś, by <span class="name-fill">X</span> się zmienił(-a). Zwróć uwagę, ile z tych osądów masz na swój własny temat.</p>
           <textarea rows="4" placeholder="Wypisz osądy i oczekiwania…"></textarea>
-          <div class="rgroup" data-name="r5"></div>
         </div>
       </section>
 
@@ -423,8 +417,6 @@
 
           <div id="interpRows"></div>
           <button class="add-row" id="addInterp" type="button">+ Dodaj kolejną interpretację</button>
-
-          <div class="rgroup" data-name="r6" style="margin-top:18px;"></div>
         </div>
 
         <div class="item">
@@ -480,7 +472,7 @@
         <div class="item">
           <p class="lead"><span class="inum">15.</span>Uwalniam teraz swoją podświadomość od wszystkich uczuć:</p>
           <p class="note">Wymienionych w pkt 2b i nowych, które się pojawiły.</p>
-          <textarea rows="3" placeholder="Wymień uczucia, które uwalniasz…"></textarea>
+          <textarea id="t15" rows="4" placeholder="Wymień uczucia, które uwalniasz…"></textarea>
         </div>
 
         <div class="subhead">Oświadczenie o zmianie perspektywy</div>
@@ -520,13 +512,16 @@
         </div>
       </section>
 
+      <!-- Przyciski na dole -->
       <div class="toolbar">
-        <button class="btn primary" id="printBtn2">Drukuj / zapisz jako PDF</button>
+        <button class="btn primary" id="printBtn">Drukuj / zapisz jako PDF</button>
+        <button class="btn ghost" id="clearBtn">Wyczyść arkusz</button>
       </div>
 
       <footer>
         Instytut Metody Tippinga — jedyny autoryzowany oddział Institute for Radical Forgiveness Therapy &amp; Coaching, Inc.<br>
-        www.metoda-tippinga.pl · info@metoda-tippinga.pl
+        www.metoda-tippinga.pl · info@metoda-tippinga.pl<br>
+        Styczeń 2015
       </footer>
     </div>
   </main>
@@ -619,6 +614,31 @@
   nameInput.addEventListener('input', refreshNames);
   refreshNames();
 
+  // Smart Sync script
+  const t2b = document.getElementById('t2b');
+  const t15 = document.getElementById('t15');
+  const fData = document.getElementById('fData');
+  const signDate = document.getElementById('signDate');
+
+  let last2bValue = "";
+
+  t2b.addEventListener('input', () => {
+    let current15 = t15.value;
+    // Jeśli 15 zaczyna się od poprzedniej wartości z 2b, podmieniamy tylko ten człon, zachowując dopisaną resztę
+    if (current15.startsWith(last2bValue)) {
+      t15.value = t2b.value + current15.slice(last2bValue.length);
+    } else if (current15 === "") {
+      t15.value = t2b.value;
+    }
+    // W przeciwnym wypadku (jeśli użytkownik zmodyfikował też początek), dopisujemy nową treść na koniec lub zostawiamy
+    last2bValue = t2b.value;
+    autosize(t15);
+  });
+
+  fData.addEventListener('input', () => {
+    signDate.value = fData.value;
+  });
+
   // autosize textareas
   function autosize(t){
     t.style.height = 'auto';
@@ -656,7 +676,6 @@
 
   // print
   document.getElementById('printBtn').addEventListener('click', ()=> window.print());
-  document.getElementById('printBtn2').addEventListener('click', ()=> window.print());
 
   // clear
   document.getElementById('clearBtn').addEventListener('click', ()=>{
@@ -667,6 +686,7 @@
     document.getElementById('t16').value = 'Zdaję sobie teraz sprawę…';
     document.getElementById('t19').value = 'Wypełniając ten arkusz wybaczam Ci całkowicie, ponieważ zdaję sobie sprawę, że nie zrobiłeś(-aś) nic złego i że wszystko jest zgodne z Boskim porządkiem. Uznaję Cię, akceptuję i kocham takiego, jaki jesteś / taką, jaka jesteś.';
     document.getElementById('t20').value = 'Wiem, że jestem istotą duchową, która przeżywa ludzki los. Kocham siebie i wspieram w każdym aspekcie swojego człowieczeństwa.';
+    last2bValue = "";
     autosizeAll();
     refreshNames();
   });
