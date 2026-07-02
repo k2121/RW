@@ -367,7 +367,7 @@
         <div class="stage-head"><span class="snum">1</span><h2>Opowiedz swoją wersję zdarzenia</h2></div>
 
         <div class="item">
-          <p class="lead"><span class="inum">1.</span>Przykra dla mnie sytuacja, tak jak jã widzę w tej chwili, wygląda następująco:</p>
+          <p class="lead"><span class="inum">1.</span>Przykra dla mnie sytuacja, tak jak ją widzę w tej chwili, wygląda następująco:</p>
           <p class="note">Opowiedz historię wyłącznie z punktu widzenia świata ofiary. Weź dodatkową kartkę papieru, jeśli potrzebujesz.</p>
           <textarea rows="5" placeholder="Opisz, co się wydarzyło…"></textarea>
         </div>
@@ -612,7 +612,22 @@
     document.querySelectorAll('.name-fill').forEach(s=> s.textContent = val);
   }
   nameInput.addEventListener('input', refreshNames);
+
+  // dynamiczny tytuł strony (wpływa też na nazwę pliku PDF przy drukowaniu)
+  const nrInput = document.getElementById('fNr');
+  const BASE_TITLE = 'Arkusz Radykalnego Wybaczania';
+  function refreshTitle(){
+    const nr = nrInput.value.trim();
+    const osoba = nameInput.value.trim();
+    let title = BASE_TITLE;
+    if(nr) title += ' nr ' + nr;
+    if(osoba) title += ' — ' + osoba;
+    document.title = title;
+  }
+  nameInput.addEventListener('input', refreshTitle);
+  nrInput.addEventListener('input', refreshTitle);
   refreshNames();
+  refreshTitle();
 
   // Smart Sync script
   const t2b = document.getElementById('t2b');
@@ -689,6 +704,7 @@
     last2bValue = "";
     autosizeAll();
     refreshNames();
+    refreshTitle();
   });
 })();
 </script>
