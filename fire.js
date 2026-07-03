@@ -1,5 +1,5 @@
 /**
- * Funkcja  spalająca tekst w podanym elemencie (textarea)
+ * Funkcja spalająca tekst w podanym elemencie (textarea)
  * @param {string} elementId - ID elementu do spalenia
  */
 function burnElement(elementId) {
@@ -41,7 +41,8 @@ function burnElement(elementId) {
     const fz = parseFloat(cs.fontSize) || 11;
     const ff = cs.fontFamily;
     const lh = fz * 1.0;
-    const pt = 5; // padding top
+    const pt = 6; // padding top
+    const marginX = 0; // łączny margines boczny
 
     sc.fillStyle = "#0b0b18"; // Tło
     sc.fillRect(0, 0, W, H);
@@ -58,7 +59,8 @@ function burnElement(elementId) {
             const words = para.split(' ');
             for (const word of words) {
                 const test = line ? line + ' ' + word : word;
-                if (sc.measureText(test).width > (W - 40) && line) {
+                if (sc.measureText(test).width > (W - marginX) && line) {
+                    // Rysujemy linię na środku szerokości (W / 2)
                     sc.fillText(line, W / 2, y);
                     y += lh;
                     line = word;
@@ -66,6 +68,7 @@ function burnElement(elementId) {
                     line = test;
                 }
             }
+            // Rysujemy ostatnią linię akapitu na środku
             sc.fillText(line, W / 2, y);
             y += lh;
         }
@@ -106,6 +109,7 @@ function burnElement(elementId) {
 
         if (r > 1) {
             const fw = 30;
+            // Blask
             ctx.globalCompositeOperation = 'lighter';
             ctx.filter = 'blur(6px)';
             const og = ctx.createRadialGradient(cx, cy, Math.max(0, r - 10), cx, cy, r + fw);
@@ -116,6 +120,7 @@ function burnElement(elementId) {
             ctx.fillStyle = og;
             ctx.fill();
 
+            // Wycinanie środka
             ctx.filter = 'none';
             ctx.globalCompositeOperation = 'destination-out';
             wavyPath(r, 6, 3, 1, ts);
