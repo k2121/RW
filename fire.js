@@ -1,5 +1,5 @@
 /**
- * Funkcja spalająca tekst w podanym elemencie (textarea)
+ * Funkcja  spalająca tekst w podanym elemencie (textarea)
  * @param {string} elementId - ID elementu do spalenia
  */
 function burnElement(elementId) {
