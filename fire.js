@@ -40,7 +40,7 @@ function burnElement(elementId) {
     const cs = getComputedStyle(el);
     const fz = parseFloat(cs.fontSize) || 11;
     const ff = cs.fontFamily;
-    const lh = fz * 1.0;
+    const lh = fz * 1.2;
     const pt = 6; // padding top
     const marginX = 0; // łączny margines boczny
 
