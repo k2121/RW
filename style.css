@@ -97,7 +97,7 @@ body, button, textarea, select, label {
   min-height: 22px;
   height: auto;
   overflow: hidden;
-  line-height: 1.2 !important;
+  line-height: 2.2 !important;
 }
 #projekcje {
   width: 100px;
