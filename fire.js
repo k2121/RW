@@ -40,8 +40,8 @@ function burnElement(elementId) {
     const cs = getComputedStyle(el);
     const fz = parseFloat(cs.fontSize) || 11;
     const ff = cs.fontFamily;
-    const lh = fz * 1.4;
-    const pt = 6; // padding top
+    const lh = fz * 1.0;
+    const pt = 5; // padding top
 
     sc.fillStyle = "#0b0b18"; // Tło
     sc.fillRect(0, 0, W, H);
@@ -59,7 +59,6 @@ function burnElement(elementId) {
             for (const word of words) {
                 const test = line ? line + ' ' + word : word;
                 if (sc.measureText(test).width > (W - 40) && line) {
-                    // Rysujemy linię na środku szerokości (W / 2)
                     sc.fillText(line, W / 2, y);
                     y += lh;
                     line = word;
@@ -67,7 +66,6 @@ function burnElement(elementId) {
                     line = test;
                 }
             }
-            // Rysujemy ostatnią linię akapitu na środku
             sc.fillText(line, W / 2, y);
             y += lh;
         }
@@ -108,7 +106,6 @@ function burnElement(elementId) {
 
         if (r > 1) {
             const fw = 30;
-            // Blask
             ctx.globalCompositeOperation = 'lighter';
             ctx.filter = 'blur(6px)';
             const og = ctx.createRadialGradient(cx, cy, Math.max(0, r - 10), cx, cy, r + fw);
@@ -119,7 +116,6 @@ function burnElement(elementId) {
             ctx.fillStyle = og;
             ctx.fill();
 
-            // Wycinanie środka
             ctx.filter = 'none';
             ctx.globalCompositeOperation = 'destination-out';
             wavyPath(r, 6, 3, 1, ts);
@@ -130,12 +126,27 @@ function burnElement(elementId) {
         if (p < 1) {
             requestAnimationFrame(frame);
         } else {
-            // Koniec
-            el.value = '';
+            // Koniec – czyścimy pole tekstowe przez wspólną funkcję
+            clearTextarea(elementId);
             el.style.visibility = 'visible';
             cv.style.display = 'none';
         }
     }
 
     requestAnimationFrame(frame);
+}
+
+/**
+ * Czyści pole tekstowe, emituje event 'input' i odświeża kolor tła
+ * @param {string} id - ID elementu textarea do wyczyszczenia
+ */
+async function clearTextarea(id) {
+  const textarea = document.getElementById(id);
+  try {
+    textarea.value = '';
+    textarea.dispatchEvent(new Event('input'));
+    updateBackgroundColor(textarea);
+  } catch (err) {
+    console.error('Błąd podczas kasowania:', err);
+  }
 }
