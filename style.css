@@ -98,7 +98,7 @@ body, button, textarea, select, label {
   min-height: 22px;
   height: auto;
   overflow: hidden;
-  line-height: 1.1 !important;
+  line-height: 1.2 !important;
 }
 #projekcje {
   width: 100px;
@@ -170,7 +170,7 @@ button {
     0 0 10px rgba(0,0,0,0.1),
     inset 0 0 20px rgba(0,0,0,0.05) !important; /* delikatne cienie */
   border-radius: 2px !important; /* lekko zaokrąglone rogi */
-  line-height: 1.1 !important; /* lepsza czytelność */
+  line-height: 1.2 !important; /* lepsza czytelność */
   padding: 0px; /* większy padding */
 }
 table {
