@@ -180,10 +180,13 @@
         <button type="button" id="btnAudio1" onclick="toggleAudio('btnAudio1', 'audio1', '♾️▶️', '♾️⏹️')">♾️▶️</button>
         <button type="button" id="btnAudio2" onclick="toggleAudio('btnAudio2', 'audio2', '🙁▶️', '🙁⏹️')">🙁▶️</button>
         <button type="button" id="btnAudio3" onclick="toggleAudio('btnAudio3', 'audio3', '😁▶️', '😁⏹️')">😁▶️</button>
+        <button type="button" id="btnAudio3" onclick="toggleAudio('btnAudio4', 'audio4', '🏆▶️', '🏆⏹️')">🏆▶️</button>
         
         <audio id="audio1" loop src="=Cho Ku Rei= from REIKI CHANTS by Jonathan Goldman_.mp3"></audio>
         <audio id="audio2" loop src="The Lord Of The Rings - The Two Towers - 08 - Evenstar (feat. Isabel Bayrakdarian).mp3"></audio>
         <audio id="audio3" loop src="Gladiator • Now We Are Free • Hans Zimmer & Lisa Gerrard.mp3"></audio>
+        <audio id="audio4" loop src="42. Two Steps From Hell - Never Give up on Your Dreams.mp3"></audio>
+        
     </label>
     <select id="pola_planszy" name="pola_planszy">
          <option value="">Wybierz pole planszy...</option>
@@ -702,6 +705,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('audio1').volume = 0.8; // Jonathan Goldman
     document.getElementById('audio2').volume = 0.3; // Evenstar
     document.getElementById('audio3').volume = 0.9; // Now We Are Free
+    document.getElementById('audio4').volume = 0.8; // Never Give Up From Your Dreams
 });
 
 function toggleAudio(btnId, audioId, playLabel, stopLabel) {
