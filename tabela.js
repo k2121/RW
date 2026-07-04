@@ -410,7 +410,7 @@ Gra radykalnego wybaczania Satori to gra planszowa, która ma na celu pomóc gra
         <tr>
    <td style="background-color: #ffffff;">(czas czytania: około 45min20sek)
 <p class=MsoNormal align=center style='text-align:center'><b><i><span style='font-size:22.0pt;
-font-family:"Bookman Old Style",serif;color:#00B050'>Historia <span
+font-family:"BookmanReplacement",serif;color:#00B050'>Historia <span
 class=SpellE>Jill</span><o:p></o:p></span></i></b></p>
 
 <p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'><span>            </span>Gdy zobaczyłem moją siostrę <span
@@ -701,7 +701,7 @@ nikogo, być może to nie twoja wina, że ciebie nie kocha. A potem przyszło
 odkrycie, które wtrąciło cię ponownie w rozpacz. Kiedy zauważyłaś, że
 ojciec kocha moją Lorraine, powróciło pierwotne przekonanie. Powiedziałaś
 sobie: </span></span><i><span
-style='font-size:10.0pt;font-family:"Bookman Old Style",serif;color:blue'>„Mój
+style='font-size:10.0pt;font-family:"BookmanReplacement",serif;color:blue'>„Mój
 ojciec potrafi kochać, ale nie mnie. To wyraźnie moja wina. Nie jestem dość
 dobra dla niego i nigdy nie będę dość dobra dla żadnego mężczyzny”.</span></i>
 </i><span
@@ -1053,11 +1053,11 @@ i uzdrowić swoje życie?<o:p></o:p></span></p>
 <p class=MsoNormal style='text-align:justify'><span style='font-size:11.0pt'>Więcej
 informacji zawarto w książce<i> </i></span><span
 class=SpellE><i><span style='font-size:11.0pt;
-font-family:"Bookman Old Style",serif;
+font-family:"BookmanReplacement",serif;
 color:#0000FF'>Colin</span></i><i><span
-style='font-size:11.0pt;font-family:"Bookman Old Style",serif;'>'a</span></i></span><i><span
-style='font-size:11.0pt;font-family:"Bookman Old Style",serif;'> <span class=SpellE><span style='color:#0000FF'>Tipping</span>'a</span></span></i><span
-style='font-size:11.0pt;font-family:"Bookman Old Style",serif;'> - <b><i><span style='color:#0000FF'>"Radykalne
+style='font-size:11.0pt;font-family:"BookmanReplacement",serif;'>'a</span></i></span><i><span
+style='font-size:11.0pt;font-family:"BookmanReplacement",serif;'> <span class=SpellE><span style='color:#0000FF'>Tipping</span>'a</span></span></i><span
+style='font-size:11.0pt;font-family:"BookmanReplacement",serif;'> - <b><i><span style='color:#0000FF'>"Radykalne
 wybaczanie"</span></i></b>.</span><span style='font-size:11.0pt'><o:p></o:p></span></p>
 
 
