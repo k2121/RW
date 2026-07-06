@@ -75,7 +75,7 @@ function rollDice() {
   for (let i = 0; i < moveSteps; i++) {
     if (!isReversing) {
       nextPos++;
-      if (nextPos > 61) {
+      if (nextPos >= 61) {
         if (hasCards) {
           // Bounce back if cards remain
           nextPos = 60; 
