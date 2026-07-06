@@ -616,12 +616,25 @@
   // dynamiczny tytuł strony (wpływa też na nazwę pliku PDF przy drukowaniu)
   const nrInput = document.getElementById('fNr');
   const BASE_TITLE = 'Arkusz Radykalnego Wybaczania';
+  function pad2(n){ return String(n).padStart(2,'0'); }
+  function stampCzas(){
+    const d = new Date();
+    const rr = pad2(d.getFullYear() % 100);
+    const mm = pad2(d.getMonth()+1);
+    const dd = pad2(d.getDate());
+    const gg = pad2(d.getHours());
+    const mi = pad2(d.getMinutes());
+    return 'r'+rr+mm+dd+'g'+gg+mi;
+  }
+  function padNr(nr){
+    return /^\d+$/.test(nr) ? nr.padStart(3,'0') : nr;
+  }
   function refreshTitle(){
     const nr = nrInput.value.trim();
     const osoba = nameInput.value.trim();
-    let title = BASE_TITLE;
-    if(nr) title += ' nr ' + nr;
-    if(osoba) title += ' — ' + osoba;
+    let title = BASE_TITLE + ' - ' + stampCzas();
+    if(nr) title += ' nr' + padNr(nr);
+    if(osoba) title += ' - ' + osoba;
     document.title = title;
   }
   nameInput.addEventListener('input', refreshTitle);
@@ -690,7 +703,7 @@
   setActive('stage-1');
 
   // print
-  document.getElementById('printBtn').addEventListener('click', ()=> window.print());
+  document.getElementById('printBtn').addEventListener('click', ()=>{ refreshTitle(); window.print(); });
 
   // clear
   document.getElementById('clearBtn').addEventListener('click', ()=>{
