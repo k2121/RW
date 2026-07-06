@@ -1,7 +1,6 @@
 //#### 7. `js/boardFieldDescriptions.js`
 //Wszystkie funkcje `poleXX()` zawierające opisy pól na planszy.
 
-
 // js/boardFieldDescriptions.js
 
 function pole00() {
