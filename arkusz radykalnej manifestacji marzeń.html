@@ -1,0 +1,625 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arkusz Radykalnej Manifestacji Marzeń</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680;1,9..144,500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5EFE3;
+    --paper-deep:#ECE2CC;
+    --card:#FBF8F0;
+    --ink:#2A211B;
+    --ink-soft:#6A5D4F;
+    --rose:#A8425A;
+    --rose-deep:#7C2F42;
+    --rose-pale:#EFD9D9;
+    --sage:#6E7F5C;
+    --gold:#A9803F;
+    --line:#DCCFB2;
+    --shadow:0 1px 2px rgba(42,33,27,.06), 0 8px 24px rgba(42,33,27,.08);
+    --rail-w:84px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important; transition:none !important;}
+  }
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 12% -10%, rgba(168,66,90,.06), transparent 60%),
+      var(--paper);
+    color:var(--ink);
+    font-family:'Spectral',serif;
+    font-size:16.5px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--rose-pale); }
+  a{ color:var(--rose-deep); }
+
+  /* ---------- layout  shell ---------- */
+  .shell{
+    display:grid;
+    grid-template-columns:var(--rail-w) 1fr;
+    min-height:100vh;
+  }
+  @media (max-width:860px){
+    .shell{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- vertical stage rail ---------- */
+  .rail{
+    position:sticky; top:0; align-self:start;
+    height:100vh;
+    border-right:1px solid var(--line);
+    background:var(--paper-deep);
+    display:flex; flex-direction:column;
+    padding:22px 0;
+  }
+  .rail-mark{
+    width:34px; height:34px; margin:0 auto 28px;
+    border-radius:50%;
+    background:var(--rose-deep);
+    position:relative;
+    flex:none;
+  }
+  .rail-mark::before, .rail-mark::after{
+    content:""; position:absolute; inset:7px;
+    background:var(--paper-deep);
+    border-radius:50% 50% 50% 0;
+    transform:rotate(-45deg);
+  }
+  .rail-tabs{ display:flex; flex-direction:column; gap:2px; flex:1; }
+  .rail-tab{
+    appearance:none; border:none; background:transparent; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    padding:16px 0;
+    color:var(--ink-soft);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:11px; letter-spacing:.14em;
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    border-left:3px solid transparent;
+    transition:color .2s, border-color .2s, background .2s;
+  }
+  .rail-tab:hover{ color:var(--ink); background:rgba(168,66,90,.06); }
+  .rail-tab.active{
+    color:var(--rose-deep);
+    border-left-color:var(--rose);
+    background:var(--card);
+    font-weight:600;
+  }
+  .rail-tab .num{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:560;
+    font-size:15px; margin-right:10px; letter-spacing:0;
+  }
+  .rail-foot{
+    writing-mode:vertical-rl; transform:rotate(180deg);
+    margin:0 auto; color:var(--ink-soft); opacity:.55;
+    font-family:'Space Grotesk',sans-serif; font-size:10px; letter-spacing:.16em;
+  }
+
+  /* mobile rail -> horizontal progress strip */
+  .mrail{ display:none; }
+  @media (max-width:860px){
+    .rail{ display:none; }
+    .mrail{
+      display:flex; position:sticky; top:0; z-index:20;
+      background:var(--paper-deep); border-bottom:1px solid var(--line);
+      overflow-x:auto; padding:10px 14px; gap:8px;
+    }
+    .mrail button{
+      appearance:none; border:1px solid var(--line); background:var(--card);
+      color:var(--ink-soft); font-family:'Space Grotesk',sans-serif;
+      font-size:11.5px; letter-spacing:.04em; white-space:nowrap;
+      padding:7px 12px; border-radius:999px; cursor:pointer;
+    }
+    .mrail button.active{ background:var(--rose-deep); color:#fff; border-color:var(--rose-deep); }
+  }
+
+  /* ---------- main column ---------- */
+  main{ min-width:0; }
+  .wrap{ max-width:760px; margin:0 auto; padding:56px 28px 90px; }
+  @media (max-width:560px){ .wrap{ padding:34px 16px 70px; } }
+
+  .eyebrow{
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--rose-deep); margin-bottom:14px;
+  }
+  h1.title{
+    font-family:'Fraunces',serif; font-weight:680; font-size:clamp(34px,6vw,52px);
+    line-height:1.04; margin:0 0 6px; letter-spacing:-.01em;
+  }
+  .subtitle{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:400;
+    color:var(--ink-soft); font-size:19px; margin:0 0 28px;
+  }
+
+  .meta-card{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+    display:grid; grid-template-columns:1fr 1fr 2fr; gap:16px 20px;
+  }
+  @media (max-width:560px){ .meta-card{ grid-template-columns:1fr; } }
+  .field label{
+    display:block; font-family:'Space Grotesk',sans-serif; font-size:11px;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;
+  }
+  .field input{
+    width:100%; border:none; border-bottom:1.5px solid var(--line);
+    background:transparent; font-family:'Spectral',serif; font-size:16px;
+    color:var(--ink); padding:4px 2px 7px; outline:none;
+  }
+  .field input:focus{ border-bottom-color:var(--rose); }
+  .field.wide{ grid-column:span 1; }
+
+  .privacy{
+    font-family:'Space Grotesk',sans-serif; font-size:12.5px; color:var(--ink-soft);
+    border:1px dashed var(--line); border-radius:10px; padding:12px 16px; margin-bottom:8px; line-height:1.55;
+  }
+  .privacy strong{ color:var(--ink); }
+
+  .toolbar{
+    display:flex; gap:10px; flex-wrap:wrap; margin:34px 0 20px;
+  }
+  .btn{
+    appearance:none; cursor:pointer; border-radius:999px;
+    font-family:'Space Grotesk',sans-serif; font-size:13px; letter-spacing:.03em;
+    padding:10px 18px; border:1.5px solid var(--rose-deep);
+  }
+  .btn.primary{ background:var(--rose-deep); color:#fff; }
+  .btn.ghost{ background:transparent; color:var(--rose-deep); }
+  .btn:hover{ filter:brightness(1.05); }
+
+  .hint{ font-family:'Spectral',serif; font-style:italic; color:var(--ink-soft); font-size:14.5px; }
+
+  /* ---------- stage sections ---------- */
+  .stage{ scroll-margin-top:18px; margin-top:54px; }
+  .stage-head{
+    display:flex; align-items:baseline; gap:14px;
+    background:var(--rose-pale); border-radius:12px;
+    padding:14px 20px; margin-bottom:22px;
+  }
+  .stage-head .snum{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:680;
+    font-size:30px; color:var(--rose-deep); line-height:1;
+  }
+  .stage-head h2{
+    font-family:'Space Grotesk',sans-serif; font-size:13.5px; letter-spacing:.1em;
+    text-transform:uppercase; margin:0; color:var(--ink);
+  }
+  .subhead{
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--ink-soft);
+    margin:34px 0 14px; padding-bottom:8px; border-bottom:1px solid var(--line);
+  }
+
+  .item{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+  }
+  .item .inum{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:560;
+    color:var(--gold); font-size:18px; margin-right:6px;
+  }
+  .item p.lead{ margin:0 0 6px; }
+  .item p.note{
+    font-family:'Spectral',serif; font-style:italic; color:var(--ink-soft);
+    font-size:14.5px; margin:6px 0 14px;
+  }
+
+  /* Checkbox / choice list styles */
+  .emotions-list {
+    margin: 8px 0 20px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px 14px;
+  }
+  .emotion-item {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Spectral', serif;
+    color: var(--ink-soft);
+    font-size: 15.5px;
+    cursor: pointer;
+    user-select: none;
+  }
+  .emotion-item input[type="checkbox"] {
+    accent-color: var(--rose-deep);
+    cursor: pointer;
+    width: 15px;
+    height: 15px;
+    margin: 0;
+  }
+  .emotion-item:hover {
+    color: var(--ink);
+  }
+
+  .inline-field{
+    display:inline-flex; align-items:center; gap:8px; margin-left:4px;
+  }
+  .inline-field input[type="text"]{
+    border:none; border-bottom:1.5px solid var(--line); background:transparent;
+    font-family:'Spectral',serif; font-size:15px; color:var(--ink);
+    padding:2px 2px 4px; outline:none; min-width:160px;
+  }
+  .inline-field input[type="text"]:focus{ border-bottom-color:var(--rose); }
+
+  textarea{
+    width:100%; resize:none; overflow:hidden;
+    border:1px solid var(--line); border-radius:10px;
+    background:#FFFDF8; padding:12px 14px;
+    font-family:'Spectral',serif; font-size:15.5px; color:var(--ink);
+    line-height:1.55; outline:none; min-height:64px;
+  }
+  textarea:focus{ border-color:var(--rose); box-shadow:0 0 0 3px rgba(168,66,90,.12); }
+
+  /* readiness pills */
+  fieldset.readiness{
+    border:none; margin:14px 0 0; padding:0;
+    display:flex; flex-wrap:wrap; gap:8px;
+  }
+  fieldset.readiness legend{
+    font-family:'Space Grotesk',sans-serif; font-size:10.5px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--ink-soft); margin-bottom:8px; padding:0;
+  }
+  .pill{ position:relative; }
+  .pill input{ position:absolute; opacity:0; inset:0; cursor:pointer; margin:0; }
+  .pill span{
+    display:inline-block; padding:7px 14px; border-radius:999px;
+    border:1.5px solid var(--line); font-family:'Space Grotesk',sans-serif;
+    font-size:12.5px; color:var(--ink-soft); transition:all .15s;
+  }
+  .pill input:checked + span{
+    background:var(--rose-deep); border-color:var(--rose-deep); color:#fff;
+  }
+  .pill input:focus-visible + span{ outline:2px solid var(--rose); outline-offset:2px; }
+
+  .affirmation{
+    background:linear-gradient(135deg, var(--rose-pale), var(--paper-deep));
+    border-radius:14px; padding:24px 26px; margin-bottom:18px;
+    font-family:'Spectral',serif; font-style:italic; font-size:16px; color:var(--ink);
+    border:1px solid var(--line);
+  }
+  .affirmation .inum{ font-style:normal; }
+
+  .signoff{
+    margin-top:50px; padding-top:28px; border-top:1px solid var(--line);
+    display:flex; flex-wrap:wrap; gap:22px; align-items:flex-end; justify-content:space-between;
+  }
+  .signoff .field{ min-width:200px; }
+
+  footer{
+    margin-top:60px; padding-top:18px; border-top:1px solid var(--line);
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; color:var(--ink-soft);
+    text-align:center; line-height:1.7;
+  }
+  footer a{ color:var(--ink-soft); }
+
+  /* ---------- print ---------- */
+  @media print{
+    .rail, .mrail, .toolbar, .privacy{ display:none !important; }
+    .shell{ display:block; }
+    body{ background:#fff; }
+    .wrap{ max-width:100%; padding:0 8px; }
+    .item, .meta-card, .affirmation{ box-shadow:none; border:1px solid #ccc; break-inside:avoid; }
+    .stage{ break-before:page; margin-top:0; padding-top:18px; }
+    .stage:first-of-type{ break-before:auto; }
+    textarea{ border:1px solid #ccc; }
+    .emotion-item input[type="checkbox"] { border: 1px solid #000; }
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <nav class="rail" aria-label="Etapy arkusza">
+    <div class="rail-mark" aria-hidden="true"></div>
+    <div class="rail-tabs" id="railTabs">
+      <button class="rail-tab" data-target="stage-1"><span class="num">1</span>Brak i uczucia</button>
+      <button class="rail-tab" data-target="stage-2"><span class="num">2</span>Deklaracja intencji</button>
+      <button class="rail-tab" data-target="stage-3"><span class="num">3</span>Uwalnianie przekonań</button>
+      <button class="rail-tab" data-target="stage-4"><span class="num">4</span>Zaufanie i spełnienie</button>
+    </div>
+    <div class="rail-foot">Zdrowa Dusza</div>
+  </nav>
+
+  <main>
+    <nav class="mrail" id="mrail" aria-label="Etapy arkusza (mobile)">
+      <button data-target="stage-1">1 · Brak i uczucia</button>
+      <button data-target="stage-2">2 · Deklaracja intencji</button>
+      <button data-target="stage-3">3 · Uwalnianie przekonań</button>
+      <button data-target="stage-4">4 · Zaufanie i spełnienie</button>
+    </nav>
+
+    <div class="wrap">
+      <div class="eyebrow">www.zdrowadusza.com</div>
+      <h1 class="title">Arkusz Radykalnej Manifestacji Marzeń</h1>
+      <p class="subtitle">Narzędzie do świadomego wyrażania i urzeczywistniania intencji</p>
+
+      <div class="meta-card">
+        <div class="field"><label for="fData">Data,</label><input id="fData" type="date"></div>
+        <div class="field"><label for="fNr">Arkusz nr,</label><input id="fNr" type="text" placeholder="np. 1"></div>
+        <div class="field wide">
+          <label for="yourName">Twoje Imię,</label>
+          <input id="yourName" type="text" placeholder="Wpisz swoje imię…">
+        </div>
+      </div>
+
+      <p class="privacy"><strong>Dane z tego arkusza nie są nigdzie przesyłane ani zapisywane.</strong> Wszystko, co wpiszesz, pozostaje wyłącznie w tej przeglądarce, na czas tej sesji — możesz wypełniać go zupełnie bezpiecznie i anonimowo.</p>
+
+      <p class="hint">Podpowiedź: aby w pełni utrwalić intencję, mów na głos wszystko, co zapisujesz.</p>
+
+      <section class="stage" id="stage-1">
+        <div class="stage-head"><span class="snum">1</span><h2>Brak i uczucia</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">1.</span>Brak, którego jestem świadoma/y, a który teraz chcę zaspokoić to…</p>
+          <textarea rows="4" placeholder="Opisz brak, który odczuwasz…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">2.</span>Prawdziwe uczucia, które towarzyszą tej potrzebie to (bądź uczciwa/y, autentyczna/y i otwarta/y, zaznacz właściwe uczucia):</p>
+          <div class="emotions-list">
+            <label class="emotion-item"><input type="checkbox" name="em"> tęsknota,</label>
+            <label class="emotion-item"><input type="checkbox" name="em"> wściekłość,</label>
+            <label class="emotion-item"><input type="checkbox" name="em"> żałość,</label>
+            <label class="emotion-item"><input type="checkbox" name="em"> gniew,</label>
+            <label class="emotion-item"><input type="checkbox" name="em"> miłość,</label>
+            <label class="emotion-item"><input type="checkbox" name="em"> brak,</label>
+            <label class="emotion-item"><input type="checkbox" name="em"> oczekiwanie,</label>
+            <label class="emotion-item"><input type="checkbox" name="em"> poczucie że to mi się należy,</label>
+            <label class="emotion-item"><input type="checkbox" name="em"> nadzieja,</label>
+            <label class="emotion-item"><input type="checkbox" name="em"> duma,</label>
+            <label class="emotion-item"><input type="checkbox" name="em"> potrzeba,</label>
+            <label class="emotion-item"><input type="checkbox" name="em"> empatia,</label>
+            <label class="emotion-item"><input type="checkbox" name="em"> słuszność,</label>
+            <label class="emotion-item"><input type="checkbox" name="em"> lęk,</label>
+            <label class="emotion-item"><input type="checkbox" name="em"> smutek,</label>
+            <label class="emotion-item"><input type="checkbox" name="em"> wstyd,</label>
+            <label class="emotion-item"><input type="checkbox" name="em"> poczucie winy,</label>
+            <label class="emotion-item"><input type="checkbox" name="em"> współczucie,</label>
+          </div>
+          <label class="inline-field">Inne: <input type="text" placeholder="wpisz inne uczucie…"></label>
+        </div>
+      </section>
+
+      <section class="stage" id="stage-2">
+        <div class="stage-head"><span class="snum">2</span><h2>Deklaracja intencji</h2></div>
+
+        <div class="affirmation">
+          <p style="margin:0;"><span class="inum">3.</span> Kocham siebie za odczuwanie tego braku i uznaję, że jako istota ludzka mam prawo do swoich uczuć bez względu na to, jakie są.</p>
+        </div>
+
+        <div class="affirmation">
+          <p style="margin:0;"><span class="inum">4.</span> Zdaję sobie teraz sprawę, że mogę przetransformować tę sytuację braku, wyrażając to, czego chcę i dlaczego tego chcę, zawierzając następnie mojej duchowej inteligencji, że to spełni.</p>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">5.</span>Powody, dla których chcę zamanifestować to, czego pragnę, to…</p>
+          <textarea rows="4" placeholder="Opisz swoje powody…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">6.</span>Niniejszym deklaruję przed Wszechświatem swoją klarowną intencję zamanifestowania (bądź tak szczegółowa/y, jak to konieczne, aby przejrzyście wyrazić swoją intencję):</p>
+          <textarea rows="5" placeholder="Wpisz treść swojej intencji…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">7.</span>Widzę spełnienie tej intencji do końca (podaj termin, datę):</p>
+          <div class="field" style="max-width:220px;">
+            <input type="date">
+          </div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">8.</span>Sama w sobie jest to:</p>
+          <fieldset class="readiness">
+            <label class="pill"><input type="radio" name="typ_intencji" value="podstawowa"><span>Intencja Podstawowa</span></label>
+            <label class="pill"><input type="radio" name="typ_intencji" value="transformacyjna"><span>Intencja Transformacyjna</span></label>
+            <label class="pill"><input type="radio" name="typ_intencji" value="inspiracyjna"><span>Intencja Inspiracyjna</span></label>
+          </fieldset>
+          <p class="note" style="margin-top:16px;">…ale odnosi się do:</p>
+          <fieldset class="readiness" style="margin-top:0;">
+            <label class="pill"><input type="checkbox" name="odnosi_sie" value="transformacyjna"><span>Intencji Transformacyjnej</span></label>
+            <label class="pill"><input type="checkbox" name="odnosi_sie" value="inspiracyjna"><span>Intencji Inspiracyjnej</span></label>
+          </fieldset>
+          <p class="note" style="margin-top:16px;">w następujący sposób (pokaż jej dodatkowe znaczenie na wyższym poziomie):</p>
+          <textarea rows="3" placeholder="Opisz głębsze znaczenie swojej intencji…"></textarea>
+        </div>
+      </section>
+
+      <section class="stage" id="stage-3">
+        <div class="stage-head"><span class="snum">3</span><h2>Uwalnianie przekonań</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">9.</span>Zdaję sobie sprawę, że prawdopodobnie mam przekonania, założenia, przestarzały system wartości i inne idee zakopane w moim podświadomym i nieświadomym umyśle, które mogły do tej pory cenzurować, odrzucać lub modyfikować moją intencję.</p>
+          <div class="rgroup-consent" data-name="r9"></div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">10.</span>Biorąc pod uwagę moje dotychczasowe doświadczenia, mogę mieć w swojej podświadomości niektóre z poniższych negatywnych przekonań:</p>
+          <div class="emotions-list">
+            <label class="emotion-item"><input type="checkbox" name="przekonania"> nie jestem godna/y,</label>
+            <label class="emotion-item"><input type="checkbox" name="przekonania"> nie zasługuję,</label>
+            <label class="emotion-item"><input type="checkbox" name="przekonania"> nie jestem dostatecznie dobra/y,</label>
+            <label class="emotion-item"><input type="checkbox" name="przekonania"> nigdy mi się nie uda,</label>
+            <label class="emotion-item"><input type="checkbox" name="przekonania"> mam pecha,</label>
+            <label class="emotion-item"><input type="checkbox" name="przekonania"> jestem za mało uduchowiona/y,</label>
+            <label class="emotion-item"><input type="checkbox" name="przekonania"> dla wszystkich nie wystarczy,</label>
+          </div>
+          <label class="inline-field">Inne: <input type="text" placeholder="wpisz inne przekonanie…"></label>
+
+          <div class="affirmation" style="margin-top:18px;">
+            <p style="margin:0;">Odrzucam je teraz wszystkie całkowicie. Jednoznaczną decyzją NIE zezwalam, aby te przekonania wpłynęły na moją intencję, dokonując dodatkowo obejścia tej części mego umysłu i przekazując moją intencję mojej duchowej inteligencji.</p>
+          </div>
+          <div class="rgroup-consent" data-name="r10"></div>
+        </div>
+      </section>
+
+      <section class="stage" id="stage-4">
+        <div class="stage-head"><span class="snum">4</span><h2>Zaufanie i spełnienie</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">11.</span>Widzę obecnie w swoim umyśle obraz tego, co wiem, że płynie łatwo i swobodnie z pola nieskończonych możliwości i manifestuje się teraz w mojej rzeczywistości. Jak powiększam ten obraz w swoim umyśle, potrafię opisać, jak on wygląda i brzmi, i potrafię opisać swoje uczucia towarzyszące świadomości, że to już się spełniło:</p>
+          <textarea rows="4" placeholder="Opisz obraz, dźwięki i uczucia spełnienia…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">12.</span> Przyznaję teraz, że moja ograniczona wyobraźnia może nu dostrzegać prawdziwego znaczenia mojej intencji i że rezultat, który widzę może nie być tym co moja duchowa inteligencja oraz Wszechświat przeznaczyły dla mnie.</p>
+          <div class="rgroup-consent" data-name="r12"></div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">13.</span> Deklaruję teraz swoje całkowite zaufanie do Wszechświata, wierząc że da mi on to co jest dla najwyższego dobra wszystkich zainteresowanych i kieruję energię pewności, którą wygenerowałem, na odczuwanie miłości i wdzięczności dla Ducha obecnego w mnie i we wszystkich rzeczach.</p>
+          <div class="rgroup-consent" data-name="r13"></div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">14.</span> Całkowicie poddaję się teraz Duchowi i puszczam wszelkie przywiązanie do otrzymania tego, o co prosiłem, w jakiejś szczególnej formie, wiedząc, że to już jest spełnione i że dostrzegę tę doskonałość w odpowiednim momencie. Zdaję sobie sprawę, że moje cele transformacyjne i inspiracyjne już zostały osiągnięte.</p>
+          <div class="rgroup-consent" data-name="r14"></div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">15.</span> Czuję się całkowicie i na nowo połączony ze swoim Źródłem i wiem, że jestem otoczony czystą obfitością. Jestem stale otwarty na przyjmowanie tej obfitości.</p>
+          <div class="rgroup-consent" data-name="r15"></div>
+        </div>
+
+        <div class="signoff">
+          <div class="field"><label for="signDate">Data,</label><input id="signDate" type="date"></div>
+          <div class="field" style="flex:1;"><label for="signName">Podpis,</label><input id="signName" type="text" placeholder="Twój podpis…"></div>
+          <div style="font-family:'Fraunces',serif; font-style:italic; font-size:24px; color:var(--rose-deep); width:100%; text-align:right;">SPEŁNIŁO SIĘ!</div>
+        </div>
+      </section>
+
+      <div class="toolbar">
+        <button class="btn primary" id="printBtn">Drukuj / zapisz jako PDF</button>
+        <button class="btn ghost" id="clearBtn">Wyczyść arkusz</button>
+      </div>
+
+      <footer>
+        Pobrano ze strony www.zdrowadusza.com<br>
+        Arkusz Radykalnej Manifestacji Marzeń
+      </footer>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  const CONSENT_OPTS = ["Zgoda", "Otwartość", "Sceptycyzm", "Brak zgody"];
+
+  // Budowanie grup przycisków wyboru (poziom zgody/otwartości)
+  document.querySelectorAll('.rgroup-consent').forEach(el=>{
+    const name = el.dataset.name;
+    const fs = document.createElement('fieldset');
+    fs.className = 'readiness';
+    const legend = document.createElement('legend');
+    legend.textContent = 'Moja reakcja wobec tego stwierdzenia:';
+    fs.appendChild(legend);
+
+    CONSENT_OPTS.forEach((opt,i)=>{
+      const id = name+'-'+i;
+      const lab = document.createElement('label');
+      lab.className = 'pill';
+      lab.innerHTML = '<input type="radio" name="'+name+'" id="'+id+'"><span>'+opt+'</span>';
+      fs.appendChild(lab);
+    });
+    el.replaceWith(fs);
+  });
+
+  // Automatyczne dopasowywanie wysokości textarea
+  function autosize(t){
+    t.style.height = 'auto';
+    t.style.height = (t.scrollHeight+2) + 'px';
+  }
+  function autosizeAll(scope){
+    (scope||document).querySelectorAll('textarea').forEach(t=>{
+      autosize(t);
+      t.addEventListener('input', ()=>autosize(t));
+    });
+  }
+  autosizeAll();
+  window.addEventListener('load', ()=> autosizeAll());
+
+  // Obsługa paska nawigacji (Scroll Spy)
+  const sections = Array.from(document.querySelectorAll('.stage'));
+  const railTabs = Array.from(document.querySelectorAll('.rail-tab'));
+  const mTabs = Array.from(document.querySelectorAll('.mrail button'));
+
+  function setActive(id){
+    railTabs.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+    mTabs.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+  }
+
+  [...railTabs, ...mTabs].forEach(b=>{
+    b.addEventListener('click', ()=>{
+      document.getElementById(b.dataset.target).scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting) setActive(e.target.id);
+    });
+  }, {rootMargin:'-20% 0px -65% 0px', threshold:0});
+
+  sections.forEach(s=> io.observe(s));
+  setActive('stage-1');
+
+  // Kopiowanie daty z początku arkusza do daty na końcu (podpis)
+  const fData = document.getElementById('fData');
+  const signDate = document.getElementById('signDate');
+  fData.addEventListener('input', ()=>{ signDate.value = fData.value; });
+
+  // Dynamiczny tytuł strony (widoczny też jako domyślna nazwa pliku PDF przy druku)
+  // Format: "Arkusz Radykalnej Manifestacji Marzeń - rRRMMDDgGGMM nrNNN - {Imię}"
+  const BASE_TITLE = document.title;
+  const fNr = document.getElementById('fNr');
+  const yourName = document.getElementById('yourName');
+  function pad(n, len=2){ return String(n).padStart(len, '0'); }
+  function updateTitle(){
+    const now = new Date();
+    const rr = pad(now.getFullYear() % 100);
+    const mm = pad(now.getMonth() + 1);
+    const dd = pad(now.getDate());
+    const gg = pad(now.getHours());
+    const mi = pad(now.getMinutes());
+    const nrRaw = fNr.value.trim();
+    const nrNum = nrRaw ? parseInt(nrRaw, 10) : 0;
+    const nr = pad(Number.isFinite(nrNum) ? nrNum : 0, 3);
+    let title = `${BASE_TITLE} - r${rr}${mm}${dd}g${gg}${mi} nr${nr}`;
+    const name = yourName.value.trim();
+    if(name) title += ` - ${name}`;
+    document.title = title;
+  }
+  fNr.addEventListener('input', updateTitle);
+  yourName.addEventListener('input', updateTitle);
+  updateTitle();
+
+  // Drukowanie pliku
+  document.getElementById('printBtn').addEventListener('click', ()=>{
+    updateTitle();
+    window.print();
+  });
+
+  // Czyszczenie zawartości formularza
+  document.getElementById('clearBtn').addEventListener('click', ()=>{
+    if(!confirm('Wyczyścić cały arkusz? Tej operacji nie można cofnąć.')) return;
+    document.querySelectorAll('textarea').forEach(t=>{ t.value=''; autosize(t); });
+    document.querySelectorAll('input[type=text], input[type=date], input[type=number]').forEach(i=> i.value='');
+    document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach(i=> i.checked=false);
+    autosizeAll();
+    updateTitle();
+  });
+})();
+</script>
+</body>
+</html>
