@@ -62,8 +62,8 @@ const CDaHTML = `
         <strong>🎯 Rola Mistrza Gry:</strong>
         <div class="role-grid-cda">
             <span class="role-item-cda">🎯  Kieruj grą i wyjaśniaj grającym skutki znalezienia się na konkretnych polach.</span>
-            <span class="role-item-cda">🔥 Inicjuj i prowadż zbiorowe reakcje grupy, nie szczędząc przy tym zapału i entuzjazmu. Reakcje grupy czynią grę bardziej zabawną i dynamiczną.</span>
-            <span class="role-item-cda">🗣️ Pomagaj graczom w zachowaniu zwięzIości opowiadanych przez nich historii. Zachęcaj ich do dzielenia się spostrzeżeniami na temat tego, czego dowiadują się dzięki grze.</span>
+            <span class="role-item-cda">🔥 Inicjuj i prowadź zbiorowe reakcje grupy, nie szczędząc przy tym zapału i entuzjazmu. Reakcje grupy czynią grę bardziej zabawną i dynamiczną.</span>
+            <span class="role-item-cda">🗣️ Pomagaj graczom w zachowaniu zwięzłości opowiadanych przez nich historii. Zachęcaj ich do dzielenia się spostrzeżeniami na temat tego, czego dowiadują się dzięki grze.</span>
             <span class="role-item-cda">📢 Jeśli pojawią się ogólne pytania na temat Radykalnego Wybaczania, po skończonej grze odtwórz nagranie trzecie (5 minut).</span>
         </div>
         <section class="audio-container-cda extra-audio-cda">
