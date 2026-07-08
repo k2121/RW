@@ -41,17 +41,32 @@
     margin-left: auto;
   }
 
+  /* Kontener zapewniający responsywność dla obu tabel */
   .table-wrapper {
     overflow-x: auto;
     padding: 0;
+    margin-bottom: 30px;
   }
 
   table {
     border-collapse: separate;
     border-spacing: 0;
     width: 100%;
-    min-width: 1000px;
     table-layout: fixed;
+  }
+
+  /* Pierwsza tabela wymaga większej szerokości minimalnej ze względu na 7 kolumn */
+  .table-emotions {
+    min-width: 1000px;
+  }
+
+  /* Druga tabela (Skala wibracji) ma tylko 3 kolumny, więc min-width może być mniejsze */
+  .table-vibrations {
+    min-width: 500px;
+    background: white;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.05);
+    border-radius: 8px;
+    overflow: hidden;
   }
 
   thead th {
@@ -70,6 +85,16 @@
   }
 
   thead th:last-child { border-right: none; }
+
+  /* Style nagłówków dedykowane dla drugiej tabeli */
+  .table-vibrations thead th {
+    background-color: #16213e;
+    color: white;
+    text-align: left;
+  }
+  .table-vibrations thead th.center {
+    text-align: center;
+  }
 
   tr.photo-row td {
     position: sticky;
@@ -90,9 +115,9 @@
   }
 
   tbody tr td {
-    padding: 6px 10px;
-    font-size: 0.82rem;
-    border-right: 1px solid rgba(0,0,0,0.07);
+    padding: 8px 12px;
+    font-size: 0.85rem;
+    border-right: 1px solid rgba(0,0,0,0.05);
     border-bottom: 1px solid rgba(0,0,0,0.05);
     transition: background 0.15s;
     white-space: nowrap;
@@ -102,16 +127,42 @@
 
   tbody tr:hover td { filter: brightness(0.96); }
 
-  /* Kolory odd (domyślne tło kolumn) */
-  [data-col="RADOŚĆ"]      { background-color: #FDF5C0; }
-  [data-col="SMUTEK"]      { background-color: #D6E4FA; }
-  [data-col="ZŁOŚĆ_GNIEW"] { background-color: #FDDDD5; }
-  [data-col="STRACH"]      { background-color: #EDE0FA; }
-  [data-col="WSTYD"]       { background-color: #FAD8E8; }
-  [data-col="ZASKOCZENIE"] { background-color: #D0F5F3; }
-  [data-col="WSTRĘT"]      { background-color: #EAF0C8; }
+  /* Style specyficzne dla tabeli wibracji */
+  .table-vibrations tbody tr:nth-child(even) {
+    background-color: #f8f9fa;
+  }
+  .table-vibrations tbody tr.highlight {
+    background-color: #e8f4fd;
+  }
+  .center {
+    text-align: center;
+  }
 
-  /* Nagłówki */
+  /* Sekcja tekstowa pod pierwszą tabelą */
+  .section-title {
+    padding: 30px 20px 10px 20px;
+    font-size: 1.4rem;
+    font-weight: 800;
+    color: #16213e;
+  }
+  .section-desc {
+    padding: 0 20px 20px 20px;
+    font-size: 0.95rem;
+    line-height: 1.6;
+    color: #555;
+    max-width: 800px;
+  }
+
+  /* Kolory odd (domyślne tło kolumn pierwszej tabeli) */
+  .table-emotions [data-col="RADOŚĆ"]      { background-color: #FDF5C0; }
+  .table-emotions [data-col="SMUTEK"]      { background-color: #D6E4FA; }
+  .table-emotions [data-col="ZŁOŚĆ_GNIEW"] { background-color: #FDDDD5; }
+  .table-emotions [data-col="STRACH"]      { background-color: #EDE0FA; }
+  .table-emotions [data-col="WSTYD"]       { background-color: #FAD8E8; }
+  .table-emotions [data-col="ZASKOCZENIE"] { background-color: #D0F5F3; }
+  .table-emotions [data-col="WSTRĘT"]      { background-color: #EAF0C8; }
+
+  /* Nagłówki pierwszej tabeli */
   th[data-col="RADOŚĆ"]      { background-color: #F5C842; color: white; }
   th[data-col="SMUTEK"]      { background-color: #5B8CDB; color: white; }
   th[data-col="ZŁOŚĆ_GNIEW"] { background-color: #C0282A; color: white; }
@@ -120,7 +171,7 @@
   th[data-col="ZASKOCZENIE"] { background-color: #20B2AA; color: white; }
   th[data-col="WSTRĘT"]      { background-color: #7A8C2A; color: white; }
 
-  /* Kolory even — osobne dla każdej kolumny */
+  /* Kolory even dla pierwszej tabeli */
   tr.row-even td[data-col="RADOŚĆ"]      { background-color: #FBF0A0; }
   tr.row-even td[data-col="SMUTEK"]      { background-color: #C2D8F7; }
   tr.row-even td[data-col="ZŁOŚĆ_GNIEW"] { background-color: #FAC9BE; }
@@ -146,31 +197,22 @@
     color: white;
   }
   
-          /* Przycisk zamknij w nagłówku */
-        #closeBtn {
-            padding: 4px 11px;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-            font-weight: bold;
-            background-color: #e74c3c;
-            color: white;
-            font-size: 13px;
-            line-height: 1.4;
-            transition: background-color 0.1s;
-            flex-shrink: 0;
-        }
-        #closeBtn:hover {
-            background-color: #c0392b;
-        }
-        .controls {
-            display: flex;
-            gap: 5px;
-            margin-bottom: 12px;
-            flex-shrink: 0;
-        }
-  
-  
+  #closeBtn {
+    padding: 4px 11px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    font-weight: bold;
+    background-color: #e74c3c;
+    color: white;
+    font-size: 13px;
+    line-height: 1.4;
+    transition: background-color 0.1s;
+    flex-shrink: 0;
+  }
+  #closeBtn:hover {
+    background-color: #c0392b;
+  }
 </style>
 </head>
 <body>
@@ -193,7 +235,7 @@
 </div>
 
 <div class="table-wrapper">
-<table>
+<table class="table-emotions">
   <thead>
     <tr>
       <th data-col="RADOŚĆ">😄<br>RADOŚĆ</th>
@@ -850,40 +892,42 @@
 </table>
 </div>
 
-    <h1>Skala wibracji</h1>
-    <p>
-        Poniższa tabela przedstawia model zależności pomiędzy stanem umysłu a poziomem wibracji, 
-        pochodzący z rewolucyjnej książki doktora medycyny i filozofii Davida Hawkinsa 
-        <em>Power vs. Force</em> (Moc kontra siła), w której każdemu stanowi umysłu przypisana jest wartość od 1 do 600.
-    </p>
-    
-    <table>
-        <thead>
-            <tr>
-                <th>Stan umysłu</th>
-                <th class="center">Wartość</th>
-                <th>Emocja</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr><td>Spokój</td><td class="center">600</td><td>Szczęście</td></tr>
-            <tr><td>Radość</td><td class="center">540</td><td>Pogoda ducha</td></tr>
-            <tr><td>Miłość</td><td class="center">500</td><td>Szacunek</td></tr>
-            <tr><td>Rozsądek</td><td class="center">400</td><td>Zrozumienie</td></tr>
-            <tr class="highlight"><td>Akceptacja</td><td class="center">350</td><td>Wybaczenie</td></tr>
-            <tr class="highlight"><td>Gotowość</td><td class="center">310</td><td>Optymizm</td></tr>
-            <tr><td>Neutralność</td><td class="center">250</td><td>Zaufanie</td></tr>
-            <tr><td>Odwaga</td><td class="center">200</td><td>Afirmacja</td></tr>
-            <tr><td>Duma</td><td class="center">175</td><td>Pogarda</td></tr>
-            <tr><td>Gniew</td><td class="center">150</td><td>Nienawiść</td></tr>
-            <tr><td>Pragnienie</td><td class="center">125</td><td>Pożądanie</td></tr>
-            <tr><td>Lęk</td><td class="center">100</td><td>Niepokój</td></tr>
-            <tr><td>Smutek</td><td class="center">75</td><td>Żal</td></tr>
-            <tr><td>Apatia</td><td class="center">50</td><td>Rozpacz</td></tr>
-            <tr><td>Poczucie winy</td><td class="center">30</td><td>Potępienie</td></tr>
-            <tr><td>Wstyd</td><td class="center">20</td><td>Upokorzenie</td></tr>
-        </tbody>
-    </table>
- 
+<h1 class="section-title">Skala wibracji</h1>
+<p class="section-desc">
+    Poniższa tabela przedstawia model zależności pomiędzy stanem umysłu a poziomem wibracji, 
+    pochodzący z rewolucyjnej książki doktora medycyny i filozofii Davida Hawkinsa 
+    <em>Power vs. Force</em> (Moc kontra siła), w której każdemu stanowi umysłu przypisana jest wartość od 1 do 600.
+</p>
+
+<div class="table-wrapper" style="padding: 0 20px;">
+<table class="table-vibrations">
+    <thead>
+        <tr>
+            <th>Stan umysłu</th>
+            <th class="center">Wartość</th>
+            <th>Emocja</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td>Spokój</td><td class="center">600</td><td>Szczęście</td></tr>
+        <tr><td>Radość</td><td class="center">540</td><td>Pogoda ducha</td></tr>
+        <tr><td>Miłość</td><td class="center">500</td><td>Szacunek</td></tr>
+        <tr><td>Rozsądek</td><td class="center">400</td><td>Zrozumienie</td></tr>
+        <tr class="highlight"><td>Akceptacja</td><td class="center">350</td><td>Wybaczenie</td></tr>
+        <tr class="highlight"><td>Gotowość</td><td class="center">310</td><td>Optymizm</td></tr>
+        <tr><td>Neutralność</td><td class="center">250</td><td>Zaufanie</td></tr>
+        <tr><td>Odwaga</td><td class="center">200</td><td>Afirmacja</td></tr>
+        <tr><td>Duma</td><td class="center">175</td><td>Pogarda</td></tr>
+        <tr><td>Gniew</td><td class="center">150</td><td>Nienawiść</td></tr>
+        <tr><td>Pragnienie</td><td class="center">125</td><td>Pożądanie</td></tr>
+        <tr><td>Lęk</td><td class="center">100</td><td>Niepokój</td></tr>
+        <tr><td>Smutek</td><td class="center">75</td><td>Żal</td></tr>
+        <tr><td>Apatia</td><td class="center">50</td><td>Rozpacz</td></tr>
+        <tr><td>Poczucie winy</td><td class="center">30</td><td>Potępienie</td></tr>
+        <tr><td>Wstyd</td><td class="center">20</td><td>Upokorzenie</td></tr>
+    </tbody>
+</table>
+</div>
+<p></p>
 </body>
 </html>
