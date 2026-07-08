@@ -52,17 +52,18 @@
     border-collapse: separate;
     border-spacing: 0;
     width: 100%;
-    table-layout: fixed;
   }
 
-  /* Pierwsza tabela wymaga większej szerokości minimalnej ze względu na 7 kolumn */
+  /* Pierwsza tabela wymaga fixed i dużej szerokości ze względu na 7 kolumn i zdjęcia */
   .table-emotions {
+    table-layout: fixed;
     min-width: 1000px;
   }
 
-  /* Druga tabela (Skala wibracji) ma tylko 3 kolumny, więc min-width może być mniejsze */
+  /* Druga tabela dopasowuje się automatycznie do zawartości na mniejszych ekranach */
   .table-vibrations {
-    min-width: 500px;
+    table-layout: auto;
+    max-width: 100%;
     background: white;
     box-shadow: 0 2px 8px rgba(0,0,0,0.05);
     border-radius: 8px;
@@ -91,6 +92,7 @@
     background-color: #16213e;
     color: white;
     text-align: left;
+    padding: 14px 16px;
   }
   .table-vibrations thead th.center {
     text-align: center;
@@ -121,8 +123,16 @@
     border-bottom: 1px solid rgba(0,0,0,0.05);
     transition: background 0.15s;
     white-space: nowrap;
+  }
+
+  /* Elipsa i stały układ tylko dla pierwszej tabeli, by tekst się nie zawijał nieładnie */
+  .table-emotions tbody tr td {
     overflow: hidden;
     text-overflow: ellipsis;
+  }
+
+  .table-vibrations tbody tr td {
+    padding: 10px 16px; /* Nieco większe odstępy w tabeli wibracji dla czytelności */
   }
 
   tbody tr:hover td { filter: brightness(0.96); }
@@ -493,7 +503,7 @@
       <td data-col="WSTRĘT"></td>
     </tr>
     <tr class="row-even">
-      <td data-col="RADOŚĆ">Odprężenie</td>
+      <td data-col="RADORED">Odprężenie</td>
       <td data-col="SMUTEK">Poczucie pokonania</td>
       <td data-col="ZŁOŚĆ_GNIEW">Podminowanie</td>
       <td data-col="STRACH">Popłoch</td>
@@ -904,7 +914,7 @@
     <thead>
         <tr>
             <th>Stan umysłu</th>
-            <th class="center">Wartość</th>
+            <th class="center" style="white-space: nowrap;">Wartość</th>
             <th>Emocja</th>
         </tr>
     </thead>
