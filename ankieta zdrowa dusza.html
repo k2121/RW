@@ -1,0 +1,409 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ankieta Zdrowa Dusza</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680;1,9..144,500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --paper:#F5EFE3;
+    --paper-deep:#ECE2CC;
+    --card:#FBF8F0;
+    --ink:#2A211B;
+    --ink-soft:#6A5D4F;
+    --rose:#A8425A;
+    --rose-deep:#7C2F42;
+    --rose-pale:#EFD9D9;
+    --sage:#6E7F5C;
+    --gold:#A9803F;
+    --line:#DCCFB2;
+    --shadow:0 1px 2px rgba(42,33,27,.06), 0 8px 24px rgba(42,33,27,.08);
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 88% -10%, rgba(110,127,92,.06), transparent 60%),
+      var(--paper);
+    color:var(--ink);
+    font-family:'Spectral',serif;
+    font-size:16.5px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--rose-pale); }
+  
+  .wrap { max-width:760px; margin:0 auto; padding:56px 28px 90px; }
+  @media (max-width:560px){ .wrap{ padding:34px 16px 70px; } }
+
+  .eyebrow{
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--sage); margin-bottom:14px;
+  }
+  h1.title{
+    font-family:'Fraunces',serif; font-weight:680; font-size:clamp(34px,6vw,52px);
+    line-height:1.04; margin:0 0 6px; letter-spacing:-.01em;
+  }
+  .subtitle{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:400;
+    color:var(--ink-soft); font-size:19px; margin:0 0 38px;
+  }
+  .meta-card{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+    display:grid; grid-template-columns:1fr 1fr 2fr; gap:16px 20px;
+  }
+  @media (max-width:560px){ .meta-card{ grid-template-columns:1fr; } }
+  .field label{
+    display:block; font-family:'Space Grotesk',sans-serif; font-size:11px;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;
+  }
+  .field input{
+    width:100%; border:none; border-bottom:1.5px solid var(--line);
+    background:transparent; font-family:'Spectral',serif; font-size:16px;
+    color:var(--ink); padding:4px 2px 7px; outline:none;
+  }
+  .field input:focus{ border-bottom-color:var(--rose); }
+  .field.wide{ grid-column:span 1; }
+  .privacy{
+    font-family:'Space Grotesk',sans-serif; font-size:12.5px; color:var(--ink-soft);
+    border:1px dashed var(--line); border-radius:10px; padding:12px 16px; margin-bottom:28px; line-height:1.55;
+  }
+
+  .item{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+  }
+  .item .inum{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:560;
+    color:var(--gold); font-size:18px; margin-right:6px;
+  }
+  .item p.lead{ margin:0 0 10px; }
+  
+  textarea{
+    width:100%; resize:none; overflow:hidden;
+    border:1px solid var(--line); border-radius:10px;
+    background:#FFFDF8; padding:12px 14px;
+    font-family:'Spectral',serif; font-size:15.5px; color:var(--ink);
+    line-height:1.55; outline:none; min-height:64px;
+  }
+  textarea:focus{ border-color:var(--rose); box-shadow:0 0 0 3px rgba(168,66,90,.12); }
+
+  /* Tak / Nie choices */
+  fieldset.choices{
+    border:none; margin:12px 0 0; padding:0;
+    display:flex; flex-wrap:wrap; gap:8px;
+  }
+  .pill{ position:relative; }
+  .pill input{ position:absolute; opacity:0; inset:0; cursor:pointer; margin:0; }
+  .pill span{
+    display:inline-block; padding:6px 16px; border-radius:999px;
+    border:1.5px solid var(--line); font-family:'Space Grotesk',sans-serif;
+    font-size:12px; font-weight:500; text-transform:uppercase; color:var(--ink-soft); transition:all .15s;
+  }
+  .pill input:checked + span{
+    background:var(--sage); border-color:var(--sage); color:#fff;
+  }
+
+  .subhead{
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--ink-soft);
+    margin:38px 0 18px; padding-bottom:8px; border-bottom:1px solid var(--line);
+  }
+
+  .inner-field {
+    margin-top: 14px;
+  }
+  .inner-field label {
+    display: block; font-family: 'Space Grotesk', sans-serif; font-size: 13px; color: var(--ink-soft); margin-bottom: 6px;
+  }
+
+  .toolbar{
+    display:flex; gap:10px; flex-wrap:wrap; margin:34px 0 20px;
+  }
+  .btn{
+    appearance:none; cursor:pointer; border-radius:999px;
+    font-family:'Space Grotesk',sans-serif; font-size:13px; letter-spacing:.03em;
+    padding:10px 18px; border:1.5px solid var(--sage);
+  }
+  .btn.primary{ background:var(--sage); color:#fff; }
+  .btn.ghost{ background:transparent; color:var(--sage); }
+  .btn:hover{ filter:brightness(1.05); }
+
+  .signoff{
+    margin-top:50px; padding-top:28px; border-top:1px solid var(--line);
+    display:flex; flex-wrap:wrap; gap:22px; align-items:flex-end; justify-content:between;
+  }
+  .signoff .field{ min-width:240px; flex:1; }
+  .signoff .field label{
+    display:block; font-family:'Space Grotesk',sans-serif; font-size:11px;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;
+  }
+  .signoff .field input{
+    width:100%; border:none; border-bottom:1.5px solid var(--line);
+    background:transparent; font-family:'Spectral',serif; font-size:16px;
+    color:var(--ink); padding:4px 2px 7px; outline:none;
+  }
+
+  footer{
+    margin-top:60px; padding-top:18px; border-top:1px solid var(--line);
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; color:var(--ink-soft);
+    text-align:center; line-height:1.7;
+  }
+  footer a{ color:var(--ink-soft); text-decoration:none; }
+
+  @media print{
+    .toolbar, .privacy{ display:none !important; }
+    body{ background:#fff; }
+    .wrap{ max-width:100%; padding:0 8px; }
+    .item{ box-shadow:none; border:1px solid #ccc; break-inside:avoid; }
+    textarea{ border:1px solid #ccc; }
+  }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="eyebrow">Ankieta Procesu</div>
+  <h1 class="title">Zdrowa Dusza</h1>
+  <p class="subtitle">Narzędzie transformacji emocjonalnej i akceptacji</p>
+
+		<div class="meta-card">
+        <div class="field"><label for="fData">Data,</label><input id="fData" type="date"></div>
+        <div class="field"><label for="fNr">Arkusz nr,</label><input id="fNr" type="text" placeholder="np. 1"></div>
+        <div class="field wide">
+          <label for="yourName">Twoje Imię,</label>
+          <input id="yourName" type="text" placeholder="Wpisz swoje imię…">
+        </div>
+      </div>
+
+  <p class="privacy"><strong>Prywatność i bezpieczeństwo:</strong> Treść wpisywana w tym arkuszu nie jest nigdzie wysyłana ani gromadzona. Pozostaje wyłącznie w Twojej przeglądarce i znika po jej zamknięciu.</p>
+
+  <div class="item">
+    <p class="lead"><span class="inum">1.</span> Opisz krótko zachowanie własne lub innej osoby, które jest przyczyną Twojego zdenerwowania, gniewu, złości, smutku, poczucia winy czy wstydu czy innych nieprzyjemnych dla Ciebie emocji.</p>
+    <textarea rows="3" placeholder="Opisz tę sytuację krótko i rzeczowo…"></textarea>
+  </div>
+
+  <div class="item">
+    <p class="lead"><span class="inum">2.</span> Wypisz od myślników, co najbardziej denerwuje Cię w tej sytuacji, czy w osobach i ich zachowaniu lub też w Twoim własnym zachowaniu.</p>
+    <textarea rows="3" placeholder="• Co wywołuje największy opór?&#10;• Jakie cechy drażnią najbardziej?"></textarea>
+  </div>
+
+  <div class="item">
+    <p class="lead"><span class="inum">3.</span> Jak według Ciebie ta osoba powinna się zachować?</p>
+    <textarea rows="2" placeholder="Twoje oczekiwania wobec idealnego zachowania tej osoby…"></textarea>
+  </div>
+
+  <div class="item">
+    <p class="lead"><span class="inum">4.</span> Jeśli taka lub podobna sytuacja wydarza się kolejny raz, napisz poniżej, kto jeszcze zachował się w taki sposób w stosunku do Ciebie? A może Tobie zdarzyło się tak zachować w stosunku do kogoś?</p>
+    <p style="font-family:'Spectral',serif; font-style:italic; color:var(--ink-soft); font-size:14px; margin:-4px 0 10px;">Podpowiedź: Jeśli nic nie przychodzi Ci do głowy, przejdź do następnego punktu.</p>
+    <textarea rows="3" placeholder="Wpisz powtarzające się schematy lub Twoje analogiczne zachowania…"></textarea>
+  </div>
+
+  <div class="item">
+    <p class="lead"><span class="inum">5.</span> Napisz, co czujesz, kiedy myślisz o tej sytuacji? Jakie uczucia towarzyszyły Ci w tej chwili, kiedy to się działo? Wypisz je wszystkie, choćby miałyby być nawet sprzeczne ze sobą.</p>
+    <p style="font-family:'Spectral',serif; font-style:italic; color:var(--ink-soft); font-size:14px; margin:-4px 0 10px;">Nazywanie swoich uczuć i emocji jest bardzo ważnym elementem tego procesu, dlatego poświęć na to tyle czasu, ile potrzebujesz.</p>
+    <textarea rows="4" placeholder="Wypisz wszystkie emocje, np. żal, wściekłość, lęk, bezsilność…"></textarea>
+  </div>
+
+  <div class="item" style="background: linear-gradient(135deg, var(--paper-deep), var(--card)); text-align:center; padding:28px;">
+    <p class="lead" style="font-family:'Fraunces',serif; font-style:italic; font-size:19px; margin:0;"><span class="inum">6.</span> Zamknij oczy i weź trzy głębokie oddechy.</p>
+  </div>
+
+  <div class="subhead">Deklaracje i integracja</div>
+
+  <div class="item">
+    <p class="lead"><span class="inum">7.</span> Chociaż odczuwam te uczucia, całkowicie i bezwarunkowo akceptuję siebie i daję sobie prawo, aby czuć to wszystko.</p>
+    <fieldset class="choices">
+      <label class="pill"><input type="radio" name="q7" value="tak"><span>Tak</span></label>
+      <label class="pill"><input type="radio" name="q7" value="nie"><span>Nie</span></label>
+    </fieldset>
+  </div>
+
+  <div class="item">
+    <p class="lead"><span class="inum">8.</span> Moje uczucia pokazują, jak widzę tę sytuację i że oceniam ją jako niekorzystną dla mnie.</p>
+    <fieldset class="choices">
+      <label class="pill"><input type="radio" name="q8" value="tak"><span>Tak</span></label>
+      <label class="pill"><input type="radio" name="q8" value="nie"><span>Nie</span></label>
+    </fieldset>
+  </div>
+
+  <div class="item">
+    <p class="lead"><span class="inum">9.</span> Wiem, że we mnie i w innych ludziach denerwują mnie jedynie te zachowania / cechy / emocje, których nie akceptuję w sobie.</p>
+    <fieldset class="choices">
+      <label class="pill"><input type="radio" name="q9" value="tak"><span>Tak</span></label>
+      <label class="pill"><input type="radio" name="q9" value="nie"><span>Nie</span></label>
+    </fieldset>
+  </div>
+
+  <div class="item">
+    <p class="lead"><span class="inum">10.</span> Wiem już, że każde uczucie, które sprawia mi dyskomfort, jest dla mnie wskazówką, jakiej części siebie nie akceptuję.</p>
+    <fieldset class="choices">
+      <label class="pill"><input type="radio" name="q10" value="tak"><span>Tak</span></label>
+      <label class="pill"><input type="radio" name="q10" value="nie"><span>Nie</span></label>
+    </fieldset>
+  </div>
+
+  <div class="item">
+    <p class="lead"><span class="inum">11.</span> Potrzebuję wskazówek w postaci emocji, aby wiedzieć, jaka część mnie domaga się miłości i akceptacji, dlatego dziękuję za uczucia, których doświadczam.</p>
+    <fieldset class="choices">
+      <label class="pill"><input type="radio" name="q11" value="tak"><span>Tak</span></label>
+      <label class="pill"><input type="radio" name="q11" value="nie"><span>Nie</span></label>
+    </fieldset>
+  </div>
+
+  <div class="item">
+    <p class="lead"><span class="inum">12.</span> Wiem, że energia podąża za uwagą, więc z czymkolwiek walczę, dodatkowo wzmacniam to energetycznie, dlatego teraz wycofuję swoją energię z tej sytuacji, wysyłam w tym kierunku miłość i akceptację.</p>
+    <fieldset class="choices">
+      <label class="pill"><input type="radio" name="q12" value="tak"><span>Tak</span></label>
+      <label class="pill"><input type="radio" name="q12" value="nie"><span>Nie</span></label>
+    </fieldset>
+  </div>
+
+  <div class="item">
+    <p class="lead"><span class="inum">13.</span> Oddaję Wyższej Sile kontrolę nad tą sytuacją i rozwiązanie jej w sposób najkorzystniejszy dla mnie i wszystkich zaangażowanych w nią stron.</p>
+    <fieldset class="choices">
+      <label class="pill"><input type="radio" name="q13" value="tak"><span>Tak</span></label>
+      <label class="pill"><input type="radio" name="q13" value="nie"><span>Nie</span></label>
+    </fieldset>
+  </div>
+
+  <div class="item">
+    <p class="lead"><span class="inum">14.</span> Wiem już, że każda sytuacja, która wydarza się w moim życiu, ma swój sens i cel i na poziomie nieświadomym przynosi korzyść mnie i każdej osobie biorącej udział w tym wydarzeniu — nawet jeśli jest to dla mnie trudne do zaakceptowania, otwieram się na taką możliwość TERAZ.</p>
+    <fieldset class="choices">
+      <label class="pill"><input type="radio" name="q14" value="tak"><span>Tak</span></label>
+      <label class="pill"><input type="radio" name="q14" value="nie"><span>Nie</span></label>
+    </fieldset>
+  </div>
+
+  <div class="item">
+    <p class="lead"><span class="inum">15.</span> Wróć do punktu 2 i 3 i zauważ, że to, co denerwowało Cię w tej sytuacji czy osobie, kierowało Twoją uwagę na to, jakich części siebie nie akceptujesz oraz jakie działania należy podjąć, aby podobne sytuacje w przyszłości nie miały miejsca.</p>
+    
+    <div class="inner-field">
+      <label>Ta sytuacja/osoba uświadomiła mi, że nie akceptuję części mnie:</label>
+      <textarea rows="2" placeholder="Wypisz niezaakceptowane aspekty siebie…"></textarea>
+    </div>
+    
+    <div class="inner-field" style="margin-top:20px;">
+      <label>Ja powinnam / powinienem:</label>
+      <textarea rows="2" placeholder="Jakie kroki lub postawę warto podjąć na przyszłość…"></textarea>
+    </div>
+  </div>
+
+  <div class="item">
+    <p class="lead"><span class="inum">16.</span> Wiem, że każda część mnie jest mi do czegoś potrzebna, a brak akceptacji danej cechy sprawia, że przestaje być ona moim potencjałem.</p>
+    <fieldset class="choices">
+      <label class="pill"><input type="radio" name="q16" value="tak"><span>Tak</span></label>
+      <label class="pill"><input type="radio" name="q16" value="nie"><span>Nie</span></label>
+    </fieldset>
+  </div>
+
+  <div class="item">
+    <p class="lead"><span class="inum">17.</span> Wyrażam chęć obdarzenia miłością wszystkich tych części mnie, które przez brak mojej akceptacji dla nich tworzyły podobne sytuacje w moim życiu.</p>
+    <fieldset class="choices">
+      <label class="pill"><input type="radio" name="q17" value="tak"><span>Tak</span></label>
+      <label class="pill"><input type="radio" name="q17" value="nie"><span>Nie</span></label>
+    </fieldset>
+  </div>
+
+  <div class="item">
+    <p class="lead"><span class="inum">18.</span> Wyrażam teraz gotowość, aby Siła Wyższa przeniknęła czas i przestrzeń odnajdując źródło tego braku akceptacji i aby rozwiązała do końca tę sytuację z korzyścią i miłością dla wszystkich zaangażowanych w nią stron.</p>
+    <fieldset class="choices">
+      <label class="pill"><input type="radio" name="q18" value="tak"><span>Tak</span></label>
+      <label class="pill"><input type="radio" name="q18" value="nie"><span>Nie</span></label>
+    </fieldset>
+  </div>
+
+  <div class="item">
+    <p class="lead"><span class="inum">19.</span> Wymień jak najwięcej rzeczy, za które możesz czuć wdzięczność:</p>
+    <textarea rows="4" placeholder="Moja wdzięczność (w odniesieniu do tej sytuacji, lekcji lub ogólnie w życiu)…"></textarea>
+  </div>
+
+  <div class="item">
+    <p class="lead"><span class="inum">20.</span> Rozwiązanie tej sprawy do samego końca oddaję Wyższej Sile oraz mojemu Wyższemu Ja.</p>
+  </div>
+
+  <div class="signoff">
+    <div class="field"><label for="signDate">Data</label><input id="signDate" type="date"></div>
+    <div class="field"><label for="fSignature">Własnoręczny podpis</label><input id="fSignature" type="text" placeholder="Twój podpis…"></div>
+  </div>
+
+  <div class="toolbar">
+    <button class="btn primary" id="printBtn">Drukuj / Zapisz jako PDF</button>
+    <button class="btn ghost" id="clearBtn">Wyczyść ankietę</button>
+  </div>
+
+  <footer>
+    <a href="http://www.zdrowadusza.com" target="_blank">WWW.ZDROWADUSZA.COM</a><br>
+    Inspiracja metodami samorozwoju i integracji cienia.
+  </footer>
+</div>
+
+<script>
+(function(){
+  // Automatyczne dopasowywanie wysokości pól tekstowych (textarea)
+  function autosize(t){
+    t.style.height = 'auto';
+    t.style.height = (t.scrollHeight + 2) + 'px';
+  }
+  function autosizeAll(scope){
+    (scope || document).querySelectorAll('textarea').forEach(t=>{
+      autosize(t);
+      t.addEventListener('input', ()=>autosize(t));
+    });
+  }
+  autosizeAll();
+  window.addEventListener('load', () => autosizeAll());
+
+  // Kopiowanie daty z początku arkusza do daty na końcu (podpis)
+  const fData = document.getElementById('fData');
+  const signDate = document.getElementById('signDate');
+  fData.addEventListener('input', ()=>{ signDate.value = fData.value; });
+
+  // Dynamiczny tytuł strony (widoczny też jako domyślna nazwa pliku PDF przy druku)
+  // Format: "Ankieta Zdrowa Dusza - rRRMMDDgGGMM nrNNN - {Imię}"
+  const BASE_TITLE = document.title;
+  const fNr = document.getElementById('fNr');
+  const yourName = document.getElementById('yourName');
+  function pad(n, len=2){ return String(n).padStart(len, '0'); }
+  function updateTitle(){
+    const now = new Date();
+    const rr = pad(now.getFullYear() % 100);
+    const mm = pad(now.getMonth() + 1);
+    const dd = pad(now.getDate());
+    const gg = pad(now.getHours());
+    const mi = pad(now.getMinutes());
+    const nrRaw = fNr.value.trim();
+    const nrNum = nrRaw ? parseInt(nrRaw, 10) : 0;
+    const nr = pad(Number.isFinite(nrNum) ? nrNum : 0, 3);
+    let title = `${BASE_TITLE} - r${rr}${mm}${dd}g${gg}${mi} nr${nr}`;
+    const name = yourName.value.trim();
+    if(name) title += ` - ${name}`;
+    document.title = title;
+  }
+  fNr.addEventListener('input', updateTitle);
+  yourName.addEventListener('input', updateTitle);
+  updateTitle();
+
+  // Drukowanie pliku
+  document.getElementById('printBtn').addEventListener('click', ()=>{
+    updateTitle();
+    window.print();
+  });
+
+  // Czyszczenie zawartości formularza
+  document.getElementById('clearBtn').addEventListener('click', ()=>{
+    if(!confirm('Wyczyścić cały arkusz? Tej operacji nie można cofnąć.')) return;
+    document.querySelectorAll('textarea').forEach(t=>{ t.value=''; autosize(t); });
+    document.querySelectorAll('input[type=text], input[type=date], input[type=number]').forEach(i=> i.value='');
+    document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach(i=> i.checked=false);
+    autosizeAll();
+    updateTitle();
+  });
+})();
+</script>
+</body>
+</html>
