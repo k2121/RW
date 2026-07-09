@@ -13,6 +13,22 @@ const SatoriLogger = (function() {
         safeStorage.setItem(LOG_KEY, logBuffer);
     }
 
+    function getCardContent(el) {
+        if (!el || !el.value) return "";
+        const text = el.options[el.selectedIndex]?.textContent || "";
+        return text.replace(/^[a-zA-Z0-9]+\s+/, "").trim();
+    }
+
+    function sanitizeForFilename(text) {
+        if (!text) return "";
+        let clean = text.replace(/[\\/:*?"<>|]/g, "");
+        clean = clean.replace(/[\s.]+$/, "");
+        if (clean.length > 50) {
+            clean = clean.slice(0, 47) + "...";
+        }
+        return clean.trim();
+    }
+
     async function log(action, details = "") {
         const now = new Date();
         
@@ -88,6 +104,20 @@ const SatoriLogger = (function() {
             }
         });
 
+        const zdarzenieEl = document.getElementById('pola_zdarzenie');
+        const kontekstEl = document.getElementById('pola_kontekst');
+        const zdarzenieText = getCardContent(zdarzenieEl);
+        const kontekstText = getCardContent(kontekstEl);
+        if (zdarzenieText || kontekstText) {
+            content += "\n   ==========Karty Zdarzenia i Kontekstu==========\n";
+            if (zdarzenieText) {
+                content += `   Zdarzenie: ${zdarzenieText}\n`;
+            }
+            if (kontekstText) {
+                content += `   Kontekst: ${kontekstText}\n`;
+            }
+        }
+
         logBuffer += content;
         saveBuffer();
         
@@ -139,7 +169,21 @@ const SatoriLogger = (function() {
         const hh = pad(now.getHours());
         const mi = pad(now.getMinutes());
         const device = getDeviceName(); 
-        return `Satori_Log r${yy}${mm}${dd} g${hh}${mi} ${device}.txt`;
+
+        const zdarzenieEl = document.getElementById('pola_zdarzenie');
+        const kontekstEl = document.getElementById('pola_kontekst');
+        const zdarzenieText = getCardContent(zdarzenieEl);
+        const kontekstText = getCardContent(kontekstEl);
+
+        let suffix = "";
+        if (zdarzenieText) {
+            suffix += ` - ${sanitizeForFilename(zdarzenieText)}`;
+        }
+        if (kontekstText) {
+            suffix += ` - ${sanitizeForFilename(kontekstText)}`;
+        }
+
+        return `Satori_Log r${yy}${mm}${dd} g${hh}${mi} ${device}${suffix}.txt`;
     }
 
     async function connectFile() {
@@ -187,7 +231,25 @@ const SatoriLogger = (function() {
     }
 
     function downloadLog() {
-        const blob = new Blob([logBuffer], { type: 'text/plain' });
+        const zdarzenieEl = document.getElementById('pola_zdarzenie');
+        const kontekstEl = document.getElementById('pola_kontekst');
+        const zdarzenieText = getCardContent(zdarzenieEl);
+        const kontekstText = getCardContent(kontekstEl);
+
+        let extraContent = "";
+        if (!logBuffer.includes("==========Karty Zdarzenia i Kontekstu==========")) {
+            if (zdarzenieText || kontekstText) {
+                extraContent += "\n\n   ==========Karty Zdarzenia i Kontekstu==========\n";
+                if (zdarzenieText) {
+                    extraContent += `   Zdarzenie: ${zdarzenieText}\n`;
+                }
+                if (kontekstText) {
+                    extraContent += `   Kontekst: ${kontekstText}\n`;
+                }
+            }
+        }
+
+        const blob = new Blob([logBuffer + extraContent], { type: 'text/plain' });
         const url = URL.createObjectURL(blob);
         const a = document.createElement('a');
         a.href = url;
