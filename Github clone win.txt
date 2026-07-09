@@ -1,0 +1,23 @@
+gh repo clone k2121/RW
+
+==========================
+On Windows (PowerShell):
+powershell
+
+irm https://antigravity.google/cli/install.ps1 | iex
+
+Then start it and authenticate:
+bash
+
+agy
+=========================
+*** Please tell me who you are.
+
+Run
+
+  git config --global user.email "you@example.com"
+  git config --global user.name "Your Name"
+
+git add . 
+git commit -m "Opis zmian" 
+git push origin main
