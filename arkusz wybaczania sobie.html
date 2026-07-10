@@ -458,17 +458,16 @@
         </div>
 
         <div class="item">
-          <p class="lead"><span class="inum">5.</span>Mam określone uczucia. Skoro emocje są myślami (lub przekonaniami), oto moje uczucia:</p>
-          <textarea rows="3" placeholder="Uzupełnij lub opisz swoje spostrzeżenia…"></textarea>
-          <div class="score-grid" style="margin-top:16px;">
-            <div class="score-row" style="max-width:100%;"><label>Moja samoocena w skali od 1 do 10 (1 oznacza bardzo niską) wynosi:,</label><input type="number" min="1" max="10" placeholder="1-10"></div>
+          <p class="lead"><span class="inum">5.</span>Mam określone uczucia. Skoro emocje są myślami (lub przekonaniami), związanymi z danym uczuciem, to moje uczucia odzwierciedlają, jak sam/a siebie postrzegam (osądzam) w związku z daną sytuacją.</p>
+          <div class="rgroup-scale" data-name="r5"></div>
+          <div class="score-grid" style="margin-top:16px;">            
           </div>
         </div>
 
         <div class="item">
           <p class="lead"><span class="inum">6.</span>Czuję się winna/y. Moje poczucie winy w skali od 1 do 10 wynosi (1 oznacza bardzo małą intensywność):</p>
           <div class="score-grid" style="margin-bottom:16px;">
-            <div class="score-row"><label>Skala poczucia winy:,</label><input type="number" min="1" max="10" placeholder="1-10"></div>
+            <div class="score-row"><label>Skala poczucia winy:</label><input type="number" min="1" max="10" placeholder="1-10"></div>
           </div>
           <p class="note" style="font-weight: 500;">Moje poczucie winy w stosunku do tego wydarzenia jest:</p>
           <fieldset class="readiness">
@@ -483,7 +482,7 @@
         <div class="stage-head"><span class="snum">2</span><h2>Nowa perspektywa</h2></div>
 
         <div class="item">
-          <p class="lead"><span class="inum">7.</span>Nawet jeśli nie wiem, dlaczego i jak, to rozumiem teraz, że sytuację tę stwarza moja dusza po to, bym mogła/mógł się uczyć i rozwijać.</p>
+          <p class="lead"><span class="inum">7.</span>Nawet jeśli nie wiem, dlaczego i jak, to rozumiem teraz, że sytuację tę stworzyła moja dusza po to, bym mogła/mógł się uczyć i rozwijać.</p>
           <div class="rgroup-scale" data-name="r7"></div>
         </div>
 
@@ -526,7 +525,8 @@
         </div>
 
         <div class="item">
-          <p class="lead"><span class="inum">15.</span>Rozumiem teraz, że to czego doświadczyłam/em było dokładnym odzwierciedleniem mojego ludzkiego sposobu postrzegania tej sytuacji. Zdaję sobie sprawę, że potrafię zmieniać tę "rzeczywistość" gdy będę gotowa/y dojrzeć w niej duchową doskonałość. Na przykład:</p>
+          <p class="lead"><span class="inum">15.</span>Nowa interpretacja: Rozumiem teraz, że to czego doświadczyłam/em było dokładnym odzwierciedleniem mojego ludzkiego sposobu postrzegania tej sytuacji. Zdaję sobie sprawę, że potrafię zmieniać tę "rzeczywistość" gdy będę gotowa/y dojrzeć w niej duchową doskonałość. Na przykład:</p>
+		  <p class="note">(Spróbuj dokonać nowej interpretacji, opierając się na Radykalnym Wybaczaniu. Może to być ogólne stwierdzenie, że teraz już wiesz, iż wszystko jest doskonałe, albo wypowiedź dotycząca Twojej konkretnej sytuacji, jeśli tylko potrafisz dostrzec, jaką niesie Ci ona korzyść).</p>
           <textarea rows="4" placeholder="Podaj przykłady zmiany perspektywy i dostrzeżenia nowej rzeczywistości…"></textarea>
         </div>
 
@@ -545,7 +545,7 @@
         <div class="item">
           <p class="lead"><span class="inum">18.</span> Nota skierowana do każdej z tych osób, którą skrzywdziłam/em lub źle potraktowałam/em:</p>
           <p class="note">Po wypełnieniu tego arkusza, widzę teraz, że to co się wydarzyło, było Boskim zrządzeniem. Jednak patrząc z perspektywy naszego świata ziemskiego, świata bólu i cierpienia, decyduję się na Radykalne Przeprosiny, zadośćuczynienie i prośbę o to, abyś mi wybaczył/a. Moje Radykalne Przeprosiny brzmią:</p>
-          <textarea rows="4" placeholder="Wpisz słowa przeprosin i zadośćuczynienia…"></textarea>
+          <textarea rows="4" placeholder="Wpisz słowa przeprosin i zadośćuczynienia…">Chociaż wiem, że wszystko było, jest i zawsze będzie zgodne z Boskim porządkiem, to ja __________ gotowy/a jestem złożyć teraz pisemne oświadczenie Radykalnych Przeprosin, które kieruję do wszystkich i do każdego z osobna, komu ja __________ wyrządziłem/łam krzywdę lub kogo zraniłem/łam w jakikolwiek sposób. Robię to, bo wiem, że dzięki temu rozpocznie się proces oczyszczania mojej strefy cienia i, mam nadzieję, uzdrawiania ran, które ja __________ zadałem/łam. Moje szczere Radykalne Przeprosiny składam ja __________ w imieniu wszystkich __________ i kieruję je szczególnie do:</textarea>
         </div>
 
         <div class="item">
@@ -592,7 +592,7 @@
 
 <script>
 (function(){
-  const SCALE_OPTS = ["Tak", "Raczej tak", "Nie wiem", "Raczej nie", "Nie"];
+  const SCALE_OPTS = ["Zdecydowanie tak", "Raczej tak", "Nie wiem", "Raczej nie", "Zdecydowanie nie"];
 
   // Budowanie grup przycisków wyboru (skali Tak/Nie)
   document.querySelectorAll('.rgroup-scale').forEach(el=>{
