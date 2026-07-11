@@ -204,3 +204,17 @@ function populateKarmaDropdown() {
         karmaSelect.appendChild(option);
     });
 }
+
+function populateDobrePrzekonanieDropdown() {
+    const select = document.getElementById('dobre_przekonanie');
+    if (select) {
+        select.innerHTML = '<option value="">Wybierz dobre przekonanie...</option>';
+        const list = (window.sampleData || (typeof sampleData !== 'undefined' ? sampleData : null))?.dobre_przekonanie || [];
+        list.forEach(item => {
+            const option = document.createElement('option');
+            option.value = item;
+            option.textContent = item;
+            select.appendChild(option);
+        });
+    }
+}

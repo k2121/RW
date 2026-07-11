@@ -33,20 +33,21 @@
     margin-right: 3px !important;
     line-height: 1.4 !important;
 }
-        #dobre_przekonanie {
+        #dobre_przekonanie,
+        #dobre_przekonanie + .select2-container .select2-selection--single {
             width: 100%;
-            min-height: 40px;
+            min-height: 18px;
             height: auto;
             padding: 0;
             margin-top: 0;
             margin-bottom: 0;
-            resize: vertical;
-            background: radial-gradient(circle, #ffffff 0%, #93CDEA 100%);
-            color: #000000;
+            background: radial-gradient(circle, #ffffff 0%, #93CDEA 100%) !important;
+            color: #000000 !important;
             overflow: hidden;
             text-align: center;
         }
-        .dobre-przekonanie-background {
+        .dobre_przekonanie-background,
+        .dobre_przekonanie-background + .select2-container .select2-selection--single {
             background: radial-gradient(circle, #ffffff 0%, #93CDEA 100%) !important;
             color: #000000 !important;
         }
@@ -191,9 +192,11 @@
                         </div>
                         <div class="card-item">
                             <label for="dobre_przekonanie">[48] Dobre Przekonanie:
-              <button type="button" onclick="copyToClipboard('dobre_przekonanie')">Kopiuj</button>
+              <button type="button" onclick="copyDropdownValueWithPrefixToClipboard('dobre_przekonanie', '')">Kopiuj</button>
             </label>
-                            <textarea id="dobre_przekonanie" name="dobre_przekonanie" readonly></textarea>
+                            <select id="dobre_przekonanie" name="dobre_przekonanie" style="width: 100%; box-sizing: border-box;">
+                                <option value="">Wybierz dobre przekonanie...</option>
+                            </select>
                         </div>
                         <div class="card-item">
                             <label for="projekcje">[8] Oto kierunek projekcji...</label>
@@ -820,7 +823,7 @@ window.addEventListener('DOMContentLoaded', (event) => {
 
 // Auto-update dobre_przekonanie based on the drawn przekonanie number
 window.addEventListener('DOMContentLoaded', () => {
-    // Override updateBackgroundColor to support dobre-przekonanie:
+    // Override updateBackgroundColor to support dobre_przekonanie:
     const originalUpdateColor = window.updateBackgroundColor;
     window.updateBackgroundColor = function(textarea) {
         if (originalUpdateColor) {
@@ -828,7 +831,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
         const inputText = textarea.value.trim();
         const firstWord = inputText.split(' ')[0].toLowerCase();
-        if (firstWord === 'dobre-przekonanie:') {
+        if (firstWord === 'dobre_przekonanie:') {
             textarea.classList.remove(
               'zdarzenie-background', 'kontekst-background',
               'karma-background', 'wyzwanie-background', 'wyobraz-sobie-background', 'przekonanie-background',
@@ -836,7 +839,7 @@ window.addEventListener('DOMContentLoaded', () => {
               'blokada-energii-zielona-background', 'blokada-energii-błękitna-background', 'blokada-energii-indygo-background',
               'blokada-energii-fioletowa-background', 'nowa-background', 'default-background'
             );
-            textarea.classList.add('dobre-przekonanie-background');
+            textarea.classList.add('dobre_przekonanie-background');
         }
     };
 
@@ -848,31 +851,22 @@ window.addEventListener('DOMContentLoaded', () => {
             const match = val.match(/(?:przekonanie:\s*)?(\d+)/i);
             if (match) {
                 const num = parseInt(match[1], 10);
-                const list = (window.sampleData || (typeof sampleData !== 'undefined' ? sampleData : null))?.['dobre-przekonanie'] || [];
+                const list = (window.sampleData || (typeof sampleData !== 'undefined' ? sampleData : null))?.dobre_przekonanie || [];
                 const numStr = num.toString().padStart(3, '0');
-                const prefix = `dobre-przekonanie: ${numStr}.`;
+                const prefix = `dobre_przekonanie: ${numStr}.`;
                 const found = list.find(item => item.startsWith(prefix)) || '';
                 
                 if (dobrePrzekonanieEl.value !== found) {
-                    dobrePrzekonanieEl.value = found;
-                    dobrePrzekonanieEl.dispatchEvent(new Event('input'));
-                    window.updateBackgroundColor(dobrePrzekonanieEl);
-                    if (typeof window.autoResizeTextarea === 'function') {
-                        window.autoResizeTextarea(dobrePrzekonanieEl);
-                    }
+                    $(dobrePrzekonanieEl).val(found).trigger('change');
                 }
             } else {
                 if (dobrePrzekonanieEl.value !== '') {
-                    dobrePrzekonanieEl.value = '';
-                    dobrePrzekonanieEl.dispatchEvent(new Event('input'));
-                    window.updateBackgroundColor(dobrePrzekonanieEl);
-                    if (typeof window.autoResizeTextarea === 'function') {
-                        window.autoResizeTextarea(dobrePrzekonanieEl);
-                    }
+                    $(dobrePrzekonanieEl).val('').trigger('change');
                 }
             }
         };
         przekonanieEl.addEventListener('input', syncDobrePrzekonanie);
+        przekonanieEl.addEventListener('change', syncDobrePrzekonanie);
         // Run once initially (with a small delay to let loadGameState run first)
         setTimeout(syncDobrePrzekonanie, 1100);
     }
