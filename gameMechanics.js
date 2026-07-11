@@ -205,11 +205,11 @@ function populateKarmaDropdown() {
     });
 }
 
-function populateDobrePrzekonanieDropdown() {
-    const select = document.getElementById('dobre_przekonanie');
+function populateDobrePrzDropdown() {
+    const select = document.getElementById('dobre_prz');
     if (select) {
         select.innerHTML = '<option value="">Wybierz dobre przekonanie...</option>';
-        const list = (window.sampleData || (typeof sampleData !== 'undefined' ? sampleData : null))?.dobre_przekonanie || [];
+        const list = (window.sampleData || (typeof sampleData !== 'undefined' ? sampleData : null))?.dobre_prz || [];
         list.forEach(item => {
             const option = document.createElement('option');
             option.value = item;

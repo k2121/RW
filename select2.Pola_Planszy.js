@@ -113,10 +113,10 @@ $(document).ready(function () {
 });
 
 $(document).ready(function () {
-  $('#dobre_przekonanie').select2();
+  $('#dobre_prz').select2();
 
   setTimeout(function () {
-    const $container = $('#dobre_przekonanie').next('.select2-container');
+    const $container = $('#dobre_prz').next('.select2-container');
 
     $container.find('.select2-selection--single').attr('style',
       'height:18px !important; line-height:18px !important; padding:0 0px !important; background: radial-gradient(circle, #ffffff 0%, #93CDEA 100%) !important;');

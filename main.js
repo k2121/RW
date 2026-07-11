@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     initPolaZdarzenieDropdown();
     initPolaKontekstDropdown();
     populateKarmaDropdown();
-    populateDobrePrzekonanieDropdown();
+    populateDobrePrzDropdown();
 
     // Inicjalizacja dynamicznych pól tekstowych (notes/cards) – „Moja karta”
     const container = document.getElementById('textareas-container');

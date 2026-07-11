@@ -187,7 +187,7 @@ window.updateBackgroundColor = function (textarea) {
       'karma-background', 'wyzwanie-background', 'wyobraz-sobie-background', 'przekonanie-background',
       'blokada-energii-czerwona-background', 'blokada-energii-pomarańczowa-background', 'blokada-energii-żółta-background',
       'blokada-energii-zielona-background', 'blokada-energii-błękitna-background', 'blokada-energii-indygo-background',
-      'blokada-energii-fioletowa-background', 'nowa-background', 'default-background', 'dobre_przekonanie-background'
+      'blokada-energii-fioletowa-background', 'nowa-background', 'default-background', 'dobre_prz-background'
     );
 
     switch (firstWord) {

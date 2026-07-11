@@ -104,7 +104,7 @@ function loadGameState() {
             }
 
             const el = document.getElementById(id);
-            if (el && el.tagName === 'SELECT' && id === 'dobre_przekonanie') {
+            if (el && el.tagName === 'SELECT' && id === 'dobre_prz') {
                 el.value = state.textareas[id];
                 if (window.jQuery && jQuery(el).data('select2')) {
                     jQuery(el).trigger('change.select2');

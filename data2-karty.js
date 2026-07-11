@@ -229,7 +229,7 @@ przekonanie: [
  "przekonanie: 048. Życie jest walką, a to co najlepsze trafia się innym."
 ],
 
-"dobre_przekonanie": [
+"dobre_prz": [
  "dobre_prz: 001. Jestem kochany/a takim/taką, jaki/jaka jestem.",
  "dobre_prz: 002. Z łatwością nawiązuję bliskie, zdrowe relacje.",
  "dobre_prz: 003. Zasługuję na sukces i pozwalam sobie go osiągnąć.",
@@ -275,7 +275,7 @@ przekonanie: [
  "dobre_prz: 043. Mam wszystko, czego potrzebuję.",
  "dobre_prz: 044. Szybko się uczę i z każdym dniem robię to coraz lepiej.",
  "dobre_prz: 045. Dobre rzeczy przydarzają się dobrym ludziom.",
- "dobre_prz 046. Życie jest bezpieczne i wspierające.",
+ "dobre_prz: 046. Życie jest bezpieczne i wspierające.",
  "dobre_prz: 047. Życie jest pełne radości i możliwości.",
  "dobre_prz: 048. Życie jest przepływem, a dobro trafia również do mnie."
 ],

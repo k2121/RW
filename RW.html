@@ -33,8 +33,8 @@
     margin-right: 3px !important;
     line-height: 1.4 !important;
 }
-        #dobre_przekonanie,
-        #dobre_przekonanie + .select2-container .select2-selection--single {
+        #dobre_prz,
+        #dobre_prz + .select2-container .select2-selection--single {
             width: 100%;
             min-height: 18px;
             height: auto;
@@ -46,8 +46,8 @@
             overflow: hidden;
             text-align: center;
         }
-        .dobre_przekonanie-background,
-        .dobre_przekonanie-background + .select2-container .select2-selection--single {
+        .dobre_prz-background,
+        .dobre_prz-background + .select2-container .select2-selection--single {
             background: radial-gradient(circle, #ffffff 0%, #93CDEA 100%) !important;
             color: #000000 !important;
         }
@@ -197,10 +197,10 @@
                         </div>
 
                         <div class="card-item">
-                            <label for="dobre_przekonanie">[48] Dobre Przekonanie:
-              <button type="button" onclick="copyDropdownValueWithPrefixToClipboard('dobre_przekonanie', '')">Kopiuj</button>
+                            <label for="dobre_prz">[48] Dobre Przekonanie:
+              <button type="button" onclick="copyDropdownValueWithPrefixToClipboard('dobre_prz', '')">Kopiuj</button>
             </label>
-                            <select id="dobre_przekonanie" name="dobre_przekonanie" style="width: 100%; box-sizing: border-box;">
+                            <select id="dobre_prz" name="dobre_prz" style="width: 100%; box-sizing: border-box;">
                                 <option value="">Wybierz dobre przekonanie...</option>
                             </select>
                         </div>
@@ -824,9 +824,9 @@ window.addEventListener('DOMContentLoaded', (event) => {
     document.getElementById('audio4').volume = 0.3; // Never Give Up From Your Dreams
 });
 
-// Auto-update dobre_przekonanie based on the drawn przekonanie number
+// Auto-update dobre_prz based on the drawn przekonanie number
 window.addEventListener('DOMContentLoaded', () => {
-    // Override updateBackgroundColor to support dobre_przekonanie:
+    // Override updateBackgroundColor to support dobre_prz:
     const originalUpdateColor = window.updateBackgroundColor;
     window.updateBackgroundColor = function(textarea) {
         if (originalUpdateColor) {
@@ -834,7 +834,7 @@ window.addEventListener('DOMContentLoaded', () => {
         }
         const inputText = textarea.value.trim();
         const firstWord = inputText.split(' ')[0].toLowerCase();
-        if (firstWord === 'dobre_przekonanie:') {
+        if (firstWord === 'dobre_prz:') {
             textarea.classList.remove(
               'zdarzenie-background', 'kontekst-background',
               'karma-background', 'wyzwanie-background', 'wyobraz-sobie-background', 'przekonanie-background',
@@ -842,23 +842,23 @@ window.addEventListener('DOMContentLoaded', () => {
               'blokada-energii-zielona-background', 'blokada-energii-błękitna-background', 'blokada-energii-indygo-background',
               'blokada-energii-fioletowa-background', 'nowa-background', 'default-background'
             );
-            textarea.classList.add('dobre_przekonanie-background');
+            textarea.classList.add('dobre_prz-background');
         } else {
-            textarea.classList.remove('dobre_przekonanie-background');
+            textarea.classList.remove('dobre_prz-background');
         }
     };
 
     const przekonanieEl = document.getElementById('przekonanie');
-    const dobrePrzekonanieEl = document.getElementById('dobre_przekonanie');
+    const dobrePrzekonanieEl = document.getElementById('dobre_prz');
     if (przekonanieEl && dobrePrzekonanieEl) {
         const syncDobrePrzekonanie = () => {
             const val = przekonanieEl.value.trim();
             const match = val.match(/(?:przekonanie:\s*)?(\d+)/i);
             if (match) {
                 const num = parseInt(match[1], 10);
-                const list = (window.sampleData || (typeof sampleData !== 'undefined' ? sampleData : null))?.dobre_przekonanie || [];
+                const list = (window.sampleData || (typeof sampleData !== 'undefined' ? sampleData : null))?.dobre_prz || [];
                 const numStr = num.toString().padStart(3, '0');
-                const prefix = `dobre_przekonanie: ${numStr}.`;
+                const prefix = `dobre_prz: ${numStr}.`;
                 const found = list.find(item => item.startsWith(prefix)) || '';
                 
                 if (dobrePrzekonanieEl.value !== found) {
