@@ -1,0 +1,982 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tabela Emocji</title>
+<link href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Nunito', sans-serif;
+    background: #f4f6fb;
+    color: #222;
+    min-height: 100vh;
+  }
+
+  .page-header {
+    background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+    color: white;
+    padding: 20px 32px;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+  }
+
+  .page-header h1 {
+    font-size: 1.6rem;
+    font-weight: 800;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+  }
+
+  .page-header .subtitle {
+    font-size: 0.85rem;
+    opacity: 0.6;
+    margin-left: auto;
+  }
+
+  .table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+    touch-action: pan-x pan-y;
+    padding: 0;
+    max-width: 100%;
+  }
+
+  table {
+    border-collapse: separate;
+    border-spacing: 0;
+    width: 100%;
+    min-width: 1000px;
+    table-layout: fixed;
+  }
+
+  @media (max-width: 768px) {
+    .wrapper-emotions table {
+      min-width: 1000px; /* wymusza scroll poziomy zamiast ściskania kolumn */
+    }
+  }
+
+  thead th {
+    position: sticky;
+    top: 0px;
+    z-index: 50;
+    padding: 12px 8px;
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 1px;
+    text-align: center;
+    text-transform: uppercase;
+    border-right: 2px solid rgba(255,255,255,0.2);
+    border-bottom: 3px solid rgba(0,0,0,0.15);
+    line-height: 1.4;
+  }
+
+  thead th:last-child { border-right: none; }
+
+  tr.photo-row td {
+    position: sticky;
+    top: 40px;
+    z-index: 40;
+    padding: 8px 6px;
+    text-align: center;
+    border-right: 1px solid rgba(0,0,0,0.08);
+    border-bottom: 3px solid #ccc;
+    height: 160px;
+    background: white;
+  }
+
+  .photo-cell img {
+    height: 150px;
+    width: auto;
+    object-fit: contain;
+  }
+
+  tbody tr td {
+    padding: 6px 10px;
+    font-size: 0.82rem;
+    border-right: 1px solid rgba(0,0,0,0.07);
+    border-bottom: 1px solid rgba(0,0,0,0.05);
+    transition: background 0.15s;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  tbody tr:hover td { filter: brightness(0.96); }
+
+  /* Kolory odd (domyślne tło kolumn) */
+  [data-col="RADOŚĆ"]      { background-color: #FDF5C0; }
+  [data-col="SMUTEK"]      { background-color: #D6E4FA; }
+  [data-col="ZŁOŚĆ_GNIEW"] { background-color: #FDDDD5; }
+  [data-col="STRACH"]      { background-color: #EDE0FA; }
+  [data-col="WSTYD"]       { background-color: #FAD8E8; }
+  [data-col="ZASKOCZENIE"] { background-color: #D0F5F3; }
+  [data-col="WSTRĘT"]      { background-color: #EAF0C8; }
+
+  /* Nagłówki */
+  th[data-col="RADOŚĆ"]      { background-color: #F5C842; color: white; }
+  th[data-col="SMUTEK"]      { background-color: #5B8CDB; color: white; }
+  th[data-col="ZŁOŚĆ_GNIEW"] { background-color: #C0282A; color: white; }
+  th[data-col="STRACH"]      { background-color: #9A6DD7; color: white; }
+  th[data-col="WSTYD"]       { background-color: #E0609A; color: white; }
+  th[data-col="ZASKOCZENIE"] { background-color: #20B2AA; color: white; }
+  th[data-col="WSTRĘT"]      { background-color: #7A8C2A; color: white; }
+
+  /* Kolory even — osobne dla każdej kolumny */
+  tr.row-even td[data-col="RADOŚĆ"]      { background-color: #FBF0A0; }
+  tr.row-even td[data-col="SMUTEK"]      { background-color: #C2D8F7; }
+  tr.row-even td[data-col="ZŁOŚĆ_GNIEW"] { background-color: #FAC9BE; }
+  tr.row-even td[data-col="STRACH"]      { background-color: #E0CEF7; }
+  tr.row-even td[data-col="WSTYD"]       { background-color: #F7C0D8; }
+  tr.row-even td[data-col="ZASKOCZENIE"] { background-color: #B8EFEC; }
+  tr.row-even td[data-col="WSTRĘT"]      { background-color: #DCE8B0; }
+
+  .stats-bar {
+    display: flex;
+    gap: 8px;
+    padding: 10px 20px;
+    background: #fff;
+    border-bottom: 1px solid #e0e0e0;
+    flex-wrap: wrap;
+  }
+
+  .stat-chip {
+    padding: 4px 10px;
+    border-radius: 15px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    color: white;
+  }
+  
+          /* Przycisk zamknij w nagłówku */
+        #closeBtn {
+            padding: 4px 11px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: bold;
+            background-color: #e74c3c;
+            color: white;
+            font-size: 13px;
+            line-height: 1.4;
+            transition: background-color 0.1s;
+            flex-shrink: 0;
+        }
+        #closeBtn:hover {
+            background-color: #c0392b;
+        }
+        .controls {
+            display: flex;
+            gap: 5px;
+            margin-bottom: 12px;
+            flex-shrink: 0;
+        }
+  
+
+</style>
+</head>
+<body>
+
+<div class="page-header">
+  <h1>🧠 Tabela Emocji</h1>
+  <span class="subtitle">308 unikalnych emocji
+     <button id="closeBtn" onclick="window.close()">✕ Zamknij</button>
+  </span>
+</div>
+
+<div class="stats-bar">
+  <span class="stat-chip" style="background:#F5C842">😄 RADOŚĆ: 70</span>
+  <span class="stat-chip" style="background:#5B8CDB">😢 SMUTEK: 56</span>
+  <span class="stat-chip" style="background:#C0282A">😡 ZŁOŚĆ I GNIEW: 59</span>
+  <span class="stat-chip" style="background:#9A6DD7">😨 STRACH: 53</span>
+  <span class="stat-chip" style="background:#E0609A">😳 WSTYD: 36</span>
+  <span class="stat-chip" style="background:#20B2AA">😲 ZASKOCZENIE: 18</span>
+  <span class="stat-chip" style="background:#7A8C2A">🤢 WSTRĘT: 16</span>
+</div>
+
+<div class="table-wrapper wrapper-emotions">
+<table>
+  <thead>
+    <tr>
+      <th data-col="RADOŚĆ">😄<br>RADOŚĆ</th>
+      <th data-col="SMUTEK">😢<br>SMUTEK</th>
+      <th data-col="ZŁOŚĆ_GNIEW">😡<br>ZŁOŚĆ I GNIEW</th>
+      <th data-col="STRACH">😨<br>STRACH</th>
+      <th data-col="WSTYD">😳<br>WSTYD</th>
+      <th data-col="ZASKOCZENIE">😲<br>ZASKOCZENIE</th>
+      <th data-col="WSTRĘT">🤢<br>WSTRĘT</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr class="photo-row">
+      <td data-col="RADOŚĆ" class="photo-cell"><img src="Inside Out 2 = joy.png"></td>
+      <td data-col="SMUTEK" class="photo-cell"><img src="Inside Out 2 = sadness.png"></td>
+      <td data-col="ZŁOŚĆ_GNIEW" class="photo-cell"><img src="Inside Out 2 = anger2.png"></td>
+      <td data-col="STRACH" class="photo-cell"><img src="Inside Out 2 = fear.png"></td>
+      <td data-col="WSTYD" class="photo-cell"><img src="Inside Out 2 = embarrassment.png"></td>
+      <td data-col="ZASKOCZENIE" class="photo-cell"><img src="Inside Out 2 = anxiety.png"></td>
+      <td data-col="WSTRĘT" class="photo-cell"><img src="Inside Out 2 = disgust.png"></td>
+    </tr>
+
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Akceptacja</td>
+      <td data-col="SMUTEK">Apatia</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Agresja</td>
+      <td data-col="STRACH">Bezbronność</td>
+      <td data-col="WSTYD">Alienacja</td>
+      <td data-col="ZASKOCZENIE">Ciekawość</td>
+      <td data-col="WSTRĘT">Awersja</td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Bezpieczeństwo</td>
+      <td data-col="SMUTEK">Bezradność</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Agresja w obronie</td>
+      <td data-col="STRACH">Bojaźliwość</td>
+      <td data-col="WSTYD">Bezwartościowość</td>
+      <td data-col="ZASKOCZENIE">Konsternacja</td>
+      <td data-col="WSTRĘT">Czujący się podle</td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Beztroska</td>
+      <td data-col="SMUTEK">Bezsilność</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Antypatia</td>
+      <td data-col="STRACH">Czujność</td>
+      <td data-col="WSTYD">Dyskomfort</td>
+      <td data-col="ZASKOCZENIE">Konsternowanie</td>
+      <td data-col="WSTRĘT">Krytykanckość</td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Bliskość</td>
+      <td data-col="SMUTEK">Bierność</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Brutalność</td>
+      <td data-col="STRACH">Dręczenie</td>
+      <td data-col="WSTYD">Hańba</td>
+      <td data-col="ZASKOCZENIE">Osłupienie</td>
+      <td data-col="WSTRĘT">Lekceważenie</td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Błogość</td>
+      <td data-col="SMUTEK">Brak</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Bunt</td>
+      <td data-col="STRACH">Dyskomfort</td>
+      <td data-col="WSTYD">Kompromitacja</td>
+      <td data-col="ZASKOCZENIE">Oszołomienie</td>
+      <td data-col="WSTRĘT">Niechęć</td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Ciepło</td>
+      <td data-col="SMUTEK">Ból</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Chęć zemsty</td>
+      <td data-col="STRACH">Fobia</td>
+      <td data-col="WSTYD">Lekceważenie</td>
+      <td data-col="ZASKOCZENIE">Pomieszanie</td>
+      <td data-col="WSTRĘT">Nieprzychylność</td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Czułość</td>
+      <td data-col="SMUTEK">Cierpienie</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Cynizm</td>
+      <td data-col="STRACH">Groza</td>
+      <td data-col="WSTYD">Niedopasowanie</td>
+      <td data-col="ZASKOCZENIE">Roztargnienie</td>
+      <td data-col="WSTRĘT">Niesmak</td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Docenianie</td>
+      <td data-col="SMUTEK">Depresja</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Desperacja</td>
+      <td data-col="STRACH">Konflikt wewnętrzny</td>
+      <td data-col="WSTYD">Niegodność</td>
+      <td data-col="ZASKOCZENIE">Rozkojarzenie</td>
+      <td data-col="WSTRĘT">Obrzydzenie</td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Dociekliwość</td>
+      <td data-col="SMUTEK">Gorycz</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Dyskryminacja</td>
+      <td data-col="STRACH">Konsternacja</td>
+      <td data-col="WSTYD">Niesmak</td>
+      <td data-col="ZASKOCZENIE">Skonsternowanie</td>
+      <td data-col="WSTRĘT">Odraza</td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Duma</td>
+      <td data-col="SMUTEK">Ignorowanie</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Frustracja</td>
+      <td data-col="STRACH">Kontrolowanie</td>
+      <td data-col="WSTYD">Nieważność</td>
+      <td data-col="ZASKOCZENIE">Wstrząśnięcie</td>
+      <td data-col="WSTRĘT">Odrzucenie</td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Ekstaza</td>
+      <td data-col="SMUTEK">Lenistwo</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Furia</td>
+      <td data-col="STRACH">Lęk</td>
+      <td data-col="WSTYD">Obcość</td>
+      <td data-col="ZASKOCZENIE">Zadziwienie</td>
+      <td data-col="WSTRĘT">Pogarda</td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Energiczność</td>
+      <td data-col="SMUTEK">Litość</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Gniew</td>
+      <td data-col="STRACH">Napięcie</td>
+      <td data-col="WSTYD">Ośmieszenie</td>
+      <td data-col="ZASKOCZENIE">Zaskoczenie</td>
+      <td data-col="WSTRĘT">Podburzenie</td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Entuzjazm</td>
+      <td data-col="SMUTEK">Melancholia</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Irytacja</td>
+      <td data-col="STRACH">Nerwowość</td>
+      <td data-col="WSTYD">Poczucie niższości</td>
+      <td data-col="ZASKOCZENIE">Zdezorientowanie</td>
+      <td data-col="WSTRĘT">Stronienie</td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Euforia</td>
+      <td data-col="SMUTEK">Męka</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Krytycyzm</td>
+      <td data-col="STRACH">Niepewność</td>
+      <td data-col="WSTYD">Poczucie winy</td>
+      <td data-col="ZASKOCZENIE">Zdumienie</td>
+      <td data-col="WSTRĘT">Wrogość</td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Fascynacja</td>
+      <td data-col="SMUTEK">Niemoc</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Lekceważenie</td>
+      <td data-col="STRACH">Niepokój</td>
+      <td data-col="WSTYD">Pomieszanie</td>
+      <td data-col="ZASKOCZENIE">Zdziwienie</td>
+      <td data-col="WSTRĘT">Wstręt</td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Figlarność</td>
+      <td data-col="SMUTEK">Niepocieszony</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Mściwość</td>
+      <td data-col="STRACH">Niepasowanie</td>
+      <td data-col="WSTYD">Poniżenie</td>
+      <td data-col="ZASKOCZENIE">Zmieszanie</td>
+      <td data-col="WSTRĘT">Zniesmaczenie</td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Harmonia</td>
+      <td data-col="SMUTEK">Nieszczęście</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Niechęć</td>
+      <td data-col="STRACH">Nieśmiałość</td>
+      <td data-col="WSTYD">Rozdarcie</td>
+      <td data-col="ZASKOCZENIE">Zszokowanie</td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Kochający</td>
+      <td data-col="SMUTEK">Nuda</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Nienawiść</td>
+      <td data-col="STRACH">Niewystarczalność</td>
+      <td data-col="WSTYD">Skompromitowanie</td>
+      <td data-col="ZASKOCZENIE">Zatrwożenie</td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Komfort</td>
+      <td data-col="SMUTEK">Odrzucenie</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Niezadowolenie</td>
+      <td data-col="STRACH">Obawa</td>
+      <td data-col="WSTYD">Skonsternowanie</td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Lekkość</td>
+      <td data-col="SMUTEK">Odrętwienie</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Niezaspokojenie</td>
+      <td data-col="STRACH">Obcość</td>
+      <td data-col="WSTYD">Skrępowanie</td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Lubienie</td>
+      <td data-col="SMUTEK">Odizolowanie</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Obraza</td>
+      <td data-col="STRACH">Onieśmielenie</td>
+      <td data-col="WSTYD">Skrucha</td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Miłość</td>
+      <td data-col="SMUTEK">Osamotnienie</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Oburzenie</td>
+      <td data-col="STRACH">Ostrożność</td>
+      <td data-col="WSTYD">Speszenie</td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Nadzieja</td>
+      <td data-col="SMUTEK">Osowiałość</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Oszukanie</td>
+      <td data-col="STRACH">Panika</td>
+      <td data-col="WSTYD">Upokorzenie</td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Namiętność</td>
+      <td data-col="SMUTEK">Otępienie</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Ośmieszenie</td>
+      <td data-col="STRACH">Paraliż</td>
+      <td data-col="WSTYD">Utrata twarzy</td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Natchnienie</td>
+      <td data-col="SMUTEK">Poczucie bezradności</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Podejrzliwość</td>
+      <td data-col="STRACH">Płochliwość</td>
+      <td data-col="WSTYD">Winność</td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Ochoczość</td>
+      <td data-col="SMUTEK">Poczucie krzywdy</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Podenerwowanie</td>
+      <td data-col="STRACH">Pod presją</td>
+      <td data-col="WSTYD">Wstyd</td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Odprężenie</td>
+      <td data-col="SMUTEK">Poczucie pokonania</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Podminowanie</td>
+      <td data-col="STRACH">Popłoch</td>
+      <td data-col="WSTYD">Wyobcowanie</td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Optymizm</td>
+      <td data-col="SMUTEK">Porażka</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Podrażnienie</td>
+      <td data-col="STRACH">Poruszenie</td>
+      <td data-col="WSTYD">Wyrzuty sumienia</td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Ożywienie</td>
+      <td data-col="SMUTEK">Porzucenie</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Pogarda</td>
+      <td data-col="STRACH">Powściągliwość</td>
+      <td data-col="WSTYD">Wyśmianie</td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Pełen siły</td>
+      <td data-col="SMUTEK">Przygnębienie</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Rozdrażnienie</td>
+      <td data-col="STRACH">Pośpiech</td>
+      <td data-col="WSTYD">Zakłopotanie</td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Pewność siebie</td>
+      <td data-col="SMUTEK">Przykrość</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Rozwścieczenie</td>
+      <td data-col="STRACH">Przerażenie</td>
+      <td data-col="WSTYD">Zażenowanie</td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Pobudzenie</td>
+      <td data-col="SMUTEK">Przytłoczenie</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Sarkazm</td>
+      <td data-col="STRACH">Przestraszenie</td>
+      <td data-col="WSTYD">Zdegustowanie</td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Podekscytowanie</td>
+      <td data-col="SMUTEK">Pustka</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Sceptycyzm</td>
+      <td data-col="STRACH">Przytłoczenie</td>
+      <td data-col="WSTYD">Zgorszenie</td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Pogoda ducha</td>
+      <td data-col="SMUTEK">Rozczarowanie</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Sfrustrowanie</td>
+      <td data-col="STRACH">Rozdarcie</td>
+      <td data-col="WSTYD">Zlekceważenie</td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Pokrzepienie</td>
+      <td data-col="SMUTEK">Rozpacz</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Sprowokowanie</td>
+      <td data-col="STRACH">Rozdygotanie</td>
+      <td data-col="WSTYD">Zmieszanie</td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Przyjemność</td>
+      <td data-col="SMUTEK">Rozżalenie</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Sprzeciw</td>
+      <td data-col="STRACH">Roztrzęsienie</td>
+      <td data-col="WSTYD">Zranienie</td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Rozbawienie</td>
+      <td data-col="SMUTEK">Samotność</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Szał</td>
+      <td data-col="STRACH">Spięcie</td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Rozkosz</td>
+      <td data-col="SMUTEK">Słabość</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Uraza</td>
+      <td data-col="STRACH">Strach</td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Rozluźnienie</td>
+      <td data-col="SMUTEK">Strata</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Wykorzystanie</td>
+      <td data-col="STRACH">Szok</td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Równowaga</td>
+      <td data-col="SMUTEK">Tęsknota</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Wzburzenie</td>
+      <td data-col="STRACH">Tracenie kontroli</td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Satysfakcja</td>
+      <td data-col="SMUTEK">Udręka</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Wściekłość</td>
+      <td data-col="STRACH">Trema</td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Serdeczność</td>
+      <td data-col="SMUTEK">Współczucie</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Zacietrzewienie</td>
+      <td data-col="STRACH">Trwoga</td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Spełnienie</td>
+      <td data-col="SMUTEK">Wyczerpanie</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Zagniewanie</td>
+      <td data-col="STRACH">Uległość</td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Spokój</td>
+      <td data-col="SMUTEK">Zasmucenie</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Zagrożenie</td>
+      <td data-col="STRACH">Wahanie</td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Sympatia</td>
+      <td data-col="SMUTEK">Zawód</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Zamknięcie w sobie</td>
+      <td data-col="STRACH">Wstrząs</td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Szacunek</td>
+      <td data-col="SMUTEK">Załamanie</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Zawiść</td>
+      <td data-col="STRACH">Wyobcowanie</td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Szczęście</td>
+      <td data-col="SMUTEK">Zdruzgotanie</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Zazdrość</td>
+      <td data-col="STRACH">Zagubienie</td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Troska</td>
+      <td data-col="SMUTEK">Zgaszenie</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Zbulwersowanie</td>
+      <td data-col="STRACH">Zaniepokojenie</td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Uciecha</td>
+      <td data-col="SMUTEK">Zmartwienie</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Zbuntowanie</td>
+      <td data-col="STRACH">Zapracowanie</td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Ufność</td>
+      <td data-col="SMUTEK">Zmęczenie</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Zdenerwowanie</td>
+      <td data-col="STRACH">Zdemaskowanie</td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Ukojenie</td>
+      <td data-col="SMUTEK">Zniechęcenie</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Zdradzenie</td>
+      <td data-col="STRACH">Zestresowanie</td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Ulga</td>
+      <td data-col="SMUTEK">Zniewolenie</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Zdystansowanie</td>
+      <td data-col="STRACH">Zgroza</td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Uniesienie</td>
+      <td data-col="SMUTEK">Zobojętnienie</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Zgorszenie</td>
+      <td data-col="STRACH">Zimno</td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Uwielbienie</td>
+      <td data-col="SMUTEK">Zranienie</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Zgorszkniałość</td>
+      <td data-col="STRACH"></td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Wdzięczność</td>
+      <td data-col="SMUTEK">Żal</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Zirytowanie</td>
+      <td data-col="STRACH"></td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Wesołość</td>
+      <td data-col="SMUTEK">Żałoba</td>
+      <td data-col="ZŁOŚĆ_GNIEW">Zniecierpliwienie</td>
+      <td data-col="STRACH"></td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Wolność</td>
+      <td data-col="SMUTEK"></td>
+      <td data-col="ZŁOŚĆ_GNIEW">Zniewaga</td>
+      <td data-col="STRACH"></td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Wzruszenie</td>
+      <td data-col="SMUTEK"></td>
+      <td data-col="ZŁOŚĆ_GNIEW">Złośliwość</td>
+      <td data-col="STRACH"></td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Zachwyt</td>
+      <td data-col="SMUTEK"></td>
+      <td data-col="ZŁOŚĆ_GNIEW">Złość</td>
+      <td data-col="STRACH"></td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Zadowolenie</td>
+      <td data-col="SMUTEK"></td>
+      <td data-col="ZŁOŚĆ_GNIEW"></td>
+      <td data-col="STRACH"></td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Zainspirowanie</td>
+      <td data-col="SMUTEK"></td>
+      <td data-col="ZŁOŚĆ_GNIEW"></td>
+      <td data-col="STRACH"></td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Zainteresowanie</td>
+      <td data-col="SMUTEK"></td>
+      <td data-col="ZŁOŚĆ_GNIEW"></td>
+      <td data-col="STRACH"></td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Zaintrygowanie</td>
+      <td data-col="SMUTEK"></td>
+      <td data-col="ZŁOŚĆ_GNIEW"></td>
+      <td data-col="STRACH"></td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Zakochanie</td>
+      <td data-col="SMUTEK"></td>
+      <td data-col="ZŁOŚĆ_GNIEW"></td>
+      <td data-col="STRACH"></td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Zaspokojenie</td>
+      <td data-col="SMUTEK"></td>
+      <td data-col="ZŁOŚĆ_GNIEW"></td>
+      <td data-col="STRACH"></td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Zaufanie</td>
+      <td data-col="SMUTEK"></td>
+      <td data-col="ZŁOŚĆ_GNIEW"></td>
+      <td data-col="STRACH"></td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Zrelaksowanie</td>
+      <td data-col="SMUTEK"></td>
+      <td data-col="ZŁOŚĆ_GNIEW"></td>
+      <td data-col="STRACH"></td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Zuchwałość</td>
+      <td data-col="SMUTEK"></td>
+      <td data-col="ZŁOŚĆ_GNIEW"></td>
+      <td data-col="STRACH"></td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-even">
+      <td data-col="RADOŚĆ">Śmiałość</td>
+      <td data-col="SMUTEK"></td>
+      <td data-col="ZŁOŚĆ_GNIEW"></td>
+      <td data-col="STRACH"></td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+    <tr class="row-odd">
+      <td data-col="RADOŚĆ">Życzliwość</td>
+      <td data-col="SMUTEK"></td>
+      <td data-col="ZŁOŚĆ_GNIEW"></td>
+      <td data-col="STRACH"></td>
+      <td data-col="WSTYD"></td>
+      <td data-col="ZASKOCZENIE"></td>
+      <td data-col="WSTRĘT"></td>
+    </tr>
+  </tbody>
+</table>
+</div>
+<br><br>
+<h1 class="section-title">Skala wibracji</h1>
+<p class="section-desc">
+    Poniższa tabela przedstawia model zależności pomiędzy stanem umysłu a poziomem wibracji, pochodzący z rewolucyjnej książki doktora medycyny i filozofii Davida Hawkinsa <em>Power vs. Force</em> (Moc kontra siła), w której każdemu stanowi umysłu przypisana jest wartość od 1 do 600.
+</p>
+<br>
+<div class="table-wrapper wrapper-vibrations" style="padding: 0 20px;">
+<table class="table-vibrations">
+    <thead>
+        <tr>
+            <th>Stan umysłu</th>
+            <th class="center" style="white-space: nowrap;">Wartość</th>
+            <th>Emocja</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr><td data-label="Stan umysłu">Spokój</td><td class="center" data-label="Wartość">600</td><td data-label="Emocja">Szczęście</td></tr>
+        <tr><td data-label="Stan umysłu">Radość</td><td class="center" data-label="Wartość">540</td><td data-label="Emocja">Pogoda ducha</td></tr>
+        <tr><td data-label="Stan umysłu">Miłość</td><td class="center" data-label="Wartość">500</td><td data-label="Emocja">Szacunek</td></tr>
+        <tr><td data-label="Stan umysłu">Rozsądek</td><td class="center" data-label="Wartość">400</td><td data-label="Emocja">Zrozumienie</td></tr>
+        <tr class="highlight"><td data-label="Stan umysłu"><strong>Akceptacja</strong></td><td class="center" data-label="Wartość"><strong>350</strong></td><td data-label="Emocja"><strong>Wybaczenie</strong></td></tr>
+        <tr class="highlight"><td data-label="Stan umysłu"><strong>Gotowość</strong></td><td class="center" data-label="Wartość"><strong>310</strong></td><td data-label="Emocja"><strong>Optymizm</strong></td></tr>
+        <tr><td data-label="Stan umysłu">Neutralność</td><td class="center" data-label="Wartość">250</td><td data-label="Emocja">Zaufanie</td></tr>
+        <tr><td data-label="Stan umysłu">Odwaga</td><td class="center" data-label="Wartość">200</td><td data-label="Emocja">Afirmacja</td></tr>
+        <tr><td data-label="Stan umysłu">Duma</td><td class="center" data-label="Wartość">175</td><td data-label="Emocja">Pogarda</td></tr>
+        <tr><td data-label="Stan umysłu">Gniew</td><td class="center" data-label="Wartość">150</td><td data-label="Emocja">Nienawiść</td></tr>
+        <tr><td data-label="Stan umysłu">Pragnienie</td><td class="center" data-label="Wartość">125</td><td data-label="Emocja">Pożądanie</td></tr>
+        <tr><td data-label="Stan umysłu">Lęk</td><td class="center" data-label="Wartość">100</td><td data-label="Emocja">Niepokój</td></tr>
+        <tr><td data-label="Stan umysłu">Smutek</td><td class="center" data-label="Wartość">75</td><td data-label="Emocja">Żal</td></tr>
+        <tr><td data-label="Stan umysłu">Apatia</td><td class="center" data-label="Wartość">50</td><td data-label="Emocja">Rozpacz</td></tr>
+        <tr><td data-label="Stan umysłu">Poczucie winy</td><td class="center" data-label="Wartość">30</td><td data-label="Emocja">Potępienie</td></tr>
+        <tr><td data-label="Stan umysłu">Wstyd</td><td class="center" data-label="Wartość">20</td><td data-label="Emocja">Upokorzenie</td></tr>
+    </tbody>
+</table>
+</div>
+
+<style>
+.table-wrapper {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+}
+
+.table-vibrations {
+    width: 100%;
+    border-collapse: collapse;
+    min-width: 480px; /* zapobiega zbytniemu ściskaniu na tabletach */
+}
+
+.table-vibrations th,
+.table-vibrations td {
+    padding: 8px 12px;
+    border-bottom: 1px solid #ddd;
+    text-align: left;
+}
+
+.table-vibrations th.center,
+.table-vibrations td.center {
+    text-align: center;
+}
+
+.table-vibrations tr.highlight {
+    background-color: #fff8e1; /* dopasuj do swojej palety */
+}
+
+/* --- widok kartowy na wąskich ekranach --- */
+@media (max-width: 600px) {
+    .wrapper-vibrations {
+        overflow-x: visible;
+        padding: 0 10px;
+    }
+
+    .table-vibrations {
+        min-width: 0;
+        width: 100%;
+        border: none;
+    }
+
+    .table-vibrations thead {
+        display: none; /* nagłówki zastępujemy etykietami przy komórkach */
+    }
+
+    .table-vibrations tr {
+        display: block;
+        margin-bottom: 12px;
+        border: 1px solid #ddd;
+        border-radius: 8px;
+        overflow: hidden;
+    }
+
+    .table-vibrations tr.highlight {
+        border-color: #e0c05a;
+    }
+
+    .table-vibrations td {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 8px 12px;
+        border-bottom: 1px solid #eee;
+        text-align: right;
+    }
+
+    .table-vibrations td:last-child {
+        border-bottom: none;
+    }
+
+    .table-vibrations td::before {
+        content: attr(data-label);
+        font-weight: 600;
+        color: #555;
+        text-align: left;
+        margin-right: 12px;
+    }
+
+    .table-vibrations td.center {
+        text-align: right; /* przy kartach nie ma sensu wyśrodkowanie */
+    }
+}
+</style>
+<br><br><br>
+</body>
+</html>
