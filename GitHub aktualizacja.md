@@ -7,8 +7,7 @@ gh auth status
 
 rm -r RW
 
-gh repo clone k2121/RW
-cd RW
+gh repo clone k2121/RW && cd RW
 
 =========================
 git add .
