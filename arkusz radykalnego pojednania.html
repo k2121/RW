@@ -1,0 +1,603 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arkusz Radykalnego Pojednania</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680;1,9..144,500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#FAF5F4;
+    --paper-deep:#F2E6E4;
+    --card:#FFFFFF;
+    --ink:#2E2221;
+    --ink-soft:#735D5B;
+    --rose:#9E3D52;
+    --rose-deep:#611B29;
+    --rose-pale:#F9ECEB;
+    --gold:#BA8C47;
+    --line:#E8D5D2;
+    --shadow:0 1px 2px rgba(46,34,33,.04), 0 8px 24px rgba(46,34,33,.06);
+    --rail-w:84px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important; transition:none !important;}
+  }
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 12% -10%, rgba(158,61,82,.05), transparent 60%),
+      var(--paper);
+    color:var(--ink);
+    font-family:'Spectral',serif;
+    font-size:16.5px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--rose-pale); }
+  a{ color:var(--rose-deep); }
+
+  /* ---------- layout shell ---------- */
+  .shell{
+    display:grid;
+    grid-template-columns:var(--rail-w) 1fr;
+    min-height:100vh;
+  }
+  @media (max-width:860px){
+    .shell{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- vertical stage rail ---------- */
+  .rail{
+    position:sticky; top:0; align-self:start;
+    height:100vh;
+    border-right:1px solid var(--line);
+    background:var(--paper-deep);
+    display:flex; flex-direction:column;
+    padding:22px 0;
+  }
+  .rail-mark{
+    width:34px; height:34px; margin:0 auto 28px;
+    border-radius:50%;
+    background:var(--rose-deep);
+    position:relative;
+    flex:none;
+  }
+  .rail-mark::before{
+    content:""; position:absolute; inset:8px;
+    background:var(--paper-deep);
+    border-radius:50% 50% 0 50%;
+    transform:rotate(45deg);
+  }
+  .rail-tabs{ display:flex; flex-direction:column; gap:2px; flex:1; }
+  .rail-tab{
+    appearance:none; border:none; background:transparent; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    padding:16px 0;
+    color:var(--ink-soft);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:11px; letter-spacing:.14em;
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    border-left:3px solid transparent;
+    transition:color .2s, border-color .2s, background .2s;
+  }
+  .rail-tab:hover{ color:var(--ink); background:rgba(158,61,82,.06); }
+  .rail-tab.active{
+    color:var(--rose-deep);
+    border-left-color:var(--rose);
+    background:var(--card);
+    font-weight:600;
+  }
+  .rail-tab .num{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:560;
+    font-size:15px; margin-right:10px; letter-spacing:0;
+  }
+  .rail-foot{
+    writing-mode:vertical-rl; transform:rotate(180deg);
+    margin:0 auto; color:var(--ink-soft); opacity:.55;
+    font-family:'Space Grotesk',sans-serif; font-size:10px; letter-spacing:.16em;
+  }
+
+  /* mobile rail -> horizontal progress strip */
+  .mrail{ display:none; }
+  @media (max-width:860px){
+    .rail{ display:none; }
+    .mrail{
+      display:flex; position:sticky; top:0; z-index:20;
+      background:var(--paper-deep); border-bottom:1px solid var(--line);
+      overflow-x:auto; padding:10px 14px; gap:8px;
+    }
+    .mrail button{
+      appearance:none; border:1px solid var(--line); background:var(--card);
+      color:var(--ink-soft); font-family:'Space Grotesk',sans-serif;
+      font-size:11.5px; letter-spacing:.04em; white-space:nowrap;
+      padding:7px 12px; border-radius:999px; cursor:pointer;
+    }
+    .mrail button.active{ background:var(--rose-deep); color:#fff; border-color:var(--rose-deep); }
+  }
+
+  /* ---------- main column ---------- */
+  main{ min-width:0; }
+  .wrap{ max-width:760px; margin:0 auto; padding:56px 28px 90px; }
+  @media (max-width:560px){ .wrap{ padding:34px 16px 70px; } }
+
+  .eyebrow{
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--rose-deep); margin-bottom:14px;
+  }
+  h1.title{
+    font-family:'Fraunces',serif; font-weight:680; font-size:clamp(32px,5.5vw,46px);
+    line-height:1.06; margin:0 0 6px; letter-spacing:-.01em;
+  }
+  .subtitle{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:400;
+    color:var(--ink-soft); font-size:18px; margin:0 0 28px; line-height:1.4;
+  }
+
+  .meta-card{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+    display:grid; grid-template-columns:1fr 2fr; gap:16px 20px;
+  }
+  @media (max-width:560px){ .meta-card{ grid-template-columns:1fr; } }
+  .field label{
+    display:block; font-family:'Space Grotesk',sans-serif; font-size:11px;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;
+  }
+  .field input{
+    width:100%; border:none; border-bottom:1.5px solid var(--line);
+    background:transparent; font-family:'Spectral',serif; font-size:16px;
+    color:var(--ink); padding:4px 2px 7px; outline:none;
+  }
+  .field input:focus{ border-bottom-color:var(--rose); }
+
+  .privacy{
+    font-family:'Space Grotesk',sans-serif; font-size:12.5px; color:var(--ink-soft);
+    border:1px dashed var(--line);
+    border-radius:10px; padding:12px 16px; margin-bottom:8px; line-height:1.55;
+  }
+  .privacy strong{ color:var(--ink); }
+
+  .toolbar{
+    display:flex; gap:10px; flex-wrap:wrap; margin:30px 0 30px;
+  }
+  .btn{
+    appearance:none; cursor:pointer; border-radius:999px;
+    font-family:'Space Grotesk',sans-serif; font-size:13px; letter-spacing:.03em;
+    padding:10px 18px; border:1.5px solid var(--rose-deep);
+  }
+  .btn.primary{ background:var(--rose-deep); color:#fff; }
+  .btn.ghost{ background:transparent; color:var(--rose-deep); }
+  .btn:hover{ filter:brightness(1.05); }
+
+  /* ---------- stage sections ---------- */
+  .stage{ scroll-margin-top:18px; margin-top:54px; }
+  .stage-head{
+    display:flex; align-items:baseline; gap:14px;
+    background:var(--rose-pale); border-radius:12px;
+    padding:14px 20px; margin-bottom:22px;
+  }
+  .stage-head .snum{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:680;
+    font-size:30px; color:var(--rose-deep); line-height:1;
+  }
+  .stage-head h2{
+    font-family:'Space Grotesk',sans-serif; font-size:13.5px; letter-spacing:.1em;
+    text-transform:uppercase; margin:0; color:var(--ink);
+  }
+
+  .item{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+  }
+  .item .inum{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:560;
+    color:var(--gold); font-size:18px; margin-right:6px;
+  }
+  .item p.lead{ margin:0 0 6px; font-weight:500; }
+  .item p.note{
+    font-family:'Spectral',serif; font-style:italic; color:var(--ink-soft);
+    font-size:14.5px; margin:6px 0 14px;
+  }
+  .name-fill{
+    border-bottom:1.5px dotted var(--rose); color:var(--rose-deep); font-style:normal;
+    padding:0 2px; font-weight:600;
+  }
+
+  textarea{
+    width:100%; resize:none; overflow:hidden;
+    border:1px solid var(--line); border-radius:10px;
+    background:#FFFFFA; padding:12px 14px;
+    font-family:'Spectral',serif; font-size:15.5px; color:var(--ink);
+    line-height:1.55; outline:none; min-height:64px;
+  }
+  textarea:focus{ border-color:var(--rose); box-shadow:0 0 0 3px rgba(158,61,82,.12); }
+
+  /* Scale layout */
+  .scale-container {
+    margin: 18px 0;
+  }
+  .scale-row {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 12px;
+  }
+  .scale-row label {
+    flex: 1;
+    font-size: 15px;
+  }
+  .scale-row input[type="number"] {
+    width: 70px;
+    padding: 6px;
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    font-family: inherit;
+    font-size: 15px;
+    text-align: center;
+  }
+
+  /* Checklist custom layout */
+  .checklist {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 14px 0;
+  }
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    cursor: pointer;
+    font-size: 15.5px;
+  }
+  .check-item input[type="checkbox"] {
+    margin-top: 4px;
+    accent-color: var(--rose-deep);
+    width: 16px;
+    height: 16px;
+  }
+
+  .affirmation{
+    background:linear-gradient(135deg, var(--rose-pale), var(--paper-deep));
+    border-radius:14px; padding:24px 26px; margin-bottom:18px;
+    font-family:'Spectral',serif; font-style:italic; font-size:16px; color:var(--ink);
+    border:1px solid var(--line);
+  }
+
+  .signoff{
+    margin-top:50px; padding-top:28px; border-top:1px solid var(--line);
+    display:flex; flex-wrap:wrap; gap:22px; align-items:flex-end; justify-content:space-between;
+  }
+  .signoff .field { min-width:220px; }
+
+  footer{
+    margin-top:60px; padding-top:18px; border-top:1px solid var(--line);
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; color:var(--ink-soft);
+    text-align:center; line-height:1.7;
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <!-- desktop vertical rail -->
+  <nav class="rail" aria-label="Etapy arkusza">
+    <div class="rail-mark" aria-hidden="true"></div>
+    <div class="rail-tabs" id="railTabs">
+      <button class="rail-tab" data-target="stage-1"><span class="num">1</span>Wentylowanie</button>
+      <button class="rail-tab" data-target="stage-2"><span class="num">2</span>Skala Uczuć</button>
+      <button class="rail-tab" data-target="stage-3"><span class="num">3</span>Decyzje i Próby</button>
+      <button class="rail-tab" data-target="stage-4"><span class="num">4</span>Oczekiwania</button>
+      <button class="rail-tab" data-target="stage-5"><span class="num">5</span>Uzdrowienie</button>
+    </div>
+    <div class="rail-foot">Radykalne Pojednanie</div>
+  </nav>
+
+  <main>
+    <!-- mobile horizontal rail -->
+    <nav class="mrail" id="mrail" aria-label="Etapy arkusza (mobile)">
+      <button data-target="stage-1">1 · Wentylowanie</button>
+      <button data-target="stage-2">2 · Skala</button>
+      <button data-target="stage-3">3 · Decyzje</button>
+      <button data-target="stage-4">4 · Oczekiwania</button>
+      <button data-target="stage-5">5 · Uzdrowienie</button>
+    </nav>
+
+    <div class="wrap">
+      <div class="eyebrow">Narzędzie Uzdrawiania Relacji</div>
+      <h1 class="title">Radykalne Pojednanie</h1>
+      <p class="subtitle">Instrument służący do uzdrawiania bliskich oraz osobistych relacji partnerskich</p>
+
+      <div class="meta-card">
+        <div class="field"><label for="fData">Data</label><input id="fData" type="date"></div>
+        <div class="field wide">
+          <label for="objectName">Imię partnera / partnerki (X):</label>
+          <input id="objectName" type="text" placeholder="Wpisz imię…">
+        </div>
+      </div>
+
+      <p class="privacy"><strong>Prywatność danych:</strong> Wszystkie informacje, które tutaj wpisujesz, są przetwarzane wyłącznie lokalnie w Twojej przeglądarce. Nic nie jest wysyłane ani zapisywane na zewnętrznych serwerach.</p>
+
+      <!-- ================= STAGE 1 ================= -->
+      <section class="stage" id="stage-1">
+        <div class="stage-head"><span class="snum">1</span><h2>Wentylowanie i Wyrzucenie Żalu (Venting)</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">1.</span>Zrzucenie ciężaru z serca:</p>
+          <p class="note">Zanim będę mógł/mogła rozpocząć proces pojednania z Tobą, muszę wyrzucić z siebie to, co wydarzyło się w naszej relacji do tej pory i co spowodowało rozstanie. Ufam, że wysłuchasz tego, co mam do powiedzenia i uszanujesz moje doświadczenie, nawet jeśli Twoje jest inne.</p>
+          <textarea rows="5" placeholder="Zrób tutaj krótkie notatki (możesz rozwinąć je na osobnej karcie)…"></textarea>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 2 ================= -->
+      <section class="stage" id="stage-2">
+        <div class="stage-head"><span class="snum">2</span><h2>Moje i Twoje Uczucia (How We Feel)</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">2.</span>Jak się czuję wobec Ciebie:</p>
+          <p class="note">Na skali od 1 do 100, gdzie 1 = nienawiść/odraza (loathing), a 100 = całkowite bezpamiętne zakoczenie (Totally Besotted).</p>
+          <div class="scale-container">
+            <div class="scale-row">
+              <label>Moja miłość do Ciebie na początku lub w szczytowym momencie naszej relacji wynosiła około:</label>
+              <input type="number" min="1" max="100" placeholder="1-100">
+            </div>
+            <div class="scale-row">
+              <label>W najniższym punkcie naszej relacji wynosiła w przybliżeniu:</label>
+              <input type="number" min="1" max="100" placeholder="1-100">
+            </div>
+            <div class="scale-row">
+              <label>W tym momencie wynosi około:</label>
+              <input type="number" min="1" max="100" placeholder="1-100">
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">3.</span>Jak myślę, że Ty czujesz się wobec mnie:</p>
+          <p class="note">Na skali od 1 do 100, gdzie 1 = nienawiść/odraza, a 100 = całkowite bezpamiętne zakoczenie.</p>
+          <div class="scale-container">
+            <div class="scale-row">
+              <label>Myślę, że Twoja miłość do mnie na początku lub w szczytowym momencie naszej relacji wynosiła:</label>
+              <input type="number" min="1" max="100" placeholder="1-100">
+            </div>
+            <div class="scale-row">
+              <label>W najniższym punkcie naszej relacji czułem(-am), że wynosiła:</label>
+              <input type="number" min="1" max="100" placeholder="1-100">
+            </div>
+            <div class="scale-row">
+              <label>W tym momencie czuję, że może wynosić około:</label>
+              <input type="number" min="1" max="100" placeholder="1-100">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 3 ================= -->
+      <section class="stage" id="stage-3">
+        <div class="stage-head"><span class="snum">3</span><h2>Decyzje, Myśli i Próby Pojednania</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">4.</span>Moje myśli towarzyszące decyzji o ślubie lub wejściu w relację z Tobą były następujące:</p>
+          <div class="checklist">
+            <label class="check-item"><input type="checkbox"><span>Nie potrafię wyobrazić sobie życia bez Ciebie</span></label>
+            <label class="check-item"><input type="checkbox"><span>Jestem w Tobie szaleńczo zakochany(-a)</span></label>
+            <label class="check-item"><input type="checkbox"><span>Myślę, że Cię kocham, choć w mojej głowie wciąż tli się wątpliwość</span></label>
+            <label class="check-item"><input type="checkbox"><span>Mam wątpliwości co do Ciebie, ale jeśli będę Cię kochać wystarczająco mocno, zmienisz się i staniesz się osobą, którą chcę, żebyś był(a).</span></label>
+            <label class="check-item"><input type="checkbox"><span>Bardzo Cię lubię/zależy mi na Tobie i czuję, że będziesz dobrym współmałżonkiem i będziemy szczęśliwi</span></label>
+            <label class="check-item"><input type="checkbox"><span>Nie jestem pewien/pewna, czy naprawdę Cię kocham, ale satysfakcjonuje mnie bycie z Tobą na zawsze.</span></label>
+            <label class="check-item"><input type="checkbox"><span>Widzę Cię bardziej jako przyjaciela lub kogoś, kto się mną zaopiekuje i zaspokoi moje potrzeby.</span></label>
+            <label class="check-item"><input type="checkbox"><span>Nie jestem w Tobie naprawdę zakochany(-a), ale lubię Cię wystarczająco mocno i wezmę ślub tylko po to, by uniknąć sprawiania przykrości Tobie i naszym rodzinom.</span></label>
+            <label class="check-item"><input type="checkbox"><span>Wcale Cię nie kochałem(-am), ale czułem(-am) presję, by wziąć z Tobą ślub.</span></label>
+            <label class="check-item"><input type="checkbox"><span>Nienawidziłem(-am) Cię, ale nie miałem(-am) wyboru.</span></label>
+          </div>
+          <textarea rows="2" placeholder="Inne myśli…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">5.</span>Moje myśli i uczucia dotyczące TEJ próby pojednania są następujące (możesz zaznaczyć więcej niż jedno):</p>
+          <div class="checklist">
+            <label class="check-item"><input type="checkbox"><span>Wciąż jestem w Tobie całkowicie i bezpamiętnie zakochany(-a).</span></label>
+            <label class="check-item"><input type="checkbox"><span>Wciąż bardzo Cię kocham i chcę z Tobą być.</span></label>
+            <label class="check-item"><input type="checkbox"><span>Mamy tak wiele dobra, na którym możemy zbudować lepszą relację.</span></label>
+            <label class="check-item"><input type="checkbox"><span>Choć już nie jestem W Tobie zakochany(-a), wciąż Cię kocham, ale nie jestem pewien/pewna, czy potrafię z Tobą żyć.</span></label>
+            <label class="check-item"><input type="checkbox"><span>Czuję, że moje wątpliwości się nasiliły i mam ogromne obawy, czy nam się uda.</span></label>
+            <label class="check-item"><input type="checkbox"><span>Wciąż Cię lubię/darzę sympatią, ale nie zawsze jestem szczęśliwy(-a) będąc z Tobą.</span></label>
+            <label class="check-item"><input type="checkbox"><span>W naszej relacji jest zbyt wiele negatywności, by dało się to znieść.</span></label>
+          </div>
+          <textarea rows="2" placeholder="Inne odczucia wobec pojednania…"></textarea>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 4 ================= -->
+      <section class="stage" id="stage-4">
+        <div class="stage-head"><span class="snum">4</span><h2>Oczekiwania, Demandy i Rezygnacja</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">6.</span>Zdaję sobie sprawę, że miałem(-am) oczekiwania, żądania i potrzeby, które chciałem(-am), abyś spełnił(a), oraz że osądzałem(-am) Cię i czyniłem(-am) wiele założeń, do których nie miałem(-am) prawa. Niektóre z nich to:</p>
+          <div class="checklist">
+            <label class="check-item"><input type="checkbox"><span>Oczekiwałem(-am), że będziesz mnie kochać bez względu na wszystko</span></label>
+            <label class="check-item"><input type="checkbox"><span>Zawsze zakładałem(-am), że będziemy mieć razem dzieci</span></label>
+            <label class="check-item"><input type="checkbox"><span>Zakładałem(-am), że uczynisz mnie priorytetem w swoim życiu</span></label>
+            <label class="check-item"><input type="checkbox"><span>Oczekiwałem(-am), że zaakceptujesz moje sposoby bycia</span></label>
+            <label class="check-item"><input type="checkbox"><span>Osądzałem(-am) Cię, że nie jesteś w porządku taki/taka, jaki/jaka jesteś, i potrzebowałem(-am), abyś się zmienił(a)</span></label>
+            <label class="check-item"><input type="checkbox"><span>Oczekiwałem(-am), że będziesz mi wierny(-a)</span></label>
+            <label class="check-item"><input type="checkbox"><span>Żądałem(-am), abyś zaspokajał(a) wszystkie moje potrzeby</span></label>
+            <label class="check-item"><input type="checkbox"><span>Żądałem(-am), abyś znosił(a) to, że moja matka stale do mnie dzwoni</span></label>
+            <label class="check-item"><input type="checkbox"><span>Zakładałem(-am), że będziesz lubić w życiu to samo co ja</span></label>
+          </div>
+          <textarea rows="2" placeholder="Inne ukryte założenia lub roszczenia…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">7.</span>Żądania, oczekiwania, osądy, potrzeby i założenia, z których jestem CAKOWICIE gotów/gotowa teraz zrezygnować, aby się pojednać, to:</p>
+          <div class="checklist">
+            <label class="check-item"><input type="checkbox"><span>Moja potrzeba i oczekiwanie, że zawsze będziesz mnie kochać bez względu na wszystko</span></label>
+            <label class="check-item"><input type="checkbox"><span>Moje założenie, że będziemy mieć razem dzieci</span></label>
+            <label class="check-item"><input type="checkbox"><span>Moje założenie, że uczynisz mnie priorytetem w swoim życiu</span></label>
+            <label class="check-item"><input type="checkbox"><span>Moja potrzeba i oczekiwanie, że będziesz akceptować moje sposoby bycia</span></label>
+            <label class="check-item"><input type="checkbox"><span>Mój osąd, że nie jesteś w porządku taki/taka, jaki/jaka jesteś</span></label>
+            <label class="check-item"><input type="checkbox"><span>Moja potrzeba, abyś się zmienił(a)</span></label>
+            <label class="check-item"><input type="checkbox"><span>Moje oczekiwanie, że zawsze będziesz mi wierny(-a)</span></label>
+            <label class="check-item"><input type="checkbox"><span>Moje żądanie, abyś zaspokajał(a) wszystkie moje potrzeby</span></label>
+            <label class="check-item"><input type="checkbox"><span>Moje żądanie, abyś znosił(a) to, że moja matka stale do mnie dzwoni</span></label>
+            <label class="check-item"><input type="checkbox"><span>Moje założenie, że będziesz lubić w życiu to samo co ja</span></label>
+          </div>
+          <textarea rows="2" placeholder="Inne elementy, które decyduję się puścić…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">8.</span>Rzeczy, które muszę Ci wybaczyć, zanim będę mógł/mogła w pełni pojednać się z Tobą, to:</p>
+          <textarea rows="4" placeholder="Wymień zachowania, urazy lub wydarzenia wymagające wybaczenia…"></textarea>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 5 ================= -->
+      <section class="stage" id="stage-5">
+        <div class="stage-head"><span class="snum">5</span><h2>Przeformułowanie i Nowa Umowa (Reframing & Deal)</h2></div>
+
+        <div class="affirmation">
+          <p style="margin:0;"><span class="inum">9.</span> <strong>Przeformułowanie relacji: Projekcje, wyzwania, lekcje, dary, uzdrawiające anioły.</strong><br><br>
+          Zdaję sobie sprawę, że w naszej relacji od zawsze istniał duchowy cel i głębsze znaczenie dla każdego z nas w kontekście wędrówki naszej własnej duszy. Uznaję, że przed inkarnacją mogliśmy zawrzeć ze sobą kontrakt, aby wejść w relację po to, by zapewnić sobie nawzajem doświadczenia określonych form oddzielenia, wspierając się w ten sposób w docenieniu prawdziwej natury jedności. Ponieważ tylko poprzez doświadczanie przeciwieństwa jedności możemy poznać, czym ona jest.<br><br>
+          Teraz zdaję sobie sprawę, że moje żądania, oczekiwania i osądy, które formułowałem(-am) wobec Ciebie lub Twoje wobec mnie, były po prostu okazją dla każdego z nas do doświadczenia bólu oddzielenia w tak intensywny sposób, jak to możliwe, dla największej wartości dla naszych dusz.<br><br>
+          Gdy zaczynam teraz przypominać sobie prawdziwą naturę tego, kim jestem i kim Ty jesteś, wycofuję wszystkie projekcje, które na Ciebie nakładałem(-am) jako sposób na uniknięcie dostrzeżenia prawdy. Dziękuję Ci <span class="name-fill">X</span> za odzwierciedlanie (lustrzenie) tych części mnie, których nie chciałem(-am) uznać lub zaakceptować w sobie, abym mógł/mogła uzdrowić wewnętrzne rozszczepienie i znów stać się całością. Wszystko, co widziałem(-am) w Tobie, było odbiciem tego, czego nienawidziłem(-am) w sobie. Niektóre z rzeczy, które dla mnie odzwierciedliłeś(-aś), to (np. mój brak wielkoduszności, moja potrzeba kontroli i manipulowania innymi, moja nieszczerość, tendencja do powstrzymywania miłości, okrucieństwo, złośliwość, egoizm):</p>
+          <textarea rows="3" style="margin-top:12px;" placeholder="Moje cechy odzwierciedlone w Tobie…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">10.</span> USTALMY WARUNKI (Let's Make a Deal)</p>
+          <p class="note">Poniższe punkty będą stanowić podstawę do negocjowania warunków naszego pojednania.</p>
+          
+          <div class="checklist" style="margin-bottom:18px;">
+            <label class="check-item">
+              <input type="checkbox">
+              <span><strong>a)</strong> Jestem gotów/gotowa zobowiązać się do wypełnienia tylu Arkuszy Radykalnego Wybaczania i/lub innych procesów, ile będzie potrzeba, aby dojść do stanu spokoju w kwestiach, które wymieniłem(-am) powyżej w punkcie 8.</span>
+            </label>
+          </div>
+
+          <div style="display:flex; flex-direction:column; gap:14px;">
+            <div>
+              <label style="font-size:15px; font-weight:500; display:block; margin-bottom:4px;">b) Rzeczy, za które chciałbym/chciałabym, abyś mi wybaczył(a), to:</label>
+              <textarea rows="2" placeholder="Wpisz tutaj…"></textarea>
+            </div>
+            <div>
+              <label style="font-size:15px; font-weight:500; display:block; margin-bottom:4px;">c) Jeśli się pojednamy, tym, czego chciałbym/chciałabym teraz od Ciebie, jest:</label>
+              <textarea rows="2" placeholder="Wpisz tutaj…"></textarea>
+            </div>
+            <div>
+              <label style="font-size:15px; font-weight:500; display:block; margin-bottom:4px;">d) Jeśli się pojednamy, tym, co jestem gotów/gotowa dać / zrobić / kim być, jest:</label>
+              <textarea rows="2" placeholder="Wpisz tutaj…"></textarea>
+            </div>
+            <div>
+              <label style="font-size:15px; font-weight:500; display:block; margin-bottom:4px;">e) Jeśli się pojednamy, tym, czego NIE jestem gotów/gotowa dać / zrobić / kim być, jest:</label>
+              <textarea rows="2" placeholder="Wpisz tutaj…"></textarea>
+            </div>
+            <div>
+              <label style="font-size:15px; font-weight:500; display:block; margin-bottom:4px;">f) Jeśli się pojednamy, tym, czego odmawiam tolerować lub znosić w przyszłości, jest:</label>
+              <textarea rows="2" placeholder="Wpisz tutaj…"></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">11.</span> Czas i miejsce na dzielenie się arkuszami:</p>
+          <p class="note">Zgadzam się ustalić czas na omówienie zawartości naszych odpowiednich arkuszy bez jakichkolwiek ograniczeń czasowych, w miejscu, w którym nikt nie będzie nam przeszkadzał ani przerywał. Nasze telefony będą wyłączone. Zastosujemy metodę, w której jedno z nas mówi przez krótki czas, podczas gdy drugie słucha i nie odpowiada, a jedynie odzwierciedla to, co usłyszało. Następnie mówiący koryguje swoje wspomnienie tego, co zostało powiedziane, i kontynuuje, aż poczuje, że nadszedł odpowiedni moment na przerwę, by pozwolić drugiemu mówić z tym samym przywilejem bycia z szacunkiem wysłuchanym bez przerywania (Technika Imago). Jeśli któreś z nas uzna, że wolałoby, aby rozmowę na tych warunkach ułatwiła neutralna osoba trzecia, następująca osoba/osoby (być może terapeuta Imago) byłaby dla mnie akceptowalna.</p>
+          <div class="scale-container">
+            <div class="scale-row">
+              <label>Uzgodniona data i godzina spotkania:</label>
+              <input type="text" style="width:240px; border:none; border-bottom:1.5px solid var(--line); outline:none;" placeholder="np. 25 marca, godz. 18:00">
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">12.</span> Przymierze (Covenant):</p>
+          <p class="note">Po dyskusji, zakładając, że doszło do pojednania, zgadzam się współpracować z moim partnerem / moją partnerką w celu stworzenia Przymierza dla Relacji, które określa wszystkie ustalenia, do których doszliśmy w tym procesie, oraz umieścić to Przymierze w miejscu, w którym będziemy je widzieć i o nim pamiętać.</p>
+        </div>
+
+        <div class="signoff">
+          <div class="field"><label>Podpis</label><input type="text" placeholder="Twój podpis…"></div>
+          <div class="field"><label>Data</label><input type="date"></div>
+        </div>
+      </section>
+
+      <!-- Przyciski na dole -->
+      <div class="toolbar">
+        <button class="btn primary" id="printBtn">Drukuj / Zapisz jako PDF</button>
+        <button class="btn ghost" id="clearBtn">Wyczyść arkusz</button>
+      </div>
+
+      <footer>
+        W oparciu o metodę Radykalnego Pojednania i Radykalnego Wybaczania Colina Tippinga
+      </footer>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  // name-fill live update
+  const nameInput = document.getElementById('objectName');
+  function refreshNames(){
+    const val = nameInput.value.trim() || 'X';
+    document.querySelectorAll('.name-fill').forEach(s=> s.textContent = val);
+  }
+  nameInput.addEventListener('input', refreshNames);
+
+  // autosize textareas
+  function autosize(t){
+    t.style.height = 'auto';
+    t.style.height = (t.scrollHeight+2) + 'px';
+  }
+  function autosizeAll(){
+    document.querySelectorAll('textarea').forEach(t=>{
+      autosize(t);
+      t.addEventListener('input', ()=>autosize(t));
+    });
+  }
+  window.addEventListener('load', autosizeAll);
+  nameInput.addEventListener('input', refreshNames);
+  refreshNames();
+
+  // scroll spy + nav
+  const sections = Array.from(document.querySelectorAll('.stage'));
+  const railTabs = Array.from(document.querySelectorAll('.rail-tab'));
+  const mTabs = Array.from(document.querySelectorAll('.mrail button'));
+  function setActive(id){
+    railTabs.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+    mTabs.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+  }
+  [...railTabs, ...mTabs].forEach(b=>{
+    b.addEventListener('click', ()=>{
+      document.getElementById(b.dataset.target).scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting) setActive(e.target.id);
+    });
+  }, {rootMargin:'-20% 0px -65% 0px', threshold:0});
+  sections.forEach(s=> io.observe(s));
+
+  // print
+  document.getElementById('printBtn').addEventListener('click', ()=>{ window.print(); });
+
+  // clear
+  document.getElementById('clearBtn').addEventListener('click', ()=>{
+    if(!confirm('Wyczyścić cały arkusz?')) return;
+    document.querySelectorAll('textarea').forEach(t=>{ t.value=''; autosize(t); });
+    document.querySelectorAll('input[type=text], input[type=date], input[type=number]').forEach(i=> i.value='');
+    document.querySelectorAll('input[type=checkbox]').forEach(i=> i.checked=false);
+    refreshNames();
+  });
+})();
+</script>
+</body>
+</html>

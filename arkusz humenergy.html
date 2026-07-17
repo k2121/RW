@@ -1,0 +1,556 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arkusz Równoważenia Humenergy — Colin Tipping</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680;1,9..144,500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F4F0EA;
+    --paper-deep:#EAE2D5;
+    --card:#FDFBF7;
+    --ink:#2C2520;
+    --ink-soft:#6E6257;
+    --blue:#3B5A75;
+    --blue-deep:#253B4E;
+    --blue-pale:#E3ECF5;
+    --gold:#B08746;
+    --line:#DDD3C4;
+    --shadow:0 1px 2px rgba(44,37,32,.04), 0 8px 24px rgba(44,37,32,.06);
+    --rail-w:84px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important; transition:none !important;}
+  }
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 12% -10%, rgba(59,90,117,.05), transparent 60%),
+      var(--paper);
+    color:var(--ink);
+    font-family:'Spectral',serif;
+    font-size:16.5px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--blue-pale); }
+  a{ color:var(--blue-deep); }
+
+  /* ---------- layout shell ---------- */
+  .shell{
+    display:grid;
+    grid-template-columns:var(--rail-w) 1fr;
+    min-height:100vh;
+  }
+  @media (max-width:860px){
+    .shell{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- vertical stage rail ---------- */
+  .rail{
+    position:sticky; top:0; align-self:start;
+    height:100vh;
+    border-right:1px solid var(--line);
+    background:var(--paper-deep);
+    display:flex; flex-direction:column;
+    padding:22px 0;
+  }
+  .rail-mark{
+    width:34px; height:34px; margin:0 auto 28px;
+    border-radius:50%;
+    background:var(--blue-deep);
+    position:relative;
+    flex:none;
+  }
+  .rail-mark::before{
+    content:""; position:absolute; inset:7px;
+    background:var(--paper-deep);
+    border-radius:50% 50% 50% 0;
+    transform:rotate(-45deg);
+  }
+  .rail-tabs{ display:flex; flex-direction:column; gap:2px; flex:1; }
+  .rail-tab{
+    appearance:none; border:none; background:transparent; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    padding:16px 0;
+    color:var(--ink-soft);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:11px; letter-spacing:.14em;
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    border-left:3px solid transparent;
+    transition:color .2s, border-color .2s, background .2s;
+  }
+  .rail-tab:hover{ color:var(--ink); background:rgba(59,90,117,.06); }
+  .rail-tab.active{
+    color:var(--blue-deep);
+    border-left-color:var(--blue);
+    background:var(--card);
+    font-weight:600;
+  }
+  .rail-tab .num{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:560;
+    font-size:15px; margin-right:10px; letter-spacing:0;
+  }
+  .rail-foot{
+    writing-mode:vertical-rl; transform:rotate(180deg);
+    margin:0 auto; color:var(--ink-soft); opacity:.55;
+    font-family:'Space Grotesk',sans-serif; font-size:10px; letter-spacing:.16em;
+  }
+
+  /* mobile rail -> horizontal progress strip */
+  .mrail{ display:none; }
+  @media (max-width:860px){
+    .rail{ display:none; }
+    .mrail{
+      display:flex; position:sticky; top:0; z-index:20;
+      background:var(--paper-deep); border-bottom:1px solid var(--line);
+      overflow-x:auto; padding:10px 14px; gap:8px;
+    }
+    .mrail button{
+      appearance:none; border:1px solid var(--line); background:var(--card);
+      color:var(--ink-soft); font-family:'Space Grotesk',sans-serif;
+      font-size:11.5px; letter-spacing:.04em; white-space:nowrap;
+      padding:7px 12px; border-radius:999px; cursor:pointer;
+    }
+    .mrail button.active{ background:var(--blue-deep); color:#fff; border-color:var(--blue-deep); }
+  }
+
+  /* ---------- main column ---------- */
+  main{ min-width:0; }
+  .wrap{ max-width:760px; margin:0 auto; padding:56px 28px 90px; }
+  @media (max-width:560px){ .wrap{ padding:34px 16px 70px; } }
+
+  .eyebrow{
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--blue-deep); margin-bottom:14px;
+  }
+  h1.title{
+    font-family:'Fraunces',serif; font-weight:680; font-size:clamp(32px,5.5vw,48px);
+    line-height:1.06; margin:0 0 6px; letter-spacing:-.01em;
+  }
+  .subtitle{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:400;
+    color:var(--ink-soft); font-size:18px; margin:0 0 28px; line-height:1.4;
+  }
+
+  .meta-card{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+    display:grid; grid-template-columns:1fr 2fr; gap:16px 20px;
+  }
+  @media (max-width:560px){ .meta-card{ grid-template-columns:1fr; } }
+  .field label{
+    display:block; font-family:'Space Grotesk',sans-serif; font-size:11px;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;
+  }
+  .field input{
+    width:100%; border:none; border-bottom:1.5px solid var(--line);
+    background:transparent; font-family:'Spectral',serif; font-size:16px;
+    color:var(--ink); padding:4px 2px 7px; outline:none;
+  }
+  .field input:focus{ border-bottom-color:var(--blue); }
+  .field.wide{ grid-column:span 1; }
+
+  .privacy{
+    font-family:'Space Grotesk',sans-serif; font-size:12.5px; color:var(--ink-soft);
+    border:1px dashed var(--line);
+    border-radius:10px; padding:12px 16px; margin-bottom:8px; line-height:1.55;
+  }
+  .privacy strong{ color:var(--ink); }
+
+  .toolbar{
+    display:flex; gap:10px; flex-wrap:wrap; margin:30px 0 30px;
+  }
+  .btn{
+    appearance:none; cursor:pointer; border-radius:999px;
+    font-family:'Space Grotesk',sans-serif; font-size:13px; letter-spacing:.03em;
+    padding:10px 18px; border:1.5px solid var(--blue-deep);
+  }
+  .btn.primary{ background:var(--blue-deep); color:#fff; }
+  .btn.ghost{ background:transparent; color:var(--blue-deep); }
+  .btn:hover{ filter:brightness(1.05); }
+
+  .hint{ font-family:'Spectral',serif; font-style:italic; color:var(--ink-soft); font-size:14.5px; }
+
+  /* ---------- stage sections ---------- */
+  .stage{ scroll-margin-top:18px; margin-top:54px; }
+  .stage-head{
+    display:flex; align-items:baseline; gap:14px;
+    background:var(--blue-pale); border-radius:12px;
+    padding:14px 20px; margin-bottom:22px;
+  }
+  .stage-head .snum{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:680;
+    font-size:30px; color:var(--blue-deep); line-height:1;
+  }
+  .stage-head h2{
+    font-family:'Space Grotesk',sans-serif; font-size:13.5px; letter-spacing:.1em;
+    text-transform:uppercase; margin:0; color:var(--ink);
+  }
+  .subhead{
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--ink-soft);
+    margin:34px 0 14px; padding-bottom:8px; border-bottom:1px solid var(--line);
+  }
+
+  .item{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+  }
+  .item .inum{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:560;
+    color:var(--gold); font-size:18px; margin-right:6px;
+  }
+  .item p.lead{ margin:0 0 6px; }
+  .item p.note{
+    font-family:'Spectral',serif; font-style:italic; color:var(--ink-soft);
+    font-size:14.5px; margin:6px 0 14px;
+  }
+  .name-fill{
+    border-bottom:1.5px dotted var(--blue); color:var(--blue-deep); font-style:normal;
+    padding:0 2px;
+  }
+
+  textarea{
+    width:100%; resize:none; overflow:hidden;
+    border:1px solid var(--line); border-radius:10px;
+    background:#FFFDF8; padding:12px 14px;
+    font-family:'Spectral',serif; font-size:15.5px; color:var(--ink);
+    line-height:1.55; outline:none; min-height:64px;
+  }
+  textarea:focus{ border-color:var(--blue); box-shadow:0 0 0 3px rgba(59,90,117,.12); }
+
+  /* readiness pills */
+  fieldset.readiness{
+    border:none; margin:14px 0 0; padding:0;
+    display:flex; flex-wrap:wrap; gap:8px;
+  }
+  fieldset.readiness legend{
+    font-family:'Space Grotesk',sans-serif; font-size:10.5px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--ink-soft); margin-bottom:8px; padding:0;
+  }
+  .pill{ position:relative; }
+  .pill input{ position:absolute; opacity:0; inset:0; cursor:pointer; margin:0; }
+  .pill span{
+    display:inline-block; padding:7px 14px; border-radius:999px;
+    border:1.5px solid var(--line); font-family:'Space Grotesk',sans-serif;
+    font-size:12.5px; color:var(--ink-soft); transition:all .15s;
+  }
+  .pill input:checked + span{
+    background:var(--blue-deep); border-color:var(--blue-deep); color:#fff;
+  }
+  .pill input:focus-visible + span{ outline:2px solid var(--blue); outline-offset:2px; }
+
+  .affirmation{
+    background:linear-gradient(135deg, var(--blue-pale), var(--paper-deep));
+    border-radius:14px; padding:24px 26px; margin-bottom:18px;
+    font-family:'Spectral',serif; font-style:italic; font-size:16px; color:var(--ink);
+    border:1px solid var(--line);
+  }
+  .affirmation .inum{ font-style:normal; }
+
+  .signoff{
+    margin-top:50px; padding-top:28px; border-top:1px solid var(--line);
+    display:flex; flex-wrap:wrap; gap:22px; align-items:flex-end; justify-content:space-between;
+  }
+  .signoff .field{ min-width:200px; }
+
+  footer{
+    margin-top:60px; padding-top:18px; border-top:1px solid var(--line);
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; color:var(--ink-soft);
+    text-align:center; line-height:1.7;
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <!-- desktop vertical rail -->
+  <nav class="rail" aria-label="Etapy arkusza">
+    <div class="rail-mark" aria-hidden="true"></div>
+    <div class="rail-tabs" id="railTabs">
+      <button class="rail-tab" data-target="stage-1"><span class="num">1</span>Opowiedz historię</button>
+      <button class="rail-tab" data-target="stage-2"><span class="num">2</span>Poczuj uczucia</button>
+      <button class="rail-tab" data-target="stage-3"><span class="num">3</span>Demontaż historii</button>
+      <button class="rail-tab" data-target="stage-4"><span class="num">4</span>Zmiana perspektywy</button>
+      <button class="rail-tab" data-target="stage-5"><span class="num">5</span>Integracja zmiany</button>
+    </div>
+    <div class="rail-foot">System Q-Work</div>
+  </nav>
+
+  <main>
+    <!-- mobile horizontal rail -->
+    <nav class="mrail" id="mrail" aria-label="Etapy arkusza (mobile)">
+      <button data-target="stage-1">1 · Opowiedz historię</button>
+      <button data-target="stage-2">2 · Uczucia</button>
+      <button data-target="stage-3">3 · Demontaż historii</button>
+      <button data-target="stage-4">4 · Perspektywa</button>
+      <button data-target="stage-5">5 · Integracja</button>
+    </nav>
+
+    <div class="wrap">
+      <div class="eyebrow">Zarządzanie Energią Kwantową</div>
+      <h1 class="title">Arkusz Równoważenia Humenergy</h1>
+      <p class="subtitle">Instrument Systemu Zarządzania Energią Kwantową „Q-Work” do Transformacji Potencjalnie Szkodliwej, Nieświadomej Energii Subtelnej</p>
+
+      <div class="meta-card">
+        <div class="field"><label for="fData">Data</label><input id="fData" type="date"></div>
+        <div class="field wide">
+          <label for="objectName">Podmiot (X) — osoba lub grupa ludzi, na którą jestem zły / rozżalony:</label>
+          <input id="objectName" type="text" placeholder="Wpisz imię lub nazwę grupy…">
+        </div>
+      </div>
+
+      <p class="privacy"><strong>Prywatność danych:</strong> Wszystko, co wpisujesz, jest przetwarzane wyłącznie lokalnie w Twojej przeglądarce i nie jest nigdzie zapisywane ani przesyłane.</p>
+
+      <!-- ================= STAGE 1 ================= -->
+      <section class="stage" id="stage-1">
+        <div class="stage-head"><span class="snum">1</span><h2>Opowiedzenie historii (Telling the Story)</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">1.</span>Jestem zły / rozżalony, ponieważ:</p>
+          <p class="note">(Opowiedz całą historię wyłącznie z punktu widzenia ofiary – nie powstrzymuj się ani trochę).</p>
+          <textarea rows="5" placeholder="Opisz sytuację ze stanowiska ofiary…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">2a.</span>KONFRONTACJA Z X: <span class="name-fill">X</span>, jestem zły na Ciebie, ponieważ...</p>
+          <textarea rows="4" placeholder="Wyraź to bezpośrednio do X…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">2b.</span>Z powodu tego, co zrobiłeś(-aś) (lub robisz), CZUJĘ:</p>
+          <p class="note">(Zidentyfikuj tutaj swoje prawdziwe emocje).</p>
+          <textarea id="t2b" rows="4" placeholder="Czuję…"></textarea>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 2 ================= -->
+      <section class="stage" id="stage-2">
+        <div class="stage-head"><span class="snum">2</span><h2>Poczucie uczuć (Feeling the Feelings)</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">3.</span>Uznaję i akceptuję swoje uczucia bez osądzania. Moje uczucia są moją autentyczną reakcją na tę sytuację. Pokazują mi, jak ją postrzegam.</p>
+          <div class="rgroup" data-name="r3"></div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">4.</span>Biorę odpowiedzialność za swoje uczucia. Nikt nie może sprawić, bym cokolwiek czuł. To mój wybór.</p>
+          <div class="rgroup" data-name="r4"></div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">5.</span>Choć nie wiem dlaczego ani jak, teraz widzę, że moja duchowa inteligencja stworzyła tę sytuację, abym mógł się uczyć i rozwijać.</p>
+          <div class="rgroup" data-name="r5"></div>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 3 ================= -->
+      <section class="stage" id="stage-3">
+        <div class="stage-head"><span class="snum">3</span><h2>Demontaż historii (Collapsing the Story)</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">6.</span>Dostrzegam, że ta sytuacja wykazuje podobieństwa do innych sytuacji z przeszłości, co daje mi wskazówkę, że może to być okazja do uzdrowienia. Na przykład przypomina mi to...</p>
+          <p class="note">(Szukaj wzorców, powtarzających się dat lub odstępów lat, wspólnych imion, synchroniczności i osobliwości).</p>
+          <textarea rows="4" placeholder="Wzorce, powtarzające się sytuacje z przeszłości…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">7.</span>Mój dyskomfort jest sygnałem, że odmawiam miłości sobie i <span class="name-fill">X</span> poprzez osądzanie go/jej/ich, żywienie oczekiwań, chęć zmiany i postrzeganie jako kogoś mniej niż doskonałego. Teraz zdaję sobie sprawę, że odnajdę spokój tylko wtedy, gdy porzucę te nieuzasadnione żądania i zaakceptuję go/ją/ich dokładnie takimi, jakimi są.</p>
+          <p class="note">(Wypisz wszystkie osądy, oczekiwania i sposoby, w jakie chcesz/chciałeś, aby <span class="name-fill">X</span> się zmienił).</p>
+          <textarea rows="4" placeholder="Wypisz osądy i oczekiwania wobec X…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">8.</span>Teraz zdaję sobie sprawę, że denerwuję się tylko wtedy, gdy ktoś rezonuje we mnie z tymi częściami mnie, których się wyrzekłem, zaprzeczyłem im, stłumiłem je, a następnie dokonałem ich projekcji na tę osobę.</p>
+          <div class="rgroup" data-name="r8"></div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">9.</span>Wybaczając <span class="name-fill">X</span>, odnajduję więcej miłości do samego siebie.</p>
+          <div class="rgroup" data-name="r9"></div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">10.</span>Teraz zdaję sobie sprawę, że nic, co zrobił <span class="name-fill">X</span> lub ktokolwiek inny, nie jest ani dobre, ani złe. Porzucam wszelkie osądy.</p>
+          <div class="rgroup" data-name="r10"></div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">11.</span>Uwalniam potrzebę obwiniania i posiadania racji, i jestem GOTOWY dostrzec duchową inteligencję w tej sytuacji.</p>
+          <div class="rgroup" data-name="r11"></div>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 4 ================= -->
+      <section class="stage" id="stage-4">
+        <div class="stage-head"><span class="snum">4</span><h2>Zmiana perspektywy (Reframing the Story)</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">12.</span>Choć mogę nie rozumieć dlaczego, teraz zdaję sobie sprawę, że Ty i ja otrzymaliśmy dokładnie to, co każdy z nas podświadomie wybrał, i tańczyliśmy ze sobą i dla siebie uzdrawiający taniec, zaaranżowany przez naszą duchową inteligencję.</p>
+          <div class="rgroup" data-name="r12"></div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">13.</span>Błogosławię Cię <span class="name-fill">X</span> za gotowość odegrania roli w moim rozwoju i szanuję siebie za gotowość odegrania roli w Twoim rozwoju. Czuję teraz, że w jakiś tajemniczy sposób oboje zyskaliśmy na tym doświadczeniu.</p>
+          <div class="rgroup" data-name="r13"></div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">14.</span>Uwalniam ze swojej świadomości wszystkie uczucia: (tak jak w polu nr 2b)</p>
+          <textarea id="t15" rows="3" placeholder="Wypisz lub skopiuj uczucia do uwolnienia…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">15.</span>Teraz zdaję sobie sprawę, że to, czego doświadczałem (moja historia ofiary i związany z nią ból), było precyzyjnym odzwierciedleniem mojego ograniczonego postrzegania sytuacji z perspektywy „świata ludzkiego”. Rozumiem teraz, że mogę zmienić tę „rzeczywistość” po prostu poprzez gotowość do dostrzeżenia, że w tej sytuacji istniał duchowy „cel”. Na przykład:</p>
+          <p class="note">(Spróbuj dokonać „duchowego przeformułowania”, które może być ogólnym stwierdzeniem, że wszystko jest doskonałe w sensie duchowym, lub odnosić się konkretnie do Twojej sytuacji, jeśli widzisz lekcję. Często nie potrafimy tego dostrzec i to też jest w porządku).</p>
+          <textarea rows="4" placeholder="Moje duchowe przeformułowanie…"></textarea>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 5 ================= -->
+      <section class="stage" id="stage-5">
+        <div class="stage-head"><span class="snum">5</span><h2>Integracja zmiany (Integrating the Shift)</h2></div>
+
+        <div class="affirmation">
+          <p style="margin:0;"><span class="inum">16.</span> Całkowicie akceptuję siebie jako istotę kochającą, autentyczną, wielkoduszną i twórczą. Uwalniam wszelką potrzebę trzymania się emocji i idei braku oraz ograniczeń związanych z przeszłością. Wycofuję swoją energię z przeszłości i uwalniam wszelkie urazy. Odpuszczam wszelkie bariery stojące na drodze do miłości i obfitości, które posiadam w tym momencie. Kreuję swoje życie i odzyskuję moc, by znów być sobą, bezwarunkowo kochać i wspierać siebie dokładnie takim, jakim jestem, w całej mojej mocy i wspaniałości.</p>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">17.</span> Teraz PODDAJĘ SIĘ Wyższej Sile, o której myślę jako o <input type="text" style="width:180px; display:inline-block; border:none; border-bottom:1.5px solid var(--line); background:transparent; font-family:inherit; font-size:inherit; padding:0 4px; text-align:center; outline:none;" placeholder="Wyższa Siła / Bóg / Życie"> i ufam wiedzy, że ta sytuacja będzie nadal rozwijać się doskonale i zgodnie z Boskim przewodnictwem oraz duchowym prawem. Uznaję moją własną duchową inteligencję i czuję się całkowicie na nowo połączony z moją Mocą. Powracam do mojej prawdziwej natury, którą jest MIŁOŚĆ, i teraz przywracam miłość do <span class="name-fill">X</span>. Składam dziękczynienie za tę okazję, by zarówno dawać, jak i otrzymywać MIŁOŚĆ.</p>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">18.</span> W wyniku wypełnienia tego arkusza najlepiej opisałbym swoje uczucia w tym momencie jako...</p>
+          <textarea rows="3" placeholder="Jak się teraz czujesz?…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">19.</span> Wiadomość do Ciebie (<span class="name-fill">X</span>):</p>
+          <textarea rows="4">Całkowicie Ci wybaczam, ponieważ teraz zdaję sobie sprawę, że nie zrobiłeś(-aś) niczego „złego” i że everything jest w Boskim porządkiem. Uznaję, akceptuję i kocham Cię bezwarunkowo dokładnie takim/taką, jakim/jaką jesteś. (Uwaga: Nie oznacza to, że aprobujesz to zachowanie lub że nie możesz wyznaczyć granicy).</textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">20.</span> Wiadomość do samego siebie: Po wypełnieniu tego arkusza, ja...</p>
+          <textarea rows="3">Uznaję, że jestem istotą duchową mającą ludzkie doświadczenie, i kocham oraz akceptuję siebie we wszystkich aspektach mojego człowieczeństwa.</textarea>
+        </div>
+      </section>
+
+      <!-- Przyciski na dole -->
+      <div class="toolbar">
+        <button class="btn primary" id="printBtn">Drukuj / Zapisz jako PDF</button>
+        <button class="btn ghost" id="clearBtn">Wyczyść arkusz</button>
+      </div>
+
+      <footer>
+        W oparciu o metodę Radykalnego Wybaczania Colina Tippinga (2005)
+      </footer>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  const READY_OPTS = ["Gotowy", "Otwarty", "Sceptyczny", "Niechętny"];
+
+  // build readiness pill groups
+  document.querySelectorAll('.rgroup').forEach(el=>{
+    const name = el.dataset.name;
+    const fs = document.createElement('fieldset');
+    fs.className = 'readiness';
+    const legend = document.createElement('legend');
+    legend.textContent = 'Mój stan wewnętrzny:';
+    fs.appendChild(legend);
+    READY_OPTS.forEach((opt,i)=>{
+      const id = name+'-'+i;
+      const lab = document.createElement('label');
+      lab.className = 'pill';
+      lab.innerHTML = '<input type="radio" name="'+name+'" id="'+id+'"><span>'+opt+'</span>';
+      fs.appendChild(lab);
+    });
+    el.replaceWith(fs);
+  });
+
+  // name-fill live update
+  const nameInput = document.getElementById('objectName');
+  function refreshNames(){
+    const val = nameInput.value.trim() || 'X';
+    document.querySelectorAll('.name-fill').forEach(s=> s.textContent = val);
+  }
+  nameInput.addEventListener('input', refreshNames);
+
+  // Sync script for emotions
+  const t2b = document.getElementById('t2b');
+  const t15 = document.getElementById('t15');
+  let last2bValue = "";
+
+  t2b.addEventListener('input', () => {
+    let current15 = t15.value;
+    if (current15.startsWith(last2bValue)) {
+      t15.value = t2b.value + current15.slice(last2bValue.length);
+    } else if (current15 === "") {
+      t15.value = t2b.value;
+    }
+    last2bValue = t2b.value;
+    autosize(t15);
+  });
+
+  // autosize textareas
+  function autosize(t){
+    t.style.height = 'auto';
+    t.style.height = (t.scrollHeight+2) + 'px';
+  }
+  function autosizeAll(){
+    document.querySelectorAll('textarea').forEach(t=>{
+      autosize(t);
+      t.addEventListener('input', ()=>autosize(t));
+    });
+  }
+  window.addEventListener('load', autosizeAll);
+  nameInput.addEventListener('input', refreshNames);
+  refreshNames();
+
+  // scroll spy + nav
+  const sections = Array.from(document.querySelectorAll('.stage'));
+  const railTabs = Array.from(document.querySelectorAll('.rail-tab'));
+  const mTabs = Array.from(document.querySelectorAll('.mrail button'));
+  function setActive(id){
+    railTabs.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+    mTabs.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+  }
+  [...railTabs, ...mTabs].forEach(b=>{
+    b.addEventListener('click', ()=>{
+      document.getElementById(b.dataset.target).scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting) setActive(e.target.id);
+    });
+  }, {rootMargin:'-20% 0px -65% 0px', threshold:0});
+  sections.forEach(s=> io.observe(s));
+
+  // print
+  document.getElementById('printBtn').addEventListener('click', ()=>{ window.print(); });
+
+  // clear
+  document.getElementById('clearBtn').addEventListener('click', ()=>{
+    if(!confirm('Wyczyścić cały arkusz?')) return;
+    document.querySelectorAll('textarea').forEach(t=>{ t.value=''; autosize(t); });
+    document.querySelectorAll('input[type=text], input[type=date]').forEach(i=> i.value='');
+    document.querySelectorAll('input[type=radio]').forEach(i=> i.checked=false);
+    last2bValue = "";
+    refreshNames();
+  });
+})();
+</script>
+</body>
+</html>

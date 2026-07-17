@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arkusz Radykalnej Manifestacji — Kreowanie Nowego Związku</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680;1,9..144,500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F4F7F4;
+    --paper-deep:#E3EBE4;
+    --card:#FBFCFB;
+    --ink:#1E2922;
+    --ink-soft:#526357;
+    --rose:#2E6F40;
+    --rose-deep:#1B4D27;
+    --rose-pale:#DEEFE2;
+    --sage:#557C55;
+    --gold:#B48A3E;
+    --line:#CDDAD0;
+    --shadow:0 1px 2px rgba(30,41,34,.06), 0 8px 24px rgba(30,41,34,.08);
+    --rail-w:84px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important; transition:none !important;}
+  }
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 12% -10%, rgba(46,111,64,.06), transparent 60%),
+      var(--paper);
+    color:var(--ink);
+    font-family:'Spectral',serif;
+    font-size:16.5px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--rose-pale); }
+  a{ color:var(--rose-deep); }
+
+  /* ---------- layout shell ---------- */
+  .shell{
+    display:grid;
+    grid-template-columns:var(--rail-w) 1fr;
+    min-height:100vh;
+  }
+  @media (max-width:860px){
+    .shell{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- vertical stage rail ---------- */
+  .rail{
+    position:sticky; top:0; align-self:start;
+    height:100vh;
+    border-right:1px solid var(--line);
+    background:var(--paper-deep);
+    display:flex; flex-direction:column;
+    padding:22px 0;
+  }
+  .rail-mark{
+    width:34px; height:34px; margin:0 auto 28px;
+    border-radius:50%;
+    background:var(--rose-deep);
+    position:relative;
+    flex:none;
+  }
+  .rail-mark::before, .rail-mark::after{
+    content:""; position:absolute; inset:7px;
+    background:var(--paper-deep);
+    border-radius:50% 50% 50% 0;
+    transform:rotate(-45deg);
+  }
+  .rail-tabs{ display:flex; flex-direction:column; gap:2px; flex:1; }
+  .rail-tab{
+    appearance:none; border:none; background:transparent; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    padding:16px 0;
+    color:var(--ink-soft);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:11px; letter-spacing:.14em;
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    border-left:3px solid transparent;
+    transition:color .2s, border-color .2s, background .2s;
+  }
+  .rail-tab:hover{ color:var(--ink); background:rgba(46,111,64,.06); }
+  .rail-tab.active{
+    color:var(--rose-deep);
+    border-left-color:var(--rose);
+    background:var(--card);
+    font-weight:600;
+  }
+  .rail-tab .num{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:560;
+    font-size:15px; margin-right:10px; letter-spacing:0;
+  }
+  .rail-foot{
+    writing-mode:vertical-rl; transform:rotate(180deg);
+    margin:0 auto; color:var(--ink-soft); opacity:.55;
+    font-family:'Space Grotesk',sans-serif; font-size:10px; letter-spacing:.16em;
+  }
+
+  /* mobile rail -> horizontal progress strip */
+  .mrail{ display:none; }
+  @media (max-width:860px){
+    .rail{ display:none; }
+    .mrail{
+      display:flex; position:sticky; top:0; z-index:20;
+      background:var(--paper-deep); border-bottom:1px solid var(--line);
+      overflow-x:auto; padding:10px 14px; gap:8px;
+    }
+    .mrail button{
+      appearance:none; border:1px solid var(--line); background:var(--card);
+      color:var(--ink-soft); font-family:'Space Grotesk',sans-serif;
+      font-size:11.5px; letter-spacing:.04em; white-space:nowrap;
+      padding:7px 12px; border-radius:999px; cursor:pointer;
+    }
+    .mrail button.active{ background:var(--rose-deep); color:#fff; border-color:var(--rose-deep); }
+  }
+
+  /* ---------- main column ---------- */
+  main{ min-width:0; }
+  .wrap{ max-width:760px; margin:0 auto; padding:56px 28px 90px; }
+  @media (max-width:560px){ .wrap{ padding:34px 16px 70px; } }
+
+  .eyebrow{
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--rose-deep); margin-bottom:14px;
+  }
+  h1.title{
+    font-family:'Fraunces',serif; font-weight:680; font-size:clamp(34px,5vw,48px);
+    line-height:1.06; margin:0 0 6px; letter-spacing:-.01em;
+  }
+  .subtitle{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:400;
+    color:var(--ink-soft); font-size:19px; margin:0 0 28px;
+  }
+
+  .meta-card{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+    display:grid; grid-template-columns:1fr 1fr 2fr; gap:16px 20px;
+  }
+  @media (max-width:560px){ .meta-card{ grid-template-columns:1fr; } }
+  .field label{
+    display:block; font-family:'Space Grotesk',sans-serif; font-size:11px;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;
+  }
+  .field input{
+    width:100%; border:none; border-bottom:1.5px solid var(--line);
+    background:transparent; font-family:'Spectral',serif; font-size:16px;
+    color:var(--ink); padding:4px 2px 7px; outline:none;
+  }
+  .field input:focus{ border-bottom-color:var(--rose); }
+
+  .privacy{
+    font-family:'Space Grotesk',sans-serif; font-size:12.5px; color:var(--ink-soft);
+    border:1px dashed var(--line);
+    border-radius:10px; padding:12px 16px; margin-bottom:8px; line-height:1.55;
+  }
+  .privacy strong{ color:var(--ink); }
+
+  .toolbar{
+    display:flex; gap:10px; flex-wrap:wrap; margin:30px 0 30px;
+  }
+  .btn{
+    appearance:none; cursor:pointer; border-radius:999px;
+    font-family:'Space Grotesk',sans-serif; font-size:13px; letter-spacing:.03em;
+    padding:10px 18px; border:1.5px solid var(--rose-deep);
+  }
+  .btn.primary{ background:var(--rose-deep); color:#fff; }
+  .btn.ghost{ background:transparent; color:var(--rose-deep); }
+  .btn:hover{ filter:brightness(1.05); }
+
+  .hint{ font-family:'Spectral',serif; font-style:italic; color:var(--ink-soft); font-size:14.5px; }
+
+  /* ---------- stage sections ---------- */
+  .stage{ scroll-margin-top:18px; margin-top:54px; }
+  .stage-head{
+    display:flex; align-items:baseline; gap:14px;
+    background:var(--rose-pale); border-radius:12px;
+    padding:14px 20px; margin-bottom:22px;
+  }
+  .stage-head .snum{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:680;
+    font-size:30px; color:var(--rose-deep); line-height:1;
+  }
+  .stage-head h2{
+    font-family:'Space Grotesk',sans-serif; font-size:13.5px; letter-spacing:.1em;
+    text-transform:uppercase; margin:0; color:var(--ink);
+  }
+  .subhead{
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--ink-soft);
+    margin:34px 0 14px; padding-bottom:8px; border-bottom:1px solid var(--line);
+  }
+
+  .item{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+  }
+  .item .inum{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:560;
+    color:var(--gold); font-size:18px; margin-right:6px;
+  }
+  .item p.lead{ margin:0 0 6px; }
+  .item p.note{
+    font-family:'Spectral',serif; font-style:italic; color:var(--ink-soft);
+    font-size:14.5px; margin:6px 0 14px;
+  }
+
+  textarea{
+    width:100%; resize:none; overflow:hidden;
+    border:1px solid var(--line); border-radius:10px;
+    background:#FFFDF8; padding:12px 14px;
+    font-family:'Spectral',serif; font-size:15.5px; color:var(--ink);
+    line-height:1.55; outline:none; min-height:64px;
+  }
+  textarea:focus{ border-color:var(--rose); box-shadow:0 0 0 3px rgba(46,111,64,.12); }
+
+  /* belief checkbox grid */
+  .belief-grid{
+    display:grid; grid-template-columns:1fr 1fr 1fr; gap:10px 18px; margin-top:14px;
+  }
+  @media (max-width:640px){ .belief-grid{ grid-template-columns:1fr 1fr; } }
+  @media (max-width:420px){ .belief-grid{ grid-template-columns:1fr; } }
+  .belief{ display:flex; align-items:flex-start; gap:8px; font-size:14.5px; }
+  .belief input{ margin-top:4px; accent-color:var(--rose-deep); flex:none; }
+  .belief.other{ grid-column:1/-1; display:flex; align-items:center; gap:10px; }
+  .belief.other input[type=text]{
+    flex:1; border:none; border-bottom:1.5px solid var(--line); background:transparent;
+    font-family:'Spectral',serif; font-size:14.5px; padding:4px 2px; outline:none;
+  }
+
+  /* numbered input lines for top values */
+  .must-have-list {
+    display:flex; flex-direction:column; gap:16px; margin-top:14px;
+  }
+  .must-have-item {
+    display:grid; grid-template-columns:30px 1fr; align-items:start; gap:10px;
+  }
+  .must-have-item .num-label {
+    font-family:'Fraunces',serif; font-style:italic; font-weight:600; font-size:18px; color:var(--gold); padding-top:4px;
+  }
+
+  .affirmation{
+    background:linear-gradient(135deg, var(--rose-pale), var(--paper-deep));
+    border-radius:14px; padding:24px 26px; margin-bottom:18px;
+    font-family:'Spectral',serif; font-style:italic; font-size:16px; color:var(--ink);
+    border:1px solid var(--line);
+  }
+
+  .signoff{
+    margin-top:50px; padding-top:28px; border-top:1px solid var(--line);
+    display:flex; flex-wrap:wrap; gap:22px; align-items:flex-end; justify-content:space-between;
+  }
+  .signoff .field{ min-width:200px; }
+
+  footer{
+    margin-top:60px; padding-top:18px; border-top:1px solid var(--line);
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; color:var(--ink-soft);
+    text-align:center; line-height:1.7;
+  }
+  footer a{ color:var(--ink-soft); }
+
+  /* ---------- print ---------- */
+  @media print{
+    .rail, .mrail, .toolbar, .privacy{ display:none !important; }
+    .shell{ display:block; }
+    body{ background:#fff; }
+    .wrap{ max-width:100%; padding:0 8px; }
+    .item, .meta-card, .affirmation{ box-shadow:none; border:1px solid #ccc; break-inside:avoid; }
+    .stage{ break-before:page; margin-top:0; padding-top:18px; }
+    .stage:first-of-type{ break-before:auto; }
+    textarea{ border:1px solid #ccc; }
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <!-- desktop vertical rail -->
+  <nav class="rail" aria-label="Etapy arkusza">
+    <div class="rail-mark" aria-hidden="true"></div>
+    <div class="rail-tabs" id="railTabs">
+      <button class="rail-tab" data-target="stage-1"><span class="num">1</span>Intencja i Powody</button>
+      <button class="rail-tab" data-target="stage-2"><span class="num">2</span>Wartości i Cechy Partnera</button>
+      <button class="rail-tab" data-target="stage-3"><span class="num">3</span>Twój Wkład i Granice</button>
+      <button class="rail-tab" data-target="stage-4"><span class="num">4</span>Wizualizacja Zmysłowa</button>
+      <button class="rail-tab" data-target="stage-5"><span class="num">5</span>Oświadczenie i Poddanie</button>
+    </div>
+    <div class="rail-foot">Instytut Metody Tippinga</div>
+  </nav>
+
+  <main>
+    <!-- mobile horizontal rail -->
+    <nav class="mrail" id="mrail" aria-label="Etapy arkusza (mobile)">
+      <button data-target="stage-1">1 · Intencja</button>
+      <button data-target="stage-2">2 · Partner</button>
+      <button data-target="stage-3">3 · Wkład</button>
+      <button data-target="stage-4">4 · Zmysły</button>
+      <button data-target="stage-5">5 · Poddanie</button>
+    </nav>
+
+    <div class="wrap">
+      <div class="eyebrow">Instytut Metody Tippinga · narzędzie do Radykalnej Manifestacji</div>
+      <h1 class="title">Arkusz Manifestacji Nowego Związku</h1>
+      <p class="subtitle">„Jestem gotów na nowy, zaangażowany związek” — Przyciąganie idealnego partnera</p>
+
+      <div class="meta-card">
+        <div class="field"><label for="fData">Data</label><input id="fData" type="date"></div>
+        <div class="field"><label for="fNr">Arkusz nr</label><input id="fNr" type="text" placeholder="np. 1"></div>
+        <div class="field wide" style="grid-column:span 1;">
+          <label for="objectName">Intencja (kobieta / mężczyzna)</label>
+          <input id="objectName" type="text" placeholder="np. Kobieta moich marzeń…">
+        </div>
+      </div>
+
+      <p class="privacy"><strong>Dane z tego arkusza nie są nigdzie przesyłane ani zapisywane.</strong> Wszystko, co wpiszesz, pozostaje wyłącznie w Twojej przeglądarce, na czas tej sesji — możesz wypełniać go zupełnie bezpiecznie i anonimowo.</p>
+
+      <p class="hint">Podpowiedź: Słowa mają ogromną siłę kreacji. Po zakończeniu wypisywania przeczytaj cały arkusz na głos z głębokim wewnętrznym przekonaniem.</p>
+
+      <!-- ================= STAGE 1 ================= -->
+      <section class="stage" id="stage-1">
+        <div class="stage-head"><span class="snum">1</span><h2>Określ swoją intencję oraz powody</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">1.</span>Mam głęboką intencję zamanifestowania bliskiej osoby (mężczyzny / kobiety), z którą stworzę pełen miłości, trwały i zaangażowany związek do:</p>
+          <p class="note">Określ ramy czasowe lub docelową datę (zapisz intencję w czasie teraźniejszym, np. „do końca tego roku mam już wspaniałego partnera”).</p>
+          <textarea rows="2" placeholder="Wpisz ramy czasowe i sprecyzuj intencję…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">2.</span>Powody, dla których kreuję ten związek właśnie teraz, to:</p>
+          <p class="note">Bądź ze sobą całkowicie szczery. Jakie potrzeby ma zaspokoić ta relacja? Czy wypływa z chęci dzielenia się szczęściem, czy z lęku przed samotnością?</p>
+          <textarea rows="4" placeholder="Moje osobiste powody i motywacje…"></textarea>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 2 ================= -->
+      <section class="stage" id="stage-2">
+        <div class="stage-head"><span class="snum">2</span><h2>Wartości i cechy idealnego partnera</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">3.</span>Zaznacz wartości, które są dla Ciebie kluczowe i które Twój partner powinien posiadać:</p>
+          <div class="belief-grid" id="partnerValuesGrid"></div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">4.</span>Wymień 5 najważniejszych wartości typu „must have” (absolutnie niezbędnych) i rozwiń je — co one dla Ciebie znaczą i dlaczego są tak ważne:</p>
+          <div class="must-have-list">
+            <div class="must-have-item"><div class="num-label">1.</div><textarea rows="2" placeholder="Pierwsza najważniejsza wartość i jej znaczenie…"></textarea></div>
+            <div class="must-have-item"><div class="num-label">2.</div><textarea rows="2" placeholder="Druga najważniejsza wartość i jej znaczenie…"></textarea></div>
+            <div class="must-have-item"><div class="num-label">3.</div><textarea rows="2" placeholder="Trzecia najważniejsza wartość i jej znaczenie…"></textarea></div>
+            <div class="must-have-item"><div class="num-label">4.</div><textarea rows="2" placeholder="Czwarta najważniejsza wartość i jej znaczenie…"></textarea></div>
+            <div class="must-have-item"><div class="num-label">5.</div><textarea rows="2" placeholder="Piąta najważniejsza wartość i jej znaczenie…"></textarea></div>
+          </div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">5.</span>Wypisz wszystkie inne pożądane cechy, talenty, aspekty wizualne lub przymioty charakteru, które chcesz widzieć w swoim idealnym partnerze oraz w Waszej relacji:</p>
+          <p class="note">Pamiętaj, by formułować oczekiwania w sposób pozytywny (np. zamiast „nie jest skąpy” napisz „jest hojny i otwarty w kwestiach finansowych”).</p>
+          <textarea rows="4" placeholder="Inne cechy, pasje, sposób bycia…"></textarea>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 3 ================= -->
+      <section class="stage" id="stage-3">
+        <div class="stage-head"><span class="snum">3</span><h2>Twój wkład w relację oraz granice</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">6.</span>Zaznacz, które z poniższych wartości, cech i jakości TY wnosisz do tego związku:</p>
+          <div class="belief-grid" id="myValuesGrid"></div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">7.</span>Wypisz cechy i zachowania, z których w relacji pod żadnym pozorem nie zrezygnujesz (Twoje nienegocjowalne filary):</p>
+          <textarea rows="3" placeholder="Moje nienegocjowalne wartości i zachowania…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">8.</span>Zdefiniuj czynniki wykluczające (tzw. „deal breakers”) — czego absolutnie NIE będziesz tolerować w związku:</p>
+          <textarea rows="3" placeholder="Zachowania i postawy, których nie zaakceptuję…"></textarea>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 4 ================= -->
+      <section class="stage" id="stage-4">
+        <div class="stage-head"><span class="snum">4</span><h2>Wizualizacja i aktywacja zmysłowa (Tutaj i Teraz)</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">9.</span>Zamknij oczy, weź głęboki oddech i wyobraź sobie, że jesteś już w tym idealnym związku. Zaangażuj wszystkie swoje zmysły w przejaskrawiony, żywy sposób. Poczuj, że to dzieje się TERAZ:</p>
+          
+          <div class="must-have-list" style="gap:20px;">
+            <div>
+              <p class="note" style="margin:0 0 4px 0; font-weight:600; color:var(--ink);">a) To, co WIDZĘ w mojej wyobraźni, to:</p>
+              <textarea rows="2" placeholder="Opisz obrazy, wyraz twarzy partnera, otoczenie…"></textarea>
+            </div>
+            <div>
+              <p class="note" style="margin:0 0 4px 0; font-weight:600; color:var(--ink);">b) To, co SŁYSZĘ (słowa, śmiech, dźwięki otoczenia), to:</p>
+              <textarea rows="2" placeholder="Opisz dźwięki, miłe słowa, ton głosu…"></textarea>
+            </div>
+            <div>
+              <p class="note" style="margin:0 0 4px 0; font-weight:600; color:var(--ink);">c) To, co czuję WĘCHEM (zapach skóry, perfum, domu), to:</p>
+              <textarea rows="2" placeholder="Opisz zapachy towarzyszące tej bliskości…"></textarea>
+            </div>
+            <div>
+              <p class="note" style="margin:0 0 4px 0; font-weight:600; color:var(--ink);">d) To, co czuję SMAKIEM, to:</p>
+              <textarea rows="2" placeholder="Pocałunki, wspólne posiłki, smak radości…"></textarea>
+            </div>
+            <div>
+              <p class="note" style="margin:0 0 4px 0; font-weight:600; color:var(--ink);">e) To, co czuję DOTYKIEM (ciepło, bliskość, uścisk dłoni), to:</p>
+              <textarea rows="2" placeholder="Fizyczne odczucie obecności i dotyku drugiej osoby…"></textarea>
+            </div>
+          </div>
+          <p class="note" style="margin-top:14px;">Pozwól sobie na głośne wyrażenie tych doznań i poczuj, jak Twoje serce rozszerza się w Miłości pod wpływem prawdy, że ta relacja już teraz stanowi Twoją rzeczywistość.</p>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 5 ================= -->
+      <section class="stage" id="stage-5">
+        <div class="stage-head"><span class="snum">5</span><h2>Deklaracja prawdy i całkowite poddanie</h2></div>
+
+        <div class="affirmation">
+          <p style="margin:0 0 10px 0; font-weight:600;">a) Świadomość i Wyższy Plan:</p>
+          <p style="margin:0;">Uświadamiam sobie i przyjmuję do wiadomości, że moja Duchowa Inteligencja oraz Wszechświat mogą mieć dla mnie plan nieco odmienny od tego, o co prosiłem. Dlatego w pełni przekazuję tę intencję Sile Wyższej i całkowicie poddaję się temu, co leży w moim najwyższym życiowym interesie.</p>
+        </div>
+
+        <div class="affirmation">
+          <p style="margin:0 0 10px 0; font-weight:600;">b) Deklaracja Zaufania:</p>
+          <p style="margin:0;">Niniejszym deklaruję moje pełne zaufanie do Wszechświata, że obdarzy mnie tym, co jest dla mnie najlepsze. Odczuwam głęboką miłość i wdzięczność do Ducha, który jest we mnie oraz we wszystkich rzeczach.</p>
+        </div>
+
+        <div class="affirmation">
+          <p style="margin:0 0 10px 0; font-weight:600;">c) Uwolenie przywiązania:</p>
+          <p style="margin:0;">Całkowicie poddaję się teraz Sile Wyższej i porzucam wszelkie kurczowe przywiązanie do tego, by ten związek zamanifestował się w jakikolwiek z góry określony sposób. Wiem, że to się dokonało, a ja z łatwością rozpoznam doskonałość tej relacji, gdy się pojawi.</p>
+        </div>
+
+        <div class="affirmation">
+          <p style="margin:0 0 10px 0; font-weight:600;">d) Połączenie ze Źródłem:</p>
+          <p style="margin:0;">Czuję, że jestem całkowicie połączony ze swoim Źródłem i wiem, że żyję w otoczeniu czystej obfitości. Otwieram się na nieustanne przyjmowanie tej obfitości w każdym obszarze życia.</p>
+          <p style="margin:12px 0 0 0; text-align:center; font-family:'Fraunces',serif; font-weight:680; font-size:18px; color:var(--rose-deep);">„To się dokonało — i tak właśnie jest!”</p>
+        </div>
+
+        <div class="signoff">
+          <div class="field"><label for="signDate">Data</label><input id="signDate" type="date"></div>
+          <div class="field" style="flex:1;"><label for="signName">Podpis</label><input id="signName" type="text" placeholder="Imię i nazwisko"></div>
+        </div>
+      </section>
+
+      <!-- Przyciski na dole -->
+      <div class="toolbar">
+        <button class="btn primary" id="printBtn">Drukuj / zapisz jako PDF</button>
+        <button class="btn ghost" id="clearBtn">Wyczyść arkusz</button>
+      </div>
+
+      <footer>
+        Instytut Metody Tippinga — jedyny autoryzowany oddział Institute for Radical Forgiveness Therapy &amp; Coaching, Inc.<br>
+        www.metoda-tippinga.pl · info@metoda-tippinga.pl<br>
+        Narzędzie do Radykalnej Manifestacji Relacji
+      </footer>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  const VALUES_LIST = [
+    "Lojalność", "Uczciwość", "Wierność", "Zaufanie", "Pokora", 
+    "Pragnienie posiadania dzieci", "Poczucie humoru", "Tolerancja", 
+    "Duchowość", "Wrażliwość", "Samodzielność / Niezależność", 
+    "Siła wewnętrzna", "Gotowość do rozwoju", "Integralność / Prawość", 
+    "Determinacja / Zaangażowanie", "Rywalizacja", "Opiekuńczość / Troska"
+  ];
+
+  // Build grid for partner values
+  const partnerGrid = document.getElementById('partnerValuesGrid');
+  VALUES_LIST.forEach((val, i) => {
+    const lab = document.createElement('label');
+    lab.className = 'belief';
+    lab.innerHTML = '<input type="checkbox" id="pv-' + i + '"><span>' + val + '</span>';
+    partnerGrid.appendChild(lab);
+  });
+  const partnerOther = document.createElement('label');
+  partnerOther.className = 'belief other';
+  partnerOther.innerHTML = '<input type="checkbox" id="pv-other"><span>Inne:</span><input type="text" id="pv-other-text" placeholder="Wpisz inną wartość…">';
+  partnerGrid.appendChild(partnerOther);
+
+  // Build grid for my values
+  const myGrid = document.getElementById('myValuesGrid');
+  VALUES_LIST.forEach((val, i) => {
+    const lab = document.createElement('label');
+    lab.className = 'belief';
+    lab.innerHTML = '<input type="checkbox" id="mv-' + i + '"><span>' + val + '</span>';
+    myGrid.appendChild(lab);
+  });
+  const myOther = document.createElement('label');
+  myOther.className = 'belief other';
+  myOther.innerHTML = '<input type="checkbox" id="mv-other"><span>Inne:</span><input type="text" id="mv-other-text" placeholder="Wpisz inną cechę…">';
+  myGrid.appendChild(myOther);
+
+  // Live Title & PDF Filename Setup
+  const nameInput = document.getElementById('objectName');
+  const nrInput = document.getElementById('fNr');
+  const BASE_TITLE = 'Arkusz Radykalnej Manifestacji Zwiazku';
+  
+  function pad2(n){ return String(n).padStart(2,'0'); }
+  function stampCzas(){
+    const d = new Date();
+    const rr = pad2(d.getFullYear() % 100);
+    const mm = pad2(d.getMonth()+1);
+    const dd = pad2(d.getDate());
+    return 'r'+rr+mm+dd;
+  }
+  
+  function refreshTitle(){
+    const nr = nrInput.value.trim();
+    const osoba = nameInput.value.trim();
+    let title = BASE_TITLE + ' - ' + stampCzas();
+    if(nr) title += ' nr' + nr.padStart(3, '0');
+    if(osoba) title += ' - ' + osoba;
+    document.title = title;
+  }
+  nameInput.addEventListener('input', refreshTitle);
+  nrInput.addEventListener('input', refreshTitle);
+
+  // Sync dates
+  const fData = document.getElementById('fData');
+  const signDate = document.getElementById('signDate');
+  fData.addEventListener('input', () => {
+    signDate.value = fData.value;
+  });
+
+  // Autosize textareas
+  function autosize(t){
+    t.style.height = 'auto';
+    t.style.height = (t.scrollHeight+2) + 'px';
+  }
+  function autosizeAll(){
+    document.querySelectorAll('textarea').forEach(t=>{
+      autosize(t);
+      t.addEventListener('input', ()=>autosize(t));
+    });
+  }
+  autosizeAll();
+  window.addEventListener('load', autosizeAll);
+
+  // Scroll spy + Navigation
+  const sections = Array.from(document.querySelectorAll('.stage'));
+  const railTabs = Array.from(document.querySelectorAll('.rail-tab'));
+  const mTabs = Array.from(document.querySelectorAll('.mrail button'));
+  
+  function setActive(id){
+    railTabs.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+    mTabs.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+  }
+  [...railTabs, ...mTabs].forEach(b=>{
+    b.addEventListener('click', ()=>{
+      document.getElementById(b.dataset.target).scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+  
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting) setActive(e.target.id);
+    });
+  }, {rootMargin:'-20% 0px -65% 0px', threshold:0});
+  sections.forEach(s=> io.observe(s));
+  setActive('stage-1');
+
+  // Actions
+  document.getElementById('printBtn').addEventListener('click', ()=>{ refreshTitle(); window.print(); });
+  document.getElementById('clearBtn').addEventListener('click', ()=>{
+    if(!confirm('Wyczyścić cały arkusz? Tej operacji nie można cofnąć.')) return;
+    document.querySelectorAll('textarea').forEach(t=>{ t.value=''; autosize(t); });
+    document.querySelectorAll('input[type=text], input[type=date]').forEach(i=> i.value='');
+    document.querySelectorAll('input[type=checkbox]').forEach(i=> i.checked=false);
+    autosizeAll();
+    refreshTitle();
+  });
+})();
+</script>
+</body>
+</html>
