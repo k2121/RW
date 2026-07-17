@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Internetowy Proces 4 Kroków Emerge-N-See</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680;1,9..144,500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#FDFBF7;
+    --paper-deep:#F4EFE6;
+    --card:#FFFFFF;
+    --ink:#2C2520;
+    --ink-soft:#655A52;
+    --primary:#704F37;
+    --primary-deep:#4A3221;
+    --primary-pale:#F5EDE4;
+    --gold:#C49A45;
+    --line:#E6DEC3;
+    --shadow:0 1px 3px rgba(74,50,33,.04), 0 10px 30px rgba(74,50,33,.06);
+    --rail-w:90px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important; transition:none !important;}
+  }
+  body{
+    margin:0;
+    background:
+      radial-gradient(1400px 700px at 15% -10%, rgba(112,79,55,.06), transparent 60%),
+      var(--paper);
+    color:var(--ink);
+    font-family:'Spectral',serif;
+    font-size:16.5px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--primary-pale); }
+  a{ color:var(--primary-deep); }
+
+  /* ---------- layout shell ---------- */
+  .shell{
+    display:grid;
+    grid-template-columns:var(--rail-w) 1fr;
+    min-height:100vh;
+  }
+  @media (max-width:860px){
+    .shell{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- vertical stage rail ---------- */
+  .rail{
+    position:sticky; top:0; align-self:start;
+    height:100vh;
+    border-right:1px solid var(--line);
+    background:var(--paper-deep);
+    display:flex; flex-direction:column;
+    padding:24px 0;
+  }
+  .rail-mark{
+    width:36px; height:36px; margin:0 auto 28px;
+    border-radius:50%;
+    background:var(--primary-deep);
+    position:relative;
+    flex:none;
+  }
+  .rail-mark::before, .rail-mark::after{
+    content:""; position:absolute; inset:8px;
+    background:var(--paper-deep);
+    border-radius:50% 50% 50% 0;
+    transform:rotate(-45deg);
+  }
+  .rail-tabs{ display:flex; flex-direction:column; gap:4px; flex:1; }
+  .rail-tab{
+    appearance:none; border:none; background:transparent; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    padding:20px 0;
+    color:var(--ink-soft);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:11px; letter-spacing:.14em;
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    border-left:3px solid transparent;
+    transition:color .2s, border-color .2s, background .2s;
+  }
+  .rail-tab:hover{ color:var(--ink); background:rgba(112,79,55,.06); }
+  .rail-tab.active{
+    color:var(--primary-deep);
+    border-left-color:var(--primary);
+    background:var(--card);
+    font-weight:600;
+  }
+  .rail-tab .num{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:560;
+    font-size:15px; margin-right:10px; letter-spacing:0;
+  }
+  .rail-foot{
+    writing-mode:vertical-rl; transform:rotate(180deg);
+    margin:0 auto; color:var(--ink-soft); opacity:.6;
+    font-family:'Space Grotesk',sans-serif; font-size:10px; letter-spacing:.16em;
+  }
+
+  /* mobile rail -> horizontal progress strip */
+  .mrail{ display:none; }
+  @media (max-width:860px){
+    .rail{ display:none; }
+    .mrail{
+      display:flex; position:sticky; top:0; z-index:20;
+      background:var(--paper-deep); border-bottom:1px solid var(--line);
+      overflow-x:auto; padding:10px 14px; gap:8px;
+    }
+    .mrail button{
+      appearance:none; border:1px solid var(--line); background:var(--card);
+      color:var(--ink-soft); font-family:'Space Grotesk',sans-serif;
+      font-size:11.5px; letter-spacing:.04em; white-space:nowrap;
+      padding:7px 12px; border-radius:999px; cursor:pointer;
+    }
+    .mrail button.active{ background:var(--primary-deep); color:#fff; border-color:var(--primary-deep); }
+  }
+
+  /* ---------- main column ---------- */
+  main{ min-width:0; }
+  .wrap{ max-width:780px; margin:0 auto; padding:56px 28px 90px; }
+  @media (max-width:560px){ .wrap{ padding:34px 16px 70px; } }
+
+  .eyebrow{
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--primary-deep); margin-bottom:14px;
+  }
+  h1.title{
+    font-family:'Fraunces',serif; font-weight:680; font-size:clamp(30px,4.5vw,40px);
+    line-height:1.15; margin:0 0 8px; letter-spacing:-.01em;
+  }
+  .subtitle{
+    font-family:'Spectral',serif; font-style:italic; font-weight:400;
+    color:var(--ink-soft); font-size:18px; margin:0 0 28px; line-height:1.4;
+  }
+
+  .meta-card{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+    display:grid; grid-template-columns:1fr 1fr; gap:16px 20px;
+  }
+  @media (max-width:560px){ .meta-card{ grid-template-columns:1fr; } }
+  .field label{
+    display:block; font-family:'Space Grotesk',sans-serif; font-size:11px;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;
+  }
+  .field input{
+    width:100%; border:none; border-bottom:1.5px solid var(--line);
+    background:transparent; font-family:'Spectral',serif; font-size:16px;
+    color:var(--ink); padding:4px 2px 7px; outline:none;
+  }
+  .field input:focus{ border-bottom-color:var(--primary); }
+
+  .privacy{
+    font-family:'Space Grotesk',sans-serif; font-size:12.5px; color:var(--ink-soft);
+    border:1px dashed var(--line);
+    border-radius:10px; padding:12px 16px; margin-bottom:24px; line-height:1.55;
+  }
+  .privacy strong{ color:var(--ink); }
+
+  .toolbar{
+    display:flex; gap:12px; flex-wrap:wrap; margin:36px 0 30px;
+  }
+  .btn{
+    appearance:none; cursor:pointer; border-radius:999px;
+    font-family:'Space Grotesk',sans-serif; font-size:13px; letter-spacing:.03em;
+    padding:11px 20px; border:1.5px solid var(--primary-deep);
+    transition: all 0.2s;
+  }
+  .btn.primary{ background:var(--primary-deep); color:#fff; }
+  .btn.ghost{ background:transparent; color:var(--primary-deep); }
+  .btn:hover{ filter:brightness(1.08); transform: translateY(-1px); }
+
+  /* ---------- stage sections ---------- */
+  .stage{ scroll-margin-top:24px; margin-top:54px; }
+  .stage-head{
+    display:flex; align-items:center; gap:14px;
+    background:var(--primary-pale); border-radius:12px;
+    padding:12px 20px; margin-bottom:20px;
+  }
+  .stage-head .snum{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:680;
+    font-size:28px; color:var(--primary-deep); line-height:1;
+  }
+  .stage-head h2{
+    font-family:'Space Grotesk',sans-serif; font-size:13px; letter-spacing:.1em;
+    text-transform:uppercase; margin:0; color:var(--ink);
+  }
+
+  .block-card{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:24px; margin-bottom:20px;
+  }
+  .block-card p { margin: 0 0 14px 0; }
+  .block-card p:last-child { margin-bottom: 0; }
+
+  /* ---------- Option Bar/Grid Style ---------- */
+  .attitude-selector {
+    background: var(--paper-deep);
+    padding: 14px 18px;
+    border-radius: 10px;
+    margin-top: 16px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 16px;
+    border: 1px solid var(--line);
+  }
+  .att-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: .08em;
+    color: var(--ink-soft);
+    width: 100%;
+    margin-bottom: -4px;
+  }
+  .opt-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11.5px;
+    text-transform: uppercase;
+    letter-spacing: .04em;
+    cursor: pointer;
+    color: var(--ink);
+  }
+  .opt-label input { accent-color: var(--primary); margin: 0; }
+
+  /* ---------- Grid Elements ---------- */
+  .checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(170px, 1fr));
+    gap: 12px;
+    margin-top: 14px;
+  }
+  .cb-label {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-size: 15.5px;
+    cursor: pointer;
+  }
+  .cb-label input { accent-color: var(--primary); margin-top: 4px; }
+
+  textarea{
+    width:100%; resize:none; overflow:hidden;
+    border:1px solid var(--line); border-radius:10px;
+    background:#FFFDFB; padding:12px 14px;
+    font-family:'Spectral',serif; font-size:16px; color:var(--ink);
+    line-height:1.55; outline:none; min-height:76px; margin-top:10px;
+  }
+  textarea:focus{ border-color:var(--primary); box-shadow:0 0 0 3px rgba(112,79,55,.1); }
+
+  .affirmation{
+    background:linear-gradient(135deg, var(--primary-pale), var(--paper-deep));
+    border-radius:14px; padding:22px 26px; margin-bottom:20px;
+    font-family:'Spectral',serif; font-style:italic; font-size:16.5px; color:var(--ink);
+    border:1px solid var(--line);
+    line-height: 1.55;
+  }
+  .quote-highlight {
+    font-family: 'Fraunces', serif;
+    font-size: 18px;
+    font-weight: 500;
+    color: var(--primary-deep);
+    text-align: center;
+    margin: 12px 0;
+  }
+
+  .signoff{
+    margin-top:40px; padding-top:24px; border-top:1px solid var(--line);
+    display:grid; grid-template-columns: 1fr; gap:20px;
+  }
+
+  footer{
+    margin-top:60px; padding-top:20px; border-top:1px solid var(--line);
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; color:var(--ink-soft);
+    text-align:center; line-height:1.7; opacity: 0.8;
+  }
+  footer a{ color:var(--ink-soft); text-decoration: none; }
+
+  /* ---------- print ---------- */
+  @media print{
+    .rail, .mrail, .toolbar, .privacy, .hint{ display:none !important; }
+    .shell{ display:block; }
+    body{ background:#fff; }
+    .wrap{ max-width:100%; padding:0 10px; }
+    .block-card, .meta-card, .affirmation, .attitude-selector{ box-shadow:none; border:1px solid #ccc; break-inside:avoid; }
+    .stage{ break-before:page; margin-top:0; padding-top:20px; }
+    .stage:first-of-type{ break-before:auto; }
+    textarea{ border:1px solid #ccc; min-height:90px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <!-- desktop vertical rail -->
+  <nav class="rail" aria-label="Etapy procesu">
+    <div class="rail-mark" aria-hidden="true"></div>
+    <div class="rail-tabs" id="railTabs">
+      <button class="rail-tab" data-target="stage-intro"><span class="num">0</span>Wprowadzenie</button>
+      <button class="rail-tab" data-target="stage-step1"><span class="num">1</span>Krok Pierwszy</button>
+      <button class="rail-tab" data-target="stage-step2"><span class="num">2</span>Krok Drugi</button>
+      <button class="rail-tab" data-target="stage-step3"><span class="num">3</span>Krok Trzeci</button>
+      <button class="rail-tab" data-target="stage-step4"><span class="num">4</span>Krok Czwarty</button>
+      <button class="rail-tab" data-target="stage-notes"><span class="num">5</span>Refleksja końcowa</button>
+    </div>
+    <div class="rail-foot">Proces Radykalnego Wybaczania</div>
+  </nav>
+
+  <main>
+    <!-- mobile horizontal rail -->
+    <nav class="mrail" id="mrail" aria-label="Etapy procesu (mobile)">
+      <button data-target="stage-intro">Wstęp</button>
+      <button data-target="stage-step1">Krok 1</button>
+      <button data-target="stage-step2">Krok 2</button>
+      <button data-target="stage-step3">Krok 3</button>
+      <button data-target="stage-step4">Krok 4</button>
+      <button data-target="stage-notes">Podsumowanie</button>
+    </nav>
+
+    <div class="wrap">
+      <div class="eyebrow">Pogotowie Duchowe / Emerge-N-See</div>
+      <h1 class="title">Internetowy Proces 4 Kroków</h1>
+      <p class="subtitle">Gdy przyłapujesz się na ocenianiu, poczuciu wyższości lub chęci zmiany czegoś w danej sytuacji, użyj tego procesu, aby sprowadzić swoją świadomość do teraźniejszości, porzucić iluzję i dostroić się do duchowej prawdy.</p>
+
+      <p class="privacy"><strong>Wskazówka:</strong> Możesz wypełnić ten arkusz interaktywnie, a następnie kliknąć przycisk na dole strony, aby zapisać go lub wydrukować. Dane nie są wysyłane na żaden serwer i pozostają całkowicie poufne.</p>
+
+      <!-- ================= METADANE ================= -->
+      <div class="meta-card">
+        <div class="field"><label for="fImie">Twoje Imię</label><input id="fImie" type="text" placeholder="Wpisz swoje imię…"></div>
+        <div class="field"><label for="fInny">Osoba / Sytuacja, której dotyczy proces</label><input id="fInny" type="text" placeholder="Wpisz imię osoby lub opis sytuacji…"></div>
+      </div>
+
+      <!-- ================= WPROWADZENIE ================= -->
+      <section class="stage" id="stage-intro">
+        <div class="stage-head"><span class="snum">0</span><h2>Instrukcja i Intencja</h2></div>
+        <div class="block-card">
+          <p>Ten proces to szybkie narzędzie transformacji świadomości w trudnych momentach. Pozwala natychmiastowo przejść z pozycji ofiary do pozycji współtwórcy rzeczywistości. Używaj go za każdym razem, gdy czujesz dyskomfort psychiczny, złość lub żal wobec kogoś bądź czegoś.</p>
+        </div>
+      </section>
+
+      <!-- ================= KROK 1 ================= -->
+      <section class="stage" id="stage-step1">
+        <div class="stage-head"><span class="snum">1</span><h2>Krok Pierwszy: „Spójrz, co stworzyłem/am”</h2></div>
+        <div class="block-card">
+          <p>Ten pierwszy krok przypomina nam, że jesteśmy twórcami swojego życia i że w rzeczywistości sami zaaranżowaliśmy wszystkie okoliczności sytuacji, w której się znajdujemy (i która nas porusza lub rani), aby pomóc sobie uczyć się i rosnąć duchowo – lub uleczyć ranę albo rdzenne przekonanie, które odciąga nas od radości i błogości.</p>
+          
+          <div class="attitude-selector">
+            <div class="att-title">Mój stosunek do tego kroku w tym momencie:</div>
+            <label class="opt-label"><input type="radio" name="opt-step1" value="agree"> Zgadzam się</label>
+            <label class="opt-label"><input type="radio" name="opt-step1" value="willing"> Chcę / Mam gotowość</label>
+            <label class="opt-label"><input type="radio" name="opt-step1" value="open"> Jestem otwarty/a</label>
+            <label class="opt-label"><input type="radio" name="opt-step1" value="skeptical"> Podchodzę sceptycznie</label>
+            <label class="opt-label"><input type="radio" name="opt-step1" value="unwilling"> Nie mam gotowości</label>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= KROK 2 ================= -->
+      <section class="stage" id="stage-step2">
+        <div class="stage-head"><span class="snum">2</span><h2>Krok Drugi: „Dostrzegam swoje oceny i mimo to kocham siebie”</h2></div>
+        <div class="block-card">
+          <p>Ten krok uznaje, że jako ludzie automatycznie przypisujemy sytuacjom oceny, interpretacje, pytania i przekonania. Szybko tworzymy historię ofiary i próbujemy zrzucić winę na innych. To naturalna część ludzkiej kondycji. Dlatego musimy rozpoznać i z miłością zaakceptować nasze uczucia. Dają nam one cenny sygnał zwrotny o stanie naszej świadomości – oraz naprowadzają nas na podświadome rany i rdzenne negatywne przekonania.</p>
+          
+          <div class="attitude-selector">
+            <div class="att-title">Mój stosunek do tego kroku w tym momencie:</div>
+            <label class="opt-label"><input type="radio" name="opt-step2" value="agree"> Zgadzam się</label>
+            <label class="opt-label"><input type="radio" name="opt-step2" value="willing"> Chcę / Mam gotowość</label>
+            <label class="opt-label"><input type="radio" name="opt-step2" value="open"> Jestem otwarty/a</label>
+            <label class="opt-label"><input type="radio" name="opt-step2" value="skeptical"> Podchodzę sceptycznie</label>
+            <label class="opt-label"><input type="radio" name="opt-step2" value="unwilling"> Nie mam gotowości</label>
+          </div>
+
+          <h3 style="font-family:'Space Grotesk',sans-serif; font-size:13px; text-transform:uppercase; letter-spacing:.05em; margin:24px 0 8px; color:var(--primary-deep);">W tym momencie czuję (zaznacz wszystkie pasujące):</h3>
+          <div class="checkbox-grid">
+            <label class="cb-label"><input type="checkbox" value="angry"> Złość / Gniew</label>
+            <label class="cb-label"><input type="checkbox" value="sad"> Smutek</label>
+            <label class="cb-label"><input type="checkbox" value="frustrated"> Frustrację</label>
+            <label class="cb-label"><input type="checkbox" value="vengeful"> Chęć zemsty</label>
+          </div>
+          <textarea placeholder="Inne specyficzne emocje i odczucia z ciała..."></textarea>
+
+          <h3 style="font-family:'Space Grotesk',sans-serif; font-size:13px; text-transform:uppercase; letter-spacing:.05em; margin:24px 0 8px; color:var(--primary-deep);">Moje rany, które zostały poruszone:</h3>
+          <div class="checkbox-grid">
+            <label class="cb-label"><input type="checkbox" value="betrayal"> Zdrada</label>
+            <label class="cb-label"><input type="checkbox" value="abandonment"> Porzucenie</label>
+            <label class="cb-label"><input type="checkbox" value="abuse"> Przemoc / Nadużycie</label>
+            <label class="cb-label"><input type="checkbox" value="hurt"> Zranienie</label>
+            <label class="cb-label"><input type="checkbox" value="rejection"> Odrzucenie</label>
+            <label class="cb-label"><input type="checkbox" value="stolen"> Okradzenie / Strata</label>
+            <label class="cb-label"><input type="checkbox" value="letdown"> Zawód / Rozczarowanie</label>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= KROK 3 ================= -->
+      <section class="stage" id="stage-step3">
+        <div class="stage-head"><span class="snum">3</span><h2>Krok Trzeci: „Jestem gotów/gotowa dostrzec w tej sytuacji rękę Boga”</h2></div>
+        <div class="block-card">
+          <p><strong>a)</strong> W tym miejscu próbujemy zmienić perspektywę (przeramować historię), otwierając się na myśl, że skoro nasze Wyższe Ja stworzyło tę sytuację (jak powiedziano w Kroku Pierwszym), to nasze życie rozwija się dokładnie tak, jak powinno, i wszystko pozostaje w Boskim Porządku. Jest to dokładnie to, czego pragniemy i potrzebujemy na drodze ewolucji naszej duszy. Nie dzieje się nic złego i nie ma nic do wybaczania. <em>(Kluczowym słowem jest tutaj GOTOWOŚĆ / CHĘĆ. Wymagana jest jedynie niewielka ilość gotowości, by otworzyć się na tę ewentualność).</em></p>
+          
+          <p><strong>b)</strong> Ten krok prosi również, abyśmy dopuścili możliwość, że przyciągnęliśmy ludzi, na których jesteśmy zli, specjalnie po to, aby dostarczyli nam tego konkretnego doświadczenia. Robią nam te rzeczy, ponieważ nasza dusza i ich dusza zawarły kontrakt, by zrobić to dla siebie nawzajem. W rzeczywistości nie są oni zatem naszymi wrogami, lecz naszymi „uzdrawiającymi aniołami” – bez nich nie mielibyśmy przecież możliwości wzrastania ani uzdrowienia tych rdzennych, negatywnych przekonań.</p>
+
+          <div class="attitude-selector">
+            <div class="att-title">Mój stosunek do tego kroku w tym momencie:</div>
+            <label class="opt-label"><input type="radio" name="opt-step3" value="agree"> Zgadzam się</label>
+            <label class="opt-label"><input type="radio" name="opt-step3" value="willing"> Chcę / Mam gotowość</label>
+            <label class="opt-label"><input type="radio" name="opt-step3" value="open"> Jestem otwarty/a</label>
+            <label class="opt-label"><input type="radio" name="opt-step3" value="skeptical"> Podchodzę sceptycznie</label>
+            <label class="opt-label"><input type="radio" name="opt-step3" value="unwilling"> Nie mam gotowości</label>
+          </div>
+
+          <h3 style="font-family:'Space Grotesk',sans-serif; font-size:13px; text-transform:uppercase; letter-spacing:.05em; margin:24px 0 8px; color:var(--primary-deep);">Rdzenne przekonania aktywne w tej sytuacji:</h3>
+          <p class="hint" style="font-size:14px; margin-bottom:10px;">(Z którymi potrafisz się teraz utożsamić?)</p>
+          <div class="checkbox-grid">
+            <label class="cb-label"><input type="checkbox" value="not-good"> Nie jestem wystarczająco dobry/a.</label>
+            <label class="cb-label"><input type="checkbox" value="not-worthy"> Nie zasługuję na otrzymywanie.</label>
+            <label class="cb-label"><input type="checkbox" value="perfect"> Muszę być idealny/a, by mnie kochano.</label>
+            <label class="cb-label"><input type="checkbox" value="ugly"> Jestem brzydki/a / nieatrakcyjny/a.</label>
+            <label class="cb-label"><input type="checkbox" value="unlovable"> Nie da się mnie kochać.</label>
+            <label class="cb-label"><input type="checkbox" value="abandoned"> Zawsze zostanę porzucony/a.</label>
+            <label class="cb-label"><input type="checkbox" value="no-love"> Nie zasługuję na miłość.</label>
+            <label class="cb-label"><input type="checkbox" value="betrayed"> Zawsze zostanę zdradzony/a.</label>
+          </div>
+
+          <hr style="border:none; border-top:1px solid var(--line); margin:24px 0;">
+          
+          <p>Ten krok oferuje Ci również możliwość dostrzeżenia, że to, co widzisz i czego nienawidzisz w innych ludziach, jest dokładnie tym, czego nie znosisz w sobie i czemu zaprzeczyłeś/aś, stłumiłeś/aś to i wyprojektowałeś/aś na nich.</p>
+          
+          <textarea id="dislike-text" placeholder="Rzeczy, których najbardziej nie lubię w tej osobie/sytuacji to..."></textarea>
+          
+          <p class="hint" style="margin-top:8px; font-weight:600; color:var(--primary-deep);">Niewygodna prawda: JEŚLI TO WIDZISZ U KOGOŚ, TO MASZ TO W SOBIE! (If you spot it; you got it!)</p>
+
+          <div class="affirmation" style="margin-top:16px;">
+            <p style="margin:0;">„Jestem gotów/gotowa uznać, że ta osoba/sytuacja odzwierciedla coś we mnie, czemu zaprzeczyłem/am i co stłumiłem/am. Teraz chcę pokochać i zaakceptować tę część mnie, czymkolwiek ona jest, właśnie w tym momencie, i podziękować za możliwość uzdrowienia.”</p>
+            
+            <div class="attitude-selector" style="background:rgba(255,255,255,0.5); margin-bottom:0;">
+              <label class="opt-label"><input type="radio" name="opt-mirror" value="agree"> Zgadzam się</label>
+              <label class="opt-label"><input type="radio" name="opt-mirror" value="willing"> Chcę / Mam gotowość</label>
+              <label class="opt-label"><input type="radio" name="opt-mirror" value="open"> Jestem otwarty/a</label>
+              <label class="opt-label"><input type="radio" name="opt-mirror" value="skeptical"> Podchodzę sceptycznie</label>
+              <label class="opt-label"><input type="radio" name="opt-mirror" value="unwilling"> Nie mam gotowości</label>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= KROK 4 ================= -->
+      <section class="stage" id="stage-step4">
+        <div class="stage-head"><span class="snum">4</span><h2>Krok Czwarty: „Wybieram Moc Pokoju”</h2></div>
+        <div class="block-card">
+          <p>Akceptując fakt, że ta sytuacja służy Wyższemu Celowi i że to, co jawi się jako rzeczywiste zranienie, może być w istocie jedynie iluzją naszej percepcji, decydujemy się poddać Sile Wyższej (Duchowi) i odczuwać autentyczny spokój. Wiemy, że możemy działać z poziomu wewnętrznej harmonii w odniesieniu do wszystkiego, czego wymaga od nas życie.</p>
+          
+          <p class="quote-highlight">„Uwalniam wszystkie uczucia, oceny i urazy, które miałem/am w Kroku Pierwszym, i Wybieram Pokój.”</p>
+
+          <div class="attitude-selector">
+            <div class="att-title">Mój stosunek do tego wyboru:</div>
+            <label class="opt-label"><input type="radio" name="opt-step4" value="agree"> Zgadzam się</label>
+            <label class="opt-label"><input type="radio" name="opt-step4" value="willing"> Chcę / Mam gotowość</label>
+            <label class="opt-label"><input type="radio" name="opt-step4" value="open"> Jestem otwarty/a</label>
+            <label class="opt-label"><input type="radio" name="opt-step4" value="skeptical"> Podchodzę sceptycznie</label>
+            <label class="opt-label"><input type="radio" name="opt-step4" value="unwilling"> Nie mam gotowości</label>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= NOTATKI I CUDY ================= -->
+      <section class="stage" id="stage-notes">
+        <div class="stage-head"><span class="snum">5</span><h2>Refleksja końcowa i Dziennik Cudów</h2></div>
+        
+        <div class="block-card">
+          <div class="field" style="margin-bottom:20px;">
+            <label style="font-weight:600; color:var(--primary-deep);">Notatka do drugiej strony (jeśli dotyczy): „Po wypełnieniu tego arkusza czuję teraz...”</label>
+            <textarea rows="3" placeholder="Wpisz swoje odczucia..."></textarea>
+          </div>
+
+          <div class="field" style="margin-bottom:20px;">
+            <label style="font-weight:600; color:var(--primary-deep);">Notatka do samego/samej siebie: „Po wypełnieniu tego arkusza ja...”</label>
+            <textarea rows="3" placeholder="Wpisz swoje osobiste spostrzeżenia i ulgę..."></textarea>
+          </div>
+
+          <div class="field">
+            <label style="font-weight:600; color:var(--primary-deep);">Dziennik Cudów</label>
+            <p class="hint" style="font-size:14px; margin-bottom:6px;">Zanotuj wszelkie niezwykłe zdarzenia, niespodziewane zmiany postawy lub małe cuda, które wydarzą się w ciągu najbliższych kilku dni jako rezultat wykonania tej pracy.</p>
+            <textarea rows="4" placeholder="Zapisz zaobserwowane zmiany i synchroniczności..."></textarea>
+          </div>
+        </div>
+
+        <div class="signoff">
+          <div class="field">
+            <label for="signDate">Data ukończenia procesu</label>
+            <input id="signDate" type="date">
+          </div>
+        </div>
+      </section>
+
+      <!-- Przyciski akcji -->
+      <div class="toolbar">
+        <button class="btn primary" id="printBtn">Drukuj / Zapisz jako PDF</button>
+        <button class="btn ghost" id="clearBtn">Wyczyść odpowiedzi</button>
+      </div>
+
+      <footer>
+        Proces 4 Kroków Emerge-N-See &copy; Colin Tipping<br>
+        Adaptacja interaktywnego arkusza do autoterapii i wewnętrznego wglądu.
+      </footer>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  // Autosize textareas
+  function autosize(t){
+    t.style.height = 'auto';
+    t.style.height = (t.scrollHeight+2) + 'px';
+  }
+  function autosizeAll(){
+    document.querySelectorAll('textarea').forEach(t=>{
+      autosize(t);
+      t.addEventListener('input', ()=>autosize(t));
+    });
+  }
+  autosizeAll();
+  window.addEventListener('load', autosizeAll);
+
+  // Set today's date automatically
+  const today = new Date().toISOString().split('T')[0];
+  document.getElementById('signDate').value = today;
+
+  // Scroll spy + Navigation
+  const sections = Array.from(document.querySelectorAll('.stage'));
+  const railTabs = Array.from(document.querySelectorAll('.rail-tab'));
+  const mTabs = Array.from(document.querySelectorAll('.mrail button'));
+  
+  function setActive(id){
+    railTabs.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+    mTabs.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+  }
+  [...railTabs, ...mTabs].forEach(b=>{
+    b.addEventListener('click', ()=>{
+      document.getElementById(b.dataset.target).scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+  
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting) setActive(e.target.id);
+    });
+  }, {rootMargin:'-20% 0px -65% 0px', threshold:0});
+  sections.forEach(s=> io.observe(s));
+
+  // Actions
+  document.getElementById('printBtn').addEventListener('click', ()=>{ window.print(); });
+  document.getElementById('clearBtn').addEventListener('click', ()=>{
+    if(!confirm('Czy na pewno chcesz wyczyścić cały arkusz? Wszystkie wprowadzone dane zostaną utracone.')) return;
+    document.querySelectorAll('textarea').forEach(t=>{ t.value=''; t.style.height='auto'; });
+    document.querySelectorAll('input[type=text]').forEach(i=> i.value='');
+    document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach(i=> i.checked=false);
+  });
+})();
+</script>
+</body>
+</html>

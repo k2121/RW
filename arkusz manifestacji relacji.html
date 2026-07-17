@@ -1,0 +1,608 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arkusz Manifestowania Nowej Relacji</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680;1,9..144,500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#FAF6F0;
+    --paper-deep:#F1E9DE;
+    --card:#FFFFFF;
+    --ink:#2C2520;
+    --ink-soft:#706255;
+    --rose:#B35446;
+    --rose-deep:#732A20;
+    --rose-pale:#F6EBE6;
+    --gold:#C08A3E;
+    --line:#E8DDD0;
+    --shadow:0 1px 2px rgba(44,37,32,.04), 0 8px 24px rgba(44,37,32,.06);
+    --rail-w:84px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important; transition:none !important;}
+  }
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 12% -10%, rgba(179,84,70,.05), transparent 60%),
+      var(--paper);
+    color:var(--ink);
+    font-family:'Spectral',serif;
+    font-size:16.5px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--rose-pale); }
+  a{ color:var(--rose-deep); }
+
+  .shell{
+    display:grid;
+    grid-template-columns:var(--rail-w) 1fr;
+    min-height:100vh;
+  }
+  @media (max-width:860px){
+    .shell{ grid-template-columns:1fr; }
+  }
+
+  .rail{
+    position:sticky; top:0; align-self:start;
+    height:100vh;
+    border-right:1px solid var(--line);
+    background:var(--paper-deep);
+    display:flex; flex-direction:column;
+    padding:22px 0;
+  }
+  .rail-mark{
+    width:34px; height:34px; margin:0 auto 28px;
+    border-radius:50%;
+    background:var(--rose-deep);
+    position:relative;
+    flex:none;
+  }
+  .rail-mark::before{
+    content:""; position:absolute; inset:8px;
+    background:var(--paper-deep);
+    border-radius:50% 50% 0 50%;
+    transform:rotate(45deg);
+  }
+  .rail-tabs{ display:flex; flex-direction:column; gap:2px; flex:1; }
+  .rail-tab{
+    appearance:none; border:none; background:transparent; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    padding:16px 0;
+    color:var(--ink-soft);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:11px; letter-spacing:.14em;
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    border-left:3px solid transparent;
+    transition:color .2s, border-color .2s, background .2s;
+  }
+  .rail-tab:hover{ color:var(--ink); background:rgba(179,84,70,.06); }
+  .rail-tab.active{
+    color:var(--rose-deep);
+    border-left-color:var(--rose);
+    background:var(--card);
+    font-weight:600;
+  }
+  .rail-tab .num{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:560;
+    font-size:15px; margin-right:10px; letter-spacing:0;
+  }
+  .rail-foot{
+    writing-mode:vertical-rl; transform:rotate(180deg);
+    margin:0 auto; color:var(--ink-soft); opacity:.55;
+    font-family:'Space Grotesk',sans-serif; font-size:10px; letter-spacing:.16em;
+  }
+
+  .mrail{ display:none; }
+  @media (max-width:860px){
+    .rail{ display:none; }
+    .mrail{
+      display:flex; position:sticky; top:0; z-index:20;
+      background:var(--paper-deep); border-bottom:1px solid var(--line);
+      overflow-x:auto; padding:10px 14px; gap:8px;
+    }
+    .mrail button{
+      appearance:none; border:1px solid var(--line); background:var(--card);
+      color:var(--ink-soft); font-family:'Space Grotesk',sans-serif;
+      font-size:11.5px; letter-spacing:.04em; white-space:nowrap;
+      padding:7px 12px; border-radius:999px; cursor:pointer;
+    }
+    .mrail button.active{ background:var(--rose-deep); color:#fff; border-color:var(--rose-deep); }
+  }
+
+  main{ min-width:0; }
+  .wrap{ max-width:780px; margin:0 auto; padding:56px 28px 90px; }
+  @media (max-width:560px){ .wrap{ padding:34px 16px 70px; } }
+
+  .eyebrow{
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--rose-deep); margin-bottom:14px;
+  }
+  h1.title{
+    font-family:'Fraunces',serif; font-weight:680; font-size:clamp(30px,5vw,44px);
+    line-height:1.1; margin:0 0 6px; letter-spacing:-.01em;
+  }
+  .subtitle{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:400;
+    color:var(--ink-soft); font-size:18px; margin:0 0 28px; line-height:1.4;
+  }
+
+  .intro-block{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:24px 26px; margin-bottom:34px;
+  }
+  .intro-block p { margin: 0 0 14px; }
+  .intro-block p:last-child { margin-bottom: 0; }
+  .intro-steps {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+    margin-top: 16px;
+  }
+  @media (max-width:560px){ .intro-steps { grid-template-columns: 1fr; } }
+  .intro-step-item {
+    background: var(--paper); padding: 10px 14px; border-radius: 8px; font-size: 14.5px;
+  }
+  .intro-step-item strong { color: var(--rose-deep); }
+
+  .meta-card{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:34px;
+    display:grid; grid-template-columns:1fr 1fr; gap:16px 20px;
+  }
+  @media (max-width:560px){ .meta-card{ grid-template-columns:1fr; } }
+  .field label{
+    display:block; font-family:'Space Grotesk',sans-serif; font-size:11px;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;
+  }
+  .field input{
+    width:100%; border:none; border-bottom:1.5px solid var(--line);
+    background:transparent; font-family:'Spectral',serif; font-size:16px;
+    color:var(--ink); padding:4px 2px 7px; outline:none;
+  }
+  .field input:focus{ border-bottom-color:var(--rose); }
+
+  .privacy{
+    font-family:'Space Grotesk',sans-serif; font-size:12.5px; color:var(--ink-soft);
+    border:1px dashed var(--line);
+    border-radius:10px; padding:12px 16px; margin-bottom:34px; line-height:1.55;
+  }
+  .privacy strong{ color:var(--ink); }
+
+  .toolbar{
+    display:flex; gap:10px; flex-wrap:wrap; margin:30px 0 30px;
+  }
+  .btn{
+    appearance:none; cursor:pointer; border-radius:999px;
+    font-family:'Space Grotesk',sans-serif; font-size:13px; letter-spacing:.03em;
+    padding:10px 18px; border:1.5px solid var(--rose-deep);
+  }
+  .btn.primary{ background:var(--rose-deep); color:#fff; }
+  .btn.ghost{ background:transparent; color:var(--rose-deep); }
+  .btn:hover{ filter:brightness(1.05); }
+
+  .stage{ scroll-margin-top:18px; margin-top:54px; }
+  .stage-head{
+    display:flex; align-items:baseline; gap:14px;
+    background:var(--rose-pale); border-radius:12px;
+    padding:14px 20px; margin-bottom:22px;
+  }
+  .stage-head .snum{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:680;
+    font-size:30px; color:var(--rose-deep); line-height:1;
+  }
+  .stage-head h2{
+    font-family:'Space Grotesk',sans-serif; font-size:13.5px; letter-spacing:.1em;
+    text-transform:uppercase; margin:0; color:var(--ink);
+  }
+
+  .item{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+  }
+  .item .inum{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:560;
+    color:var(--gold); font-size:18px; margin-right:6px;
+  }
+  .item p.lead{ margin:0 0 6px; font-weight:500; }
+  .item p.note{
+    font-family:'Spectral',serif; font-style:italic; color:var(--ink-soft);
+    font-size:14.5px; margin:6px 0 14px;
+  }
+
+  textarea{
+    width:100%; resize:none; overflow:hidden;
+    border:1px solid var(--line); border-radius:10px;
+    background:#FFFFFA; padding:12px 14px;
+    font-family:'Spectral',serif; font-size:15.5px; color:var(--ink);
+    line-height:1.55; outline:none; min-height:70px;
+  }
+  textarea:focus{ border-color:var(--rose); box-shadow:0 0 0 3px rgba(179,84,70,.12); }
+
+  .checklist {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 10px 14px;
+    margin: 14px 0;
+  }
+  @media (max-width:700px){ .checklist { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width:480px){ .checklist { grid-template-columns: 1fr; } }
+  
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 15px;
+  }
+  .check-item input[type="checkbox"] {
+    margin-top: 4px;
+    accent-color: var(--rose-deep);
+    width: 16px;
+    height: 16px;
+    flex-shrink: 0;
+  }
+
+  .must-have-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 14px;
+  }
+  .must-have-row {
+    display: grid;
+    grid-template-columns: 40px 1fr;
+    gap: 10px;
+    align-items: start;
+  }
+  .must-have-num {
+    font-family:'Fraunces',serif; font-style:italic; font-weight:600;
+    font-size: 20px; color: var(--gold); text-align: center; margin-top: 8px;
+  }
+
+  .affirmation{
+    background:linear-gradient(135deg, var(--rose-pale), var(--paper-deep));
+    border-radius:14px; padding:24px 26px; margin-bottom:18px;
+    font-family:'Spectral',serif; font-size:16px; color:var(--ink);
+    border:1px solid var(--line);
+  }
+  .affirmation p { margin: 0 0 14px 0; }
+  .affirmation p:last-child { margin-bottom: 0; }
+  .affirmation strong { color: var(--rose-deep); }
+
+  .signoff{
+    margin-top:50px; padding-top:28px; border-top:1px solid var(--line);
+    display:flex; flex-wrap:wrap; gap:22px; align-items:flex-end; justify-content:space-between;
+  }
+  .signoff .field { min-width:220px; }
+
+  footer{
+    margin-top:60px; padding-top:18px; border-top:1px solid var(--line);
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; color:var(--ink-soft);
+    text-align:center; line-height:1.7;
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <!-- Desktop Rail -->
+  <nav class="rail" aria-label="Krok po kroku">
+    <div class="rail-mark" aria-hidden="true"></div>
+    <div class="rail-tabs" id="railTabs">
+      <button class="rail-tab" data-target="stage-1"><span class="num">1</span>Potrzeba</button>
+      <button class="rail-tab" data-target="stage-2"><span class="num">2</span>Atrybuty i Detale</button>
+      <button class="rail-tab" data-target="stage-3"><span class="num">3</span>Wizualizacja</button>
+      <button class="rail-tab" data-target="stage-4"><span class="num">4</span>Emocje Spełnienia</button>
+      <button class="rail-tab" data-target="stage-5"><span class="num">5</span>Oddanie Sile Wyższej</button>
+      <button class="rail-tab" data-target="stage-6"><span class="num">6</span>Odpuszczenie Pragnienia</button>
+    </div>
+    <div class="rail-foot">Radykalna Manifestacja</div>
+  </nav>
+
+  <main>
+    <!-- Mobile Rail -->
+    <nav class="mrail" id="mrail" aria-label="Krok po kroku (mobile)">
+      <button data-target="stage-1">1 · Potrzeba</button>
+      <button data-target="stage-2">2 · Atrybuty</button>
+      <button data-target="stage-3">3 · Wizualizacja</button>
+      <button data-target="stage-4">4 · Emocje</button>
+      <button data-target="stage-5">5 · Oddanie</button>
+      <button data-target="stage-6">6 · Odpuszczenie</button>
+    </nav>
+
+    <div class="wrap">
+      <div class="eyebrow">Praca z Prawem Przyciągania</div>
+      <h1 class="title">Manifestowanie Nowej Relacji</h1>
+      <p class="subtitle">Arkusz Metody Tippinga służący do przyciągania idealnego partnera życiowego</p>
+
+      <div class="intro-block">
+        <p>Jak zapewne wiesz, Radykalna Manifestacja wykorzystuje Prawo Przyciągania, aby sprowadzić do Twojego doświadczenia to, czego pragniesz – w tym przypadku głęboką, pełną miłości relację. Jest to forma „świeckiej modlitwy”, która angażuje Twoją Duchową Inteligencję. Ten interaktywny arkusz przeprowadzi Cię przez wymagane kroki:</p>
+        <div class="intro-steps">
+          <div class="intro-step-item"><strong>1.</strong> Uświadom sobie potrzebę.</div>
+          <div class="intro-step-item"><strong>2.</strong> Sprecyzuj i podaj szczegóły tego, czego chcesz.</div>
+          <div class="intro-step-item"><strong>3.</strong> Zwizualizuj, że już to posiadasz.</div>
+          <div class="intro-step-item"><strong>4.</strong> Poczuj emocje związane z otrzymaniem daru.</div>
+          <div class="intro-step-item"><strong>5.</strong> Przekaż to całkowicie Sile Wyższej (Duchowi).</div>
+          <div class="intro-step-item"><strong>6.</strong> Porzuć wszelkie przywiązanie do rezultatu.</div>
+        </div>
+      </div>
+
+      <div class="meta-card">
+        <div class="field"><label for="fIntent">Ramy Czasowe (np. do końca roku)</label><input id="fIntent" type="text" placeholder="Ustal termin końcowy…"></div>
+        <div class="field"><label for="fDate">Dzisiejsza Data</label><input id="fDate" type="date"></div>
+      </div>
+
+      <p class="privacy"><strong>Prywatność i bezpieczeństwo:</strong> Twoje wpisy są przetwarzane wyłącznie lokalnie w przeglądarce i nie są wysyłane na żadne serwery zewnętrzne. Możesz bezpiecznie pracować nad swoimi intencjami.</p>
+
+      <!-- ================= STEP 1 ================= -->
+      <section class="stage" id="stage-1">
+        <div class="stage-head"><span class="snum">1</span><h2>Uświadomienie Sobie Tego, Czego Pragniesz</h2></div>
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 1.</span> Moje motywacje i głębokie powody:</p>
+          <p class="note">Dla niektórych osób to trudny krok. Ty wiesz, że pragniesz relacji, warto jednak zadać sobie pytanie „Dlaczego?”. Dlaczego chcę tej relacji? Jaką potrzebę ma zaspokoić? Czy ma wypełnić we mnie pustkę? Czy czuję się niekompletny(-a) bez kogoś? Bądź ze sobą całkowicie szczery(-a). Ocena tych odpowiedzi pokaże Ci, nad którymi obszarami warto popracować przed wejściem w relację.</p>
+          <textarea rows="4" placeholder="Dlaczego pragnę tej relacji? Jakie wewnętrzne potrzeby ma ona zaspokoić? (np. wspólne dzielenie się życiem, bliskość, partnerstwo seksualne)..."></textarea>
+        </div>
+      </section>
+
+      <!-- ================= STEP 2 ================= -->
+      <section class="stage" id="stage-2">
+        <div class="stage-head"><span class="snum">2</span><h2>Precyzyjne Szczegóły Twoich Pragnień</h2></div>
+        
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 2.</span> Powody tworzenia tej relacji WŁAŚNIE TERAZ:</p>
+          <textarea rows="3" placeholder="Dlaczego decyduję się na zamanifestowanie tego partnerstwa w tym momencie mojego życia?..."></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 3.</span> Kluczowe wartości mojego idealnego partnera:</p>
+          <p class="note">Zaznacz wartości z poniższej listy, które uważasz za fundamentalne u Twojego przyszłego partnera. Pamiętaj, aby to, czego NIE chcesz, wyrażać w pozytywny sposób (np. zamiast „niech nie będzie skąpy” wybierz „hojność i otwartość na kwestie finansowe”).</p>
+          
+          <div class="checklist">
+            <label class="check-item"><input type="checkbox"><span>Lojalność</span></label>
+            <label class="check-item"><input type="checkbox"><span>Uczciwość</span></label>
+            <label class="check-item"><input type="checkbox"><span>Wierność</span></label>
+            <label class="check-item"><input type="checkbox"><span>Zaufanie</span></label>
+            <label class="check-item"><input type="checkbox"><span>Pokora</span></label>
+            <label class="check-item"><input type="checkbox"><span>Pragnienie posiadania dzieci</span></label>
+            <label class="check-item"><input type="checkbox"><span>Poczucie humoru</span></label>
+            <label class="check-item"><input type="checkbox"><span>Tolerancja</span></label>
+            <label class="check-item"><input type="checkbox"><span>Duchowość</span></label>
+            <label class="check-item"><input type="checkbox"><span>Wrażliwość</span></label>
+            <label class="check-item"><input type="checkbox"><span>Niezależność / Samodzielność</span></label>
+            <label class="check-item"><input type="checkbox"><span>Siła wewnętrzna</span></label>
+            <label class="check-item"><input type="checkbox"><span>Gotowość / Chęć do działania</span></label>
+            <label class="check-item"><input type="checkbox"><span>Integralność / Prawość</span></label>
+            <label class="check-item"><input type="checkbox"><span>Determinacja / Drive</span></label>
+            <label class="check-item"><input type="checkbox"><span>Konkurencyjność</span></label>
+            <label class="check-item"><input type="checkbox"><span>Troskliwość</span></label>
+            <label class="check-item"><input type="checkbox"><span>Hojność finansowa</span></label>
+          </div>
+          
+          <textarea rows="2" style="margin-top: 10px;" placeholder="Inne specyficzne wartości..."></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 3b.</span> Pięć absolutnie najważniejszych wartości („Must Have”):</p>
+          <p class="note">Rozwiń pięć kluczowych wartości – opisz, dlaczego są one dla Ciebie tak ważne i co dokładnie oznaczają w codziennym życiu.</p>
+          
+          <div class="must-have-grid">
+            <div class="must-have-row">
+              <div class="must-have-num">1.</div>
+              <textarea placeholder="Pierwsza najważniejsza wartość i jej rozwinięcie..."></textarea>
+            </div>
+            <div class="must-have-row">
+              <div class="must-have-num">2.</div>
+              <textarea placeholder="Druga najważniejsza wartość i jej rozwinięcie..."></textarea>
+            </div>
+            <div class="must-have-row">
+              <div class="must-have-num">3.</div>
+              <textarea placeholder="Trzecia najważniejsza wartość i jej rozwinięcie..."></textarea>
+            </div>
+            <div class="must-have-row">
+              <div class="must-have-num">4.</div>
+              <textarea placeholder="Czwarta najważniejsza wartość i jej rozwinięcie..."></textarea>
+            </div>
+            <div class="must-have-row">
+              <div class="must-have-num">5.</div>
+              <textarea placeholder="Piąta najważniejsza wartość i jej rozwinięcie..."></textarea>
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 4.</span> Inne pożądane cechy, cechy charakteru oraz atrybuty relacji:</p>
+          <p class="note">Wypisz wszystko, co chciałbyś/chciałabyś widzieć u swojego idealnego partnera oraz elementy, które mają charakteryzować Waszą wspólną relację.</p>
+          <textarea rows="4" placeholder="Wypisz pozostałe cechy, styl życia, wspólne pasje, wzajemny szacunek..."></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 5.</span> Co JA wnoszę do tej relacji? Moje wartości i atuty:</p>
+          <p class="note">Zaznacz, jakie wartości i unikalne cechy Ty oferujesz w nowym związku. Niżej wypisz te, z których nigdy i pod żadnym pozorem nie zrezygnujesz (Twoje niepodważalne granice).</p>
+          
+          <div class="checklist">
+            <label class="check-item"><input type="checkbox"><span>Lojalność</span></label>
+            <label class="check-item"><input type="checkbox"><span>Uczciwość</span></label>
+            <label class="check-item"><input type="checkbox"><span>Wierność</span></label>
+            <label class="check-item"><input type="checkbox"><span>Zaufanie</span></label>
+            <label class="check-item"><input type="checkbox"><span>Pokora</span></label>
+            <label class="check-item"><input type="checkbox"><span>Pragnienie posiadania dzieci</span></label>
+            <label class="check-item"><input type="checkbox"><span>Poczucie humoru</span></label>
+            <label class="check-item"><input type="checkbox"><span>Tolerancja</span></label>
+            <label class="check-item"><input type="checkbox"><span>Duchowość</span></label>
+            <label class="check-item"><input type="checkbox"><span>Wrażliwość</span></label>
+            <label class="check-item"><input type="checkbox"><span>Niezależność / Samodzielność</span></label>
+            <label class="check-item"><input type="checkbox"><span>Siła wewnętrzna</span></label>
+            <label class="check-item"><input type="checkbox"><span>Gotowość / Chęć do działania</span></label>
+            <label class="check-item"><input type="checkbox"><span>Integralność / Prawość</span></label>
+            <label class="check-item"><input type="checkbox"><span>Determinacja</span></label>
+            <label class="check-item"><input type="checkbox"><span>Troskliwość</span></label>
+          </div>
+          
+          <textarea rows="3" style="margin-top:14px;" placeholder="Wartości i cechy, w kwestii których NIE pójdę na żadne kompromisy, bez względu na wszystko..."></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 6.</span> Czego kategorycznie NIE będę tolerować (Deal Breakers):</p>
+          <p class="note">Zrób listę zachowań, postaw lub cech, które całkowicie dyskwalifikują potencjalnego partnera w Twoich oczach.</p>
+          <textarea rows="3" placeholder="Wypisz absolutne dyskwalifikatory (czynniki niszczące relację)..."></textarea>
+        </div>
+      </section>
+
+      <!-- ================= STEP 3 ================= -->
+      <section class="stage" id="stage-3">
+        <div class="stage-head"><span class="snum">3</span><h2>Wizualizacja Pożądanej Relacji</h2></div>
+        <div class="item">
+          <p class="lead"><span class="inum">Moc Słowa Głoszonego w Czasie Teraźniejszym:</span></p>
+          <p class="note">Słowa i obrazy mają ogromną energię twórczą. Umysł nie zna pojęcia przyszłości – działa wyłącznie w TERAZ. Dlatego pisz o swojej intencji tak, jakby była już zrealizowana. Zamiast: „Będę cieszyć się partnerem...”, napisz: „Cieszę się obecnością cudownego partnera, który dzieli ze mną życie już teraz, dzień po dniu...”. Unikaj słowa „chcę/pragnę”, bo przyciągniesz stan ciągłego chcenia. Pisz z poziomu „posiadam, to się dokonało”.</p>
+          
+          <p class="lead" style="margin-top: 18px;">Stwórz swój wielozmysłowy obraz w wyobraźni (Krok 7):</p>
+          <p class="note">Zamknij oczy, poczuj pełną obecność ukochanej osoby i opisz doświadczenie za pomocą wszystkich zmysłów w wyolbrzymiony, żywy sposób:</p>
+          
+          <div style="display:flex; flex-direction:column; gap:12px;">
+            <div>
+              <label style="font-size:14.5px; font-weight:500; display:block; margin-bottom:4px;">a) To, co WIDZĘ w mojej idealnej relacji:</label>
+              <textarea rows="2" placeholder="Opisz obrazy, uśmiech, wspólne poranki..."></textarea>
+            </div>
+            <div>
+              <label style="font-size:14.5px; font-weight:500; display:block; margin-bottom:4px;">b) To, co SŁYSZĘ wokół nas:</label>
+              <textarea rows="2" placeholder="Opisz słowa wsparcia, śmiech, dźwięki wspólnego domu..."></textarea>
+            </div>
+            <div>
+              <label style="font-size:14.5px; font-weight:500; display:block; margin-bottom:4px;">c) To, co CZUJĘ zapachowo (Węch):</label>
+              <textarea rows="2" placeholder="Zapach jego/jej skóry, perfum, wspólnej kawy..."></textarea>
+            </div>
+            <div>
+              <label style="font-size:14.5px; font-weight:500; display:block; margin-bottom:4px;">d) To, co SMAKUJĘ:</label>
+              <textarea rows="2" placeholder="Smak pocałunków, wspólnie przygotowywanych posiłków..."></textarea>
+            </div>
+            <div>
+              <label style="font-size:14.5px; font-weight:500; display:block; margin-bottom:4px;">e) To, co CZUJĘ dotykiem (Fizycznie):</label>
+              <textarea rows="2" placeholder="Ciepło dłoni, bliskość uścisku, poczucie bezpieczeństwa..."></textarea>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= STEP 4 ================= -->
+      <section class="stage" id="stage-4">
+        <div class="stage-head"><span class="snum">4</span><h2>Odczuwanie Emocji Spełnionej Relacji</h2></div>
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 4.</span> Emocjonalny rezonans:</p>
+          <p class="note">Emocje są kluczowym paliwem manifestacji. Nie chodzi tylko o ekscytację oczekiwaniem, ale o głęboki spokój, miłość i wdzięczność, które pojawiają się, gdy zdajesz sobie sprawę, że ta osoba JUŻ JEST w Twoim życiu. Jak się wtedy czujesz? Wygeneruj te emocje w tym momencie i połącz je ze słowami, które zapisałeś(-aś) w Kroku 2.</p>
+          <textarea rows="3" placeholder="Opisz dominujące uczucia emocjonalne: radość, ulgę, głęboką wdzięczność, miłość, harmonijne spełnienie..."></textarea>
+        </div>
+      </section>
+
+      <!-- ================= STEP 5 ================= -->
+      <section class="stage" id="stage-5">
+        <div class="stage-head"><span class="snum">5</span><h2>Całkowite Przekazanie Sile Wyższej (Spirit)</h2></div>
+        <div class="affirmation">
+          <p><strong>Zaufanie Wyższej Inteligencji:</strong></p>
+          <p>W tym miejscu dziękujemy naszemu racjonalnemu, świadomemu umysłowi za wsparcie w postaci słów, obrazów i emocji, lecz od tej chwili przestajemy się na nim skupiać. Zadaniem na ten moment jest całkowite powierzenie intencji swojemu Wyższemu Ja oraz Uniwersum. Tylko Ono wie, co jest dla nas prawdziwie najlepsze na ścieżce rozwoju naszej duszy.</p>
+        </div>
+      </section>
+
+      <!-- ================= STEP 6 ================= -->
+      <section class="stage" id="stage-6">
+        <div class="stage-head"><span class="snum">6</span><h2>Porzucenie Wszelkiego Przywiązania do Rezultatu</h2></div>
+        
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 8.</span> Deklaracja Całkowitego Odpuszczenia i Surrendera:</p>
+          <p class="note">To najtrudniejszy ze wszystkich kroków. Musisz porzucić kurczową potrzebę posiadania tego związku w określony, wymuszony sposób. Dzięki temu usuwasz lęki i opory, przechodząc w stan „pozwalania”, by manifestacja wydarzyła się naturalnie. Pamiętaj, musisz jedynie wyrazić <strong>gotowość</strong> do odpuszczenia – ten arkusz wspiera resztę procesu.</p>
+          
+          <p class="lead" style="margin-top: 20px;">Przeczytaj na głos z pełnym przekonaniem poniższe afirmacje:</p>
+          
+          <div style="display:flex; flex-direction:column; gap:12px; margin-top:14px; font-style: italic; color: var(--rose-deep); padding-left: 10px; border-left: 3px solid var(--gold);">
+            <div><strong>a)</strong> Uświadamiam sobie i uznaję, że moja Duchowa Inteligencja oraz Wszechświat mogą mieć dla mnie w zanadrzu coś wspanialszego, niż to, o co prosiłem(-am). Dlatego przekazuję to w pełni Duchowi i całkowicie poddaję się temu, co leży w moim najwyższym interesie.</div>
+            <div style="margin-top: 8px;"><strong>b)</strong> Niniejszym deklaruję moje pełne zaufanie do Wszechświata, że obdarzy mnie tym, co służy mojemu najwyższemu dobru. Czuję miłość i wdzięczność dla Ducha, który jest we mnie oraz we wszystkich rzeczach.</div>
+            <div style="margin-top: 8px;"><strong>c)</strong> Całkowicie poddaję się sile Ducha i porzucam wszelkie przywiązanie do tego, by relacja pojawiła się w jakikolwiek z góry określony sposób, wiedząc, że to się dokonało, a ja rozpoznam jej doskonałość, gdy nadejdzie.</div>
+            <div style="margin-top: 8px;"><strong>d)</strong> Czuję się w pełni połączony(-a) ze swoim Źródłem i wiem, że znajduję się w samym centrum czystej obfitości. Jestem stale otwarty(-a) na przyjmowanie tej obfitości.</div>
+          </div>
+          
+          <p style="text-align: center; font-family: 'Fraunces', serif; font-weight: 680; font-size: 22px; color: var(--rose-deep); margin: 28px 0 10px;">
+            „Stało się — I tak właśnie jest!”
+          </p>
+        </div>
+
+        <div class="signoff">
+          <div class="field"><label>Podpis Deklarującego</label><input type="text" placeholder="Wpisz swoje imię…"></div>
+          <div class="field"><label>Data Złożenia Intencji</label><input type="date"></div>
+        </div>
+      </section>
+
+      <!-- Panel Akcji -->
+      <div class="toolbar">
+        <button class="btn primary" id="printBtn">Wydrukuj intencję / Zapisz jako PDF</button>
+        <button class="btn ghost" id="clearBtn">Wyczyść formularz</button>
+      </div>
+
+      <footer>
+        Opracowano na podstawie metody Tippinga (Radical Manifestation) · Formularz Przyciągania Idealnego Partnera
+      </footer>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  // autosize textareas
+  function autosize(t){
+    t.style.height = 'auto';
+    t.style.height = (t.scrollHeight+2) + 'px';
+  }
+  function autosizeAll(){
+    document.querySelectorAll('textarea').forEach(t=>{
+      autosize(t);
+      t.addEventListener('input', ()=>autosize(t));
+    });
+  }
+  window.addEventListener('load', autosizeAll);
+
+  // scroll spy + navigation link active class
+  const sections = Array.from(document.querySelectorAll('.stage'));
+  const railTabs = Array.from(document.querySelectorAll('.rail-tab'));
+  const mTabs = Array.from(document.querySelectorAll('.mrail button'));
+  
+  function setActive(id){
+    railTabs.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+    mTabs.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+  }
+  
+  [...railTabs, ...mTabs].forEach(b=>{
+    b.addEventListener('click', ()=>{
+      document.getElementById(b.dataset.target).scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+  
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting) setActive(e.target.id);
+    });
+  }, {rootMargin:'-20% 0px -65% 0px', threshold:0});
+  sections.forEach(s=> io.observe(s));
+
+  // print
+  document.getElementById('printBtn').addEventListener('click', ()=>{ window.print(); });
+
+  // clear form
+  document.getElementById('clearBtn').addEventListener('click', ()=>{
+    if(!confirm('Czy na pewno chcesz wyczyścić cały arkusz intencji?')) return;
+    document.querySelectorAll('textarea').forEach(t=>{ t.value=''; autosize(t); });
+    document.querySelectorAll('input[type=text], input[type=date]').forEach(i=> i.value='');
+    document.querySelectorAll('input[type=checkbox]').forEach(i=> i.checked=false);
+  });
+})();
+</script>
+</body>
+</html>
