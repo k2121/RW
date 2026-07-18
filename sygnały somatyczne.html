@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Twoje Ciało Mówi Ci, Komu Musisz Wybaczyć</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680;1,9..144,500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F4F0EA;
+    --paper-deep:#EAE2D5;
+    --card:#FDFBF7;
+    --ink:#2C2520;
+    --ink-soft:#6E6257;
+    --blue:#3B5A75;
+    --blue-deep:#253B4E;
+    --blue-pale:#E3ECF5;
+    --gold:#B08746;
+    --line:#DDD3C4;
+    --shadow:0 1px 2px rgba(44,37,32,.04), 0 8px 24px rgba(44,37,32,.06);
+    --rail-w:84px;
+    
+    /* Kolory czakr */
+    --root-color: #E57373;
+    --sacral-color: #FFB74D;
+    --solar-color: #FFF176;
+    --heart-color: #81C784;
+    --throat-color: #64B5F6;
+    --third-eye-color: #7986CB;
+    --crown-color: #BA68C8;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important; transition:none !important;}
+  }
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 12% -10%, rgba(59,90,117,.05), transparent 60%),
+      var(--paper);
+    color:var(--ink);
+    font-family:'Spectral',serif;
+    font-size:16.5px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--blue-pale); }
+  a{ color:var(--blue-deep); }
+
+  /* ---------- layout shell ---------- */
+  .shell{
+    display:grid;
+    grid-template-columns:var(--rail-w) 1fr;
+    min-height:100vh;
+  }
+  @media (max-width:860px){
+    .shell{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- vertical stage rail ---------- */
+  .rail{
+    position:sticky; top:0; align-self:start;
+    height:100vh;
+    border-right:1px solid var(--line);
+    background:var(--paper-deep);
+    display:flex; flex-direction:column;
+    padding:22px 0;
+  }
+  .rail-mark{
+    width:34px; height:34px; margin:0 auto 28px;
+    border-radius:50%;
+    background:var(--blue-deep);
+    position:relative;
+    flex:none;
+  }
+  .rail-mark::before{
+    content:""; position:absolute; inset:7px;
+    background:var(--paper-deep);
+    border-radius:50% 50% 50% 0;
+    transform:rotate(-45deg);
+  }
+  .rail-tabs{ display:flex; flex-direction:column; gap:2px; flex:1; }
+  .rail-tab{
+    appearance:none; border:none; background:transparent; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    padding:16px 0;
+    color:var(--ink-soft);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:11px; letter-spacing:.14em;
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    border-left:3px solid transparent;
+    transition:color .2s, border-color .2s, background .2s;
+  }
+  .rail-tab:hover{ color:var(--ink); background:rgba(59,90,117,.06); }
+  .rail-tab.active{
+    color:var(--blue-deep);
+    border-left-color:var(--blue);
+    background:var(--card);
+    font-weight:600;
+  }
+  .rail-tab .num{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:560;
+    font-size:15px; margin-right:10px; letter-spacing:0;
+  }
+  .rail-foot{
+    writing-mode:vertical-rl; transform:rotate(180deg);
+    margin:0 auto; color:var(--ink-soft); opacity:.55;
+    font-family:'Space Grotesk',sans-serif; font-size:10px; letter-spacing:.16em;
+  }
+
+  /* mobile rail -> horizontal progress strip */
+  .mrail{ display:none; }
+  @media (max-width:860px){
+    .rail{ display:none; }
+    .mrail{
+      display:flex; position:sticky; top:0; z-index:20;
+      background:var(--paper-deep); border-bottom:1px solid var(--line);
+      overflow-x:auto; padding:10px 14px; gap:8px;
+    }
+    .mrail button{
+      appearance:none; border:1px solid var(--line); background:var(--card);
+      color:var(--ink-soft); font-family:'Space Grotesk',sans-serif;
+      font-size:11.5px; letter-spacing:.04em; white-space:nowrap;
+      padding:7px 12px; border-radius:999px; cursor:pointer;
+    }
+    .mrail button.active{ background:var(--blue-deep); color:#fff; border-color:var(--blue-deep); }
+  }
+
+  /* ---------- main column ---------- */
+  main{ min-width:0; }
+  .wrap{ max-width:760px; margin:0 auto; padding:56px 28px 90px; }
+  @media (max-width:560px){ .wrap{ padding:34px 16px 70px; } }
+
+  .eyebrow{
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--blue-deep); margin-bottom:14px;
+  }
+  h1.title{
+    font-family:'Fraunces',serif; font-weight:680; font-size:clamp(30px,5.5vw,44px);
+    line-height:1.1; margin:0 0 6px; letter-spacing:-.01em;
+  }
+  .subtitle{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:400;
+    color:var(--ink-soft); font-size:18px; margin:0 0 28px; line-height:1.4;
+  }
+
+  .meta-card{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+    display:grid; grid-template-columns:1fr 2fr; gap:16px 20px;
+  }
+  @media (max-width:560px){ .meta-card{ grid-template-columns:1fr; } }
+  .field label{
+    display:block; font-family:'Space Grotesk',sans-serif; font-size:11px;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;
+  }
+  .field input{
+    width:100%; border:none; border-bottom:1.5px solid var(--line);
+    background:transparent; font-family:'Spectral',serif; font-size:16px;
+    color:var(--ink); padding:4px 2px 7px; outline:none;
+  }
+  .field input:focus{ border-bottom-color:var(--blue); }
+
+  .privacy{
+    font-family:'Space Grotesk',sans-serif; font-size:12.5px; color:var(--ink-soft);
+    border:1px dashed var(--line);
+    border-radius:10px; padding:12px 16px; margin-bottom:8px; line-height:1.55;
+  }
+  .privacy strong{ color:var(--ink); }
+
+  .toolbar{
+    display:flex; gap:10px; flex-wrap:wrap; margin:30px 0 30px;
+  }
+  .btn{
+    appearance:none; cursor:pointer; border-radius:999px;
+    font-family:'Space Grotesk',sans-serif; font-size:13px; letter-spacing:.03em;
+    padding:10px 18px; border:1.5px solid var(--blue-deep);
+  }
+  .btn.primary{ background:var(--blue-deep); color:#fff; }
+  .btn.ghost{ background:transparent; color:var(--blue-deep); }
+  .btn:hover{ filter:brightness(1.05); }
+
+  /* ---------- stage sections ---------- */
+  .stage{ scroll-margin-top:18px; margin-top:54px; }
+  .stage-head{
+    display:flex; align-items:baseline; gap:14px;
+    background:var(--blue-pale); border-radius:12px;
+    padding:14px 20px; margin-bottom:22px;
+  }
+  .stage-head .snum{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:680;
+    font-size:30px; color:var(--blue-deep); line-height:1;
+  }
+  .stage-head h2{
+    font-family:'Space Grotesk',sans-serif; font-size:13.5px; letter-spacing:.1em;
+    text-transform:uppercase; margin:0; color:var(--ink);
+  }
+
+  .intro-block{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:28px;
+  }
+
+  .item{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+  }
+  .item .inum{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:560;
+    color:var(--gold); font-size:18px; margin-right:6px;
+  }
+  .item p.lead{ margin:0 0 6px; font-weight:500; }
+  .item p.note{
+    font-family:'Spectral',serif; font-style:italic; color:var(--ink-soft);
+    font-size:14.5px; margin:6px 0 14px;
+  }
+  .name-fill{
+    border-bottom:1.5px dotted var(--blue); color:var(--blue-deep); font-style:normal;
+    padding:0 2px;
+  }
+
+  textarea{
+    width:100%; resize:none; overflow:hidden;
+    border:1px solid var(--line); border-radius:10px;
+    background:#FFFDF8; padding:12px 14px;
+    font-family:'Spectral',serif; font-size:15.5px; color:var(--ink);
+    line-height:1.55; outline:none; min-height:64px;
+  }
+  textarea:focus{ border-color:var(--blue); box-shadow:0 0 0 3px rgba(59,90,117,.12); }
+
+  /* chakra pills & badges */
+  .chakra-badge {
+    display:inline-block; padding:2px 8px; border-radius:4px; font-size:11px;
+    font-family:'Space Grotesk',sans-serif; text-transform:uppercase; font-weight:600;
+    margin-bottom:8px; color:#2C2520;
+  }
+  
+  footer{
+    margin-top:60px; padding-top:18px; border-top:1px solid var(--line);
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; color:var(--ink-soft);
+    text-align:center; line-height:1.7;
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <!-- desktop vertical rail -->
+  <nav class="rail" aria-label="Sekcje mapowania">
+    <div class="rail-mark" aria-hidden="true"></div>
+    <div class="rail-tabs" id="railTabs">
+      <button class="rail-tab" data-target="stage-1"><span class="num">1</span>Asymetria ciała</button>
+      <button class="rail-tab" data-target="stage-2"><span class="num">2</span>Syndromy ciała</button>
+      <button class="rail-tab" data-target="stage-3"><span class="num">3</span>Historie w czakrach</button>
+    </div>
+    <div class="rail-foot">Praca z Ciałem</div>
+  </nav>
+
+  <main>
+    <!-- mobile horizontal rail -->
+    <nav class="mrail" id="mrail" aria-label="Sekcje mapowania (mobile)">
+      <button data-target="stage-1">1 · Asymetria</button>
+      <button data-target="stage-2">2 · Syndromy</button>
+      <button data-target="stage-3">3 · Czakry</button>
+    </nav>
+
+    <div class="wrap">
+      <div class="eyebrow">Sygnały Somatyczne &amp; Emocje</div>
+      <h1 class="title">Twoje Ciało Mówi Ci, Komu Musisz Wybaczyć</h1>
+      <p class="subtitle">Analiza powiązań między objawami fizycznymi, blokadami emocjonalnymi a potrzebą radykalnego wybaczenia i akceptacji</p>
+
+      <div class="meta-card">
+        <div class="field"><label for="fData">Data refleksji</label><input id="fData" type="date"></div>
+        <div class="field">
+          <label for="objectName">Kto wywołuje we mnie reakcję somatyczną?</label>
+          <input id="objectName" type="text" placeholder="Imię osoby lub grupy…">
+        </div>
+      </div>
+
+      <div class="intro-block">
+        <p style="margin:0;">Nasze ciała nieustannie dają nam wskazówki dotyczące problemów, które w sobie nosimy, oraz tego, kto może z nimi rezonować. Obserwacja fizycznych dolegliwości i obszarów dyskomfortu pozwala zidentyfikować ukryty żal, lęki oraz sfery wymagające wybaczenia samemu sobie lub innym.</p>
+      </div>
+
+      <!-- ================= STAGE 1 ================= -->
+      <section class="stage" id="stage-1">
+        <div class="stage-head"><span class="snum">1</span><h2>Asymetria Ciała: Strona Lewa a Prawa (Body Lateral Bias)</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">1.</span> Zauważ, czy Twoje problemy zdrowotne lub napięcia koncentrują się po lewej, czy po prawej stronie ciała:</p>
+          <p class="note"><strong>Lewa strona</strong> to receptywna, opiekuńcza, kobieca strona nas samych.<br><strong>Prawa strona</strong> to męska, ekspresyjna, skierowana na zewnątrz, światowa strona.</p>
+          <p class="note">Nierównowaga może wskazywać na odrzucenie męskich lub kobiecych aspektów w sobie, potrzebę wybaczenia sobie / samoakceptacji lub potrzebę przyjrzenia się temu, kto naciska ten konkretny guzik.</p>
+          <textarea rows="4" placeholder="Opisz swoje obserwacje dotyczące lewej lub prawej strony ciała w kontekście relacji z relacją z kobiecością/męskością lub osobą, na którą reagujesz…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">2.</span> Przeładowanie w obszarze bioder:</p>
+          <p class="note">Niesienie nieproporcjonalnie dużego ciężaru wokół bioder może oznaczać, że nosisz w sobie głębokie poczucie winy i wstydu lub skrywany lęk przed atakiem na tle seksualnym, który sprawił, że obrastasz w tkankę tłuszczową jako formę ochrony.</p>
+          <textarea rows="3" placeholder="Zapisz refleksje dotyczące ewentualnego poczucia winy, wstydu lub potrzeby ochrony i tarczy obronnej…"></textarea>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 2 ================= -->
+      <section class="stage" id="stage-2">
+        <div class="stage-head"><span class="snum">2</span><h2>Syndromy Ciała według Johna Kappasa (Body Syndromes)</h2></div>
+        
+        <p class="hint" style="margin-bottom:20px; display:block;">Poniższy model, opracowany przez hipnoterapeutę Johna Kappasa, określa ogólne połączenia emocji z symptomami fizycznymi.</p>
+
+        <div class="item">
+          <p class="lead"><span class="inum">3.</span> Syndrom Płaczu (The Crying Syndrome)</p>
+          <p class="note"><strong>Obszar:</strong> Od splotu słonecznego w górę (klatka piersiowa, głowa, tył szyi).<br>
+          <strong>Przyczyna:</strong> Niemożność podjęcia decyzji (z powodu działań kogoś innego lub przeszłego uwarunkowania). Bóle głowy i migreny wynikają z napięcia skalpu wywołanego frustracją. Inne objawy: łzawienie oczu/zatkane zatoki (niechęć do widzenia sytuacji), ucisk w gardle / zaciskanie szczęki / zgrzytanie zębami (niechęć do rozmawiania o problemie).</p>
+          <textarea rows="4" placeholder="Czy odczuwasz blokadę decyzyjną? Zapisz, o czym nie chcesz rozmawiać lub na co nie chcesz patrzeć…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">4.</span> Syndrom Odpowiedzialności (The Responsibility Syndrome)</p>
+          <p class="note"><strong>Obszar:</strong> Ramiona, górna część pleców i odcinek piersiowy kręgosłupa.<br>
+          <strong>Przyczyna:</strong> Zbyt duża odpowiedzialność, lęk przed ciężarem odpowiedzialności, zaniedbywanie, nieakceptowanie lub unikanie konfrontacji z odpowiedzialnością. Objawia się sztywnieniem i napinaniem mięśni pleców i ramion.</p>
+          <textarea rows="3" placeholder="Z jakim ciężarem lub odpowiedzialnością się mierzysz? Komu przypisujesz ten ciężar?…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">5.</span> Syndrom Frustracji Seksualnej i Poczucia Winy (Sexual Frustration and Guilt Syndrome)</p>
+          <p class="note"><strong>Obszar:</strong> Pachwiny, brzuch, dolna część pleców.<br>
+          <strong>Przyczyna:</strong> Frustracja seksualna, poczucie winy związane z seksem na tle religijnym, poczucie winy z powodu niewierności/promiskuituizmu, poczucie seksualnej nieadekwatności, lęk przed atakiem seksualnym. Objawy: skurcze brzucha, zaparcia, nadkwasota, bolesne miesiączki, infekcje pęcherza/pochwy, bóle prostaty/jąder, problemy z nerkami.</p>
+          <textarea rows="4" placeholder="Zidentyfikuj ewentualne obszary frustracji, wstydu, uwarunkowań religijnych lub lęków w sferze intymnej…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">6.</span> Syndrom Walki lub Sięgania (Fight or Reaching Syndrome)</p>
+          <p class="note"><strong>Obszar:</strong> Ramiona, dłonie, palce.<br>
+          <strong>Przyczyna:</strong> Potrzeba ekspresji połączona z jej negowaniem/tłumieniem; niezdolność do sięgnięcia po to, czego się pragnie (brak poczucia własnej wartości); głębokie poczucie odrzucenia wskutek sięgania po nieosiągalne cele. Objawy: brodawki, pęcherze, sztywność stawów dłoni, lodowate lub skrajnie gorące dłonie, artretyzm.</p>
+          <textarea rows="3" placeholder="Po co boisz się sięgnąć? Jaką ekspresję w sobie tłumisz przed <span class='name-fill'>X</span>?…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">7.</span> Syndrom Ucieczki (Flight Syndrome)</p>
+          <p class="note"><strong>Obszar:</strong> Od ud do stóp.<br>
+          <strong>Przyczyna:</strong> Potrzeba ucieczki (emocjonalnej lub fizycznej) przed konkretną sytuacją lub zaangażowaniem. Lęk przed konfrontacją z bolesną sytuacją, nuda, lęk przed katastrofą, lęk przed sukcesem. Objawy: pęcherze na stopach, zimne stopy, bóle nóg.</p>
+          <textarea rows="3" placeholder="Przed czym lub przed kim podświadomie chcesz uciec lub dokąd chcesz umknąć?…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">8.</span> Kombinacje Syndromów</p>
+          <p class="note">Możesz doświadczać kilku syndromów naraz. Np. ból głowy + spięte plecy = niemożność podjęcia decyzji w kwestii odpowiedzialności. Ból pleców + ból nóg = chęć ucieczki z sytuacji, w której czujesz się w pułapce.</p>
+          <textarea rows="3" placeholder="Zauważasz u siebie połączone symptomy? Opisz ich wzajemną dynamikę…"></textarea>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 3 ================= -->
+      <section class="stage" id="stage-3">
+        <div class="stage-head"><span class="snum">3</span><h2>Historie w Czakrach według Caroline Myss (Stories in the Chakras)</h2></div>
+        
+        <p class="hint" style="margin-bottom:20px; display:block;">Każda z siedmiu głównych czakr przechowuje energię powiązaną z konkretnymi obszarami życia i problemami emocjonalnymi. Zastanów się, kto rezonuje z tymi kwestiami w Twoim życiu.</p>
+
+        <!-- CZAKRA KORONY -->
+        <div class="item">
+          <div class="chakra-badge" style="background-color: var(--crown-color);">Czakra Korony (Crown) · Fioletowy</div>
+          <p class="lead">Zaufanie do życia jako całości. Wartości, etyka i odwaga. Humanitaryzm. Bezinteresowność. Zdolność do widzenia szerszej perspektywy. Wiara i inspiracja.</p>
+          <p class="note"><strong>Obszary ciała:</strong> Skóra, kości, mięśnie.</p>
+          <textarea rows="3" placeholder="Twoje blokady w obszarze zaufania do życia, wiary i wyższych wartości…"></textarea>
+        </div>
+
+        <!-- CZAKRA TRZECIEGO OKA -->
+        <div class="item">
+          <div class="chakra-badge" style="background-color: var(--third-eye-color); color: white;">Trzecie Oko (3rd Eye) · Indygo</div>
+          <p class="lead">Prawda, samoświadomość, intuicja, wiedza, zdolność uczenia się na doświadczeniach. Inteligencja emocjonalna.</p>
+          <p class="note"><strong>Obszary ciała:</strong> Mózg, nerwy, oczy, uszy, nos, szyszynka, przysadka mózgowa.</p>
+          <textarea rows="3" placeholder="Twoje blokady w obszarze prawdy, intuicji lub akceptacji własnej wiedzy…"></textarea>
+        </div>
+
+        <!-- CZAKRA GARDLA -->
+        <div class="item">
+          <div class="chakra-badge" style="background-color: var(--throat-color);">Czakra Gardła (Throat) · Jasnoniebieski</div>
+          <p class="lead">Siła woli, osobista ekspresja i komunikacja. Podążanie za marzeniami, używanie osobistej mocy do kreacji. Uzależnienia. Osądzanie i krytyka. Zdolność podejmowania decyzji.</p>
+          <p class="note"><strong>Obszary ciała:</strong> Tarczyca, szyja, usta, przytarczyce, podwzgórze.</p>
+          <textarea rows="3" placeholder="Co boisz się wypowiedzieć? Gdzie tłumisz swoją wolę lub nadmiernie osądzasz?…"></textarea>
+        </div>
+
+        <!-- CZAKRA SERCA -->
+        <div class="item">
+          <div class="chakra-badge" style="background-color: var(--heart-color);">Czakra Serca (Heart) · Zielony</div>
+          <p class="lead">Miłość i nienawiść. Żal, uraza i gorycz. Żałoba i gniew. Egocentryzm, samotność, zaangażowanie, wybaczenie, współczucie. Nadzieja i zaufanie.</p>
+          <p class="note"><strong>Obszary ciała:</strong> Cały obszar klatki piersiowej, grasica.</p>
+          <textarea rows="3" placeholder="Zapisz nagromadzony żal, urazę lub gorycz, które blokują Twoje serce wobec <span class='name-fill'>X</span>…"></textarea>
+        </div>
+
+        <!-- CZAKRA SPLOTU SŁONECZNEGO -->
+        <div class="item">
+          <div class="chakra-badge" style="background-color: var(--solar-color);">Splot Słoneczny (Solar Plexus) · Żółty</div>
+          <p class="lead">Lęk i zastraszenie. Zaufanie, poczucie własnej wartości. Osobista moc, pewność siebie i honor. Dbanie o siebie i innych. Współuzależnienie (kodependencja). Wrażliwość na krytykę.</p>
+          <p class="note"><strong>Obszary ciała:</strong> Żołądek, wątroba, woreczek żółciowy, trzustka, nadnercza, śledziona, środkowy odcinek kręgosłupa.</p>
+          <textarea rows="3" placeholder="Gdzie czujesz się zastraszony(-a)? Gdzie oddajesz swoją moc osobistą?…"></textarea>
+        </div>
+
+        <!-- CZAKRA SAKRALNA -->
+        <div class="item">
+          <div class="chakra-badge" style="background-color: var(--sacral-color);">Czakra Sakralna (Sacral) · Pomarańczowy</div>
+          <p class="lead">Relacje. Pieniądze i seks. Kreatywność. Obwinianie i poczucie winy. Władza i kontrola. Etyka i honor w relacjach.</p>
+          <p class="note"><strong>Obszary ciała:</strong> Narządy płciowe, miednica, dolna część pleców, wyrostek robaczkowy, biodra, pęcherz moczowy.</p>
+          <textarea rows="3" placeholder="Problemy kontroli, poczucia winy, pieniędzy lub dynamiki seksualnej w relacjach…"></textarea>
+        </div>
+
+        <!-- CZAKRA PODSTAWY -->
+        <div class="item">
+          <div class="chakra-badge" style="background-color: var(--root-color);">Czakra Podstawy (Root) · Czerwony</div>
+          <p class="lead">Energia plemienna. Bezpieczeństwo rodziny i grupy. Podstawowe bezpieczeństwo. Poczucie bycia „u siebie”, zdolność do obrony własnego zdania oraz zapewnienia sobie bytu. Ład i porządek społeczny oraz rodzinny.</p>
+          <p class="note"><strong>Obszary ciała:</strong> Podpora ciała, kość ogonowa, kość krzyżowa, stopy, odbyt, układ odpornościowy.</p>
+          <textarea rows="3" placeholder="Lęki egzystencjalne, konflikty rodzinne (plemienne), zachwiane poczucie bezpieczeństwa…"></textarea>
+        </div>
+      </section>
+
+      <!-- Przyciski na dole -->
+      <div class="toolbar">
+        <button class="btn primary" id="printBtn">Drukuj mapowanie ciała</button>
+        <button class="btn ghost" id="clearBtn">Wyczyść notatki</button>
+      </div>
+
+      <footer>
+        Przekład i adaptacja na podstawie syntezy modeli somatycznych Johna Kappasa, Caroline Myss oraz metody Radykalnego Wybaczania.
+      </footer>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  // name-fill live update
+  const nameInput = document.getElementById('objectName');
+  function refreshNames(){
+    const val = nameInput.value.trim() || 'X';
+    document.querySelectorAll('.name-fill').forEach(s=> s.textContent = val);
+  }
+  nameInput.addEventListener('input', refreshNames);
+
+  // autosize textareas
+  function autosize(t){
+    t.style.height = 'auto';
+    t.style.height = (t.scrollHeight+2) + 'px';
+  }
+  function autosizeAll(){
+    document.querySelectorAll('textarea').forEach(t=>{
+      autosize(t);
+      t.addEventListener('input', ()=>autosize(t));
+    });
+  }
+  window.addEventListener('load', autosizeAll);
+  nameInput.addEventListener('input', refreshNames);
+  refreshNames();
+
+  // scroll spy + nav
+  const sections = Array.from(document.querySelectorAll('.stage'));
+  const railTabs = Array.from(document.querySelectorAll('.rail-tab'));
+  const mTabs = Array.from(document.querySelectorAll('.mrail button'));
+  function setActive(id){
+    railTabs.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+    mTabs.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+  }
+  [...railTabs, ...mTabs].forEach(b=>{
+    b.addEventListener('click', ()=>{
+      document.getElementById(b.dataset.target).scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting) setActive(e.target.id);
+    });
+  }, {rootMargin:'-20% 0px -65% 0px', threshold:0});
+  sections.forEach(s=> io.observe(s));
+
+  // print
+  document.getElementById('printBtn').addEventListener('click', ()=>{ window.print(); });
+
+  // clear
+  document.getElementById('clearBtn').addEventListener('click', ()=>{
+    if(!confirm('Czy na pewno chcesz wyczyścić wszystkie wpisy?')) return;
+    document.querySelectorAll('textarea').forEach(t=>{ t.value=''; autosize(t); });
+    document.querySelectorAll('input[type=text], input[type=date]').forEach(i=> i.value='');
+    refreshNames();
+  });
+})();
+</script>
+</body>
+</html>

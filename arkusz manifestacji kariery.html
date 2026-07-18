@@ -1,0 +1,566 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Program Radykalnej Manifestacji Nowej Kariery — Colin Tipping</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680;1,9..144,500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F4F0EA;
+    --paper-deep:#EAE2D5;
+    --card:#FDFBF7;
+    --ink:#2C2520;
+    --ink-soft:#6E6257;
+    --blue:#3B5A75;
+    --blue-deep:#253B4E;
+    --blue-pale:#E3ECF5;
+    --gold:#B08746;
+    --line:#DDD3C4;
+    --shadow:0 1px 2px rgba(44,37,32,.04), 0 8px 24px rgba(44,37,32,.06);
+    --rail-w:84px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important; transition:none !important;}
+  }
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 12% -10%, rgba(59,90,117,.05), transparent 60%),
+      var(--paper);
+    color:var(--ink);
+    font-family:'Spectral',serif;
+    font-size:16.5px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--blue-pale); }
+  a{ color:var(--blue-deep); text-decoration:underline; }
+  a:hover{ color:var(--blue); }
+
+  /* ---------- layout shell ---------- */
+  .shell{
+    display:grid;
+    grid-template-columns:var(--rail-w) 1fr;
+    min-height:100vh;
+  }
+  @media (max-width:860px){
+    .shell{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- vertical stage rail ---------- */
+  .rail{
+    position:sticky; top:0; align-self:start;
+    height:100vh;
+    border-right:1px solid var(--line);
+    background:var(--paper-deep);
+    display:flex; flex-direction:column;
+    padding:22px 0;
+  }
+  .rail-mark{
+    width:34px; height:34px; margin:0 auto 28px;
+    border-radius:50%;
+    background:var(--blue-deep);
+    position:relative;
+    flex:none;
+  }
+  .rail-mark::before{
+    content:""; position:absolute; inset:7px;
+    background:var(--paper-deep);
+    border-radius:50% 50% 50% 0;
+    transform:rotate(-45deg);
+  }
+  .rail-tabs{ display:flex; flex-direction:column; gap:2px; flex:1; }
+  .rail-tab{
+    appearance:none; border:none; background:transparent; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    padding:16px 0;
+    color:var(--ink-soft);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:11px; letter-spacing:.14em;
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    border-left:3px solid transparent;
+    transition:color .2s, border-color .2s, background .2s;
+  }
+  .rail-tab:hover{ color:var(--ink); background:rgba(59,90,117,.06); }
+  .rail-tab.active{
+    color:var(--blue-deep);
+    border-left-color:var(--blue);
+    background:var(--card);
+    font-weight:600;
+  }
+  .rail-tab .num{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:560;
+    font-size:15px; margin-right:10px; letter-spacing:0;
+  }
+  .rail-foot{
+    writing-mode:vertical-rl; transform:rotate(180deg);
+    margin:0 auto; color:var(--ink-soft); opacity:.55;
+    font-family:'Space Grotesk',sans-serif; font-size:10px; letter-spacing:.16em;
+  }
+
+  /* mobile rail -> horizontal progress strip */
+  .mrail{ display:none; }
+  @media (max-width:860px){
+    .rail{ display:none; }
+    .mrail{
+      display:flex; position:sticky; top:0; z-index:20;
+      background:var(--paper-deep); border-bottom:1px solid var(--line);
+      overflow-x:auto; padding:10px 14px; gap:8px;
+    }
+    .mrail button{
+      appearance:none; border:1px solid var(--line); background:var(--card);
+      color:var(--ink-soft); font-family:'Space Grotesk',sans-serif;
+      font-size:11.5px; letter-spacing:.04em; white-space:nowrap;
+      padding:7px 12px; border-radius:999px; cursor:pointer;
+    }
+    .mrail button.active{ background:var(--blue-deep); color:#fff; border-color:var(--blue-deep); }
+  }
+
+  /* ---------- main column ---------- */
+  main{ min-width:0; }
+  .wrap{ max-width:760px; margin:0 auto; padding:56px 28px 90px; }
+  @media (max-width:560px){ .wrap{ padding:34px 16px 70px; } }
+
+  .eyebrow{
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--blue-deep); margin-bottom:14px;
+  }
+  h1.title{
+    font-family:'Fraunces',serif; font-weight:680; font-size:clamp(30px,5.5vw,46px);
+    line-height:1.06; margin:0 0 6px; letter-spacing:-.01em;
+  }
+  .subtitle{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:400;
+    color:var(--ink-soft); font-size:18px; margin:0 0 28px; line-height:1.4;
+  }
+
+  .intro-box{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:24px 28px; margin-bottom:34px;
+  }
+  .intro-box p{ margin:0 0 16px; }
+  .intro-box p:last-child{ margin-bottom:0; }
+
+  .meta-card{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+    display:grid; grid-template-columns:1fr 1fr; gap:16px 20px;
+  }
+  @media (max-width:560px){ .meta-card{ grid-template-columns:1fr; } }
+  .field label{
+    display:block; font-family:'Space Grotesk',sans-serif; font-size:11px;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;
+  }
+  .field input{
+    width:100%; border:none; border-bottom:1.5px solid var(--line);
+    background:transparent; font-family:'Spectral',serif; font-size:16px;
+    color:var(--ink); padding:4px 2px 7px; outline:none;
+  }
+  .field input:focus{ border-bottom-color:var(--blue); }
+
+  .privacy{
+    font-family:'Space Grotesk',sans-serif; font-size:12.5px; color:var(--ink-soft);
+    border:1px dashed var(--line);
+    border-radius:10px; padding:12px 16px; margin-bottom:8px; line-height:1.55;
+  }
+  .privacy strong{ color:var(--ink); }
+
+  .toolbar{
+    display:flex; gap:10px; flex-wrap:wrap; margin:30px 0 30px;
+  }
+  .btn{
+    appearance:none; cursor:pointer; border-radius:999px;
+    font-family:'Space Grotesk',sans-serif; font-size:13px; letter-spacing:.03em;
+    padding:10px 18px; border:1.5px solid var(--blue-deep);
+    transition: background 0.2s, color 0.2s;
+  }
+  .btn.primary{ background:var(--blue-deep); color:#fff; }
+  .btn.ghost{ background:transparent; color:var(--blue-deep); }
+  .btn:hover{ filter:brightness(1.05); }
+
+  /* ---------- stage sections ---------- */
+  .stage{ scroll-margin-top:18px; margin-top:54px; }
+  .stage-head{
+    display:flex; align-items:baseline; gap:14px;
+    background:var(--blue-pale); border-radius:12px;
+    padding:14px 20px; margin-bottom:22px;
+  }
+  .stage-head .snum{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:680;
+    font-size:30px; color:var(--blue-deep); line-height:1;
+  }
+  .stage-head h2{
+    font-family:'Space Grotesk',sans-serif; font-size:13.5px; letter-spacing:.1em;
+    text-transform:uppercase; margin:0; color:var(--ink);
+  }
+
+  .item{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+  }
+  .item .inum{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:560;
+    color:var(--gold); font-size:18px; margin-right:6px;
+  }
+  .item p.lead{ margin:0 0 6px; font-weight: 500; }
+  .item p.note{
+    font-family:'Spectral',serif; font-style:italic; color:var(--ink-soft);
+    font-size:14.5px; margin:6px 0 14px;
+  }
+
+  textarea{
+    width:100%; resize:none; overflow:hidden;
+    border:1px solid var(--line); border-radius:10px;
+    background:#FFFDF8; padding:12px 14px;
+    font-family:'Spectral',serif; font-size:15.5px; color:var(--ink);
+    line-height:1.55; outline:none; min-height:64px;
+  }
+  textarea:focus{ border-color:var(--blue); box-shadow:0 0 0 3px rgba(59,90,117,.12); }
+
+  /* checkboxes / pills / radio groups */
+  fieldset.choices{
+    border:none; margin:14px 0 0; padding:0;
+    display:flex; flex-wrap:wrap; gap:8px;
+  }
+  .pill{ position:relative; }
+  .pill input{ position:absolute; opacity:0; inset:0; cursor:pointer; margin:0; }
+  .pill span{
+    display:inline-block; padding:7px 14px; border-radius:999px;
+    border:1.5px solid var(--line); font-family:'Space Grotesk',sans-serif;
+    font-size:12.5px; color:var(--ink-soft); transition:all .15s;
+    background: var(--card);
+  }
+  .pill input:checked + span{
+    background:var(--blue-deep); border-color:var(--blue-deep); color:#fff;
+  }
+  .pill input:focus-visible + span{ outline:2px solid var(--blue); outline-offset:2px; }
+
+  /* Audio player placeholder style */
+  .audio-placeholder {
+    background: var(--paper-deep);
+    border-radius: 10px;
+    padding: 12px 16px;
+    margin: 14px 0;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    color: var(--ink);
+  }
+  .audio-icon {
+    width: 28px; height: 28px; border-radius: 50%; background: var(--blue-deep);
+    display: flex; align-items: center; justify-content: center; color: white; font-size: 10px;
+  }
+
+  .affirmation{
+    background:linear-gradient(135deg, var(--blue-pale), var(--paper-deep));
+    border-radius:14px; padding:24px 26px; margin-bottom:18px;
+    font-family:'Spectral',serif; font-style:italic; font-size:16px; color:var(--ink);
+    border:1px solid var(--line);
+  }
+
+  .signoff{
+    margin-top:50px; padding-top:28px; border-top:1px solid var(--line);
+    display:flex; flex-wrap:wrap; gap:22px; align-items:flex-end; justify-content:space-between;
+  }
+  .signoff .field{ min-width:220px; }
+
+  footer{
+    margin-top:60px; padding-top:18px; border-top:1px solid var(--line);
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; color:var(--ink-soft);
+    text-align:center; line-height:1.7;
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <!-- desktop vertical rail -->
+  <nav class="rail" aria-label="Etapy arkusza">
+    <div class="rail-mark" aria-hidden="true"></div>
+    <div class="rail-tabs" id="railTabs">
+      <button class="rail-tab" data-target="stage-1"><span class="num">1</span>Obecna sytuacja</button>
+      <button class="rail-tab" data-target="stage-2"><span class="num">2</span>Uczucia i Samoocena</button>
+      <button class="rail-tab" data-target="stage-3"><span class="num">3</span>Świadomość i Wartość</button>
+      <button class="rail-tab" data-target="stage-4"><span class="num">4</span>Intencja i Wizualizacja</button>
+      <button class="rail-tab" data-target="stage-5"><span class="num">5</span>Przeformułowanie i Poddanie</button>
+    </div>
+    <div class="rail-foot">Kreator Kariery</div>
+  </nav>
+
+  <main>
+    <!-- mobile horizontal rail -->
+    <nav class="mrail" id="mrail" aria-label="Etapy arkusza (mobile)">
+      <button data-target="stage-1">1 · Sytuacja</button>
+      <button data-target="stage-2">2 · Uczucia</button>
+      <button data-target="stage-3">3 · Wartość</button>
+      <button data-target="stage-4">4 · Intencja</button>
+      <button data-target="stage-5">5 · Poddanie</button>
+    </nav>
+
+    <div class="wrap">
+      <div class="eyebrow">Program Manifestacji Nowej Kariery</div>
+      <h1 class="title">Arkusz Kreacji Radykalnej Pracy</h1>
+      <p class="subtitle">Narzędzie transformacji sytuacji zawodowej i finansowej poprzez integrację Inteligencji Mentalnej, Emocjonalnej i Duchowej</p>
+
+      <div class="intro-box">
+        <p><strong>Cześć,</strong></p>
+        <p>Jest mi naprawdę przykro, że straciłeś pracę lub Twój biznes ucierpiał z powodu zamieszania gospodarczego, w którym się znaleźliśmy. Jestem pewien, że czujesz się z tym źle i odczuwasz spory niepokój o przyszłość. Kto by nie odczuwał?</p>
+        <p>Cóż, nie rozpaczaj. Trafiłeś we właściwe miejsce, aby znaleźć sposób na znaczne zwiększenie swoich szans na to, by spaść na cztery łapy i znaleźć nową pracę, a nawet nową ścieżkę kariery, która będzie dla Ciebie odpowiednia. Jest bardzo prawdopodobne, że tak się stanie, gdy zaczniesz korzystać z mojego internetowego <strong>Arkusza Kreacji Radykalnej Pracy</strong>. Wypełnij go, przechodząc przez każdy punkt uważnie, z koncentracją i świadomością, a po zakończeniu – wydrukuj go.</p>
+        <p>Jak widzisz, dołączone są do niego szczegółowe instrukcje, zarówno w formie pisemnej, jak i audio. Jestem absolutnie przekonany, że jeśli użyjesz tego arkusza, otworzy on przed Tobą wszelkiego rodzaju możliwości zawodowe. Możesz być bardzo zaskoczony tym, jak szybko to zadziała.</p>
+        <p>Aby pogłębić proces twórczy, stworzyłem również nagranie audio zatytułowane <em>„13 kroków do Twojej nowej kariery”</em>. Nie ma ono charakteru hipnotycznego, więc możesz je pobrać i odtwarzać w samochodzie. Trwa zaledwie niewiele ponad sześć minut, a może zmienić całe Twoje życie. Znajdziesz je na końcu tego arkusza. Odtwarzaj je często.</p>
+        <p>Zacznij od pierwszego kroku poniżej i przygotuj swoje CV! Powodzenia.</p>
+        <p style="text-align: right;">— <em>Colin Tipping</em></p>
+      </div>
+
+      <div class="meta-card">
+        <div class="field"><label for="fName">Imię i nazwisko</label><input id="fName" type="text" placeholder="Twoje imię…"></div>
+        <div class="field"><label for="fData">Data</label><input id="fData" type="date"></div>
+      </div>
+
+      <p class="privacy"><strong>Prywatność danych:</strong> Pamiętaj, że informacje, które tu wpisujesz, będą zapisane lokalnie, dopóki nie klikniesz przycisku „Wyczyść arkusz”. Nikt poza Tobą nie widzi tego, co napisałeś.</p>
+
+      <!-- ================= ETAP 1 ================= -->
+      <section class="stage" id="stage-1">
+        <div class="stage-head"><span class="snum">1</span><h2>Obecna sytuacja zawodowa</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">1.</span>Moja obecna sytuacja dotycząca moich środków utrzymania wygląda następująco:</p>
+          
+          <fieldset class="choices">
+            <label class="pill"><input type="checkbox"><span>Straciłem(-am) pracę</span></label>
+            <label class="pill"><input type="checkbox"><span>Straciłem(-am) pieniądze emerytalne - muszę pracować, by przeżyć</span></label>
+            <label class="pill"><input type="checkbox"><span>Mój biznes upadł</span></label>
+            <label class="pill"><input type="checkbox"><span>Jestem w trakcie bankructwa</span></label>
+            <label class="pill"><input type="checkbox"><span>Moje dochody są niewystarczające, by związać koniec z końcem</span></label>
+            <label class="pill"><input type="checkbox"><span>Inne</span></label>
+          </fieldset>
+
+          <p class="note">Jak w przypadku wszystkich tego typu arkuszy, zawsze zaczynamy od miejsca, w którym się znajdujemy. Na przykład w arkuszu Radykalnego Wybaczania zaczynamy od poczucia bycia ofiarą. W arkuszu Radykalnej Manifestacji zaczynamy od miejsca braku lub nieposiadania tego, czego pragniemy. W przypadku tego arkusza prawdopodobnie zaczynamy od miejsca, w którym właśnie straciliśmy pracę, biznes zbankrutował lub zaistniały inne okoliczności zmuszające nas do szukania alternatywnych sposobów na życie.</p>
+          <p class="note">Zaczynamy od użycia naszej inteligencji mentalnej, następnie emocjonalnej, a pod koniec arkusza – naszej Inteligencji Duchowej. Pozwól, że wyjaśnię, czym ona jest: Nasza Inteligencja Duchowa to inteligencja pochodząca nie z Ego, lecz z Twojego Wyższego Ja. To ta część Ciebie, która jest połączona z Uniwersalną Inteligencją i zna prawdę o tym, kim jesteś — istotą duchową mającą ludzkie doświadczenie. To ona uruchamia dla Ciebie Prawo Przyciągania.</p>
+          <p class="note">Zacznij od zaznaczenia odpowiednich pól. Dodaj poniżej notatki, które przedstawiają szczegóły Twojej sytuacji. Powiedz, jak jest. Możesz nawet nieco przesadzić i pozwolić sobie na luksus użalania się nad sobą, wczuwając się w to, jak wielkim pechowcem byłeś(-aś) i jak bardzo zostałeś(-aś) skrzywdzony(-a) przez system.</p>
+          
+          <textarea rows="4" placeholder="Wpisz tutaj szczegóły swojej obecnej sytuacji finansowej i zawodowej..."></textarea>
+          
+          <p class="note" style="margin-top:12px;">W tym polu wystarczy po prostu napisać, że pragniesz dobrej pracy, możliwości biznesowych lub czegokolwiek, co da Ci potrzebne pieniądze. Więcej szczegółów dodasz w dalszej części arkusza.</p>
+          
+          <div class="audio-placeholder">
+            <div class="audio-icon">▶</div>
+            <div><strong>Wyjaśnienie procesu Kreacji Pracy (Audio)</strong> — 00:07 / 02:49</div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= ETAP 2 ================= -->
+      <section class="stage" id="stage-2">
+        <div class="stage-head"><span class="snum">2</span><h2>Uczucia i Samoocena</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">2.</span>Uczucia, których doświadczam z powodu mojej trudnej sytuacji, to:</p>
+          <p class="note">(Bądź szczery, autentyczny i wolny od osądu).</p>
+          
+          <fieldset class="choices">
+            <label class="pill"><input type="checkbox"><span>Oburzenie (outrage)</span></label>
+            <label class="pill"><input type="checkbox"><span>Żal / Żałoba (grief)</span></label>
+            <label class="pill"><input type="checkbox"><span>Złość (anger)</span></label>
+            <label class="pill"><input type="checkbox"><span>Poczucie braku (deprivation)</span></label>
+            <label class="pill"><input type="checkbox"><span>Oczekiwanie (expectation)</span></label>
+            <label class="pill"><input type="checkbox"><span>Poczucie roszczenia (entitlement)</span></label>
+            <label class="pill"><input type="checkbox"><span>Tęsknota (longing)</span></label>
+            <label class="pill"><input type="checkbox"><span>Nadzieja (hope)</span></label>
+            <label class="pill"><input type="checkbox"><span>Duma (pride)</span></label>
+            <label class="pill"><input type="checkbox"><span>Potrzeba (need)</span></label>
+            <label class="pill"><input type="checkbox"><span>Empatia (empathy)</span></label>
+            <label class="pill"><input type="checkbox"><span>Poczucie własnej racji (righteousness)</span></label>
+            <label class="pill"><input type="checkbox"><span>Strach (fear)</span></label>
+            <label class="pill"><input type="checkbox"><span>Smutek (sadness)</span></label>
+            <label class="pill"><input type="checkbox"><span>Wstyd (shame)</span></label>
+            <label class="pill"><input type="checkbox"><span>Wina (guilt)</span></label>
+            <label class="pill"><input type="checkbox"><span>Beznadziejność / Bezsilność (helplessness)</span></label>
+            <label class="pill"><input type="checkbox"><span>Inne</span></label>
+          </fieldset>
+          <textarea rows="2" style="margin-top:12px;" placeholder="Inne specyficzne emocje..."></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">3.</span>Na skali od 1 do 10 (gdzie 10 oznacza najwyższą wartość), moja samoocena w tym momencie wynosi:</p>
+          <p class="note">To pytanie jest niezwykle ważne, ponieważ pyta o to, jak czujesz się ze sobą w tym położeniu. W naszych arkuszach zawsze podkreślamy wagę dopuszczenia i poczucia swoich emocji. Energią napędzającą ten arkusz jako Prawo Przyciągania w Działaniu jest energia emocjonalna, dlatego ważne jest, abyśmy wyszli z głowy i oparli się pokusie zaprzeczania uczuciom. Szczególnie mężczyźni mają tendencję do wypierania emocji i robienia dobrej miny do złej gry, a to właśnie oni są często najbardziej bezpośrednio dotknięci taką sytuacją ekonomiczną. Stąd forma listy kontrolnej, która pomaga zidentyfikować te stany.</p>
+          
+          <fieldset class="choices">
+            <label class="pill"><input type="radio" name="self_esteem"><span>1</span></label>
+            <label class="pill"><input type="radio" name="self_esteem"><span>2</span></label>
+            <label class="pill"><input type="radio" name="self_esteem"><span>3</span></label>
+            <label class="pill"><input type="radio" name="self_esteem"><span>4</span></label>
+            <label class="pill"><input type="radio" name="self_esteem"><span>5</span></label>
+            <label class="pill"><input type="radio" name="self_esteem"><span>6</span></label>
+            <label class="pill"><input type="radio" name="self_esteem"><span>7</span></label>
+            <label class="pill"><input type="radio" name="self_esteem"><span>8</span></label>
+            <label class="pill"><input type="radio" name="self_esteem"><span>9</span></label>
+            <label class="pill"><input type="radio" name="self_esteem"><span>10</span></label>
+          </fieldset>
+        </div>
+      </section>
+
+      <!-- ================= ETAP 3 ================= -->
+      <section class="stage" id="stage-3">
+        <div class="stage-head"><span class="snum">3</span><h2>Świadomość i Własna Wartość</h2></div>
+
+        <div class="affirmation">
+          <p style="margin:0;"><span class="inum">4.</span> <strong>Kocham siebie i uznaję, że jako istota ludzka mam prawo do swoich uczuć, bez względu na to, jakie one są. Moje uczucia są precyzyjnym odzwierciedleniem tego, jak postrzegam tę sytuację.</strong></p>
+          <p class="note" style="margin: 8px 0 0; color: var(--ink-soft);">Ten punkt daje nam przyzwolenie na przeżywanie tych uczuć bez przepraszania za nie. To naturalna ludzka rzecz. Sposób, w jaki widzimy sytuację, określa to, jak się czujemy. Jeśli postrzegam siebie jako ofiarę, będę czuć złość i gorycz. Jeśli postrzegam siebie w procesie zmiany (tranzycji), będę pełen nadziei i ekscytacji nowymi możliwościami.</p>
+        </div>
+
+        <div class="affirmation">
+          <p style="margin:0;"><span class="inum">5.</span> <strong>Teraz uświadamiam sobie, że NIE jestem swoją pracą ani swoim biznesem. Niezależnie od tego, co się stało, nie straciłem(-am) nic ze swojej prawdziwej esencji. Wciąż jestem tak samo wartościową osobą jak zawsze, mam ogromnie dużo do zaoferowania ludzkości i mam do wniesienia unikalny wkład w ten świat, gdy nadejdzie właściwy czas. Ufam mojej własnej Inteligencji Duchowej, że przyciągnie do mnie tę możliwość w idealnym momencie i ufam wiedzy, że ona już do mnie ZMIERZA.</strong></p>
+          <p class="note" style="margin: 8px 0 0; color: var(--ink-soft);">Krok ten prosi Cię o potwierdzenie, że nie jesteś swoją pracą. Kiedy tracimy funkcję żywiciela rodziny, łatwo popaść w obniżone poczucie wartości. Musisz wyjść poza to i poznać swoją realną wartość. Tylko Twoje ego w nią wątpi. Twoje Wyższe Ja wie o niej doskonale.</p>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">6.</span> Teraz uświadamiam sobie, że mogę pomóc mojej Inteligencji Duchowej w urzeczywistnieniu idealnej możliwości służenia poprzez wypisanie wszystkich moich umiejętności, zdolności, cech, talentów i darów, które posiadam i które wnoszą wartość:</p>
+          <p class="note">(Wypisz wszystko, co przychodzi Ci do głowy. Nie powstrzymuj się, zaprezentuj swoje mocne strony, nie bądź nieśmiały(-a).)</p>
+          <textarea rows="4" placeholder="Moje talenty, umiejętności, wiedza zawodowa i mocne strony..."></textarea>
+        </div>
+      </section>
+
+      <!-- ================= ETAP 4 ================= -->
+      <section class="stage" id="stage-4">
+        <div class="stage-head"><span class="snum">4</span><h2>Klarowność Intencji i Wizualizacja</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">7.</span> Teraz wyjaśniam i deklaruję, że moja intencja kieruje energię specjalnie na zamanifestowanie idealnej pracy lub możliwości generowania dochodu, która będzie odpowiadać moim umiejętnościom i talentom, takiej jak:</p>
+          <p class="note">(Wyraź jasno, czego chcesz, ale zachowaj też elastyczność wyboru. Nie bój się mierzyć wysoko. Utrzymuj intencję na idealnej pracy, a resztę pozostaw Wyższemu Ja, mówiąc: „To lub coś lepszego”.)</p>
+          <textarea rows="4" placeholder="Opis idealnego zajęcia, stanowiska lub formy biznesu..."></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">8.</span> Widzę, że moja intencja zamanifestowała się do...</p>
+          <p class="note">(Określ ramy czasowe, ale sformułuj je w czasie teraźniejszym, np. „moja idealna praca jest tutaj ze mną do końca przyszłego miesiąca”).</p>
+          <textarea rows="2" placeholder="Np. ...końca tego miesiąca i jest już obecna w moim życiu."></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">9.</span> Powiedz na głos: <em>„Widzę teraz w swoim umyśle obraz samego siebie pracującego w idealnym otoczeniu, robiącego to, co do mnie należy, co zapewnia mi przynajmniej taką ilość dochodu, jakiej wymagam do zaspokojenia moich potrzeb, oraz nadwyżkę. Gdy powiększam ten obraz w umyśle, wzmacniam dźwięki związane z tym, co robię, rejestruję zapachy i kolory w przestrzeni pracy, czuję się świetnie, dumnie i rześko, wiedząc, że zarabiam wystarczająco dużo, by utrzymać siebie i swoją rodzinę.”</em></p>
+          <p class="note">(Zamknij oczy i stwórz najlepszy możliwy obraz, zaangażuj wszystkie zmysły. Następnie zrób krótkie notatki o swoim doświadczeniu z tej wizualizacji. Rób to każdego wieczoru przed snem.)</p>
+          <textarea rows="4" placeholder="Moje odczucia i spostrzeżenia z wizualizacji..."></textarea>
+        </div>
+      </section>
+
+      <!-- ================= ETAP 5 ================= -->
+      <section class="stage" id="stage-5">
+        <div class="stage-head"><span class="snum">5</span><h2>Przeformułowanie i Poddanie</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">10.</span> Uświadamiam sobie, że mogę mieć w podświadomości pewne przekonania, założenia lub pomysły, które mogą tworzyć opór wobec zbliżającej się do mnie idealnej możliwości, takie jak:</p>
+          
+          <fieldset class="choices">
+            <label class="pill"><input type="checkbox"><span>Nie jestem godny(-a) tego, co najlepsze</span></label>
+            <label class="pill"><input type="checkbox"><span>Nie zasługuję</span></label>
+            <label class="pill"><input type="checkbox"><span>Nie jestem wystarczająco dobry(-a)</span></label>
+            <label class="pill"><input type="checkbox"><span>Nigdy mi się nie uda</span></label>
+            <label class="pill"><input type="checkbox"><span>Mam pecha</span></label>
+            <label class="pill"><input type="checkbox"><span>Brakuje pracy dla wszystkich, więc dlaczego akurat ja?</span></label>
+            <label class="pill"><input type="checkbox"><span>Inne</span></label>
+          </fieldset>
+          <textarea rows="2" style="margin-top:12px;" placeholder="Inne ograniczające przekonania..."></textarea>
+
+          <p class="lead" style="margin-top:20px;"><strong>Teraz decyduję, że żaden taki pomysł nie zanieczyści ani nie osłabi mojej intencji stworzenia doskonałej możliwości zarobkowej, która zaspokoi moje potrzeby. Całkowicie omijam tę część mojego umysłu i przekazuję intencję jej stworzenia mojej Inteligencji Duchowej.</strong></p>
+          <p class="note">Nazywam to wykonaniem „obejścia inteligencji duchowej” (spiritual intelligence bypass). Zamiast spędzać miesiące na przeprogramowywaniu podświadomości, uznajemy te myśli i zostawiamy je, oddając sprawę Wyższemu Ja.</p>
+        </div>
+
+        <div class="affirmation">
+          <p style="margin:0 0 8px 0;"><span class="inum">11.</span> <strong>Teraz uświadamiam sobie i uznaję, że moja ograniczona wyobraźnia może nie wiedzieć, co leży w moim najlepszym interesie, a rezultat, który widzę, może nie być tym, co moja Inteligencja Duchowa i Wszechświat mają dla mnie w zanadrzu.</strong></p>
+          <p style="margin:0 0 8px 0;"><span class="inum">12.</span> <strong>Dlatego deklaruję moje pełne zaufanie do Wszechświata, że da mi to, co jest dla mojego najwyższego dobra, i przekierowuję wygenerowaną energię intencji na odczuwanie wdzięczności za to, co mam i za wszystko, co zostanie mi dane.</strong></p>
+          <p style="margin:0 0 8px 0;"><span class="inum">13.</span> <strong>Całkowicie poddaję się Duchowi i porzucam wszelkie przywiązanie do tego, by praca, o którą prosiłem(-am), zamanifestowała się w jakikolwiek określony sposób, wiedząc, że to się dokonało i rozpoznam doskonałość tego, gdy to ujrzę.</strong></p>
+          <p style="margin:0;"><span class="inum">14.</span> <strong>Czuję się całkowicie połączony(-a) ze swoim Źródłem i wiem, że jestem w samym środku czystej obfitości. Jestem otwarty(-a) na nieustanne przyjmowanie tej obfitości. Wypowiadam na głos: <em>To się Dokonało!</em></strong></p>
+        </div>
+
+        <div class="item">
+          <p class="note">Wskazówka końcowa: Nic więcej nie musisz robić z tym arkuszem, oprócz kontynuowania wizualizacji końcowego rezultatu. Praca duchowa jest wykonywana za Ciebie. Gorąco polecam również wykonanie arkuszy Radykalnego Wybaczania wobec osób, banków czy polityków, do których czujesz złość za zaistniały kryzys – uwolnienie tej negatywnej energii przeszłości jest kluczowe dla kreowania nowej przyszłości.</p>
+          
+          <div class="audio-placeholder">
+            <div class="audio-icon">▶</div>
+            <div><strong>13 Kroków do Twojej Następnej Kariery (Audio)</strong> — 00:00 / 06:33</div>
+          </div>
+        </div>
+
+        <div class="signoff">
+          <div class="field"><label for="fSig">Podpis uczestnika</label><input id="fSig" type="text" placeholder="Wpisz podpis…"></div>
+          <div class="field"><label for="fSignDate">Data zatwierdzenia</label><input id="fSignDate" type="date"></div>
+        </div>
+      </section>
+
+      <!-- Przyciski akcji -->
+      <div class="toolbar">
+        <button class="btn primary" id="printBtn">Drukuj arkusz / Zapisz jako PDF</button>
+        <button class="btn ghost" id="clearBtn">Wyczyść arkusz</button>
+      </div>
+
+      <footer>
+        Opracowano na podstawie metody <strong>Radical New Career Manifestation Program</strong> autorstwa Colina Tippinga.<br>
+        Wszelkie pytania i informacje o sukcesach programu prosimy kierować na adres: <a href="mailto:support@radicalforgiveness.com">support@radicalforgiveness.com</a> lub odwiedzić <a href="http://www.colintipping.com" target="_blank">www.colintipping.com</a>.
+      </footer>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  // Dynamiczne dopasowywanie wysokości textarea do zawartości
+  function autosize(t){
+    t.style.height = 'auto';
+    t.style.height = (t.scrollHeight+2) + 'px';
+  }
+  function autosizeAll(){
+    document.querySelectorAll('textarea').forEach(t=>{
+      autosize(t);
+      t.addEventListener('input', ()=>autosize(t));
+    });
+  }
+  window.addEventListener('load', autosizeAll);
+
+  // Obsługa nawigacji bocznej i górnej (Scroll Spy)
+  const sections = Array.from(document.querySelectorAll('.stage'));
+  const railTabs = Array.from(document.querySelectorAll('.rail-tab'));
+  const mTabs = Array.from(document.querySelectorAll('.mrail button'));
+  
+  function setActive(id){
+    railTabs.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+    mTabs.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+  }
+  
+  [...railTabs, ...mTabs].forEach(b=>{
+    b.addEventListener('click', ()=>{
+      document.getElementById(b.dataset.target).scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+  
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting) setActive(e.target.id);
+    });
+  }, {rootMargin:'-20% 0px -65% 0px', threshold:0});
+  
+  sections.forEach(s=> io.observe(s));
+
+  // Obsługa przycisków drukowania i czyszczenia
+  document.getElementById('printBtn').addEventListener('click', ()=>{ window.print(); });
+
+  document.getElementById('clearBtn').addEventListener('click', ()=>{
+    if(!confirm('Czy na pewno chcesz wyczyścić cały arkusz? Wszystkie wpisy zostaną utracone.')) return;
+    document.querySelectorAll('textarea').forEach(t=>{ t.value=''; autosize(t); });
+    document.querySelectorAll('input[type=text], input[type=date]').forEach(i=> i.value='');
+    document.querySelectorAll('input[type=checkbox], input[type=radio]').forEach(i=> i.checked=false);
+  });
+})();
+</script>
+</body>
+</html>

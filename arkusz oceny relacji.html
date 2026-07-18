@@ -1,0 +1,1103 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Kwestionariusz Oceny Relacji</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680;1,9..144,500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F4F0EA;
+    --paper-deep:#EAE2D5;
+    --card:#FDFBF7;
+    --ink:#2C2520;
+    --ink-soft:#6E6257;
+    --blue:#3B5A75;
+    --blue-deep:#253B4E;
+    --blue-pale:#E3ECF5;
+    --gold:#B08746;
+    --line:#DDD3C4;
+    --shadow:0 1px 2px rgba(44,37,32,.04), 0 8px 24px rgba(44,37,32,.06);
+    --rail-w:94px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important; transition:none !important;}
+  }
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 12% -10%, rgba(59,90,117,.05), transparent 60%),
+      var(--paper);
+    color:var(--ink);
+    font-family:'Spectral',serif;
+    font-size:16.5px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--blue-pale); }
+  a{ color:var(--blue-deep); text-decoration:none; border-bottom:1px dashed var(--blue); }
+  a:hover{ border-bottom-style:solid; }
+
+  /* ---------- layout shell ---------- */
+  .shell{
+    display:grid;
+    grid-template-columns:var(--rail-w) 1fr;
+    min-height:100vh;
+  }
+  @media (max-width:960px){
+    .shell{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- vertical stage rail ---------- */
+  .rail{
+    position:sticky; top:0; align-self:start;
+    height:100vh;
+    border-right:1px solid var(--line);
+    background:var(--paper-deep);
+    display:flex; flex-direction:column;
+    padding:22px 0;
+  }
+  .rail-mark{
+    width:34px; height:34px; margin:0 auto 28px;
+    border-radius:50%;
+    background:var(--blue-deep);
+    position:relative;
+    flex:none;
+  }
+  .rail-mark::before{
+    content:""; position:absolute; inset:7px;
+    background:var(--paper-deep);
+    border-radius:50% 50% 50% 0;
+    transform:rotate(-45deg);
+  }
+  .rail-tabs{ display:flex; flex-direction:column; gap:2px; flex:1; overflow-y:auto; }
+  .rail-tab{
+    appearance:none; border:none; background:transparent; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    padding:20px 0;
+    color:var(--ink-soft);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:11px; letter-spacing:.12em;
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    border-left:3px solid transparent;
+    transition:color .2s, border-color .2s, background .2s;
+    white-space:nowrap;
+  }
+  .rail-tab:hover{ color:var(--ink); background:rgba(59,90,117,.06); }
+  .rail-tab.active{
+    color:var(--blue-deep);
+    border-left-color:var(--blue);
+    background:var(--card);
+    font-weight:600;
+  }
+  .rail-tab .num{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:560;
+    font-size:15px; margin-right:10px; letter-spacing:0;
+  }
+  .rail-foot{
+    writing-mode:vertical-rl; transform:rotate(180deg);
+    margin:10px auto 0; color:var(--ink-soft); opacity:.55;
+    font-family:'Space Grotesk',sans-serif; font-size:10px; letter-spacing:.16em;
+  }
+
+  /* mobile rail -> horizontal progress strip */
+  .mrail{ display:none; }
+  @media (max-width:960px){
+    .rail{ display:none; }
+    .mrail{
+      display:flex; position:sticky; top:0; z-index:20;
+      background:var(--paper-deep); border-bottom:1px solid var(--line);
+      overflow-x:auto; padding:10px 14px; gap:8px;
+    }
+    .mrail button{
+      appearance:none; border:1px solid var(--line); background:var(--card);
+      color:var(--ink-soft); font-family:'Space Grotesk',sans-serif;
+      font-size:11.5px; letter-spacing:.04em; white-space:nowrap;
+      padding:7px 12px; border-radius:999px; cursor:pointer;
+    }
+    .mrail button.active{ background:var(--blue-deep); color:#fff; border-color:var(--blue-deep); }
+  }
+
+  /* ---------- main column ---------- */
+  main{ min-width:0; }
+  .wrap{ max-width:820px; margin:0 auto; padding:56px 28px 90px; }
+  @media (max-width:560px){ .wrap{ padding:34px 16px 70px; } }
+
+  .eyebrow{
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--blue-deep); margin-bottom:14px;
+  }
+  h1.title{
+    font-family:'Fraunces',serif; font-weight:680; font-size:clamp(32px,5.5vw,44px);
+    line-height:1.1; margin:0 0 8px; letter-spacing:-.01em;
+  }
+  .subtitle{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:400;
+    color:var(--ink-soft); font-size:18px; margin:0 0 28px; line-height:1.4;
+  }
+
+  .intro-box{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    padding:24px; margin-bottom:34px; box-shadow:var(--shadow);
+    font-size:15.5px; color:var(--ink-soft);
+  }
+  .intro-box p{ margin:0 0 12px; }
+  .intro-box p:last-child{ margin-bottom:0; }
+
+  .meta-card{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+    display:grid; grid-template-columns:1fr 1fr; gap:16px 20px;
+  }
+  @media (max-width:560px){ .meta-card{ grid-template-columns:1fr; } }
+  .field label{
+    display:block; font-family:'Space Grotesk',sans-serif; font-size:11px;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;
+  }
+  .field input[type="text"], .field input[type="date"], .field input[type="time"]{
+    width:100%; border:none; border-bottom:1.5px solid var(--line);
+    background:transparent; font-family:'Spectral',serif; font-size:16px;
+    color:var(--ink); padding:4px 2px 7px; outline:none;
+  }
+  .field input:focus{ border-bottom-color:var(--blue); }
+  .field.wide{ grid-column:span 2; }
+  @media (max-width:560px){ .field.wide{ grid-column:span 1; } }
+
+  .privacy{
+    font-family:'Space Grotesk',sans-serif; font-size:12.5px; color:var(--ink-soft);
+    border:1px dashed var(--line);
+    border-radius:10px; padding:12px 16px; margin-bottom:8px; line-height:1.55;
+  }
+  .privacy strong{ color:var(--ink); }
+
+  .toolbar{
+    display:flex; gap:12px; flex-wrap:wrap; margin:40px 0;
+  }
+  .btn{
+    appearance:none; cursor:pointer; border-radius:999px;
+    font-family:'Space Grotesk',sans-serif; font-size:13px; letter-spacing:.04em;
+    padding:11px 22px; border:1.5px solid var(--blue-deep); transition: all 0.2s;
+  }
+  .btn.primary{ background:var(--blue-deep); color:#fff; }
+  .btn.ghost{ background:transparent; color:var(--blue-deep); }
+  .btn:hover{ filter:brightness(1.1); transform: translateY(-1px); }
+
+  /* ---------- stage sections ---------- */
+  .stage{ scroll-margin-top:18px; margin-top:54px; }
+  .stage-head{
+    display:flex; align-items:baseline; gap:14px;
+    background:var(--blue-pale); border-radius:12px;
+    padding:14px 20px; margin-bottom:22px;
+  }
+  .stage-head .snum{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:680;
+    font-size:30px; color:var(--blue-deep); line-height:1;
+  }
+  .stage-head h2{
+    font-family:'Space Grotesk',sans-serif; font-size:13.5px; letter-spacing:.1em;
+    text-transform:uppercase; margin:0; color:var(--ink);
+  }
+  .subhead{
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--ink-soft);
+    margin:34px 0 14px; padding-bottom:8px; border-bottom:1px solid var(--line);
+  }
+
+  .item{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+  }
+  .item .inum{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:560;
+    color:var(--gold); font-size:18px; margin-right:6px;
+  }
+  .item p.lead{ margin:0 0 8px; font-weight:500; }
+  .item p.note{
+    font-family:'Spectral',serif; font-style:italic; color:var(--ink-soft);
+    font-size:14.5px; margin:6px 0 14px; line-height:1.5;
+  }
+  .name-fill{
+    border-bottom:1.5px dotted var(--blue); color:var(--blue-deep); font-style:normal;
+    padding:0 2px; font-weight:600;
+  }
+
+  /* Scores grid setup */
+  .score-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+    margin-top: 14px;
+  }
+  .score-input {
+    background: rgba(44,37,32,0.02);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+  .score-input label {
+    display: block;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 11px;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 6px;
+  }
+  .score-input input[type="number"] {
+    width: 100%;
+    background: transparent;
+    border: none;
+    border-bottom: 1.5px solid var(--ink-soft);
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 18px;
+    color: var(--blue-deep);
+    font-weight: 600;
+    padding: 2px 0;
+    outline: none;
+  }
+  .score-input input[type="number"]:focus {
+    border-bottom-color: var(--blue);
+  }
+
+  textarea{
+    width:100%; resize:none; overflow:hidden;
+    border:1px solid var(--line); border-radius:10px;
+    background:#FFFDF8; padding:12px 14px;
+    font-family:'Spectral',serif; font-size:15.5px; color:var(--ink);
+    line-height:1.55; outline:none; min-height:74px;
+  }
+  textarea:focus{ border-color:var(--blue); box-shadow:0 0 0 3px rgba(59,90,117,.12); }
+
+  /* Checkboxes / Multi choice styling */
+  .choice-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 14px;
+  }
+  .choice-item {
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 12px;
+    align-items: start;
+    cursor: pointer;
+    background: #FFFDF8;
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 12px 14px;
+    transition: background 0.2s, border-color 0.2s;
+  }
+  .choice-item:hover {
+    background: var(--card);
+    border-color: var(--ink-soft);
+  }
+  .choice-item input[type="checkbox"] {
+    width: 18px;
+    height: 18px;
+    margin-top: 2px;
+    cursor: pointer;
+    accent-color: var(--blue-deep);
+  }
+
+  /* Words cloud for tags selection */
+  .words-cloud {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin: 14px 0;
+  }
+  .word-tag {
+    position: relative;
+    user-select: none;
+  }
+  .word-tag input {
+    position: absolute;
+    opacity: 0;
+    inset: 0;
+    cursor: pointer;
+  }
+  .word-tag span {
+    display: inline-block;
+    padding: 6px 14px;
+    border-radius: 999px;
+    border: 1px solid var(--line);
+    background: #FFFDF8;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    color: var(--ink-soft);
+    transition: all 0.15s;
+  }
+  .word-tag input:checked + span {
+    background: var(--blue-deep);
+    border-color: var(--blue-deep);
+    color: #fff;
+  }
+
+  /* Expectation block table-like structure */
+  .exp-row {
+    background: #FFFDF8;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px;
+    margin-bottom: 12px;
+  }
+  .exp-title {
+    font-size: 16px;
+    font-weight: 500;
+    margin-bottom: 10px;
+    color: var(--ink);
+  }
+  .exp-inputs {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+  @media (max-width: 480px) {
+    .exp-inputs { grid-template-columns: 1fr; }
+  }
+
+  /* Values matrix mapping style */
+  .values-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 12px;
+  }
+  @media (max-width: 700px) { .values-grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 400px) { .values-grid { grid-template-columns: 1fr; } }
+  
+  .value-cell {
+    border: 1px solid var(--line);
+    background: #FFFDF8;
+    border-radius: 8px;
+    padding: 10px;
+    display: grid;
+    grid-template-columns: auto 1fr auto;
+    gap: 8px;
+    align-items: center;
+  }
+  .value-cell input[type="checkbox"] {
+    accent-color: var(--blue-deep);
+    width: 16px;
+    height: 16px;
+  }
+  .value-cell span {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13.5px;
+    color: var(--ink);
+  }
+  .value-cell input[type="text"] {
+    width: 32px;
+    border: none;
+    border-bottom: 1px solid var(--ink-soft);
+    background: transparent;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13px;
+    text-align: center;
+    padding: 2px 0;
+    outline: none;
+  }
+
+  /* Visualization container */
+  .visual-container {
+    background: #FFFDF8;
+    border: 1px solid var(--line);
+    border-radius: 12px;
+    padding: 16px;
+    margin: 20px 0;
+    text-align: center;
+  }
+  .visual-title {
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 12px;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    margin-bottom: 12px;
+  }
+  .chart-svg {
+    max-width: 100%;
+    height: auto;
+    background: #fdfdfd;
+    border-radius: 6px;
+    border: 1px solid #eee;
+  }
+
+  .signoff{
+    margin-top:50px; padding-top:28px; border-top:1px solid var(--line);
+    display:grid; grid-template-columns: 2fr 1fr; gap:22px; align-items:end;
+  }
+  @media (max-width: 560px) { .signoff { grid-template-columns: 1fr; } }
+
+  footer{
+    margin-top:60px; padding-top:18px; border-top:1px solid var(--line);
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; color:var(--ink-soft);
+    text-align:center; line-height:1.7;
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <!-- desktop vertical rail -->
+  <nav class="rail" aria-label="Etapy arkusza">
+    <div class="rail-mark" aria-hidden="true"></div>
+    <div class="rail-tabs" id="railTabs">
+      <button class="rail-tab" data-target="stage-1"><span class="num">1</span>Skale Miłości</button>
+      <button class="rail-tab" data-target="stage-2"><span class="num">2</span>Opis Relacji</button>
+      <button class="rail-tab" data-target="stage-3"><span class="num">3</span>Niezadowolenie</button>
+      <button class="rail-tab" data-target="stage-4"><span class="num">4</span>Refleksja Początku</button>
+      <button class="rail-tab" data-target="stage-5"><span class="num">5</span>Stan Obecny</button>
+      <button class="rail-tab" data-target="stage-6"><span class="num">6</span>Oczekiwania</button>
+      <button class="rail-tab" data-target="stage-7"><span class="num">7</span>Wartości</button>
+      <button class="rail-tab" data-target="stage-8"><span class="num">8</span>Ustalenia</button>
+    </div>
+    <div class="rail-foot">Ocenianie Relacji</div>
+  </nav>
+
+  <main>
+    <!-- mobile horizontal rail -->
+    <nav class="mrail" id="mrail" aria-label="Etapy arkusza (mobile)">
+      <button data-target="stage-1">1 · Skale</button>
+      <button data-target="stage-2">2 · Opis</button>
+      <button data-target="stage-3">3 · Satysfakcja</button>
+      <button data-target="stage-4">4 · Geneza</button>
+      <button data-target="stage-5">5 · Teraz</button>
+      <button data-target="stage-6">6 · Oczekiwania</button>
+      <button data-target="stage-7">7 · Wartości</button>
+      <button data-target="stage-8">8 · Spotkanie</button>
+    </nav>
+
+    <div class="wrap">
+      <div class="eyebrow">Narzędzie Rozwoju Osobistego</div>
+      <h1 class="title">Kwestionariusz Oceny Relacji</h1>
+      <p class="subtitle">Arkusz diagnostyczny i prelude do głębokiej komunikacji w partnerstwie</p>
+
+      <div class="intro-box">
+        <p>Niniejszy kwestionariusz jest bezpośrednio powiązany z treścią książki <strong>„Rozkwitając w miłości. Podręcznik radykalnego życia”</strong> (<em>Expanding in Love, A Handbook for Radical Living</em>). Stanowi on zarazem samodzielne narzędzie, które pozwala ocenić kondycję Twojego związku jako wstęp do szczerych rozmów z partnerem o tym, co oboje możecie zrobić, aby uzdrowić relację lub pozwolić jej odejść.</p>
+        <p>Idealnie byłoby, gdyby Twój partner wykonał to ćwiczenie równolegle, bez wcześniejszego porozumiewania się. Dopiero po ukończeniu przez oboje wypełniania arkuszy, należy wyznaczyć wspólny czas na omówienie wyników. Jeśli Twój partner nie wyraża chęci, bądź nie jest już z Tobą, a Ty robisz to retrospektywnie, polegaj na własnej intuicji i ocenie tego, jak mógłby odpowiedzieć.</p>
+      </div>
+
+      <div class="meta-card">
+        <div class="field"><label for="fData">Data Wypełnienia</label><input id="fData" type="date"></div>
+        <div class="field">
+          <label for="objectName">Imię Partnera / Partnerki:</label>
+          <input id="objectName" type="text" placeholder="Wpisz imię…">
+        </div>
+      </div>
+
+      <p class="privacy"><strong>Prywatność danych:</strong> Wszystkie informacje, które wpisujesz w tym kwestionariuszu, są przetwarzane wyłącznie lokalnie w Twojej przeglądarce. Formularz nie wysyła danych na żadne zewnętrzne serwery.</p>
+
+      <!-- ================= STAGE 1 ================= -->
+      <section class="stage" id="stage-1">
+        <div class="stage-head"><span class="snum">1</span><h2>Eros i Storge: Analiza Poziomów Miłości</h2></div>
+        
+        <p class="hint" style="margin-bottom: 18px;">Oceń poziom miłości romantycznej (Eros) oraz miłości przyjacielskiej/storgicznej (Storge) na osi czasu relacji. Wprowadź liczby od 1 do 100.</p>
+
+        <div class="item">
+          <p class="lead"><span class="inum">1.1.</span>Jak ja się czuję (Romantycznie) wobec mojego partnera</p>
+          <p class="note">Skala 1 - 100 (gdzie 1 = wstręt/niechęć, a 100 = całkowite zauroczenie / bezpamiętna miłość)</p>
+          
+          <div class="score-grid">
+            <div class="score-input">
+              <label>Na początku / W szczycie:</label>
+              <input type="number" min="1" max="100" placeholder="1-100">
+            </div>
+            <div class="score-input">
+              <label>W najniższym punkcie:</label>
+              <input type="number" min="1" max="100" placeholder="1-100">
+            </div>
+            <div class="score-input">
+              <label>W obecnym momencie:</label>
+              <input type="number" min="1" max="100" placeholder="1-100">
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">1.2.</span>Jak myślę, że mój partner czuje się (Romantycznie) wobec mnie</p>
+          <p class="note">Skala 1 - 100 (gdzie 1 = wstręt/niechęć, a 100 = całkowite zauroczenie / bezpamiętna miłość)</p>
+          
+          <div class="score-grid">
+            <div class="score-input">
+              <label>Na początku / W szczycie:</label>
+              <input type="number" min="1" max="100" placeholder="1-100">
+            </div>
+            <div class="score-input">
+              <label>W najniższym punkcie:</label>
+              <input type="number" min="1" max="100" placeholder="1-100">
+            </div>
+            <div class="score-input">
+              <label>W obecnym momencie:</label>
+              <input type="number" min="1" max="100" placeholder="1-100">
+            </div>
+          </div>
+        </div>
+
+        <div class="affirmation" style="font-style: normal; font-size: 15px; color: var(--ink-soft); border-left: 4px solid var(--gold); background: #fbf9f5;">
+          <strong>Przypomnienie o naturze miłości storgicznej („Storge”):</strong> Jest to jeden z czterech rodzajów miłości zdefiniowanych przez Starożytnych Greków (Agape, Eros, Philia, Storge). Miłość storgiczna to głęboka więź i przyjaźń wyrastająca z poczucia bliskości, zażyłości i wzajemnego przyzwyczajenia. Miłość Eros może rozwinąć się z tej przyjaźni, ale zachodzi też proces odwrotny – Storge może rosnąć, gdy namiętność (Eros) słabnie. Czasami nazywa się ją miłością braterską/siostrzaną. Taki związek charakteryzuje się intymnością, zrozumieniem i przyjaźnią, ale może mu brakować pasji. Możesz wtedy mieć poczucie, że relacja utknęła w martwym punkcie i donikąd nie zmierza.
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">1.3.</span>Jak ja się czuję (Storgicznie / Przyjacielsko) wobec mojego partnera</p>
+          <p class="note">Skala 1 - 100 (gdzie 1 = wstręt/niechęć, a 100 = pełne pasji zaangażowanie i głęboka przyjaźń)</p>
+          
+          <div class="score-grid">
+            <div class="score-input">
+              <label>Na początku / W szczycie:</label>
+              <input type="number" min="1" max="100" placeholder="1-100">
+            </div>
+            <div class="score-input">
+              <label>W najmniej przyjaznym / nudnym punkcie:</label>
+              <input type="number" min="1" max="100" placeholder="1-100">
+            </div>
+            <div class="score-input">
+              <label>W obecnym momencie:</label>
+              <input type="number" min="1" max="100" placeholder="1-100">
+            </div>
+          </div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">1.4.</span>Jak myślę, że mój partner czuje się (Storgicznie / Przyjacielsko) wobec mnie</p>
+          <p class="note">Skala 1 - 100 (gdzie 1 = wstręt/niechęć, a 100 = pełne pasji zaangażowanie i głęboka przyjaźń)</p>
+          
+          <div class="score-grid">
+            <div class="score-input">
+              <label>Na początku / W szczycie:</label>
+              <input type="number" min="1" max="100" placeholder="1-100">
+            </div>
+            <div class="score-input">
+              <label>W najmniej przyjaznym / nudnym punkcie:</label>
+              <input type="number" min="1" max="100" placeholder="1-100">
+            </div>
+            <div class="score-input">
+              <label>W obecnym momencie:</label>
+              <input type="number" min="1" max="100" placeholder="1-100">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 2 ================= -->
+      <section class="stage" id="stage-2">
+        <div class="stage-head"><span class="snum">2</span><h2>Aktualny Opis Naszego Związku</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">2.</span>Opisz krótko relację na podstawie dotychczasowych spostrzeżeń:</p>
+          <p class="note">Jeśli nie czujesz się najlepiej w tym związku, określ dokładnie, w jaki sposób Ci on nie odpowiada. Staraj się być tak analityczny, jak to możliwe i tak szczery, na ile starczy Ci odwagi. (Zaznacz również słowa z poniższej chmury, które najlepiej opisują obecny stan relacji).</p>
+          
+          <div class="words-cloud">
+            <label class="word-tag"><input type="checkbox"><span>Stabilny</span></label>
+            <label class="word-tag"><input type="checkbox"><span>Czysto funkcjonalny</span></label>
+            <label class="word-tag"><input type="checkbox"><span>Pełen pasji</span></label>
+            <label class="word-tag"><input type="checkbox"><span>Trwały</span></label>
+            <label class="word-tag"><input type="checkbox"><span>Nudny</span></label>
+            <label class="word-tag"><input type="checkbox"><span>Bezpieczny</span></label>
+            <label class="word-tag"><input type="checkbox"><span>Cudowny</span></label>
+            <label class="word-tag"><input type="checkbox"><span>Jak współlokatorzy</span></label>
+            <label class="word-tag"><input type="checkbox"><span>Aktywny seksualnie</span></label>
+            <label class="word-tag"><input type="checkbox"><span>Nudny seksualnie</span></label>
+            <label class="word-tag"><input type="checkbox"><span>Ekscytujący seksualnie</span></label>
+            <label class="word-tag"><input type="checkbox"><span>Brak seksu</span></label>
+            <label class="word-tag"><input type="checkbox"><span>Przyjaciele</span></label>
+            <label class="word-tag"><input type="checkbox"><span>Partnerzy</span></label>
+            <label class="word-tag"><input type="checkbox"><span>Stanowiący wyzwanie</span></label>
+            <label class="word-tag"><input type="checkbox"><span>Duchowy</span></label>
+            <label class="word-tag"><input type="checkbox"><span>W pułapce</span></label>
+            <label class="word-tag"><input type="checkbox"><span>Pełen miłości</span></label>
+            <label class="word-tag"><input type="checkbox"><span>Pełen szacunku</span></label>
+            <label class="word-tag"><input type="checkbox"><span>Troskliwy</span></label>
+          </div>
+
+          <textarea rows="5" placeholder="Napisz swoją osobistą diagnozę związku tutaj…"></textarea>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 3 ================= -->
+      <section class="stage" id="stage-3">
+        <div class="stage-head"><span class="snum">3</span><h2>Poziom Niezadowolenia (Dissatisfaction Level)</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">3.</span>Poziom frustracji i braku satysfakcji wyrażony w procentach (1 - 100%):</p>
+          <p class="note">Gdzie 1% = Całkowicie usatysfakcjonowany / Szczęśliwy; 100% = Absolutnie niezadowolony / Sfrustrowany</p>
+          
+          <div class="score-grid">
+            <div class="score-input">
+              <label>3.1. Jak bardzo JA jestem niezadowolony(-a):</label>
+              <input type="number" min="1" max="100" placeholder="%">
+            </div>
+            <div class="score-input">
+              <label>3.2. Jak bardzo myślę, że PARTNER jest niezadowolony:</label>
+              <input type="number" min="1" max="100" placeholder="%">
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 4 ================= -->
+      <section class="stage" id="stage-4">
+        <div class="stage-head"><span class="snum">4</span><h2>Przegląd Przeszłości: Dlaczego zaczęliśmy ten związek?</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">4.1.</span>Moje myśli w momencie podejmowania decyzji o zaangażowaniu się w tę relację:</p>
+          <p class="note">Jakie były moje oczekiwania? Czy faktycznie świadomie to wybrałem(-am)? Zaznacz wszystkie stwierdzenia, które miały wówczas zastosowanie:</p>
+          
+          <div class="choice-list">
+            <label class="choice-item">
+              <input type="checkbox">
+              <span>Nigdy nie wyobrażałem(-am) sobie życia bez niego/niej.</span>
+            </label>
+            <label class="choice-item">
+              <input type="checkbox">
+              <span>Byłem(-am) w nim/niej szalenie zakochany(-a) (wysoki Eros).</span>
+            </label>
+            <label class="choice-item">
+              <input type="checkbox">
+              <span>Myślę, że byłem(-am) zakochany(-a), chociaż w mojej głowie wciąż istniały pewne wątpliwości.</span>
+            </label>
+            <label class="choice-item">
+              <input type="checkbox">
+              <span>Miałem(-am) wątpliwości, ale myślałem(-am), że jeśli pokocham go/ją wystarczająco mocno, zmieni się i stanie się osobą, której pragnę.</span>
+            </label>
+            <label class="choice-item">
+              <input type="checkbox">
+              <span>Bardzo go/ją lubiłem(-am), czułem(-am), że będzie dobrym współmałżonkiem i będziemy szczęśliwi (podejście storgiczne).</span>
+            </label>
+            <label class="choice-item">
+              <input type="checkbox">
+              <span>Nie byłem(-am) pewien(-na), czy naprawdę go/ją kocham, ale cieszyła mnie myśl o byciu razem na zawsze.</span>
+            </label>
+            <label class="choice-item">
+              <input type="checkbox">
+              <span>Widziałem(-am) w nim/niej bardziej przyjaciela lub kogoś, kto się mną zaopiekuje i zadba o moje potrzeby.</span>
+            </label>
+            <label class="choice-item">
+              <input type="checkbox">
+              <span>Nie byłem(-am) tak naprawdę zakochany(-a), ale lubiłem(-am) tę osobę wystarczająco dobrze i zgodziłem(-am) się na ślub/związek, by uniknąć sprawiania przykrości partnerowi i naszym rodzinom.</span>
+            </label>
+            <label class="choice-item">
+              <input type="checkbox">
+              <span>W ogóle go/jej nie kochałem(-am), ale czułem(-am) presję, by wejść w ten związek/małżeństwo.</span>
+            </label>
+            <label class="choice-item">
+              <input type="checkbox">
+              <span>Nienawidziłem(-am) go/jej, ale nie miałem(-am) innego wyboru.</span>
+            </label>
+          </div>
+          
+          <div style="margin-top:14px;">
+            <label style="font-size:14px; font-weight:500; display:block; margin-bottom:4px;">Inne myśli z tamtego okresu:</label>
+            <textarea rows="2" placeholder="Wpisz inne wspomnienia lub refleksje z początku relacji…"></textarea>
+          </div>
+        </div>
+
+        <!-- Precyzyjna wizualizacja typowych wykresów rozwoju relacji od Colina Tippinga za pomocą wektorów SVG -->
+        <div class="visual-container">
+          <div class="visual-title">Typowe i Nietypowe Modele Rozwoju Miłości w Czasie</div>
+          <div style="display:grid; grid-template-columns: 1fr 1fr; gap: 14px;">
+            <div>
+              <p class="note" style="margin:0 0 6px 0; font-size:12px; font-weight:600;">Wykres A: Model Typowy (Spadek Eros, Wzrost Storge)</p>
+              <svg class="chart-svg" viewBox="0 0 300 150">
+                <line x1="20" y1="130" x2="290" y2="130" stroke="#6E6257" stroke-width="1.5"/>
+                <line x1="20" y1="10" x2="20" y2="130" stroke="#6E6257" stroke-width="1.5"/>
+                <path d="M 20 125 C 40 20, 80 10, 110 20 C 160 35, 220 90, 280 105" fill="none" stroke="#3B5A75" stroke-width="2.5"/>
+                <path d="M 20 110 L 100 110 C 140 100, 200 60, 280 30" fill="none" stroke="#B08746" stroke-width="2" stroke-dasharray="4,3"/>
+                <text x="50" y="35" font-family="Space Grotesk" font-size="10" fill="#3B5A75" font-weight="bold">Eros (Namiętność)</text>
+                <text x="180" y="55" font-family="Space Grotesk" font-size="10" fill="#B08746" font-weight="bold">Storge (Przyjaźń)</text>
+                <text x="150" y="145" font-family="Space Grotesk" font-size="9" fill="#6E6257">CZAS →</text>
+              </svg>
+            </div>
+            <div>
+              <p class="note" style="margin:0 0 6px 0; font-size:12px; font-weight:600;">Wykres B: Kryzys Przyjaźni i Rozpad / Rozwód</p>
+              <svg class="chart-svg" viewBox="0 0 300 150">
+                <line x1="20" y1="130" x2="290" y2="130" stroke="#6E6257" stroke-width="1.5"/>
+                <line x1="20" y1="10" x2="20" y2="130" stroke="#6E6257" stroke-width="1.5"/>
+                <path d="M 20 60 C 60 55, 120 20, 180 20 C 200 25, 215 50, 230 115 C 240 125, 255 120, 280 40" fill="none" stroke="#B08746" stroke-width="2.5"/>
+                <text x="30" y="50" font-family="Space Grotesk" font-size="10" fill="#B08746">Storge</text>
+                <text x="175" y="40" font-family="Space Grotesk" font-size="10" fill="#2C2520" font-weight="bold">Załamanie</text>
+                <text x="225" y="130" font-family="Space Grotesk" font-size="10" fill="#2C2520" font-weight="bold">Rozwód</text>
+                <text x="150" y="145" font-family="Space Grotesk" font-size="9" fill="#6E6257">CZAS →</text>
+              </svg>
+            </div>
+          </div>
+          <p class="note" style="font-size:12px; text-align:left; margin-top:8px;">W większości przypadków (Wykres A) miłość romantyczna (Eros) zaczyna się wysoko, lecz z czasem słabnie, ustępując miejsca powoli rosnącej miłości przyjacielskiej (Storge). W innych wypadkach (Wykres B), przyjaźń może ulec załamaniu (Breakdown) doprowadzając do kryzysu lub rozwodu, po którym, jeśli walka nie była zbyt wyniszczająca, poczucie sympatii może powrócić.</p>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 5 ================= -->
+      <section class="stage" id="stage-5">
+        <div class="stage-head"><span class="snum">5</span><h2>Moje Myśli i Uczucia Dotyczące Relacji Obecnie</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">4.2.</span>Zaznacz stwierdzenia, które odzwierciedlają Twój stan aktualny:</p>
+          
+          <div class="choice-list">
+            <label class="choice-item">
+              <input type="checkbox">
+              <span>Nadal jestem całkowicie zauroczony(-a) i bezpamiętnie zakochany(-a) w swoim partnerze.</span>
+            </label>
+            <label class="choice-item">
+              <input type="checkbox">
+              <span>Nadal bardzo go/ją kocham i chcę z nim/nią być.</span>
+            </label>
+            <label class="choice-item">
+              <input type="checkbox">
+              <span>Mamy ze sobą tak wiele dobra, na którym możemy budować lepszy, silniejszy związek.</span>
+            </label>
+            <label class="choice-item">
+              <input type="checkbox">
+              <span>Mimo że nie jestem już ZAKOCHANY(-A) w partnerze (brak namiętności), to wciąż go/ją głęboko kocham.</span>
+            </label>
+            <label class="choice-item">
+              <input type="checkbox">
+              <span>Nie jestem pewien(-na), czy dam radę żyć z nim/nią znacznie dłużej.</span>
+            </label>
+            <label class="choice-item">
+              <input type="checkbox">
+              <span>Moje dawne wątpliwości przybrały na sile; czuję potężną niepewność, czy nam się uda.</span>
+            </label>
+            <label class="choice-item">
+              <input type="checkbox">
+              <span>Wciąż czuję ogromną sympatię do partnera, ale nie zawsze czuję się szczęśliwy(-a) w jego/jej towarzystwie.</span>
+            </label>
+            <label class="choice-item">
+              <input type="checkbox">
+              <span>Chciałbym/Chciałabym odejść, ale czuję, że to nie wchodzi w grę. Utknąłem(-am) w miejscu.</span>
+            </label>
+            <label class="choice-item">
+              <input type="checkbox">
+              <span>Jestem potwornie znudzony(-a) tą relacją i nie widzę szans na zmianę na lepsze.</span>
+            </label>
+            <label class="choice-item">
+              <input type="checkbox">
+              <span>W naszym związku jest zbyt wiele negatywnych emocji, by dało się to znieść.</span>
+            </label>
+            <label class="choice-item">
+              <input type="checkbox">
+              <span>Ta relacja dobiegła końca – chcę z niej wyjść.</span>
+            </label>
+          </div>
+
+          <div style="margin-top:14px;">
+            <label style="font-size:14px; font-weight:500; display:block; margin-bottom:4px;">Inne obecne przemyślenia:</label>
+            <textarea rows="3" placeholder="Dodaj swoje własne, aktualne odczucia i myśli…"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 6 ================= -->
+      <section class="stage" id="stage-6">
+        <div class="stage-head"><span class="snum">6</span><h2>Oczekiwania, Osądy, Żądania i Potrzeby</h2></div>
+        
+        <p class="hint" style="margin-bottom:18px;">Większość problemów w związkach pojawia się wtedy, gdy oczekiwania lub żądania nie zostają spełnione. Najczęściej nie są one wypowiadane na głos – po prostu zakładamy, że partner powinien je znać. Przyjrzyj się oczekiwaniom, które wniosłeś(-aś) do związku na początku (Wtedy) i sprawdź, czy działają w Tobie również dzisiaj (Teraz).</p>
+
+        <div class="item">
+          <p class="lead"><span class="inum">5.</span>Przyznaję, że wniosłem(-am) do relacji następujące oczekiwania, osądy, potrzeby i roszczenia, które partner miał zaspokoić:</p>
+          
+          <!-- Loop rows of expectations -->
+          <div class="exp-row">
+            <div class="exp-title">Oczekiwałem(-am), że będzie mnie kochać bez względu na wszystko.</div>
+            <div class="exp-inputs">
+              <div class="field"><label>Wtedy (Na początku)</label><input type="text" placeholder="Zapisz refleksję lub wpisz Tak/Nie"></div>
+              <div class="field"><label>Teraz (Obecnie)</label><input type="text" placeholder="Zapisz refleksję lub wpisz Tak/Nie"></div>
+            </div>
+          </div>
+
+          <div class="exp-row">
+            <div class="exp-title">Zawsze zakładałem(-am), że będziemy mieć razem dzieci.</div>
+            <div class="exp-inputs">
+              <div class="field"><label>Wtedy (Na początku)</label><input type="text" placeholder="Tak/Nie/Refleksja"></div>
+              <div class="field"><label>Teraz (Obecnie)</label><input type="text" placeholder="Tak/Nie/Refleksja"></div>
+            </div>
+          </div>
+
+          <div class="exp-row">
+            <div class="exp-title">Zakładałem(-am), że będę absolutnym priorytetem w jego/jej życiu.</div>
+            <div class="exp-inputs">
+              <div class="field"><label>Wtedy</label><input type="text" placeholder="Tak/Nie/Refleksja"></div>
+              <div class="field"><label>Teraz</label><input type="text" placeholder="Tak/Nie/Refleksja"></div>
+            </div>
+          </div>
+
+          <div class="exp-row">
+            <div class="exp-title">Oczekiwałem(-am), że będzie w pełni akceptować moje nawyki i styl bycia.</div>
+            <div class="exp-inputs">
+              <div class="field"><label>Wtedy</label><input type="text" placeholder="Tak/Nie/Refleksja"></div>
+              <div class="field"><label>Teraz</label><input type="text" placeholder="Tak/Nie/Refleksja"></div>
+            </div>
+          </div>
+
+          <div class="exp-row">
+            <div class="exp-title">Osądzałem(-am) go/ją, twierdząc, że „nie jest w porządku” taki/taka, jaki/jaka jest.</div>
+            <div class="exp-inputs">
+              <div class="field"><label>Wtedy</label><input type="text" placeholder="Tak/Nie/Refleksja"></div>
+              <div class="field"><label>Teraz</label><input type="text" placeholder="Tak/Nie/Refleksja"></div>
+            </div>
+          </div>
+
+          <div class="exp-row">
+            <div class="exp-title">Potrzebowałem(-am), żeby on/ona się zmienił(-a).</div>
+            <div class="exp-inputs">
+              <div class="field"><label>Wtedy</label><input type="text" placeholder="Tak/Nie/Refleksja"></div>
+              <div class="field"><label>Teraz</label><input type="text" placeholder="Tak/Nie/Refleksja"></div>
+            </div>
+          </div>
+
+          <div class="exp-row">
+            <div class="exp-title">Oczekiwałem(-am), że zachowa absolutną wierność wobec mnie.</div>
+            <div class="exp-inputs">
+              <div class="field"><label>Wtedy</label><input type="text" placeholder="Tak/Nie/Refleksja"></div>
+              <div class="field"><label>Teraz</label><input type="text" placeholder="Tak/Nie/Refleksja"></div>
+            </div>
+          </div>
+
+          <div class="exp-row">
+            <div class="exp-title">Żądałem(-am), aby on/ona zaspokajał(-a) wszelkie moje potrzeby emocjonalne/życiowe.</div>
+            <div class="exp-inputs">
+              <div class="field"><label>Wtedy</label><input type="text" placeholder="Tak/Nie/Refleksja"></div>
+              <div class="field"><label>Teraz</label><input type="text" placeholder="Tak/Nie/Refleksja"></div>
+            </div>
+          </div>
+
+          <div class="exp-row">
+            <div class="exp-title">Żądałem(-am), aby bez mrugnięcia okiem znosił(-a) fakt, że moja matka stale do mnie dzwoni.</div>
+            <div class="exp-inputs">
+              <div class="field"><label>Wtedy</label><input type="text" placeholder="Tak/Nie/Refleksja"></div>
+              <div class="field"><label>Teraz</label><input type="text" placeholder="Tak/Nie/Refleksja"></div>
+            </div>
+          </div>
+
+          <div class="exp-row">
+            <div class="exp-title">Zakładałem(-am), że on/ona będzie lubić dokładnie te same rzeczy co ja.</div>
+            <div class="exp-inputs">
+              <div class="field"><label>Wtedy</label><input type="text" placeholder="Tak/Nie/Refleksja"></div>
+              <div class="field"><label>Teraz</label><input type="text" placeholder="Tak/Nie/Refleksja"></div>
+            </div>
+          </div>
+
+          <div style="margin-top:14px;">
+            <label style="font-size:14px; font-weight:500; display:block; margin-bottom:4px;">Inne specyficzne oczekiwania lub wymagania:</label>
+            <textarea rows="3" placeholder="Dopisz inne własne żądania, klauzule ukryte lub oczekiwania…"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 7 ================= -->
+      <section class="stage" id="stage-7">
+        <div class="stage-head"><span class="snum">7</span><h2>System Wartości w Relacji</h2></div>
+        
+        <p class="hint" style="margin-bottom:18px;">Jeśli Ty i Twój partner kierujecie się w życiu diametralnie różnymi wartościami, może to generować poważne konflikty. Wartości nie muszą być identyczne, ale powinniście wzajemnie o nich wiedzieć i szanować system wartości drugiej strony. Zbyt duży rozziew może uniemożliwić harmonijne funkcjonowanie związku.</p>
+
+        <div class="item">
+          <p class="lead"><span class="inum">6.1.</span>Które z poniższych wartości są dla CIEBIE najważniejsze w relacji?</p>
+          <p class="note">Zaznacz kluczowe wartości i wpisz cyfrę w pole obok, aby wskazać ich hierarchię ważności (np. 1 = najważniejsza, 2 = druga w kolejności etc.).</p>
+          
+          <div class="values-grid">
+            <div class="value-cell"><input type="checkbox"><span>lojalność</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>szczerość</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>wierność</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>zaufanie</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>poczucie humoru</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>pokora</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>tolerancja</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>duchowość</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>wrażliwość</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>troskliwość</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>niezależność</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>siła wewnętrzna</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>integralność</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>determinacja</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>namiętność</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>wielkoduszność</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>życzliwość</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>samokontrola</span><input type="text"></div>
+            <div class="value-cell" style="grid-column: span 2;"><input type="checkbox"><span>Inne:</span><input type="text" style="width:70px; text-align:left;"></div>
+          </div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">6.2.</span>Które z powyższych wartości są najważniejsze DLA TWOJEGO PARTNERA (w Twojej ocenie)?</p>
+          <p class="note">Zaznacz i ponumeruj zgodnie z tym, jak według Ciebie odpowiedziałby partner.</p>
+          
+          <div class="values-grid">
+            <div class="value-cell"><input type="checkbox"><span>lojalność</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>szczerość</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>wierność</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>zaufanie</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>poczucie humoru</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>pokora</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>tolerancja</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>duchowość</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>wrażliwość</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>troskliwość</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>niezależność</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>siła wewnętrzna</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>integralność</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>determinacja</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>namiętność</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>wielkoduszność</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>życzliwość</span><input type="text"></div>
+            <div class="value-cell"><input type="checkbox"><span>samokontrola</span><input type="text"></div>
+            <div class="value-cell" style="grid-column: span 2;"><input type="checkbox"><span>Inne:</span><input type="text" style="width:70px; text-align:left;"></div>
+          </div>
+        </div>
+
+        <div class="item">
+          <div style="display:grid; grid-template-columns: 1fr; gap:16px;">
+            <div class="field">
+              <label>6.3. W jakim stopniu Ty i Twój partner jesteście zbieżni (w zrównoważeniu) w swoich wartościach? (Wpisz szacunkowy % zgodności)</label>
+              <input type="text" placeholder="np. 70%">
+            </div>
+            <div class="field">
+              <label>6.4. W jakim stopniu czujesz, że partner wspiera i szanuje Twój system wartości? (%)</label>
+              <input type="text" placeholder="%">
+            </div>
+            <div class="field">
+              <label>6.5. W jakim stopniu Ty wspierasz i szanujesz system wartości partnera? (%)</label>
+              <input type="text" placeholder="%">
+            </div>
+          </div>
+
+          <div style="margin-top:20px;">
+            <label style="font-family:'Space Grotesk',sans-serif; font-size:11px; text-transform:uppercase; color:var(--ink-soft);">6.6. Czy w przeszłości Twoje zachowanie było niezgodne z Twoimi własnymi wartościami? Jeśli tak, wyjaśnij jak:</label>
+            <textarea rows="3" placeholder="Opisz sytuacje braku spójności ze swoimi wartościami…"></textarea>
+          </div>
+
+          <div style="margin-top:20px;">
+            <label style="font-family:'Space Grotesk',sans-serif; font-size:11px; text-transform:uppercase; color:var(--ink-soft);">6.7. Czy w przeszłości zachowanie partnera było niezgodne z jego wartościami? Jeśli tak, wyjaśnij jak:</label>
+            <textarea rows="3" placeholder="Opisz zaobserwowany brak spójności u partnera…"></textarea>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 8 ================= -->
+      <section class="stage" id="stage-8">
+        <div class="stage-head"><span class="snum">8</span><h2>Dalsze Kroki i Agenda Rozmowy</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">7.</span>Inne specyficzne tematy i kwestie, które pilnie muszę omówić z partnerem:</p>
+          <textarea rows="4" placeholder="Wypisz punkty do agendy wspólnej rozmowy…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">8.</span>Konkretny termin i miejsce ustalone na naszą rozmowę:</p>
+          
+          <div class="meta-card" style="margin-top:14px; box-shadow:none; padding:0; background:transparent; border:none;">
+            <div class="field"><label for="fDateMeet">Data spotkania</label><input id="fDateMeet" type="date"></div>
+            <div class="field"><label for="fTimeMeet">Godzina spotkania</label><input id="fTimeMeet" type="time"></div>
+            <div class="field wide"><label for="fPlaceMeet">Miejsce rozmowy</label><input id="fPlaceMeet" type="text" placeholder="np. Dom, neutralne zaciszne miejsce…"></div>
+          </div>
+        </div>
+
+        <div class="affirmation" style="font-style:normal; font-size:14.5px; line-height:1.55;">
+          <strong>Wskazówka autora:</strong> Jeśli wykonujesz to ćwiczenie z myślą o ratowaniu związku lub pojednaniu po rozstaniu czy tymczasowej separacji, gorąco polecam również arkusz <em>„Radykalne Pojednanie – Instrument uzdrawiania bliskich relacji”</em> (Radical Reconciliation Worksheet). Te dwa arkusze doskonale się uzupełniają.
+        </div>
+
+        <div class="signoff">
+          <div class="field">
+            <label>Podpis osoby wypełniającej</label>
+            <input type="text" placeholder="Podpisz elektronicznie lub odręcznie po wydruku">
+          </div>
+          <div class="field">
+            <label>Data</label>
+            <input type="text" id="autoDate" readonly style="color:var(--ink-soft);">
+          </div>
+        </div>
+      </section>
+
+      <!-- Dolny pasek narzędziowy -->
+      <div class="toolbar">
+        <button class="btn primary" id="printBtn">Drukuj lub Zapisz do PDF</button>
+        <button class="btn ghost" id="clearBtn">Wyczyść formularz</button>
+      </div>
+
+      <footer>
+        Na podstawie kwestionariusza „Relationship Assessment Questionnaire” z książki „Expanding in Love” Colina Tippinga.<br>
+        Implementacja formularza w stylu premium z zachowaniem pełnej prywatności lokalnej.
+      </footer>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  // Live update name filling context if needed
+  const nameInput = document.getElementById('objectName');
+  function refreshNames(){
+    const val = nameInput.value.trim() || 'Partner / Partnerka';
+    document.querySelectorAll('.name-fill').forEach(s=> s.textContent = val);
+  }
+  if(nameInput) {
+    nameInput.addEventListener('input', refreshNames);
+  }
+
+  // Set today's date automatically in the signature block
+  const autoDateEl = document.getElementById('autoDate');
+  if(autoDateEl) {
+    const today = new Date();
+    autoDateEl.value = today.toLocaleDateString('pl-PL');
+  }
+
+  // Autosize textareas automatically based on dynamic typing
+  function autosize(t){
+    t.style.height = 'auto';
+    t.style.height = (t.scrollHeight+2) + 'px';
+  }
+  function autosizeAll(){
+    document.querySelectorAll('textarea').forEach(t=>{
+      autosize(t);
+      t.addEventListener('input', ()=>autosize(t));
+    });
+  }
+  window.addEventListener('load', autosizeAll);
+
+  // Scroll spy system and synchronization with tabs
+  const sections = Array.from(document.querySelectorAll('.stage'));
+  const railTabs = Array.from(document.querySelectorAll('.rail-tab'));
+  const mTabs = Array.from(document.querySelectorAll('.mrail button'));
+  
+  function setActive(id){
+    railTabs.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+    mTabs.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+  }
+  
+  [...railTabs, ...mTabs].forEach(b=>{
+    b.addEventListener('click', ()=>{
+      const targetEl = document.getElementById(b.dataset.target);
+      if(targetEl) {
+        targetEl.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+    });
+  });
+  
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting) setActive(e.target.id);
+    });
+  }, {rootMargin:'-15% 0px -60% 0px', threshold:0});
+  sections.forEach(s=> io.observe(s));
+
+  // Print function
+  document.getElementById('printBtn').addEventListener('click', ()=>{ window.print(); });
+
+  // Clear sheet function
+  document.getElementById('clearBtn').addEventListener('click', ()=>{
+    if(!confirm('Czy na pewno chcesz wyczyścić cały kwestionariusz i wszystkie wprowadzone odpowiedzi?')) return;
+    document.querySelectorAll('textarea').forEach(t=>{ t.value=''; t.style.height='74px'; });
+    document.querySelectorAll('input[type=text], input[type=number], input[type=date], input[type=time]').forEach(i=> {
+      if(i.id !== 'autoDate') i.value='';
+    });
+    document.querySelectorAll('input[type=checkbox]').forEach(i=> i.checked=false);
+    refreshNames();
+  });
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Interaktywny Arkusz Radykalnej Transformacji — Colin Tipping</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680;1,9..144,500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F5F2EB;
+    --paper-deep:#EBE4D8;
+    --card:#FDFDFB;
+    --ink:#2B2421;
+    --ink-soft:#6D6157;
+    --blue:#34546D;
+    --blue-deep:#1F3447;
+    --blue-pale:#EAF0F6;
+    --gold:#A3793D;
+    --line:#DDD4C7;
+    --shadow:0 1px 2px rgba(43,36,33,.04), 0 8px 24px rgba(43,36,33,.06);
+    --rail-w:88px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 12% -10%, rgba(52,84,109,.05), transparent 60%),
+      var(--paper);
+    color:var(--ink);
+    font-family:'Spectral',serif;
+    font-size:16.5px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--blue-pale); }
+  
+  /* ---------- layout shell ---------- */
+  .shell{
+    display:grid;
+    grid-template-columns:var(--rail-w) 1fr;
+    min-height:100vh;
+  }
+  @media (max-width:860px){
+    .shell{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- vertical stage rail ---------- */
+  .rail{
+    position:sticky; top:0; align-self:start;
+    height:100vh;
+    border-right:1px solid var(--line);
+    background:var(--paper-deep);
+    display:flex; flex-direction:column;
+    padding:22px 0;
+  }
+  .rail-mark{
+    width:34px; height:34px; margin:0 auto 28px;
+    border-radius:50%;
+    background:var(--blue-deep);
+    position:relative;
+    flex:none;
+  }
+  .rail-mark::before{
+    content:""; position:absolute; inset:7px;
+    background:var(--paper-deep);
+    border-radius:50% 50% 50% 0;
+    transform:rotate(-45deg);
+  }
+  .rail-tabs{ display:flex; flex-direction:column; gap:2px; flex:1; }
+  .rail-tab{
+    appearance:none; border:none; background:transparent; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    padding:16px 0;
+    color:var(--ink-soft);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:11px; letter-spacing:.12em;
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    border-left:3px solid transparent;
+    transition:color .2s, border-color .2s, background .2s;
+  }
+  .rail-tab:hover{ color:var(--ink); background:rgba(52,84,109,.06); }
+  .rail-tab.active{
+    color:var(--blue-deep);
+    border-left-color:var(--blue);
+    background:var(--card);
+    font-weight:600;
+  }
+  .rail-tab .num{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:560;
+    font-size:15px; margin-right:10px; letter-spacing:0;
+  }
+  .rail-foot{
+    writing-mode:vertical-rl; transform:rotate(180deg);
+    margin:0 auto; color:var(--ink-soft); opacity:.55;
+    font-family:'Space Grotesk',sans-serif; font-size:10px; letter-spacing:.16em;
+  }
+
+  /* mobile rail */
+  .mrail{ display:none; }
+  @media (max-width:860px){
+    .rail{ display:none; }
+    .mrail{
+      display:flex; position:sticky; top:0; z-index:20;
+      background:var(--paper-deep); border-bottom:1px solid var(--line);
+      overflow-x:auto; padding:10px 14px; gap:8px;
+    }
+    .mrail button{
+      appearance:none; border:1px solid var(--line); background:var(--card);
+      color:var(--ink-soft); font-family:'Space Grotesk',sans-serif;
+      font-size:11.5px; letter-spacing:.04em; white-space:nowrap;
+      padding:7px 12px; border-radius:999px; cursor:pointer;
+    }
+    .mrail button.active{ background:var(--blue-deep); color:#fff; border-color:var(--blue-deep); }
+  }
+
+  /* ---------- main column ---------- */
+  main{ min-width:0; }
+  .wrap{ max-width:780px; margin:0 auto; padding:56px 28px 90px; }
+  @media (max-width:560px){ .wrap{ padding:34px 16px 70px; } }
+
+  .eyebrow{
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--blue-deep); margin-bottom:14px;
+  }
+  h1.title{
+    font-family:'Fraunces',serif; font-weight:680; font-size:clamp(30px,5vw,44px);
+    line-height:1.1; margin:0 0 8px; letter-spacing:-.01em;
+  }
+  .subtitle{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:400;
+    color:var(--ink-soft); font-size:18px; margin:0 0 28px; line-height:1.4;
+  }
+
+  .intro-block {
+    background: var(--card); border: 1px solid var(--line); border-radius: 14px;
+    padding: 24px 28px; margin-bottom: 32px; box-shadow: var(--shadow);
+  }
+  .intro-block p { margin: 0 0 14px; font-size: 15.5px; color: var(--ink); }
+  .intro-block p:last-child { margin-bottom: 0; }
+
+  .meta-card{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:32px;
+    display:grid; grid-template-columns:1fr 2fr; gap:16px 20px;
+  }
+  @media (max-width:560px){ .meta-card{ grid-template-columns:1fr; } }
+  .field label{
+    display:block; font-family:'Space Grotesk',sans-serif; font-size:11px;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;
+  }
+  .field input{
+    width:100%; border:none; border-bottom:1.5px solid var(--line);
+    background:transparent; font-family:'Spectral',serif; font-size:16px;
+    color:var(--ink); padding:4px 2px 7px; outline:none;
+  }
+  .field input:focus{ border-bottom-color:var(--blue); }
+
+  .privacy{
+    font-family:'Space Grotesk',sans-serif; font-size:12.5px; color:var(--ink-soft);
+    border:1px dashed var(--line);
+    border-radius:10px; padding:12px 16px; margin-bottom:32px; line-height:1.55;
+  }
+  .privacy strong{ color:var(--ink); }
+
+  /* ---------- stage sections ---------- */
+  .stage{ scroll-margin-top:18px; margin-top:54px; }
+  .stage-head{
+    display:flex; align-items:baseline; gap:14px;
+    background:var(--blue-pale); border-radius:12px;
+    padding:14px 20px; margin-bottom:22px;
+  }
+  .stage-head .snum{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:680;
+    font-size:30px; color:var(--blue-deep); line-height:1;
+  }
+  .stage-head h2{
+    font-family:'Space Grotesk',sans-serif; font-size:13.5px; letter-spacing:.1em;
+    text-transform:uppercase; margin:0; color:var(--ink);
+  }
+
+  .item{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+  }
+  .item .inum{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:560;
+    color:var(--gold); font-size:18px; margin-right:6px;
+  }
+  .item p.lead{ margin:0 0 6px; font-weight: 500; }
+  .item p.note{
+    font-family:'Spectral',serif; font-style:italic; color:var(--ink-soft);
+    font-size:14.5px; margin:6px 0 14px;
+  }
+
+  textarea{
+    width:100%; resize:none; overflow:hidden;
+    border:1px solid var(--line); border-radius:10px;
+    background:#FFFDFB; padding:12px 14px;
+    font-family:'Spectral',serif; font-size:15.5px; color:var(--ink);
+    line-height:1.55; outline:none; min-height:64px;
+  }
+  textarea:focus{ border-color:var(--blue); box-shadow:0 0 0 3px rgba(52,84,109,.12); }
+
+  /* readiness pills & checkboxes */
+  .checkbox-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 10px;
+    margin: 14px 0;
+  }
+  .check-item {
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+    font-family: 'Space Grotesk', sans-serif;
+    font-size: 13.5px;
+    color: var(--ink);
+    cursor: pointer;
+  }
+  .check-item input {
+    margin-top: 4px;
+  }
+
+  fieldset.readiness{
+    border:none; margin:14px 0 0; padding:0;
+    display:flex; flex-wrap:wrap; gap:8px;
+  }
+  fieldset.readiness legend{
+    font-family:'Space Grotesk',sans-serif; font-size:10.5px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--ink-soft); margin-bottom:8px; padding:0;
+  }
+  .pill{ position:relative; }
+  .pill input{ position:absolute; opacity:0; inset:0; cursor:pointer; margin:0; }
+  .pill span{
+    display:inline-block; padding:7px 14px; border-radius:999px;
+    border:1.5px solid var(--line); font-family:'Space Grotesk',sans-serif;
+    font-size:12.5px; color:var(--ink-soft); transition:all .15s;
+  }
+  .pill input:checked + span{
+    background:var(--blue-deep); border-color:var(--blue-deep); color:#fff;
+  }
+
+  .affirmation{
+    background:linear-gradient(135deg, var(--blue-pale), var(--paper-deep));
+    border-radius:14px; padding:24px 26px; margin-bottom:18px;
+    font-family:'Spectral',serif; font-style:italic; font-size:16.5px; color:var(--ink);
+    border:1px solid var(--line);
+    text-align: center;
+    line-height: 1.7;
+  }
+
+  .toolbar{
+    display:flex; gap:10px; flex-wrap:wrap; margin:40px 0 10px;
+  }
+  .btn{
+    appearance:none; cursor:pointer; border-radius:999px;
+    font-family:'Space Grotesk',sans-serif; font-size:13px; letter-spacing:.03em;
+    padding:10px 18px; border:1.5px solid var(--blue-deep);
+  }
+  .btn.primary{ background:var(--blue-deep); color:#fff; }
+  .btn.ghost{ background:transparent; color:var(--blue-deep); }
+  .btn:hover{ filter:brightness(1.05); }
+
+  .signoff{
+    margin-top:50px; padding-top:28px; border-top:1px solid var(--line);
+    display:flex; flex-wrap:wrap; gap:22px; align-items:flex-end; justify-content:space-between;
+  }
+  .signoff .field{ min-width:220px; }
+
+  footer{
+    margin-top:60px; padding-top:18px; border-top:1px solid var(--line);
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; color:var(--ink-soft);
+    text-align:center; line-height:1.7;
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <!-- desktop vertical rail -->
+  <nav class="rail" aria-label="Etapy arkusza">
+    <div class="rail-mark" aria-hidden="true"></div>
+    <div class="rail-tabs" id="railTabs">
+      <button class="rail-tab" data-target="stage-1"><span class="num">1</span>Opowieść i emocje</button>
+      <button class="rail-tab" data-target="stage-2"><span class="num">2</span>Działanie w świecie</button>
+      <button class="rail-tab" data-target="stage-3"><span class="num">3</span>Inwokacja Ducha</button>
+      <button class="rail-tab" data-target="stage-4"><span class="num">4</span>Nowa perspektywa</button>
+      <button class="rail-tab" data-target="stage-5"><span class="num">5</span>Integracja i pokój</button>
+    </div>
+    <div class="rail-foot">Radykalne Wybaczanie</div>
+  </nav>
+
+  <main>
+    <!-- mobile horizontal rail -->
+    <nav class="mrail" id="mrail" aria-label="Etapy arkusza (mobile)">
+      <button data-target="stage-1">1 · Opowieść</button>
+      <button data-target="stage-2">2 · Działanie</button>
+      <button data-target="stage-3">3 · Inwokacja</button>
+      <button data-target="stage-4">4 · Perspektywa</button>
+      <button data-target="stage-5">5 · Integracja</button>
+    </nav>
+
+    <div class="wrap">
+      <div class="eyebrow">Stosowanie Strategii Radykalnego Wybaczania do Wydarzeń na Świecie</div>
+      <h1 class="title">Interaktywny Arkusz Radykalnej Transformacji</h1>
+      <p class="subtitle">Transformacja Twojego postrzegania wydarzeń na świecie</p>
+
+      <div class="meta-card">
+        <div class="field"><label for="fData">Data</label><input id="fData" type="date"></div>
+        <div class="field"><label for="fUser">Imię / Podpis</label><input id="fUser" type="text" placeholder="Twoje imię…"></div>
+      </div>
+
+      <p class="privacy"><strong>Prywatność danych:</strong> Wszystko, co wpisujesz, jest przetwarzane wyłącznie lokalnie w Twojej przeglądarce i nie jest nigdzie zapisywane ani przesyłane.</p>
+
+      <div class="intro-block">
+        <p>Nic nie wystawia na większą próbę naszej gotowości do dopuszczenia myśli, że w absolutnie wszystkim kryje się Boska doskonałość, niż oglądanie wiadomości w telewizji i obserwowanie całego pasma strasznych rzeczy dziejących się na świecie.</p>
+        <p>Ponieważ nasze postrzeganie duchowej rzeczywistości jest tak ograniczone, po prostu nie potrafimy pojąć, jak tego rodzaju wydarzenia mogą mieć jakikolwiek sens z duchowego punktu widzenia. Przy naszym obecnym poziomie świadomości wykracza to poza naszą zdolność rozumienia, przez co łatwo możemy odrzucić samą myśl o tym, że w takich rzeczach jak ludobójstwo, ohydne czyny przestępcze, katastrofy naturalne, tragiczne pożary czy tsunami może istnieć jakakolwiek doskonałość.</p>
+        <p>Moim własnym sposobem na poradzenie sobie z tym dylematem jest utwierdzenie się w przekonaniu, które wynika z doświadczenia: kiedy w naszym własnym życiu dochodzi do zdarzeń, w których czujemy się ofiarami, sytuacja zawsze zmienia się na lepsze, a my odczuwamy większy spokój, gdy tylko używamy narzędzi pomagających nam otworzyć się na możliwość, że wszystko dzieje się z jakiegoś powodu. Nawet jeśli używamy ich na zasadzie „udawaj, aż to poczujesz” (fake-it-til-we-make-it) – to i tak działa.</p>
+        <p>A zatem, jeśli jest to prawdą na tym poziomie, musi być prawdą w każdych okolicznościach. Radykalne Wybaczanie nie może być wybiórcze. Albo działa na wszystko, albo na nic. Nie ma nic pomiędzy.</p>
+        <p>Jeśli działa to na poziomie mojego własnego doświadczenia, musi działać dokładnie tak samo w przypadku wydarzeń na większą skalę. Chodzi po prostu o to, że moja własna świadomość jest zbyt ograniczona, by zobaczyć to wyraźnie. Właśnie dlatego potrzebujemy narzędzi. Pomagają nam one udawać, aż poczujemy prawdę, i używać naszej własnej Duchowej Inteligencji, by połączyć się z wyższą prawdą o tym, co na pozór się wydarza. To jest ta część nas, która widzi szerszą perspektywę, a jednak – z własnych powodów – decyduje się trzymać ją przed nami w ukryciu, przynajmniej na razie.</p>
+        <p>Ten arkusz pomoże Ci utrzymać gotowość do dopuszczenia możliwości (zauważ, że nie mówię: „uwierzenia”), że wszystko to jest częścią boskiego planu, nawet wtedy, gdy współczujesz i empatyzujesz z ludźmi dotkniętymi tragedią i jesteś w stanie podjąć działania, by złagodzić ich cierpienie. Czuję jednak w głębi serca, że kiedy wyciągamy pomocną dłoń w ten sposób, mamy znacznie większą moc, jeśli robimy to ze świadomością wolną od potrzeby obwiniania lub pomnażania bólu poprzez złość i wzburzenie. Jeśli zachowamy gotowość do ujrzenia ręki Boga w tej sytuacji, to samym faktem naszych wibracji przyniesiemy o wiele większą wartość, niż w przeciwnym razie.</p>
+        <p>Wielu ludzi uważających się za duchowych czyni cnotę z unikania wiadomości, argumentując, że są one zbyt negatywne. Żywię pewną sympatię dla tej idei, choćby dlatego, że wiadomości bywają ogromnie zniekształcone, ale faktem jest, że relacjonowane wydarzenia są negatywne tylko wtedy, gdy pozostajemy zamknięci na myśl, że służą one jakiemukolwiek duchowemu celowi. Unikanie bólu to duchowy bypass (omijanie duchowe), który nikomu nie służy. Bardzo dobrą praktyką duchową może być wystawienie się na ból i cierpienie, na przykład ofiar trzęsienia ziemi, masowej strzelaniny lub innego strasznego wydarzenia, i dawanie z siebie wszystkiego, by pozostać otwartym na dostrzeżenie doskonałości w tej sytuacji.</p>
+        <p>Dlatego polecam trzymać papierową wersję Arkuszy Radykalnej Świadomości pod ręką, by używać jej zawsze, gdy zobaczysz coś przykrego w wiadomościach, ale przychodzić do tego Interaktywnego Arkusza Online, gdy wydarzy się coś, w czym dostrzeżenie doskonałości całkowicie przekracza Twoje możliwości i jest emocjonalnie przytłaczające.</p>
+        <p>To nie tylko pomoże Ci utrzymać wysokie wibracje, ale – jestem tego pewien – pomaga również podnieść zbiorową świadomość. W głęboki sposób przyczynia się to także do poprawy samej sytuacji. Nawet siedząc w fotelu i obserwując wydarzenia rozgrywające się być może na drugim końcu świata, będziesz wywierać energetyczny wpływ, jeśli utrzymasz wizję doskonałości. Naprawdę masz taką moc i mam nadzieję, że o tym wiesz.</p>
+      </div>
+
+      <!-- ================= STAGE 1 ================= -->
+      <section class="stage" id="stage-1">
+        <div class="stage-head"><span class="snum">1</span><h2>Opowieść i emocje (Telling the Story & Feelings)</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">1.</span>To, co dzieje się teraz na świecie i co mnie niepokoi/zakłóca mój spokój, to:</p>
+          <p class="note">Może to być cokolwiek, co nie dotyczy Cię osobiście, ale czego obserwowanie na świecie jest dla Ciebie bolesne. Zbrodnie, katastrofy, morderstwa, wojny, strzelaniny itp. Rzeczy, które codziennie widzisz w wiadomościach. Nie ignoruj ich, stosując duchowy bypass (ucieczkę w górę i na zewnątrz) – dokonaj ich transformacji, wypełniając ten arkusz. To jest prawdziwa służba.</p>
+          <textarea rows="4" placeholder="Opisz sytuację ze świata, która Cię porusza…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">2.</span>Uczucia, których doświadczam w związku z tą sytuacją, obejmują:</p>
+          <p class="note">Znasz powiedzenie: „Możesz uzdrowić tylko to, co potrafisz poczuć”. Pozwól więc sobie poczuć te emocje. Obserwuj siebie, jak je odczuwasz i jak jednocześnie osądzasz sytuację.</p>
+          
+          <div class="checkbox-grid">
+            <label class="check-item"><input type="checkbox"> Strach / Lęk</label>
+            <label class="check-item"><input type="checkbox"> Złość / Gniew</label>
+            <label class="check-item"><input type="checkbox"> Bezsilność</label>
+            <label class="check-item"><input type="checkbox"> Apatia</label>
+            <label class="check-item"><input type="checkbox"> Panika</label>
+            <label class="check-item"><input type="checkbox"> Niepokój</label>
+            <label class="check-item"><input type="checkbox"> Samotność</label>
+            <label class="check-item"><input type="checkbox"> Beznadzieja</label>
+            <label class="check-item"><input type="checkbox"> Porzucenie</label>
+            <label class="check-item"><input type="checkbox"> Zdrada</label>
+            <label class="check-item"><input type="checkbox"> Przygnębienie</label>
+          </div>
+          <textarea rows="3" placeholder="Inne uczucia lub rozwinięcie tego, co czujesz…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">3.</span>Zauważam swoje automatyczne, „odruchowe” reakcje na tę sytuację, takie jak:</p>
+          <p class="note">Zaznacz te, które u siebie dostrzegasz, i opisz je poniżej wraz z innymi, które przychodzą Ci do głowy. Naturalnie reagujemy na nieprzyjemne wydarzenia w sposób spontaniczny, bez głębszego zastanowienia. Nasze reakcje mają zawsze charakter emocjonalny, ale warto poddać je refleksji. Fantazjowanie o nich również bywa dobrą terapią, choć rzadko stanowi podstawę do racjonalnego działania.</p>
+          
+          <div class="checkbox-grid">
+            <label class="check-item"><input type="checkbox"> Zrzucanie winy</label>
+            <label class="check-item"><input type="checkbox"> Chęć ukarania winnych</label>
+            <label class="check-item"><input type="checkbox"> Żądanie natychmiastowych działań</label>
+            <label class="check-item"><input type="checkbox"> Chęć natychmiastowej zmiany czegoś</label>
+            <label class="check-item"><input type="checkbox"> Narzekanie / Skarżenie się</label>
+            <label class="check-item"><input type="checkbox"> Chęć posiadania racji („A nie mówiłem!”)</label>
+            <label class="check-item"><input type="checkbox"> Krzyk / Chęć wykrzyczenia się</label>
+            <label class="check-item"><input type="checkbox"> Chęć pójścia i naprawienia tego samemu</label>
+            <label class="check-item"><input type="checkbox"> Udział w protestach/demonstracjach</label>
+            <label class="check-item"><input type="checkbox"> Wypowiedzenie wojny</label>
+            <label class="check-item"><input type="checkbox"> Chęć zemsty / Odwetu</label>
+          </div>
+          <textarea rows="3" placeholder="Opisz swoje automatyczne reakcje…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">4.</span>Gdybym miał nieskończoną moc i władzę nad tą sytuacją, to...</p>
+          <p class="note">(Fantazjuj tak bardzo, jak tylko chcesz i nie cenzuruj swoich myśli. Jeśli uważasz, że ludzie są winni, uwzględnij wszelkie mroczne, negatywne myśli, które mogą krążyć po Twojej głowie).</p>
+          <textarea rows="4" placeholder="Co byś zrobił(-a), mając absolutną władzę?…"></textarea>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 2 ================= -->
+      <section class="stage" id="stage-2">
+        <div class="stage-head"><span class="snum">2</span><h2>Działanie w świecie fizycznym (Action in the World)</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">5.</span>Pomimo moich początkowych uczuć oraz początkowych odruchowych reakcji, działania, które mogę podjąć i które mogą przynieść realną, praktyczną różnicę, to:</p>
+          <p class="note">(np. wysłanie pieniędzy; pójście z pomocą; napisanie listu; wolontariat; nagłośnienie sprawy / bycie sygnalistą; protest itp. Uwaga: Może to być również absolutnie nic).</p>
+          <p class="note" style="margin-top:-6px;">Mimo że wnosimy w tę sytuację myśl, iż za tym, co się wydarzyło, stoi duchowy cel, musimy uznać, że wciąż znajdujemy się w Świecie Ludzkim. Istnieje fizyczna rzeczywistość, z którą musimy pracować i w której mamy obowiązek działać, aby łagodzić cierpienie i czynić to, co słuszne w ludzkich kategoriach.</p>
+          <textarea rows="4" placeholder="Możliwe praktyczne działania w świecie fizycznym…"></textarea>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 3 ================= -->
+      <section class="stage" id="stage-3">
+        <div class="stage-head"><span class="snum">3</span><h2>Inwokacja Ducha (The Invocation)</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">6.</span>Jednak tym, co wiem, że mogę zrobić dodatkowo – nawet jeśli w świecie fizycznym nie zrobię nic – a co uczyni ogromną różnicę pod względem energetycznym, jest przeczytanie na głos poniższej Inwokacji Radykalnego Wybaczania oraz następujących po niej proklamacji.</p>
+          
+          <div class="affirmation">
+            <strong style="display:block; font-family:'Fraunces',serif; font-size:19px; margin-bottom:12px; font-style:normal; color:var(--blue-deep);">Inwokacja Radykalnego Wybaczania</strong>
+            <p style="margin:0 0 10px;">Obyśmy wszyscy stali niewzruszenie w wiedzy i poczuciu komfortu,<br>że wszystkie rzeczy są teraz, zawsze były i na zawsze pozostaną w boskim porządku,<br>rozwijając się zgodnie z boskim planem.</p>
+            <p style="margin:0 0 10px;">I obyśmy prawdziwie poddali się tej prawdzie,<br>niezależnie od tego, czy ją rozumiemy, czy nie.</p>
+            <p style="margin:0;">Prośmy również o wsparcie w świadomości, abyśmy poczuli naszą więź<br>z boską cząstką w nas samych, z każdym człowiekiem i ze wszystkim, co istnieje,<br>byśmy mogli prawdziwie powiedzieć i poczuć – JESTEŚMY JEDNYM.</p>
+          </div>
+          <div class="rgroup" data-name="r6"></div>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 4 ================= -->
+      <section class="stage" id="stage-4">
+        <div class="stage-head"><span class="snum">4</span><h2>Nowa perspektywa (Reframing)</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">7.</span>Po przeczytaniu powyższej Inwokacji Radykalnego Wybaczania uświadamiam sobie teraz, że to, co dzieje się „tam na zewnątrz”, jest doskonałe dokładnie takie, jakie jest, i stanowi integralną część boskiego planu.</p>
+          <p class="note">Mówisz to, nawet jeśli w to nie wierzysz. Udawaj, aż poczujesz (Fake it ’til You Make It).</p>
+          <div class="rgroup" data-name="r7"></div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">8.</span>Poprzez swoją gotowość do postrzegania tego w ten sposób, otwieram drogę sobie i innym do przebudzenia się do prawdy. Utrzymując wizję „uzdrowionego” świata, wnoszę ogromny wkład w ułatwienie zmiany w świadomości, dzięki której sytuacje opisane w Kroku 1 nie będą miały już powodu się pojawiać.</p>
+          <p class="note">Przyjmij swoją moc wywierania wpływu w ten sposób. Wyobraź sobie, co by się stało, gdyby tysiące ludzi wypełniły ten arkusz. Świat natychmiast stałby się inny.</p>
+          <div class="rgroup" data-name="r8"></div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">9.</span>Niniejszym oświadczam, że jestem gotów(-owa) utrzymywać tę wyższą wibrację i opierać się wszelkiej pokusie reagowania na wydarzenia strachem i przygnębieniem w przyszłości. Za każdym razem, gdy poczuję, że osuwam się z powrotem w lęk, wezmę sześć głębokich oddechów, aby powrócić do swojego centrum i utrzymać swoją wibrację.</p>
+          <div class="rgroup" data-name="r9"></div>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 5 ================= -->
+      <section class="stage" id="stage-5">
+        <div class="stage-head"><span class="snum">5</span><h2>Integracja i pokój (Integration & Peace)</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">10.</span>Uświadamiam sobie teraz również, że to, co działo się „tam na zewnątrz”, było odzwierciedleniem czegoś, co wymaga lub wymagało uzdrowienia we mnie. To, co ta sytuacja odzwierciedla lub odzwierciedlała we mnie, to:</p>
+          <textarea rows="4" placeholder="Moje wewnętrzne odzwierciedlenie / Co ta sytuacja pokazuje na mój temat…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">11.</span>Wybaczając sytuacji opisanej w Kroku 1, automatycznie wybaczyłem(-am) samemu(-ej) sobie. Jestem wdzięczny(-a) za to uzdrowienie.</p>
+          <div class="rgroup" data-name="r11"></div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">12.</span>Jestem teraz w swoim centrum i uwolniłem(-am) potrzebę dalszego odczuwania tego, co czułem(-am) w Kroku 2. Wybieram pokój.</p>
+          <div class="rgroup" data-name="r12"></div>
+        </div>
+
+        <!-- Podpis i data stylizowane jak w szablonie -->
+        <div class="signoff">
+          <div class="field"><label for="fSig">Podpis</label><input id="fSig" type="text" placeholder="Wpisz swój podpis…"></div>
+          <div class="field"><label for="fDateBottom">Data</label><input id="fDateBottom" type="date"></div>
+        </div>
+      </section>
+
+      <!-- Przyciski na dole -->
+      <div class="toolbar">
+        <button class="btn primary" id="printBtn">Drukuj / Zapisz jako PDF</button>
+        <button class="btn ghost" id="clearBtn">Wyczyść arkusz</button>
+      </div>
+
+      <footer>
+        W oparciu o metodę Radykalnego Wybaczania Colina Tippinga<br>
+        Arkusz Transformacji Wydarzeń na Świecie (World Events Worksheet)
+      </footer>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  const READY_OPTS = ["Gotowy", "Otwarty", "Sceptyczny", "Niechętny"];
+
+  // build readiness pill groups
+  document.querySelectorAll('.rgroup').forEach(el=>{
+    const name = el.dataset.name;
+    const fs = document.createElement('fieldset');
+    fs.className = 'readiness';
+    const legend = document.createElement('legend');
+    legend.textContent = 'Mój stan wewnętrzny:';
+    fs.appendChild(legend);
+    READY_OPTS.forEach((opt,i)=>{
+      const id = name+'-'+i;
+      const lab = document.createElement('label');
+      lab.className = 'pill';
+      lab.innerHTML = '<input type="radio" name="'+name+'" id="'+id+'"><span>'+opt+'</span>';
+      fs.appendChild(lab);
+    });
+    el.replaceWith(fs);
+  });
+
+  // Name fill sync from top metadata to bottom profile signature if needed
+  const nameInput = document.getElementById('fUser');
+  const sigInput = document.getElementById('fSig');
+  nameInput.addEventListener('input', () => {
+    if(!sigInput.value || sigInput.value === nameInput.value.slice(0, -1)) {
+      sigInput.value = nameInput.value;
+    }
+  });
+
+  // Date inputs synchronization
+  const dateTop = document.getElementById('fData');
+  const dateBottom = document.getElementById('fDateBottom');
+  dateTop.addEventListener('change', () => { dateBottom.value = dateTop.value; });
+  dateBottom.addEventListener('change', () => { dateTop.value = dateBottom.value; });
+
+  // autosize textareas
+  function autosize(t){
+    t.style.height = 'auto';
+    t.style.height = (t.scrollHeight+2) + 'px';
+  }
+  function autosizeAll(){
+    document.querySelectorAll('textarea').forEach(t=>{
+      autosize(t);
+      t.addEventListener('input', ()=>autosize(t));
+    });
+  }
+  window.addEventListener('load', autosizeAll);
+
+  // scroll spy + nav
+  const sections = Array.from(document.querySelectorAll('.stage'));
+  const railTabs = Array.from(document.querySelectorAll('.rail-tab'));
+  const mTabs = Array.from(document.querySelectorAll('.mrail button'));
+  function setActive(id){
+    railTabs.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+    mTabs.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+  }
+  [...railTabs, ...mTabs].forEach(b=>{
+    b.addEventListener('click', ()=>{
+      document.getElementById(b.dataset.target).scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting) setActive(e.target.id);
+    });
+  }, {rootMargin:'-20% 0px -65% 0px', threshold:0});
+  sections.forEach(s=> io.observe(s));
+
+  // print
+  document.getElementById('printBtn').addEventListener('click', ()=>{ window.print(); });
+
+  // clear
+  document.getElementById('clearBtn').addEventListener('click', ()=>{
+    if(!confirm('Wyczyścić cały arkusz?')) return;
+    document.querySelectorAll('textarea').forEach(t=>{ t.value=''; autosize(t); });
+    document.querySelectorAll('input[type=text], input[type=date]').forEach(i=> i.value='');
+    document.querySelectorAll('input[type=checkbox]').forEach(c=> c.checked=false);
+    document.querySelectorAll('input[type=radio]').forEach(i=> i.checked=false);
+  });
+})();
+</script>
+</body>
+</html>

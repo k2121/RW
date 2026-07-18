@@ -1,0 +1,504 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arkusz Radykalnej Akceptacji — Colin Tipping</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680;1,9..144,500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F4F0EA;
+    --paper-deep:#EAE2D5;
+    --card:#FDFBF7;
+    --ink:#2C2520;
+    --ink-soft:#6E6257;
+    --blue:#3B5A75;
+    --blue-deep:#253B4E;
+    --blue-pale:#E3ECF5;
+    --gold:#B08746;
+    --line:#DDD3C4;
+    --shadow:0 1px 2px rgba(44,37,32,.04), 0 8px 24px rgba(44,37,32,.06);
+    --rail-w:84px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important; transition:none !important;}
+  }
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 12% -10%, rgba(59,90,117,.05), transparent 60%),
+      var(--paper);
+    color:var(--ink);
+    font-family:'Spectral',serif;
+    font-size:16.5px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--blue-pale); }
+  a{ color:var(--blue-deep); }
+
+  /* ---------- layout shell ---------- */
+  .shell{
+    display:grid;
+    grid-template-columns:var(--rail-w) 1fr;
+    min-height:100vh;
+  }
+  @media (max-width:860px){
+    .shell{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- vertical stage rail ---------- */
+  .rail{
+    position:sticky; top:0; align-self:start;
+    height:100vh;
+    border-right:1px solid var(--line);
+    background:var(--paper-deep);
+    display:flex; flex-direction:column;
+    padding:22px 0;
+  }
+  .rail-mark{
+    width:34px; height:34px; margin:0 auto 28px;
+    border-radius:50%;
+    background:var(--blue-deep);
+    position:relative;
+    flex:none;
+  }
+  .rail-mark::before{
+    content:""; position:absolute; inset:7px;
+    background:var(--paper-deep);
+    border-radius:50% 50% 50% 0;
+    transform:rotate(-45deg);
+  }
+  .rail-tabs{ display:flex; flex-direction:column; gap:2px; flex:1; }
+  .rail-tab{
+    appearance:none; border:none; background:transparent; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    padding:16px 0;
+    color:var(--ink-soft);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:11px; letter-spacing:.14em;
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    border-left:3px solid transparent;
+    transition:color .2s, border-color .2s, background .2s;
+  }
+  .rail-tab:hover{ color:var(--ink); background:rgba(59,90,117,.06); }
+  .rail-tab.active{
+    color:var(--blue-deep);
+    border-left-color:var(--blue);
+    background:var(--card);
+    font-weight:600;
+  }
+  .rail-tab .num{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:560;
+    font-size:15px; margin-right:10px; letter-spacing:0;
+  }
+  .rail-foot{
+    writing-mode:vertical-rl; transform:rotate(180deg);
+    margin:0 auto; color:var(--ink-soft); opacity:.55;
+    font-family:'Space Grotesk',sans-serif; font-size:10px; letter-spacing:.16em;
+  }
+
+  /* mobile rail -> horizontal progress strip */
+  .mrail{ display:none; }
+  @media (max-width:860px){
+    .rail{ display:none; }
+    .mrail{
+      display:flex; position:sticky; top:0; z-index:20;
+      background:var(--paper-deep); border-bottom:1px solid var(--line);
+      overflow-x:auto; padding:10px 14px; gap:8px;
+    }
+    .mrail button{
+      appearance:none; border:1px solid var(--line); background:var(--card);
+      color:var(--ink-soft); font-family:'Space Grotesk',sans-serif;
+      font-size:11.5px; letter-spacing:.04em; white-space:nowrap;
+      padding:7px 12px; border-radius:999px; cursor:pointer;
+    }
+    .mrail button.active{ background:var(--blue-deep); color:#fff; border-color:var(--blue-deep); }
+  }
+
+  /* ---------- main column ---------- */
+  main{ min-width:0; }
+  .wrap{ max-width:760px; margin:0 auto; padding:56px 28px 90px; }
+  @media (max-width:560px){ .wrap{ padding:34px 16px 70px; } }
+
+  .eyebrow{
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--blue-deep); margin-bottom:14px;
+  }
+  h1.title{
+    font-family:'Fraunces',serif; font-weight:680; font-size:clamp(32px,5.5vw,48px);
+    line-height:1.06; margin:0 0 6px; letter-spacing:-.01em;
+  }
+  .subtitle{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:400;
+    color:var(--ink-soft); font-size:18px; margin:0 0 28px; line-height:1.4;
+  }
+
+  .meta-card{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+    display:grid; grid-template-columns:1fr 2fr; gap:16px 20px;
+  }
+  @media (max-width:560px){ .meta-card{ grid-template-columns:1fr; } }
+  .field label{
+    display:block; font-family:'Space Grotesk',sans-serif; font-size:11px;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;
+  }
+  .field input{
+    width:100%; border:none; border-bottom:1.5px solid var(--line);
+    background:transparent; font-family:'Spectral',serif; font-size:16px;
+    color:var(--ink); padding:4px 2px 7px; outline:none;
+  }
+  .field input:focus{ border-bottom-color:var(--blue); }
+
+  .privacy{
+    font-family:'Space Grotesk',sans-serif; font-size:12.5px; color:var(--ink-soft);
+    border:1px dashed var(--line);
+    border-radius:10px; padding:12px 16px; margin-bottom:8px; line-height:1.55;
+  }
+  .privacy strong{ color:var(--ink); }
+
+  .toolbar{
+    display:flex; gap:10px; flex-wrap:wrap; margin:30px 0 30px;
+  }
+  .btn{
+    appearance:none; cursor:pointer; border-radius:999px;
+    font-family:'Space Grotesk',sans-serif; font-size:13px; letter-spacing:.03em;
+    padding:10px 18px; border:1.5px solid var(--blue-deep);
+  }
+  .btn.primary{ background:var(--blue-deep); color:#fff; }
+  .btn.ghost{ background:transparent; color:var(--blue-deep); }
+  .btn:hover{ filter:brightness(1.05); }
+
+  /* ---------- stage sections ---------- */
+  .stage{ scroll-margin-top:18px; margin-top:54px; }
+  .stage-head{
+    display:flex; align-items:baseline; gap:14px;
+    background:var(--blue-pale); border-radius:12px;
+    padding:14px 20px; margin-bottom:22px;
+  }
+  .stage-head .snum{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:680;
+    font-size:30px; color:var(--blue-deep); line-height:1;
+  }
+  .stage-head h2{
+    font-family:'Space Grotesk',sans-serif; font-size:13.5px; letter-spacing:.1em;
+    text-transform:uppercase; margin:0; color:var(--ink);
+  }
+
+  .item{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+  }
+  .item .inum{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:560;
+    color:var(--gold); font-size:18px; margin-right:6px;
+  }
+  .item p.lead{ margin:0 0 6px; }
+  .item p.note{
+    font-family:'Spectral',serif; font-style:italic; color:var(--ink-soft);
+    font-size:14.5px; margin:6px 0 14px;
+  }
+  .name-fill{
+    border-bottom:1.5px dotted var(--blue); color:var(--blue-deep); font-style:normal;
+    padding:0 2px;
+  }
+
+  textarea{
+    width:100%; resize:none; overflow:hidden;
+    border:1px solid var(--line); border-radius:10px;
+    background:#FFFDF8; padding:12px 14px;
+    font-family:'Spectral',serif; font-size:15.5px; color:var(--ink);
+    line-height:1.55; outline:none; min-height:80px;
+  }
+  textarea:focus{ border-color:var(--blue); box-shadow:0 0 0 3px rgba(59,90,117,.12); }
+
+  /* readiness pills */
+  fieldset.readiness{
+    border:none; margin:14px 0 0; padding:0;
+    display:flex; flex-wrap:wrap; gap:8px;
+  }
+  fieldset.readiness legend{
+    font-family:'Space Grotesk',sans-serif; font-size:10.5px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--ink-soft); margin-bottom:8px; padding:0;
+  }
+  .pill{ position:relative; }
+  .pill input{ position:absolute; opacity:0; inset:0; cursor:pointer; margin:0; }
+  .pill span{
+    display:inline-block; padding:7px 14px; border-radius:999px;
+    border:1.5px solid var(--line); font-family:'Space Grotesk',sans-serif;
+    font-size:12.5px; color:var(--ink-soft); transition:all .15s;
+  }
+  .pill input:checked + span{
+    background:var(--blue-deep); border-color:var(--blue-deep); color:#fff;
+  }
+  .pill input:focus-visible + span{ outline:2px solid var(--blue); outline-offset:2px; }
+
+  .signoff{
+    margin-top:50px; padding-top:28px; border-top:1px solid var(--line);
+    display:flex; flex-wrap:wrap; gap:22px; align-items:flex-end; justify-content:space-between;
+  }
+  .signoff .field{ min-width:200px; }
+
+  footer{
+    margin-top:60px; padding-top:18px; border-top:1px solid var(--line);
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; color:var(--ink-soft);
+    text-align:center; line-height:1.7;
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <!-- desktop vertical rail -->
+  <nav class="rail" aria-label="Etapy arkusza">
+    <div class="rail-mark" aria-hidden="true"></div>
+    <div class="rail-tabs" id="railTabs">
+      <button class="rail-tab" data-target="stage-1"><span class="num">1</span>Trudność</button>
+      <button class="rail-tab" data-target="stage-2"><span class="num">2</span>Uczucia</button>
+      <button class="rail-tab" data-target="stage-3"><span class="num">3</span>Uznanie</button>
+      <button class="rail-tab" data-target="stage-4"><span class="num">4</span>Otwartość</button>
+      <button class="rail-tab" data-target="stage-5"><span class="num">5</span>Rozdzielenie</button>
+      <button class="rail-tab" data-target="stage-6"><span class="num">6</span>Dostrzeżenie</button>
+      <button class="rail-tab" data-target="stage-7"><span class="num">7</span>Jedność</button>
+    </div>
+    <div class="rail-foot">Radykalna Akceptacja</div>
+  </nav>
+
+  <main>
+    <!-- mobile horizontal rail -->
+    <nav class="mrail" id="mrail" aria-label="Etapy arkusza (mobile)">
+      <button data-target="stage-1">1 · Trudność</button>
+      <button data-target="stage-2">2 · Uczucia</button>
+      <button data-target="stage-3">3 · Uznanie</button>
+      <button data-target="stage-4">4 · Otwartość</button>
+      <button data-target="stage-5">5 · Rozdzielenie</button>
+      <button data-target="stage-6">6 · Dostrzeżenie</button>
+      <button data-target="stage-7">7 · Jedność</button>
+    </nav>
+
+    <div class="wrap">
+      <div class="eyebrow">Metoda Tippinga</div>
+      <h1 class="title">Radykalna Akceptacja</h1>
+      <p class="subtitle">Arkusz Metody Tippinga służący dostrzeżeniu Boskości w każdej istocie ludzkiej</p>
+
+      <p class="privacy"><strong>Prywatność danych:</strong> Wszystko, co wpisujesz, jest przetwarzane wyłącznie lokalnie w Twojej przeglądarce i nie jest nigdzie zapisywane ani przesyłane.</p>
+
+      <!-- ================= STAGE 1 ================= -->
+      <section class="stage" id="stage-1">
+        <div class="stage-head"><span class="snum">1</span><h2>Identyfikacja Trudności</h2></div>
+
+        <div class="item">
+          <div style="margin-bottom: 16px;">
+            <label for="objectName" style="display:block; font-family:'Space Grotesk',sans-serif; font-size:12px; uppercase; color:var(--ink-soft); margin-bottom:6px;">
+              1. Uświadamiam sobie, że trudno jest mi zaakceptować (imię/osobę):
+            </label>
+            <input id="objectName" type="text" style="width:100%; border:none; border-bottom:1.5px solid var(--line); background:transparent; font-family:'Spectral',serif; font-size:16px; color:var(--ink); padding:4px 2px 7px; outline:none;" placeholder="Wpisz imię osoby, którą trudno Ci zaakceptować…">
+            <span style="font-size: 14.5px; color: var(--ink-soft); display: block; margin-top: 4px;">taką, jaka ona jest.</span>
+          </div>
+          
+          <p class="lead">Problem, jaki mam z <span class="name-fill">nią / nim</span>, to:</p>
+          <textarea rows="4" placeholder="Opisz dokładnie, w czym leży problem…"></textarea>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 2 ================= -->
+      <section class="stage" id="stage-2">
+        <div class="stage-head"><span class="snum">2</span><h2>Doświadczane Uczucia</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">2.</span>Główne uczucia, jakich teraz doświadczam w sobie, gdy myślę o <span class="name-fill">tej osobie</span>, to:</p>
+          <p class="note">(Bądź całkowicie szczery(-a) i używaj słów opisujących emocje).</p>
+          <textarea rows="4" placeholder="Moje obecne emocje i uczucia…"></textarea>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 3 ================= -->
+      <section class="stage" id="stage-3">
+        <div class="stage-head"><span class="snum">3</span><h2>Uznanie i Prawa</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">3.</span>Szanuję swoje uczucia i domagam się swojego prawa – jako przebudzonej istoty ludzkiej – do przeżywania tych emocji oraz reagowania na nie. Cenię je, ponieważ dają mi one cenne informacje zwrotne o tym, jak postrzegam <span class="name-fill">tę osobę</span>.</p>
+          <div class="rgroup" data-name="r3"></div>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 4 ================= -->
+      <section class="stage" id="stage-4">
+        <div class="stage-head"><span class="snum">4</span><h2>Otwartość na Sens</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">4.</span>Chociaż nie mam świadomości, co to może być, otwieram się na możliwość, że <span class="name-fill">ta osoba</span> jest w moim życiu z jakiegoś powodu i być może jest tu po to, by dać mi lekcję lub szansę na uzdrowienie.</p>
+          <div class="rgroup" data-name="r4"></div>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 5 ================= -->
+      <section class="stage" id="stage-5">
+        <div class="stage-head"><span class="snum">5</span><h2>Mechanizm Rozdzielenia</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">5.</span>Uświadamiam sobie, że mogę wykorzystywać <span class="name-fill">tę osobę</span> nie tylko do tworzenia nowego bólu rozdzielenia w sobie, ale także jako punktu oparcia dla jednego lub więcej podobnych przypadków rozdzielenia między mną a innymi ważnymi ludźmi w moim życiu. Na przykład:</p>
+          <textarea rows="4" placeholder="Podaj przykłady innych sytuacji lub osób, gdzie pojawia się podobne rozdzielenie…"></textarea>
+
+          <div style="margin-top: 24px; padding-top: 18px; border-top: 1px dashed var(--line);">
+            <p class="lead">Dlatego dostrzegam w <span class="name-fill">tej osobie</span> – wobec której odmawiałem(-am) miłości i którą osądzałem(-am) – bratnią duszę z misją przebudzenia mnie do prawdy o tym, kim naprawdę jestem, kim ona jest oraz kim są ci, wobec których wcześniej odmawiałem(-am) miłości. Wszyscy jesteśmy częścią jednej Boskiej Istoty (Boskiej Esencji).</p>
+            <div class="rgroup" data-name="r5_sub"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 6 ================= -->
+      <section class="stage" id="stage-6">
+        <div class="stage-head"><span class="snum">6</span><h2>Dostrzeżenie Światła</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">6.</span>Choć wiem, że nie ma wymogu, bym lubił(-a) tę osobę jako ludzką istotę, ani aprobował(-a) jej zachowanie w ludzkich kategoriach, jestem teraz gotowy(-a) dostrzec w <span class="name-fill">niej / nim</span> światło i wiedzieć, że dusza tej osoby jest Miłością, czystą i prostą, a ona sama jest zatem doskonała pod każdym względem.</p>
+          <div class="rgroup" data-name="r6"></div>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 7 ================= -->
+      <section class="stage" id="stage-7">
+        <div class="stage-head"><span class="snum">7</span><h2>Poczucie Jedności</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">7.</span>Czuję teraz poczucie Jedności z <span class="name-fill">tą osobą</span> i odczuwam wdzięczność za to, że jest obecna w moim życiu.</p>
+          <div class="rgroup" data-name="r7"></div>
+        </div>
+      </section>
+
+      <!-- Podpis i data -->
+      <div class="signoff">
+        <div class="field" style="flex: 1; min-width: 250px;">
+          <label for="fSig">Podpis</label>
+          <input id="fSig" type="text" placeholder="Wpisz swój podpis…">
+        </div>
+        <div class="field" style="width: 180px;">
+          <label for="fData">Data</label>
+          <input id="fData" type="date">
+        </div>
+      </div>
+
+      <!-- Przyciski działania -->
+      <div class="toolbar">
+        <button class="btn primary" id="printBtn">Drukuj / Zapisz jako PDF</button>
+        <button class="btn ghost" id="clearBtn">Wyczyść arkusz</button>
+      </div>
+
+      <footer>
+        Na podstawie formularza „Radical Acceptance” — The Tipping Method (Metoda Tippinga)
+      </footer>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  const ACCEPT_OPTS = ["Zgadzam się", "Nie zgadzam się"];
+
+  // Wstrzykiwanie opcji Zgadzam się / Nie zgadzam się (AGREE / DISAGREE)
+  document.querySelectorAll('.rgroup').forEach(el=>{
+    const name = el.dataset.name;
+    const fs = document.createElement('fieldset');
+    fs.className = 'readiness';
+    const legend = document.createElement('legend');
+    legend.textContent = 'Mój wybór:';
+    fs.appendChild(legend);
+    ACCEPT_OPTS.forEach((opt,i)=>{
+      const id = name+'-'+i;
+      const lab = document.createElement('label');
+      lab.className = 'pill';
+      lab.innerHTML = '<input type="radio" name="'+name+'" id="'+id+'"><span>'+opt+'</span>';
+      fs.appendChild(lab);
+    });
+    el.replaceWith(fs);
+  });
+
+  // Dynamiczne uzupełnianie imienia w treści formularza
+  const nameInput = document.getElementById('objectName');
+  function refreshNames(){
+    const val = nameInput.value.trim() || 'tą osobą';
+    document.querySelectorAll('.name-fill').forEach(s=> {
+      if (nameInput.value.trim()) {
+        s.textContent = val;
+      } else {
+        // Przywrócenie domyślnych form, jeśli pole jest puste
+        if (s.parentNode.innerHTML.includes('Problem, jaki mam z')) {
+          s.textContent = 'nią / nim';
+        } else if (s.parentNode.innerHTML.includes('myślę o')) {
+          s.textContent = 'tej osobie';
+        } else if (s.parentNode.innerHTML.includes('postrzegam')) {
+          s.textContent = 'tę osobę';
+        } else if (s.parentNode.innerHTML.includes('wykorzystywać')) {
+          s.textContent = 'tę osobę';
+        } else if (s.parentNode.innerHTML.includes('dostrzegam w')) {
+          s.textContent = 'tej osobie';
+        } else if (s.parentNode.innerHTML.includes('dostrzec w')) {
+          s.textContent = 'niej / nim';
+        } else if (s.parentNode.innerHTML.includes('Jedności z')) {
+          s.textContent = 'tą osobą';
+        } else {
+          s.textContent = val;
+        }
+      }
+    });
+  }
+  nameInput.addEventListener('input', refreshNames);
+
+  // Automatyczne dopasowywanie wysokości pól tekstowych
+  function autosize(t){
+    t.style.height = 'auto';
+    t.style.height = (t.scrollHeight+2) + 'px';
+  }
+  function autosizeAll(){
+    document.querySelectorAll('textarea').forEach(t=>{
+      autosize(t);
+      t.addEventListener('input', ()=>autosize(t));
+    });
+  }
+  window.addEventListener('load', autosizeAll);
+  refreshNames();
+
+  // Scroll spy i nawigacja boczna
+  const sections = Array.from(document.querySelectorAll('.stage'));
+  const railTabs = Array.from(document.querySelectorAll('.rail-tab'));
+  const mTabs = Array.from(document.querySelectorAll('.mrail button'));
+  function setActive(id){
+    railTabs.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+    mTabs.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+  }
+  [...railTabs, ...mTabs].forEach(b=>{
+    b.addEventListener('click', ()=>{
+      document.getElementById(b.dataset.target).scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting) setActive(e.target.id);
+    });
+  }, {rootMargin:'-20% 0px -65% 0px', threshold:0});
+  sections.forEach(s=> io.observe(s));
+
+  // Drukowanie
+  document.getElementById('printBtn').addEventListener('click', ()=>{ window.print(); });
+
+  // Czyszczenie arkusza
+  document.getElementById('clearBtn').addEventListener('click', ()=>{
+    if(!confirm('Czy na pewno chcesz wyczyścić cały arkusz?')) return;
+    document.querySelectorAll('textarea').forEach(t=>{ t.value=''; autosize(t); });
+    document.querySelectorAll('input[type=text], input[type=date]').forEach(i=> i.value='');
+    document.querySelectorAll('input[type=radio]').forEach(i=> i.checked=false);
+    refreshNames();
+  });
+})();
+</script>
+</body>
+</html>
