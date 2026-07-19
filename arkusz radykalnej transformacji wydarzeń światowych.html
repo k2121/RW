@@ -10,17 +10,17 @@
 
 <style>
   :root{
-    --paper:#F5F2EB;
-    --paper-deep:#EBE4D8;
-    --card:#FDFDFB;
-    --ink:#2B2421;
-    --ink-soft:#6D6157;
-    --blue:#34546D;
-    --blue-deep:#1F3447;
-    --blue-pale:#EAF0F6;
-    --gold:#A3793D;
-    --line:#DDD4C7;
-    --shadow:0 1px 2px rgba(43,36,33,.04), 0 8px 24px rgba(43,36,33,.06);
+    --paper:#F5EFE3;
+    --paper-deep:#ECE2CC;
+    --card:#FBF8F0;
+    --ink:#2A211B;
+    --ink-soft:#6A5D4F;
+    --blue:#A8425A;
+    --blue-deep:#7C2F42;
+    --blue-pale:#EFD9D9;
+    --gold:#A9803F;
+    --line:#DCCFB2;
+    --shadow:0 1px 2px rgba(42,33,27,.06), 0 8px 24px rgba(42,33,27,.08);
     --rail-w:88px;
   }
   *{box-sizing:border-box;}
@@ -28,7 +28,7 @@
   body{
     margin:0;
     background:
-      radial-gradient(1200px 600px at 12% -10%, rgba(52,84,109,.05), transparent 60%),
+      radial-gradient(1200px 600px at 12% -10%, rgba(168,66,90,.05), transparent 60%),
       var(--paper);
     color:var(--ink);
     font-family:'Spectral',serif;
@@ -83,7 +83,7 @@
     border-left:3px solid transparent;
     transition:color .2s, border-color .2s, background .2s;
   }
-  .rail-tab:hover{ color:var(--ink); background:rgba(52,84,109,.06); }
+  .rail-tab:hover{ color:var(--ink); background:rgba(168,66,90,.06); }
   .rail-tab.active{
     color:var(--blue-deep);
     border-left-color:var(--blue);
@@ -204,7 +204,7 @@
     font-family:'Spectral',serif; font-size:15.5px; color:var(--ink);
     line-height:1.55; outline:none; min-height:64px;
   }
-  textarea:focus{ border-color:var(--blue); box-shadow:0 0 0 3px rgba(52,84,109,.12); }
+  textarea:focus{ border-color:var(--blue); box-shadow:0 0 0 3px rgba(168,66,90,.12); }
 
   /* readiness pills & checkboxes */
   .checkbox-grid {
@@ -548,7 +548,7 @@
   sections.forEach(s=> io.observe(s));
 
   // print
-  document.getElementById('printBtn').addEventListener('click', ()=>{ window.print(); });
+  document.getElementById('printBtn').addEventListener('click', ()=>{ refreshTitle(); window.print(); });
 
   // clear
   document.getElementById('clearBtn').addEventListener('click', ()=>{
@@ -557,7 +557,56 @@
     document.querySelectorAll('input[type=text], input[type=date]').forEach(i=> i.value='');
     document.querySelectorAll('input[type=checkbox]').forEach(c=> c.checked=false);
     document.querySelectorAll('input[type=radio]').forEach(i=> i.checked=false);
-  });
+  
+    refreshTitle();});
+
+  // dynamiczny tytuł strony (wpływa też na nazwę pliku PDF przy drukowaniu)
+  function pad2(n){ return String(n).padStart(2,'0'); }
+  function stampCzas(){
+    const d = new Date();
+    const rr = pad2(d.getFullYear() % 100);
+    const mm = pad2(d.getMonth()+1);
+    const dd = pad2(d.getDate());
+    const gg = pad2(d.getHours());
+    const mi = pad2(d.getMinutes());
+    return 'r'+rr+mm+dd+'g'+gg+mi;
+  }
+  function padNr(nr){
+    return /^\d+$/.test(nr) ? nr.padStart(3,'0') : nr;
+  }
+  
+  const BASE_TITLE = document.title.split(' — ')[0].split(' - ')[0].trim();
+  
+  function refreshTitle(){
+    const nrInput = document.getElementById('fNr');
+    const nameInput = document.getElementById('objectName') || 
+                      document.getElementById('fInny') || 
+                      document.getElementById('yourName') || 
+                      document.getElementById('fName') || 
+                      document.getElementById('fImie') || 
+                      document.getElementById('fUser');
+                      
+    const nr = nrInput ? nrInput.value.trim() : '';
+    const osoba = nameInput ? nameInput.value.trim() : '';
+    
+    let title = BASE_TITLE + ' - ' + stampCzas();
+    if(nr) title += ' nr' + padNr(nr);
+    if(osoba) title += ' - ' + osoba;
+    document.title = title;
+  }
+  
+  const nrInputEl = document.getElementById('fNr');
+  if (nrInputEl) nrInputEl.addEventListener('input', refreshTitle);
+  
+  const nameInputEl = document.getElementById('objectName') || 
+                      document.getElementById('fInny') || 
+                      document.getElementById('yourName') || 
+                      document.getElementById('fName') || 
+                      document.getElementById('fImie') || 
+                      document.getElementById('fUser');
+  if (nameInputEl) nameInputEl.addEventListener('input', refreshTitle);
+  
+  refreshTitle();
 })();
 </script>
 </body>

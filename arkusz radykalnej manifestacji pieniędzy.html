@@ -9,18 +9,18 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680;1,9..144,500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   :root{
-    --paper:#F3EBE0;
-    --paper-deep:#E7DBC8;
-    --card:#FBF9F4;
-    --ink:#2A221E;
-    --ink-soft:#695E55;
-    --rose:#94485C;
-    --rose-deep:#6E2E3E;
-    --rose-pale:#ECD6D9;
+    --paper:#F5EFE3;
+    --paper-deep:#ECE2CC;
+    --card:#FBF8F0;
+    --ink:#2A211B;
+    --ink-soft:#6A5D4F;
+    --rose:#A8425A;
+    --rose-deep:#7C2F42;
+    --rose-pale:#EFD9D9;
     --sage:#4A6B53;
-    --gold:#A0783A;
-    --line:#DAC9B3;
-    --shadow:0 1px 2px rgba(42,34,30,.06), 0 8px 24px rgba(42,34,30,.08);
+    --gold:#A9803F;
+    --line:#DCCFB2;
+    --shadow:0 1px 2px rgba(42,33,27,.06), 0 8px 24px rgba(42,33,27,.08);
     --rail-w:84px;
   }
   *{box-sizing:border-box;}
@@ -32,7 +32,7 @@
   body{
     margin:0;
     background:
-      radial-gradient(1200px 600px at 88% -10%, rgba(148,72,92,.05), transparent 60%),
+      radial-gradient(1200px 600px at 88% -10%, rgba(168,66,90,.05), transparent 60%),
       var(--paper);
     color:var(--ink);
     font-family:'Spectral',serif;
@@ -520,33 +520,11 @@
   const signDate = document.getElementById('signDate');
   fData.addEventListener('input', ()=>{ signDate.value = fData.value; });
 
-  // Generowanie dynamicznej nazwy dokumentu do zapisu PDF
-  const BASE_TITLE = document.title;
-  const fNr = document.getElementById('fNr');
-  const yourName = document.getElementById('yourName');
-  function pad(n, len=2){ return String(n).padStart(len, '0'); }
-  function updateTitle(){
-    const now = new Date();
-    const rr = pad(now.getFullYear() % 100);
-    const mm = pad(now.getMonth() + 1);
-    const dd = pad(now.getDate());
-    const gg = pad(now.getHours());
-    const mi = pad(now.getMinutes());
-    const nrRaw = fNr.value.trim();
-    const nrNum = nrRaw ? parseInt(nrRaw, 10) : 0;
-    const nr = pad(Number.isFinite(nrNum) ? nrNum : 0, 3);
-    let title = `${BASE_TITLE} - r${rr}${mm}${dd}g${gg}${mi} nr${nr}`;
-    const name = yourName.value.trim();
-    if(name) title += ` - ${name}`;
-    document.title = title;
-  }
-  fNr.addEventListener('input', updateTitle);
-  yourName.addEventListener('input', updateTitle);
-  updateTitle();
+  
 
   // Drukowanie / Zapis PDF
   document.getElementById('printBtn').addEventListener('click', ()=>{
-    updateTitle();
+    refreshTitle();
     window.print();
   });
 
@@ -557,8 +535,56 @@
     document.querySelectorAll('input[type=text], input[type=date], input[type=number]').forEach(i=> i.value='');
     document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach(i=> i.checked=false);
     autosizeAll();
-    updateTitle();
+    refreshTitle();
   });
+
+  // dynamiczny tytuł strony (wpływa też na nazwę pliku PDF przy drukowaniu)
+  function pad2(n){ return String(n).padStart(2,'0'); }
+  function stampCzas(){
+    const d = new Date();
+    const rr = pad2(d.getFullYear() % 100);
+    const mm = pad2(d.getMonth()+1);
+    const dd = pad2(d.getDate());
+    const gg = pad2(d.getHours());
+    const mi = pad2(d.getMinutes());
+    return 'r'+rr+mm+dd+'g'+gg+mi;
+  }
+  function padNr(nr){
+    return /^\d+$/.test(nr) ? nr.padStart(3,'0') : nr;
+  }
+  
+  const BASE_TITLE = document.title.split(' — ')[0].split(' - ')[0].trim();
+  
+  function refreshTitle(){
+    const nrInput = document.getElementById('fNr');
+    const nameInput = document.getElementById('objectName') || 
+                      document.getElementById('fInny') || 
+                      document.getElementById('yourName') || 
+                      document.getElementById('fName') || 
+                      document.getElementById('fImie') || 
+                      document.getElementById('fUser');
+                      
+    const nr = nrInput ? nrInput.value.trim() : '';
+    const osoba = nameInput ? nameInput.value.trim() : '';
+    
+    let title = BASE_TITLE + ' - ' + stampCzas();
+    if(nr) title += ' nr' + padNr(nr);
+    if(osoba) title += ' - ' + osoba;
+    document.title = title;
+  }
+  
+  const nrInputEl = document.getElementById('fNr');
+  if (nrInputEl) nrInputEl.addEventListener('input', refreshTitle);
+  
+  const nameInputEl = document.getElementById('objectName') || 
+                      document.getElementById('fInny') || 
+                      document.getElementById('yourName') || 
+                      document.getElementById('fName') || 
+                      document.getElementById('fImie') || 
+                      document.getElementById('fUser');
+  if (nameInputEl) nameInputEl.addEventListener('input', refreshTitle);
+  
+  refreshTitle();
 })();
 </script>
 </body>
