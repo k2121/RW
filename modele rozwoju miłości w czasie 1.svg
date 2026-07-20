@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<svg
+   class="chart-svg"
+   viewBox="0 0 300 150"
+   version="1.1"
+   id="svg5"
+   sodipodi:docname="modele rozwoju miłości w czasie 1.svg"
+   inkscape:version="1.4.2 (ebf0e940d0, 2025-05-08)"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <defs
+     id="defs5" />
+  <sodipodi:namedview
+     id="namedview5"
+     pagecolor="#ffffff"
+     bordercolor="#111111"
+     borderopacity="1"
+     inkscape:showpageshadow="0"
+     inkscape:pageopacity="0"
+     inkscape:pagecheckerboard="1"
+     inkscape:deskcolor="#d1d1d1"
+     showgrid="false"
+     inkscape:zoom="2.3633333"
+     inkscape:cx="137.94076"
+     inkscape:cy="62.411849"
+     inkscape:window-width="1278"
+     inkscape:window-height="648"
+     inkscape:window-x="77"
+     inkscape:window-y="216"
+     inkscape:window-maximized="0"
+     inkscape:current-layer="svg5" />
+  <!-- Oś X i Oś Y -->
+  <line
+     x1="20"
+     y1="130"
+     x2="290"
+     y2="130"
+     stroke="#6E6257"
+     stroke-width="1.5"
+     id="line1" />
+  <line
+     x1="20"
+     y1="10"
+     x2="20"
+     y2="130"
+     stroke="#6E6257"
+     stroke-width="1.5"
+     id="line2" />
+  <!-- Wykres: Eros (Namiętność) -->
+  <path
+     d="M 20,125 C 40,20 71.960508,20.578279 110,20 c 68.19464,5.691114 23.25811,72.115656 170,85"
+     fill="none"
+     stroke="#3b5a75"
+     stroke-width="2.5"
+     id="path2"
+     sodipodi:nodetypes="ccc" />
+  <!-- Wykres: Storge (Przyjaźń) -->
+  <path
+     d="m 20,110 h 80 c 72.15797,-1.53738 35.68406,-76.657264 180,-80"
+     fill="none"
+     stroke="#b08746"
+     stroke-width="2"
+     stroke-dasharray="4, 3"
+     id="path3"
+     sodipodi:nodetypes="ccc" />
+  <!-- Etykiety -->
+  <text
+     x="30.535967"
+     y="14.266573"
+     font-family="'Space Grotesk', sans-serif"
+     font-size="10px"
+     fill="#3b5a75"
+     font-weight="bold"
+     id="text3">Eros (Namiętność)</text>
+  <text
+     x="258.88654"
+     y="13.390596"
+     font-family="'Space Grotesk', sans-serif"
+     font-size="10px"
+     fill="#3b5a75"
+     font-weight="bold"
+     id="text3-5"
+     style="text-align:center;text-anchor:middle;fill:#b08646;fill-opacity:0.65490198"><tspan
+       sodipodi:role="line"
+       id="tspan6"
+       x="258.88654"
+       y="13.390596">Eros</tspan><tspan
+       sodipodi:role="line"
+       id="tspan7"
+       x="258.88654"
+       y="25.890596">(Namiętność)</tspan></text>
+  <text
+     x="26.403385"
+     y="122.70099"
+     font-family="'Space Grotesk', sans-serif"
+     font-size="10px"
+     fill="#b08746"
+     font-weight="bold"
+     id="text4"
+     style="fill:#b08746;fill-opacity:1">Storge (Przyjaźń)</text>
+  <text
+     x="214.18324"
+     y="74.032669"
+     font-family="'Space Grotesk', sans-serif"
+     font-size="10px"
+     fill="#b08746"
+     font-weight="bold"
+     id="text4-6"
+     style="fill:#000000"
+     transform="rotate(9.2733109)">Storge (Przyjaźń)</text>
+  <text
+     x="150"
+     y="145"
+     font-family="Space Grotesk, sans-serif"
+     font-size="9"
+     fill="#6E6257"
+     id="text5">CZAS →</text>
+  <text
+     xml:space="preserve"
+     style="font-style:normal;font-variant:normal;font-weight:bold;font-stretch:normal;font-family:'Space Grotesk', sans-serif;-inkscape-font-specification:'Space Grotesk, sans-serif Bold';text-align:start;writing-mode:lr-tb;direction:ltr;text-anchor:start;fill:#b08746;fill-opacity:1;font-size:10.66666667px"
+     x="8.8704386"
+     y="176.81818"
+     id="text6"
+     transform="rotate(-44.107317)"><tspan
+       sodipodi:role="line"
+       id="tspan5"
+       x="8.8704386"
+       y="176.81818">Nietypowe</tspan></text>
+</svg>

@@ -1,0 +1,697 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Założenia Radykalnego Wybaczenia — Colin Tipping</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680;1,9..144,500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F5EFE3;
+    --paper-deep:#ECE2CC;
+    --card:#FBF8F0;
+    --ink:#2A211B;
+    --ink-soft:#6A5D4F;
+    --primary:#A8425A;
+    --primary-deep:#7C2F42;
+    --primary-pale:#EFD9D9;
+    --gold:#A9803F;
+    --line:#DCCFB2;
+    --shadow:0 1px 2px rgba(42,33,27,.06), 0 8px 24px rgba(42,33,27,.08);
+    --rail-w:84px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important; transition:none !important;}
+  }
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 12% -10%, rgba(168,66,90,.06), transparent 60%),
+      var(--paper);
+    color:var(--ink);
+    font-family:'Spectral',serif;
+    font-size:16.5px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--primary-pale); }
+  a{ color:var(--primary-deep); }
+
+  /* ---------- layout shell ---------- */
+  .shell{
+    display:grid;
+    grid-template-columns:var(--rail-w) 1fr;
+    min-height:100vh;
+  }
+  @media (max-width:860px){
+    .shell{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- vertical stage rail ---------- */
+  .rail{
+    position:sticky; top:0; align-self:start;
+    height:100vh;
+    border-right:1px solid var(--line);
+    background:var(--paper-deep);
+    display:flex; flex-direction:column;
+    padding:22px 0;
+  }
+  .rail-mark{
+    width:34px; height:34px; margin:0 auto 28px;
+    border-radius:50%;
+    background:var(--primary-deep);
+    position:relative;
+    flex:none;
+  }
+  .rail-mark::before, .rail-mark::after{
+    content:""; position:absolute; inset:7px;
+    background:var(--paper-deep);
+    border-radius:50% 50% 50% 0;
+    transform:rotate(-45deg);
+  }
+  .rail-tabs{ display:flex; flex-direction:column; gap:2px; flex:1; }
+  .rail-tab{
+    appearance:none; border:none; background:transparent; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    padding:16px 0;
+    color:var(--ink-soft);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:11px; letter-spacing:.14em;
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    border-left:3px solid transparent;
+    transition:color .2s, border-color .2s, background .2s;
+  }
+  .rail-tab:hover{ color:var(--ink); background:rgba(168,66,90,.06); }
+  .rail-tab.active{
+    color:var(--primary-deep);
+    border-left-color:var(--primary);
+    background:var(--card);
+    font-weight:600;
+  }
+  .rail-tab .num{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:560;
+    font-size:15px; margin-right:10px; letter-spacing:0;
+  }
+  .rail-foot{
+    writing-mode:vertical-rl; transform:rotate(180deg);
+    margin:0 auto; color:var(--ink-soft); opacity:.55;
+    font-family:'Space Grotesk',sans-serif; font-size:10px; letter-spacing:.16em;
+  }
+
+  /* mobile rail -> horizontal progress strip */
+  .mrail{ display:none; }
+  @media (max-width:860px){
+    .rail{ display:none; }
+    .mrail{
+      display:flex; position:sticky; top:0; z-index:20;
+      background:var(--paper-deep); border-bottom:1px solid var(--line);
+      overflow-x:auto; padding:10px 14px; gap:8px;
+    }
+    .mrail button{
+      appearance:none; border:1px solid var(--line); background:var(--card);
+      color:var(--ink-soft); font-family:'Space Grotesk',sans-serif;
+      font-size:11.5px; letter-spacing:.04em; white-space:nowrap;
+      padding:7px 12px; border-radius:999px; cursor:pointer;
+    }
+    .mrail button.active{ background:var(--primary-deep); color:#fff; border-color:var(--primary-deep); }
+  }
+
+  /* ---------- main column ---------- */
+  main{ min-width:0; }
+  .wrap{ max-width:760px; margin:0 auto; padding:56px 28px 90px; }
+  @media (max-width:560px){ .wrap{ padding:34px 16px 70px; } }
+
+  .eyebrow{
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--primary-deep); margin-bottom:14px;
+  }
+  h1.title{
+    font-family:'Fraunces',serif; font-weight:680; font-size:clamp(32px,5vw,44px);
+    line-height:1.1; margin:0 0 6px; letter-spacing:-.01em;
+  }
+  .subtitle{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:400;
+    color:var(--ink-soft); font-size:19px; margin:0 0 28px;
+  }
+
+  .meta-card{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+    display:grid; grid-template-columns:1fr 1fr; gap:16px 20px;
+  }
+  @media (max-width:560px){ .meta-card{ grid-template-columns:1fr; } }
+  .field label{
+    display:block; font-family:'Space Grotesk',sans-serif; font-size:11px;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;
+  }
+  .field input{
+    width:100%; border:none; border-bottom:1.5px solid var(--line);
+    background:transparent; font-family:'Spectral',serif; font-size:16px;
+    color:var(--ink); padding:4px 2px 7px; outline:none;
+  }
+  .field input:focus{ border-bottom-color:var(--primary); }
+
+  .privacy{
+    font-family:'Space Grotesk',sans-serif; font-size:12.5px; color:var(--ink-soft);
+    border:1px dashed var(--line);
+    border-radius:10px; padding:12px 16px; margin-bottom:8px; line-height:1.55;
+  }
+  .privacy strong{ color:var(--ink); }
+
+  .toolbar{
+    display:flex; gap:10px; flex-wrap:wrap; margin:30px 0 30px;
+  }
+  .btn{
+    appearance:none; cursor:pointer; border-radius:999px;
+    font-family:'Space Grotesk',sans-serif; font-size:13px; letter-spacing:.03em;
+    padding:10px 18px; border:1.5px solid var(--primary-deep);
+  }
+  .btn.primary{ background:var(--primary-deep); color:#fff; }
+  .btn.ghost{ background:transparent; color:var(--primary-deep); }
+  .btn:hover{ filter:brightness(1.05); }
+
+  /* ---------- stage sections ---------- */
+  .stage{ scroll-margin-top:18px; margin-top:54px; }
+  .stage-head{
+    display:flex; align-items:baseline; gap:14px;
+    background:var(--primary-pale); border-radius:12px;
+    padding:14px 20px; margin-bottom:22px;
+  }
+  .stage-head .snum{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:680;
+    font-size:30px; color:var(--primary-deep); line-height:1;
+  }
+  .stage-head h2{
+    font-family:'Space Grotesk',sans-serif; font-size:13.5px; letter-spacing:.1em;
+    text-transform:uppercase; margin:0; color:var(--ink);
+  }
+
+  .intro-block{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:24px; margin-bottom:28px;
+  }
+
+  .item{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:24px;
+  }
+  .item-header-row {
+    display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:12px; margin-bottom:12px;
+  }
+  .item-title-side {
+    display:flex; align-items:center; flex:1; min-width:200px;
+  }
+  .item .inum{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:560;
+    color:var(--gold); font-size:18px; margin-right:8px;
+  }
+  .item p.lead{ margin:0; font-weight:600; font-size:17.5px; color:var(--primary-deep); }
+
+  .slide-box{
+    background: linear-gradient(135deg, var(--primary-deep), var(--primary));
+    color: #ffffff;
+    border-radius: 12px;
+    padding: 24px;
+    margin: 16px 0;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+    text-align: center;
+  }
+  .slide-box h3 {
+    font-family: 'Fraunces', serif;
+    font-size: 22px;
+    margin: 0 0 10px 0;
+    letter-spacing: 0.02em;
+    color: #F8F9FA;
+  }
+  .slide-box ol, .slide-box ul {
+    text-align: left;
+    display: inline-block;
+    margin: 10px 0;
+    padding-left: 20px;
+  }
+  .slide-box p {
+    margin: 8px 0;
+    font-size: 17px;
+  }
+  .slide-box strong {
+    color: #FFD166;
+  }
+
+  textarea{
+    width:100%; resize:none; overflow:hidden;
+    border:1px solid var(--line); border-radius:10px;
+    background:#FFFDFB; padding:12px 14px;
+    font-family:'Spectral',serif; font-size:15.5px; color:var(--ink);
+    line-height:1.55; outline:none; min-height:74px; margin-top:8px;
+  }
+  textarea:focus{ border-color:var(--primary); box-shadow:0 0 0 3px rgba(168,66,90,.12); }
+
+  .affirmation{
+    background:linear-gradient(135deg, var(--primary-pale), var(--paper-deep));
+    border-radius:14px; padding:24px 26px; margin-bottom:18px;
+    font-family:'Spectral',serif; font-style:italic; font-size:16.5px; color:var(--ink);
+    border:1px solid var(--line);
+  }
+
+  .signoff{
+    margin-top:50px; padding-top:28px; border-top:1px solid var(--line);
+    display:grid; grid-template-columns:1fr 1fr; gap:30px;
+  }
+  @media (max-width:560px){ .signoff{ grid-template-columns:1fr; } }
+
+  footer{
+    margin-top:60px; padding-top:18px; border-top:1px solid var(--line);
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; color:var(--ink-soft);
+    text-align:center; line-height:1.7;
+  }
+  footer a{ color:var(--ink-soft); }
+
+  /* ---------- print ---------- */
+  @media print{
+    .rail, .mrail, .toolbar, .privacy{ display:none !important; }
+    .shell{ display:block; }
+    body{ background:#fff; }
+    .wrap{ max-width:100%; padding:0 8px; }
+    .item, .meta-card, .affirmation, .intro-block{ box-shadow:none; border:1px solid #ccc; break-inside:avoid; }
+    .stage{ break-before:page; margin-top:0; padding-top:18px; }
+    .stage:first-of-type{ break-before:auto; }
+    textarea{ border:1px solid #ccc; min-height:90px; }
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <!-- desktop vertical rail -->
+  <nav class="rail" aria-label="Etapy arkusza">
+    <div class="rail-mark" aria-hidden="true"></div>
+    <div class="rail-tabs" id="railTabs">
+      <button class="rail-tab" data-target="stage-intro"><span class="num">1</span>Wprowadzenie</button>
+      <button class="rail-tab" data-target="stage-assumptions-1"><span class="num">2</span>Nasz Rzeczywistość</button>
+      <button class="rail-tab" data-target="stage-assumptions-2"><span class="num">3</span>Boski Plan i Lustra</button>
+      <button class="rail-tab" data-target="stage-assumptions-3"><span class="num">4</span>Lekcje i Przebudzenie</button>
+      <button class="rail-tab" data-target="stage-summary"><span class="num">5</span>Integracja i Podpis</button>
+    </div>
+    <div class="rail-foot">Przewodnik Wybaczenia</div>
+  </nav>
+
+  <main>
+    <!-- mobile horizontal rail -->
+    <nav class="mrail" id="mrail" aria-label="Etapy arkusza (mobile)">
+      <button data-target="stage-intro">1 · Wstęp</button>
+      <button data-target="stage-assumptions-1">2 · Rzeczywistość</button>
+      <button data-target="stage-assumptions-2">3 · Plan i Lustra</button>
+      <button data-target="stage-assumptions-3">4 · Przebudzenie</button>
+      <button data-target="stage-summary">5 · Podsumowanie</button>
+    </nav>
+
+    <div class="wrap">
+      <div class="eyebrow">Przewodnik Pracy Duchowej i Autoterapii</div>
+      <h1 class="title">Założenia Radykalnego Wybaczenia</h1>
+      <p class="subtitle">Autor: Colin Tipping — Przetłumaczone i opracowane w formie interaktywnego arkusza</p>
+
+      <p class="privacy"><strong>Zalecenie:</strong> Warto ukończyć wypełnianie strony poprzez kliknięcie przycisku na dole lub zapisać swoją pracę w edytorze tekstu. Dzięki temu zabezpieczysz swoje refleksje przed niespodziewanym zamknięciem przeglądarki.</p>
+
+      <!-- ================= WPROWADZENIE ================= -->
+      <section class="stage" id="stage-intro">
+        <div class="stage-head"><span class="snum">1</span><h2>Wprowadzenie do Radykalnego Wybaczenia</h2></div>
+        
+        <div class="intro-block">
+          <p>Radykalne Wybaczenie różni się od tradycyjnego wybaczenia. Tradycyjne wybaczenie wymaga od nas uznania, że wydarzyło się coś złego, ponownego przeżycia krzywdy i łaskawego odpuszczenia winy sprawcy. Radykalne Wybaczenie proponuje zmianę perspektywy: przesunięcie punktu widzenia z pozycji ofiary na poziom duchowy, w którym dostrzegamy, że wszystko, co nas spotyka, dzieje się <em>dla nas</em>, a nie <em>przeciwko nam</em>.</p>
+          <p>Poniższy arkusz przeprowadzi Cię przez kluczowe założenia teoretyczne autorskiej koncepcji Colina Tippinga, zilustrowane slajdami wykładowymi oraz komentarzem. Po zapoznaniu się z każdym założeniem, znajdziesz miejsce na własną refleksję i odniesienie danej zasady do swojego obecnego życia.</p>
+        </div>
+
+        <div class="meta-card">
+          <div class="field"><label for="fImie">Twoje Imię</label><input id="fImie" type="text" placeholder="Wpisz swoje imię…"></div>
+          <div class="field"><label for="fData">Data wypełnienia</label><input id="fData" type="date"></div>
+        </div>
+        
+        <div class="affirmation">
+          <p style="margin:0; font-weight:600; text-align:center; color:var(--primary-deep);">
+            „Otwieram swój umysł na perspektywę, że w każdym doświadczeniu mojego życia kryje się ukryty, doskonały sens.”
+          </p>
+        </div>
+      </section>
+
+      <!-- ================= ZAŁOŻENIA CZĘŚĆ 1 ================= -->
+      <section class="stage" id="stage-assumptions-1">
+        <div class="stage-head"><span class="snum">2</span><h2>Dwulicowość Rzeczywistości i Sens Istnienia</h2></div>
+
+        <!-- Punkt 1 -->
+        <div class="item">
+          <div class="item-header-row">
+            <div class="item-title-side">
+              <span class="inum">1.</span>
+              <p class="lead">Jestem Istotą Duchową</p>
+            </div>
+          </div>
+          <div class="slide-box">
+            <h3>Jesteśmy Istotami Duchowymi doświadczającymi duchowego istnienia w ludzkim ciele.</h3>
+          </div>
+          <p>Kiedy po raz pierwszy to usłyszałem, pomyślałem, że to tylko ładne powiedzonko. Ale kiedy naprawdę to przemyślałem, zdałem sobie sprawę, jak głębokie to stwierdzenie. Po pierwsze, potwierdziło ono, że w swej istocie jesteśmy Istotami Duchowymi połączonymi ze Wszystkim Co Jest i że podjęliśmy świadomy wybór, aby przyjść na tę planetę i przyjąć ciało — z jakiegoś powodu (do którego przejdę za chwilę).</p>
+          <p>Neguje to również pogląd, że jesteśmy upadli i oddzieleni od Wszystkiego Co Jest — Źródła Wszelkiego Bytu (Boga, jeśli wolisz). Przeciwnie, wierzę, że przybyliśmy tu z błogosławieństwem Boga, aby odebrać ważne duchowe lekcje, i że powrócimy do domu, gdy będziemy gotowi i dopełnimy swojego losu.</p>
+          <label class="field" style="margin-top:12px;"><span style="font-weight:600; font-size:14px; color:var(--ink-soft);">Osobista refleksja: Co zmienia w Twoim myśleniu spojrzenie na siebie jako na istotę duchową?</span></label>
+          <textarea placeholder="Wpisz swoje przemyślenia..."></textarea>
+        </div>
+
+        <!-- Punkt 2 -->
+        <div class="item">
+          <div class="item-header-row">
+            <div class="item-title-side">
+              <span class="inum">2.</span>
+              <p class="lead">Dwa Światy i Dusza</p>
+            </div>
+          </div>
+          <div class="slide-box">
+            <h3>Egzystujemy jednocześnie w dwóch rzeczywistościach, z których każda oddziałuje na innych częstotliwościach:</h3>
+            <ol>
+              <li>Swiat Ludzkości</li>
+              <li>Świat Ducha</li>
+            </ol>
+            <p style="margin-top:10px;"><strong>Dusza jest świadoma obu tych światów.</strong></p>
+          </div>
+          <p>Te dwa światy nie są oddzielnymi miejscami; po prostu mają różne wibracje. Aby być w ludzkim ciele, musieliśmy obniżyć naszą wibrację na tyle, by energia objawiła się jako forma fizyczna. Nasze 5 zmysłów daje nam świadomość tego świata fizycznego — świata ludzkości.</p>
+          <p>Świat Ducha jest również obecny w naszym życiu, ale w większości nie zdajemy sobie z niego sprawy. Jest to zbyt subtelna energia. Poza tym część umowy, którą zawarliśmy inkarnując się na ten ludzki poziom, polegała na tym, że zapomnimy o świecie Ducha, przynajmniej na pewien etap życia. Można powiedzieć, że zgodziliśmy się na duchową amnezję. Było to konieczne, abyśmy uwierzyli, że świat ludzki jest jedyną grą w mieście i abyśmy grali w nią tak, jakby była prawdziwa. W przeciwnym razie nie wyciągnęlibyśmy z niej wartości. Moglibyśmy odrzucić pewne lekcje, gdybyśmy z góry znali zasady.</p>
+          <p>Jednak podczas gdy Twoje Ego nic nie wie o świecie Ducha i inwestuje wszystko w uczynienie świata ludzkiego jedyną rzeczywistością, Twoja dusza wie wszystko. Zna całą strukturę, wie, dlaczego tu jesteś i jakie lekcje przyszedłeś odebrać.</p>
+          <label class="field" style="margin-top:12px;"><span style="font-weight:600; font-size:14px; color:var(--ink-soft);">Osobista refleksja: Czy odczuwasz czasem konflikt między głosem Ego a intuicją Duszy?</span></label>
+          <textarea placeholder="Wpisz swoje przemyślenia..."></textarea>
+        </div>
+
+        <!-- Punkt 3 -->
+        <div class="item">
+          <div class="item-header-row">
+            <div class="item-title-side">
+              <span class="inum">3.</span>
+              <p class="lead">Jedność poprzez Separację</p>
+            </div>
+          </div>
+          <div class="slide-box">
+            <h3>Wybraliśmy ludzkie doświadczenie, aby wzmocnić nasze poczucie JEDNOŚCI poprzez doświadczenie jej przeciwieństwa — SEPARACJI.</h3>
+            <p style="margin-top:12px;"><strong>Świat jest zatem duchową klasą, a życie jest programem nauczania.</strong></p>
+          </div>
+          <p>Zapewne słyszałeś przysłowie, że ryba jako ostatnia odkrywa obecność wody. Chodzi o to, że kiedy jesteś w czymś całkowicie ZANURZONY, trudno to docenić lub być tego świadomym. Kiedy istniejemy w jedności, jak to ma miejsce w świecie Ducha, mamy małą realną świadomość tego stanu.</p>
+          <p>Przybyliśmy więc do tego świata dwoistości (dualizmu), gdzie wszystko ma swoje przeciwieństwo, aby doświadczyć separacji. Tylko wtedy będziemy w stanie docenić jedność. To proste. Ale nie wystarczy poznać separacji jako intelektualnego pojęcia. Chcemy POCZUĆ separację na wiele sposobów — porzucenie, zdradę, nadużycie, dyskryminację i tak dalej. To nasz wybrany program nauczania. Aby mieć uczucia, potrzebujemy ciała. Bez niego byłoby to niemożliwe.</p>
+          <label class="field" style="margin-top:12px;"><span style="font-weight:600; font-size:14px; color:var(--ink-soft);">Osobista refleksja: Jakie trudne doświadczenie emocjonalne mogło służyć jako lekcja w Twojej „duchowej klasie”?</span></label>
+          <textarea placeholder="Wpisz swoje przemyślenia..."></textarea>
+        </div>
+
+      </section>
+
+      <!-- ================= ZAŁOŻENIA CZĘŚĆ 2 ================= -->
+      <section class="stage" id="stage-assumptions-2">
+        <div class="stage-head"><span class="snum">3</span><h2>Boski Plan i Mechanizm Lustra</h2></div>
+
+        <!-- Punkt 4 -->
+        <div class="item">
+          <div class="item-header-row">
+            <div class="item-title-side">
+              <span class="inum">4.</span>
+              <p class="lead">Boski Plan</p>
+            </div>
+          </div>
+          <div class="slide-box">
+            <h3>Życie nie jest tylko losowym zestawem zdarzeń bez celu czy inteligencji.</h3>
+            <p style="margin-top:10px;">To, co wydaje się przypadkowe, jest w rzeczywistości rozwinięciem Boskiego Planu, który jest całkowicie celowy pod kątem naszego duchowego wzrostu, dając okazję do dokonywania wyborów w każdej chwili.</p>
+          </div>
+          <p>Z pewnością życie często wygląda na chaotyczne i bezsensowne, prawda? Wydaje się sprowadzać do łutu szczęścia lub przypadku. Ale prawda jest taka, że pod spodem kryje się Zupełnie inna historia. Jeśli znasz analogię do tkaniny (gobelinu), wiesz, co mam na myśli.</p>
+          <p>Twoje życie jest w pełni celowe pod każdym względem. Gdybyś mógł zobaczyć pełny obraz (co na razie jest niemożliwe), zrozumiałbyś, że wszystko jest doskonałe. Boski plan nie jest jednak sztywny. Mamy wolną wolę, by zmieniać i dostosowywać nasz plan w trakcie drogi, często przy wsparciu z drugiej strony.</p>
+          <label class="field" style="margin-top:12px;"><span style="font-weight:600; font-size:14px; color:var(--ink-soft);">Osobista refleksja: Spoglądając wstecz, które „przypadkowe” wydarzenie okazuje się kluczowe dla Twojego rozwoju?</span></label>
+          <textarea placeholder="Wpisz swoje przemyślenia..."></textarea>
+        </div>
+
+        <!-- Punkt 5 -->
+        <div class="item">
+          <div class="item-header-row">
+            <div class="item-title-side">
+              <span class="inum">5.</span>
+              <p class="lead">Współtworzenie i Opór</p>
+            </div>
+          </div>
+          <div class="slide-box">
+            <h3>Jesteśmy współtwórcami z Duchem w okolicznościach naszego życia i dostajemy dokładnie to, czego chcemy (bez wyjątków).</h3>
+            <p style="margin-top:10px;">Stopień, w jakim stawiamy opór (lub oceniamy) to, co otrzymujemy, decyduje o tym, czy doświadczamy tego jako radosnego, czy bolesnego.</p>
+          </div>
+          <p>To nasza dusza — a nie Ego — tworzy nasze życie jako sposób na naukę i wzrost. W tym sensie dostajemy dokładnie to, czego chce nasza dusza. Kiedy zaczynamy rozumieć, że takie jest prawdziwe życie, możemy porzucić opór i doświadczać go z większą radością, niezależnie od okoliczności.</p>
+          <label class="field" style="margin-top:12px;"><span style="font-weight:600; font-size:14px; color:var(--ink-soft);">Osobista refleksja: W jakich obszarach życia stawiasz największy opór wobec tego, co jest?</span></label>
+          <textarea placeholder="Wpisz swoje przemyślenia..."></textarea>
+        </div>
+
+        <!-- Punkt 6 -->
+        <div class="item">
+          <div class="item-header-row">
+            <div class="item-title-side">
+              <span class="inum">6.</span>
+              <p class="lead">Projekcja i Uzdrawianie</p>
+            </div>
+          </div>
+          <div class="slide-box">
+            <h3>Ilekroć denerwujemy się na inną osobę (lub organizację), rezonuje w nas coś, co potępiliśmy w sobie i <u>zaparliśmy się</u>, <u>stłumiliśmy</u> i <u>zprojektowaliśmy</u> na tę osobę lub rzecz.</h3>
+          </div>
+          <p>Zasada brzmi: „jeśli to dostrzegasz, to to masz”. Cokolwiek widzisz w drugim człowieku, co uważasz za niedopuszczalne, jest po prostu odzwierciedleniem tej części Ciebie, której nie znosisz. Własna nienawiść do samego siebie zostaje Ci odbita.</p>
+          <p>Ukryłeś tę część w swoim cieniu. Aby się od niej uwolnić, projektujesz ją na kogoś innego — na kozła ofiarnego. Ale kiedy uświadomisz sobie, że patrzysz w lustro, odkrywasz, że ta osoba nie jest wrogiem, lecz Aniołem Uzdrowienia, którego przyciągnąłeś, by pokochać odrzuconą część siebie.</p>
+          <label class="field" style="margin-top:12px;"><span style="font-weight:600; font-size:14px; color:var(--ink-soft);">Osobista refleksja: Kto w Twoim życiu wywołuje w Tobie najsilniejsze negatywne emocje i co ta osoba może w Tobie odzwierciedlać?</span></label>
+          <textarea placeholder="Wpisz swoje przemyślenia..."></textarea>
+        </div>
+
+      </section>
+
+      <!-- ================= ZAŁOŻENIA CZĘŚĆ 3 ================= -->
+      <section class="stage" id="stage-assumptions-3">
+        <div class="stage-head"><span class="snum">4</span><h2>Lekcje, Iluzja i Przebudzenie</h2></div>
+
+        <!-- Punkt 7 -->
+        <div class="item">
+          <div class="item-header-row">
+            <div class="item-title-side">
+              <span class="inum">7.</span>
+              <p class="lead">Misja Umowy Duszy</p>
+            </div>
+          </div>
+          <div class="slide-box">
+            <h3>Inkarnujemy się z „misją” — umową z Duchem, że zrobimy pewne rzeczy, aby spłacić dług karmiczny, dopełnić kontrakt na poziomie duszy, pomóc w transformacji energii w ludzkiej kondycji lub po prostu zdobyć doświadczenia naukowe.</h3>
+          </div>
+          <p>Jeśli ignorujemy naszą prawdziwą misję i nie używamy swoich darów, często czujemy frustrację, smutek i depresję. Nigdy nie jest za późno, by odkryć swój cel i zacząć działać w zgodzie z nim.</p>
+          <label class="field" style="margin-top:12px;"><span style="font-weight:600; font-size:14px; color:var(--ink-soft);">Osobista refleksja: Jakie dary i talent posiadasz, które mogą służyć podnoszeniu świadomości?</span></label>
+          <textarea placeholder="Wpisz swoje przemyślenia..."></textarea>
+        </div>
+
+        <!-- Punkt 8 -->
+        <div class="item">
+          <div class="item-header-row">
+            <div class="item-title-side">
+              <span class="inum">8.</span>
+              <p class="lead">Transformacja Przekonań</p>
+            </div>
+          </div>
+          <div class="slide-box">
+            <h3>Nasza dusza zawsze będzie prowadzić nas w stronę pamięci o tym, kim naprawdę jesteśmy, i będzie tworzyć sytuacje dające okazję do transformacji naszych nieświadomych przekonań, które więżą nas w iluzji.</h3>
+          </div>
+          <p>Często największe dramaty tworzymy wtedy, gdy wchodzimy na ścieżkę duchowego rozwoju. Dzieje się tak po to, abyśmy w końcu mogli poznać swoje głębokie, negatywne przekonania i uwalniając je, otworzyć się na prawdę.</p>
+          <label class="field" style="margin-top:12px;"><span style="font-weight:600; font-size:14px; color:var(--ink-soft);">Osobista refleksja: Jakie powtarzające się schematy lub dramaty zauważasz w swoim życiu?</span></label>
+          <textarea placeholder="Wpisz swoje przemyślenia..."></textarea>
+        </div>
+
+        <!-- Punkt 9 -->
+        <div class="item">
+          <div class="item-header-row">
+            <div class="item-title-side">
+              <span class="inum">9.</span>
+              <p class="lead">Ludzie jako Nauczyciele</p>
+            </div>
+          </div>
+          <div class="slide-box">
+            <h3>Ludzie pojawiają się w naszym życiu, aby miłośnie „ODZWIERCIEDLAĆ” nasze przekonania tak długo, aż przebudzimy się do prawdy o tym, kim jesteśmy.</h3>
+            <p style="margin-top:10px;"><strong>Ci ludzie są naszymi nauczycielami.</strong></p>
+          </div>
+          <p>To duchowe prawo leży u podstaw wszystkich relacji. Niezależnie od tego, czy jest to przelotne spotkanie, czy wieloletni związek — wszystkie relacje służą uzdrowieniu i przebudzeniu.</p>
+          <label class="field" style="margin-top:12px;"><span style="font-weight:600; font-size:14px; color:var(--ink-soft);">Osobista refleksja: Czy potrafisz spojrzeć na trudne osoby w swoim życiu jak na nauczycieli?</span></label>
+          <textarea placeholder="Wpisz swoje przemyślenia..."></textarea>
+        </div>
+
+        <!-- Punkt 10 -->
+        <div class="item">
+          <div class="item-header-row">
+            <div class="item-title-side">
+              <span class="inum">10.</span>
+              <p class="lead">Nasi Wrogowie jako Najwięksi Nauczyciele</p>
+            </div>
+          </div>
+          <div class="slide-box">
+            <h3>Nasi wrogowie są naszymi największymi nauczycielami, ponieważ oferują nam możliwość przebudzenia poprzez:</h3>
+            <ul style="text-align:left;">
+              <li>a) odzwierciedlanie tego, co wyparliśmy w sobie, zprojektowaliśmy na innych i odgrywamy,</li>
+              <li>b) utrzymywanie nas na właściwej ścieżce naszej misji.</li>
+            </ul>
+          </div>
+          <p>Jeśli zbaczamy z kursu naszej misji, nasza Inteligencja Duchowa wykorzysta innych ludzi, aby sprowadzić nas z powrotem na właściwą drogę, umożliwiając wypełnienie duchowej umowy.</p>
+          <label class="field" style="margin-top:12px;"><span style="font-weight:600; font-size:14px; color:var(--ink-soft);">Osobista refleksja: Kto w przeszłości sprowadził Cię na właściwy tor poprzez trudne wyzwanie?</span></label>
+          <textarea placeholder="Wpisz swoje przemyślenia..."></textarea>
+        </div>
+
+        <!-- Punkt 11 & 12 -->
+        <div class="item">
+          <div class="item-header-row">
+            <div class="item-title-side">
+              <span class="inum">11.</span>
+              <p class="lead">Świat zewnętrzny jako Iluzja Projekcji</p>
+            </div>
+          </div>
+          <div class="slide-box">
+            <h3>To, co wydaje się dziać „na zewnątrz”, jest jedynie iluzją — projekcją naszej świadomości (naszych nieświadomych przekonań, idei, postaw itp.).</h3>
+          </div>
+          <p>Fizyka kwantowa potwierdza, że świadomość odgrywa kluczową rolę w kreowaniu świata. Umysł jest jak projektor rzucający film na ekran. Próba zmiany świata poprzez rzucanie kamieniami w ekran jest bezskuteczna — zmienić trzeba sam film w projektorze.</p>
+          
+          <div class="slide-box" style="margin-top:20px;">
+            <h3>Aby poznać swoje przekonania, przyjrzyj się temu, co pojawia się w Twoim życiu. Próba zmiany okoliczności zewnętrznych jest bezużyteczna, dopóki nie zmienimy najpierw naszej świadomości.</h3>
+          </div>
+          <label class="field" style="margin-top:12px;"><span style="font-weight:600; font-size:14px; color:var(--ink-soft);">Osobista refleksja: Jakie zmiany w wewnętrznym nastawieniu możesz podjąć, aby zmienić swój obraz świata?</span></label>
+          <textarea placeholder="Wpisz swoje przemyślenia..."></textarea>
+        </div>
+
+        <!-- Punkt 13 & 14 -->
+        <div class="item">
+          <div class="item-header-row">
+            <div class="item-title-side">
+              <span class="inum">12.</span>
+              <p class="lead">Nieśmiertelność Duszy i Śmierć jako Iluzja</p>
+            </div>
+          </div>
+          <div class="slide-box">
+            <h3>Mamy ciała, które umierają, ale mamy nieśmiertelne dusze, które przekraczają śmierć. Dlatego śmierć jest iluzją.</h3>
+          </div>
+          <p>Smutek po stracie bliskiej osoby jest naturalny i należy go uszanować. Jednak świadomość, że śmierć nie jest ostatecznym końcem, całkowicie zmienia naszą percepcję i reakcję na stratę.</p>
+
+          <div class="slide-box" style="margin-top:20px; background:linear-gradient(135deg, #7C2F42, #A8425A);">
+            <h3>P.S. Nie musisz wierzyć w ani jedno słowo! To i tak działa!</h3>
+          </div>
+          <label class="field" style="margin-top:12px;"><span style="font-weight:600; font-size:14px; color:var(--ink-soft);">Osobista refleksja: Co czujesz, czytając ostatnią konkluzję Colina Tippinga?</span></label>
+          <textarea placeholder="Wpisz swoje przemyślenia..."></textarea>
+        </div>
+
+      </section>
+
+      <!-- ================= PODSUMOWANIE I DEKLARACJA ================= -->
+      <section class="stage" id="stage-summary">
+        <div class="stage-head"><span class="snum">5</span><h2>Deklaracja Integracji i Podpis</h2></div>
+
+        <div class="affirmation">
+          <p style="margin:0 0 12px 0; font-weight:600;">Moje Zobowiązanie do Pracy z Wybaczeniem:</p>
+          <p style="margin:0 0 12px 0;">Otwieram się na możliwość dostrzeżenia Boskiej Doskonałości we wszystkich zdarzeniach mojego życia. Wybieram porzucenie roli ofiary i przyjmuję perspektywę uzdrowienia poprzez zrozumienie, że osoby wywołujące we mnie trudne emocje są moimi nauczycielami. Skupiam się na transformacji własnej świadomości zamiast na próbie zmiany innych ludzi.</p>
+        </div>
+
+        <div class="signoff">
+          <div class="field">
+            <label for="signName">Podpis</label>
+            <input id="signName" type="text" placeholder="Twój podpis…">
+          </div>
+          <div class="field">
+            <label for="signDate">Data</label>
+            <input id="signDate" type="date">
+          </div>
+        </div>
+      </section>
+
+      <!-- Przyciski na dole -->
+      <div class="toolbar">
+        <button class="btn primary" id="printBtn">Wydrukuj swój arkusz refleksji</button>
+        <button class="btn ghost" id="clearBtn">Wyczyść arkusz</button>
+      </div>
+
+      <footer>
+        Założenia Radykalnego Wybaczenia — Colin Tipping<br>
+        Strona stworzona w celach autoterapeutycznych, edukacyjnych i rozwojowych.
+      </footer>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  // Autosize textareas
+  function autosize(t){
+    t.style.height = 'auto';
+    t.style.height = (t.scrollHeight+2) + 'px';
+  }
+  function autosizeAll(){
+    document.querySelectorAll('textarea').forEach(t=>{
+      autosize(t);
+      t.addEventListener('input', ()=>autosize(t));
+    });
+  }
+  autosizeAll();
+  window.addEventListener('load', autosizeAll);
+
+  // Sync dates
+  const fData = document.getElementById('fData');
+  const signDate = document.getElementById('signDate');
+  if(fData && signDate){
+    fData.addEventListener('input', () => { signDate.value = fData.value; });
+    signDate.addEventListener('input', () => { fData.value = signDate.value; });
+  }
+
+  // Scroll spy + Navigation
+  const sections = Array.from(document.querySelectorAll('.stage'));
+  const railTabs = Array.from(document.querySelectorAll('.rail-tab'));
+  const mTabs = Array.from(document.querySelectorAll('.mrail button'));
+  
+  function setActive(id){
+    railTabs.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+    mTabs.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+  }
+  [...railTabs, ...mTabs].forEach(b=>{
+    b.addEventListener('click', ()=>{
+      const el = document.getElementById(b.dataset.target);
+      if(el) el.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+  
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting) setActive(e.target.id);
+    });
+  }, {rootMargin:'-20% 0px -65% 0px', threshold:0});
+  sections.forEach(s=> io.observe(s));
+
+  // Actions
+  document.getElementById('printBtn').addEventListener('click', ()=>{ refreshTitle(); window.print(); });
+  document.getElementById('clearBtn').addEventListener('click', ()=>{
+    if(!confirm('Czy na pewno chcesz wyczyścić cały arkusz? Wszystkie wprowadzone odpowiedzi zostaną utracone.')) return;
+    document.querySelectorAll('textarea').forEach(t=>{ t.value=''; autosize(t); });
+    document.querySelectorAll('input[type=text], input[type=date]').forEach(i=> i.value='');
+    autosizeAll();
+    refreshTitle();
+  });
+
+  // dynamiczny tytuł strony (wpływa też na nazwę pliku PDF przy drukowaniu)
+  const nameInput = document.getElementById('fImie');
+  const BASE_TITLE = 'Założenia Radykalnego Wybaczenia';
+
+  function pad2(n){ return String(n).padStart(2,'0'); }
+  function stampCzas(){
+    const d = new Date();
+    const rr = pad2(d.getFullYear() % 100);
+    const mm = pad2(d.getMonth()+1);
+    const dd = pad2(d.getDate());
+    const gg = pad2(d.getHours());
+    const mi = pad2(d.getMinutes());
+    return 'r'+rr+mm+dd+'g'+gg+mi;
+  }
+  function refreshTitle(){
+    const osoba = nameInput ? nameInput.value.trim() : '';
+    let title = BASE_TITLE + ' - ' + stampCzas();
+    if(osoba) title += ' - ' + osoba;
+    document.title = title;
+  }
+  if (nameInput) nameInput.addEventListener('input', refreshTitle);
+  refreshTitle();
+})();
+</script>
+</body>
+</html>
