@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>13 Kroków do Twojej Nowej Kariery r260721g1703</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680;1,9..144,500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F5EFE3;
+    --paper-deep:#ECE2CC;
+    --card:#FBF8F0;
+    --ink:#2A211B;
+    --ink-soft:#6A5D4F;
+    --rose:#A8425A;
+    --rose-deep:#7C2F42;
+    --rose-pale:#EFD9D9;
+    --sage:#6E7F5C;
+    --gold:#A9803F;
+    --line:#DCCFB2;
+    --shadow:0 1px 2px rgba(42,33,27,.06), 0 8px 24px rgba(42,33,27,.08);
+    --rail-w:84px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important; transition:none !important;}
+  }
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 12% -10%, rgba(168,66,90,.06), transparent 60%),
+      var(--paper);
+    color:var(--ink);
+    font-family:'Spectral',serif;
+    font-size:16.5px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--rose-pale); }
+  a{ color:var(--rose-deep); }
+
+  /* ---------- layout shell ---------- */
+  .shell{
+    display:grid;
+    grid-template-columns:var(--rail-w) 1fr;
+    min-height:100vh;
+  }
+  @media (max-width:860px){
+    .shell{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- vertical stage rail ---------- */
+  .rail{
+    position:sticky; top:0; align-self:start;
+    height:100vh;
+    border-right:1px solid var(--line);
+    background:var(--paper-deep);
+    display:flex; flex-direction:column;
+    padding:22px 0;
+  }
+  .rail-mark{
+    width:34px; height:34px; margin:0 auto 28px;
+    border-radius:50%;
+    background:var(--rose-deep);
+    position:relative;
+    flex:none;
+  }
+  .rail-mark::before, .rail-mark::after{
+    content:""; position:absolute; inset:7px;
+    background:var(--paper-deep);
+    border-radius:50% 50% 50% 0;
+    transform:rotate(-45deg);
+  }
+  .rail-mark::after{ display:none; }
+  .rail-tabs{ display:flex; flex-direction:column; gap:2px; flex:1; }
+  .rail-tab{
+    appearance:none; border:none; background:transparent; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    padding:16px 0;
+    color:var(--ink-soft);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:11px; letter-spacing:.14em;
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    border-left:3px solid transparent;
+    transition:color .2s, border-color .2s, background .2s;
+  }
+  .rail-tab:hover{ color:var(--ink); background:rgba(168,66,90,.06); }
+  .rail-tab.active{
+    color:var(--rose-deep);
+    border-left-color:var(--rose);
+    background:var(--card);
+    font-weight:600;
+  }
+  .rail-tab .num{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:560;
+    font-size:15px; margin-right:10px; letter-spacing:0;
+  }
+  .rail-foot{
+    writing-mode:vertical-rl; transform:rotate(180deg);
+    margin:0 auto; color:var(--ink-soft); opacity:.55;
+    font-family:'Space Grotesk',sans-serif; font-size:10px; letter-spacing:.16em;
+  }
+
+  /* mobile rail -> horizontal progress strip */
+  .mrail{ display:none; }
+  @media (max-width:860px){
+    .rail{ display:none; }
+    .mrail{
+      display:flex; position:sticky; top:0; z-index:20;
+      background:var(--paper-deep); border-bottom:1px solid var(--line);
+      overflow-x:auto; padding:10px 14px; gap:8px;
+    }
+    .mrail button{
+      appearance:none; border:1px solid var(--line); background:var(--card);
+      color:var(--ink-soft); font-family:'Space Grotesk',sans-serif;
+      font-size:11.5px; letter-spacing:.04em; white-space:nowrap;
+      padding:7px 12px; border-radius:999px; cursor:pointer;
+    }
+    .mrail button.active{ background:var(--rose-deep); color:#fff; border-color:var(--rose-deep); }
+  }
+
+  /* ---------- main column ---------- */
+  main{ min-width:0; }
+  .wrap{ max-width:760px; margin:0 auto; padding:56px 28px 90px; }
+  @media (max-width:560px){ .wrap{ padding:34px 16px 70px; } }
+
+  .eyebrow{
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--rose-deep); margin-bottom:14px;
+  }
+  h1.title{
+    font-family:'Fraunces',serif; font-weight:680; font-size:clamp(30px,5vw,46px);
+    line-height:1.08; margin:0 0 6px; letter-spacing:-.01em;
+  }
+  .subtitle{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:400;
+    color:var(--ink-soft); font-size:18px; margin:0 0 28px;
+  }
+
+  .intro-box{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:24px 28px; margin-bottom:28px;
+    font-size:16px; line-height:1.65;
+  }
+  .intro-box p{ margin:0 0 14px; }
+  .intro-box p:last-child{ margin-bottom:0; }
+
+  .meta-card{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+    display:grid; grid-template-columns:1fr 1fr 2fr; gap:16px 20px;
+  }
+  @media (max-width:560px){ .meta-card{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+    display:grid; grid-template-columns:1fr 1fr 2fr; gap:16px 20px;
+  } }
+  .field label{
+    display:block; font-family:'Space Grotesk',sans-serif; font-size:11px;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;
+  }
+  .field input{
+    width:100%; border:none; border-bottom:1.5px solid var(--line);
+    background:transparent; font-family:'Spectral',serif; font-size:16px;
+    color:var(--ink); padding:4px 2px 7px; outline:none;
+  }
+  .field input:focus{ border-bottom-color:var(--rose); }
+
+  .privacy{
+    font-family:'Space Grotesk',sans-serif; font-size:12.5px; color:var(--ink-soft);
+    background:transparent; border:1px dashed var(--line);
+    border-radius:10px; padding:12px 16px; margin-bottom:8px; line-height:1.55;
+  }
+  .privacy strong{ color:var(--ink); }
+
+  .toolbar{
+    display:flex; gap:10px; flex-wrap:wrap; margin:30px 0 30px;
+  }
+  .btn{
+    appearance:none; cursor:pointer; border-radius:999px;
+    font-family:'Space Grotesk',sans-serif; font-size:13px; letter-spacing:.03em;
+    padding:10px 18px; border:1.5px solid var(--rose-deep);
+  }
+  .btn.primary{ background:var(--rose-deep); color:#fff; }
+  .btn.ghost{ background:transparent; color:var(--rose-deep); }
+  .btn:hover{ filter:brightness(1.05); }
+
+  .hint{ font-family:'Spectral',serif; font-style:italic; color:var(--ink-soft); font-size:14.5px; }
+
+  /* ---------- stage sections ---------- */
+  .stage{ scroll-margin-top:18px; margin-top:54px; }
+  .stage-head{
+    display:flex; align-items:baseline; gap:14px;
+    background:var(--rose-pale); border-radius:12px;
+    padding:14px 20px; margin-bottom:22px;
+  }
+  .stage-head .snum{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:680;
+    font-size:30px; color:var(--rose-deep); line-height:1;
+  }
+  .stage-head h2{
+    font-family:'Space Grotesk',sans-serif; font-size:13.5px; letter-spacing:.1em;
+    text-transform:uppercase; margin:0; color:var(--ink);
+  }
+  .subhead{
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--ink-soft);
+    margin:34px 0 14px; padding-bottom:8px; border-bottom:1px solid var(--line);
+  }
+
+  .item{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+  }
+  .item .inum{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:560;
+    color:var(--gold); font-size:18px; margin-right:6px;
+  }
+  .item p.lead{ margin:0 0 6px; }
+  .item p.note{
+    font-family:'Spectral',serif; font-style:italic; color:var(--ink-soft);
+    font-size:14.5px; margin:6px 0 14px;
+  }
+
+  textarea{
+    width:100%; resize:none; overflow:hidden;
+    border:1px solid var(--line); border-radius:10px;
+    background:#FFFDF8; padding:12px 14px;
+    font-family:'Spectral',serif; font-size:15.5px; color:var(--ink);
+    line-height:1.55; outline:none; min-height:64px;
+  }
+  textarea:focus{ border-color:var(--rose); box-shadow:0 0 0 3px rgba(168,66,90,.12); }
+
+  /* yes/no pills */
+  fieldset.pill-group{
+    border:none; margin:14px 0 0; padding:0;
+    display:flex; flex-wrap:wrap; gap:8px;
+  }
+  fieldset.pill-group legend{
+    font-family:'Space Grotesk',sans-serif; font-size:10.5px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--ink-soft); margin-bottom:8px; padding:0;
+  }
+  .pill{ position:relative; }
+  .pill input{ position:absolute; opacity:0; inset:0; cursor:pointer; margin:0; }
+  .pill span{
+    display:inline-block; padding:7px 18px; border-radius:999px;
+    border:1.5px solid var(--line); font-family:'Space Grotesk',sans-serif;
+    font-size:12.5px; color:var(--ink-soft); transition:all .15s; text-transform:uppercase;
+  }
+  .pill input:checked + span{
+    background:var(--rose-deep); border-color:var(--rose-deep); color:#fff;
+  }
+  .pill input:focus-visible + span{ outline:2px solid var(--rose); outline-offset:2px; }
+
+  .signoff{
+    margin-top:50px; padding-top:28px; border-top:1px solid var(--line);
+    display:flex; flex-wrap:wrap; gap:22px; align-items:flex-end; justify-content:space-between;
+  }
+  .signoff .field{ min-width:200px; }
+
+  footer{
+    margin-top:60px; padding-top:18px; border-top:1px solid var(--line);
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; color:var(--ink-soft);
+    text-align:center; line-height:1.7;
+  }
+
+  /* ---------- print ---------- */
+  @media print{
+    .rail, .mrail, .toolbar, .privacy{ display:none !important; }
+    .shell{ display:block; }
+    body{ background:#fff; }
+    .wrap{ max-width:100%; padding:0 8px; }
+    .item, .meta-card, .intro-box{ box-shadow:none; border:1px solid #ccc; break-inside:avoid; }
+    .stage{ break-before:page; margin-top:0; padding-top:18px; }
+    .stage:first-of-type{ break-before:auto; }
+    textarea{ border:1px solid #ccc; }
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <!-- desktop vertical rail -->
+  <nav class="rail" aria-label="Etapy arkusza">
+    <div class="rail-mark" aria-hidden="true"></div>
+    <div class="rail-tabs" id="railTabs">
+      <button class="rail-tab" data-target="stage-1"><span class="num">1</span>Obecna sytuacja i uczucia</button>
+      <button class="rail-tab" data-target="stage-2"><span class="num">2</span>Przekonania i siła duchowa</button>
+      <button class="rail-tab" data-target="stage-3"><span class="num">3</span>Wizja nowej kariery</button>
+      <button class="rail-tab" data-target="stage-4"><span class="num">4</span>Otwartość na pole możliwości</button>
+      <button class="rail-tab" data-target="stage-5"><span class="num">5</span>Poddanie i spokój</button>
+    </div>
+    <div class="rail-foot">Praca z Nową Karierą</div>
+  </nav>
+
+  <main>
+    <!-- mobile horizontal rail -->
+    <nav class="mrail" id="mrail" aria-label="Etapy arkusza (mobile)">
+      <button data-target="stage-1">1 · Sytuacja i uczucia</button>
+      <button data-target="stage-2">2 · Przekonania</button>
+      <button data-target="stage-3">3 · Wizja kariery</button>
+      <button data-target="stage-4">4 · Otwartość</button>
+      <button data-target="stage-5">5 · Poddanie i spokój</button>
+    </nav>
+
+    <div class="wrap">
+      <div class="eyebrow">Praca z Kreacją Kariery · Metoda Tippinga</div>
+      <h1 class="title">13 Kroków do Twojej Nowej Kariery</h1>
+      <p class="subtitle">Mówienie na głos, otwieranie się na możliwości i aktywacja przyciągania</p>
+
+      <!-- Transkrypcja pliku intro "32 0" -->
+      <div class="intro-box">
+        <p>Witam ponownie! Wiesz, bardzo się cieszę, że zdecydowałeś się wypróbować ten arkusz pracy nad kreowaniem pracy. Jestem przekonany, że wielokrotnie zwiększy on Twoje szanse na znalezienie tego, czego pragniesz w swojej kolejnej ścieżce kariery.</p>
+        <p>Jak już wspominałem wcześniej, sam od wielu lat z wielkim sukcesem stosuję bardzo podobne arkusze w swoim biznesie. Najbardziej znanym z nich jest mój internetowy arkusz Radykalnego Wybaczania, który również udostępniam bezpłatnie. Posiadam także arkusze do radykalnej manifestacji, radykalnego wzmocnienia (empowerment), radykalnych pieniędzy oraz radykalnego odchudzania. Jak więc widzisz, ten konkretny arkusz ma naprawdę doskonałe rodowód i historię skuteczności.</p>
+        <p>Oprócz samego arkusza udostępniam Ci również plik audio, z którego możesz korzystać online lub pobrać go na swój odtwarzacz MP3. Nosi on tytuł „13 kroków do Twojej nowej kariery”. W rzeczywistości jest to ustny arkusz pracy, który pod wieloma względami przypomina wersję pisaną, ale doskonale nadaje się do słuchania wielokrotnie każdego dnia — aż do momentu, gdy ta nowa okazja faktycznie się pojawi.</p>
+        <p>Wszystko, co musisz zrobić, to opisać swoją sytuację oraz to, jak się z nią czujesz, a następnie odpowiadać „tak” na wszystkie pozostałe pytania. To bardzo proste. Nagranie nie ma charakteru hipnotycznego, więc jest w pełni bezpieczne do słuchania podczas jazdy samochodem. Kliknij w link, aby przejść do tego pliku.</p>
+        <p>Podobnie jak wszystkie inne arkusze, proces ten opiera się na idei, że w naszym życiu działa aktywna siła przekraczająca nas samych, do której uzyskujemy dostęp poprzez naszą inteligencję duchową. Ta część naszego umysłu łączy nas z polem nieskończonych możliwości, o którym mówią wszyscy fizycy kwantowi, że istnieje. David Bohm, jeden z najbardziej szanowanych fizyków, nazywa je „porządkiem ukrytym” (implicate order), w którym wszystkie rzeczy, które kiedykolwiek były, są teraz i będą, są zwinięte i ukryte, czekając tylko na to, by stać się jawnymi (explicate). Dotyczy to również Twojej nowej pracy. Hurra! Wszystko, co musisz teraz zrobić, to użyć tego arkusza, aby ją rozwinąć i sprowadzić do rzeczywistości.</p>
+        <p>Ten arkusz to nic innego jak prawo przyciągania w działaniu. Po prostu pomoże Ci przyciągnąć pracę. To naprawdę takie proste! Nie musimy wiedzieć, jak to działa, ani nie musimy w to ślepo wierzyć. Wszystko, co musimy zrobić, to z niego skorzystać. Zalecamy jednak, aby czytać wszystko na głos — wydaje się to mieć ogromne znaczenie.</p>
+        <p>Kliknij w link, aby przejść bezpośrednio do arkusza online. Wypełnij puste pola, zaznacz odpowiednie kratki, a w wyznaczonych miejscach napisz tyle, ile chcesz. Zawsze możesz do tego wracać tak często, jak tylko zapragniesz.</p>
+      </div>
+
+            <div class="meta-card">
+        <div class="field"><label for="fData">Data</label><input id="fData" type="date"></div>
+        <div class="field"><label for="fGodzina">Godzina</label><input id="fGodzina" type="time"></div>
+        <div class="field wide">
+          <label for="objectName">Temat / Imię</label>
+          <input id="objectName" type="text" placeholder="Wpisz temat lub imię…">
+        </div>
+      </div>
+
+      <p class="privacy"><strong>Twój proces jest w pełni bezpieczny.</strong> Dane z tego formularza nie są zapisywane na serwerze. Odpowiadaj szczerze i czytaj pytania na głos, aby wzmocnić proces transformacji.</p>
+
+      <p class="hint">Podpowiedź: Przechodząc przez poniższe kroki, pamiętaj o czytaniu pytań oraz swoich odpowiedzi na głos.</p>
+
+      <!-- ================= STAGE 1 ================= -->
+      <section class="stage" id="stage-1">
+        <div class="stage-head"><span class="snum">1</span><h2>Obecna sytuacja i uczucia</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 1.</span> Wyraź na głos trudną sytuację, w której się obecnie znajdujesz w odniesieniu do swojej pracy lub pozycji zawodowej. Po prostu powiedz, jak jest.</p>
+          <p class="note">Opisz szczerze swoje obecne położenie zawodowe.</p>
+          <textarea rows="4" placeholder="Opisz obecną sytuację zawodową…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 2.</span> Kiedy zaczynasz naprawdę odczuwać ból wynikający z braku pożądanej pracy lub ścieżki kariery, zauważ, gdzie te uczucia są najbardziej zlokalizowane w Twoim ciele. Jak to jest stracić pracę lub biznes? Kiedy te uczucia zaczynają się pojawiać, pozwól sobie poczuć je w pełni. Nie oceniaj ich ani nie powstrzymuj. Uczucia są prawdziwe, są Tobą i masz pełne prawo je odczuwać.</p>
+          <p class="note">Zapisz swoje odczucia z ciała i emocje.</p>
+          <textarea rows="4" placeholder="Zauważ i opisz uczucia oraz odczucia z ciała…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 3.</span> Zauważ, czy do tych uczuć są dołączone jakieś myśli. Myśli o takich rzeczach jak poczucie pozbawienia czegoś, bycie dyskryminowanym, pokrzywdzonym, traktowanym niesprawiedliwie, bycie ofiarą chciwości, głupoty lub niekompetencji innych ludzi, czy choćby zwykłego pecha. Bądź ze sobą szczery i nie oceniaj tego. Czy możesz pokochać siebie posiadającego te myśli, które po prostu potwierdzają Twój obecny stan?</p>
+          <p class="note">Wypisz swoje myśli towarzyszące emocjom.</p>
+          <textarea rows="4" placeholder="Wpisz towarzyszące myśli…"></textarea>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 2 ================= -->
+      <section class="stage" id="stage-2">
+        <div class="stage-head"><span class="snum">2</span><h2>Przekonania i siła duchowa</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 4.</span> Czy wierzysz, że to możliwe, iż posiadasz jedno lub więcej kluczowych negatywnych przekonań zakorzenionych głęboko w podświadomości, które faktycznie uniemożliwiają Ci zdobycie pracy lub innego stanowiska?</p>
+          <div class="yn-group" data-name="krok4"></div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 5.</span> Czy zdajesz sobie sprawę, że skoro Twoja podświadomość jest nieskończenie potężniejsza od Twojego świadomego umysłu, nigdy, przenigdy nie zdołasz zastąpić tego kluczowego negatywnego przekonania za pomocą racjonalnego umysłu i inteligencji intelektualnej — i że jedynym sposobem na uwolnienie się od tyranii tych przekonań jest użycie ogromnej siły Twojej inteligencji duchowej?</p>
+          <div class="yn-group" data-name="krok5"></div>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 3 ================= -->
+      <section class="stage" id="stage-3">
+        <div class="stage-head"><span class="snum">3</span><h2>Wizja nowej kariery</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 6.</span> Czy tworzysz teraz i wzmacniasz wyraźny oraz pewny obraz rodzaju pracy, sytuacji zawodowej lub biznesu, który chcesz urzeczywistnić, i czy potrafisz wyrazić, dlaczego jest to dla Ciebie właściwe? Czy potrafisz uzasadnić, dlaczego jest to dla Ciebie odpowiednie? Poświęć chwilę lub dwie w ciągu najbliższych 30 sekund, aby ująć w słowa, dlaczego tego pragniesz. Podaj zarówno racjonalne, jak i emocjonalne powody, dla których jest to dla Ciebie ważne. Bądź ze sobą szczery.</p>
+          <p class="note">Opisz dokładnie dlaczego pragniesz tej pracy (powody racjonalne i emocjonalne):</p>
+          <textarea rows="5" placeholder="Wyraź swoje powody racjonalne i emocjonalne…"></textarea>
+          <div class="yn-group" data-name="krok6"></div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 7.</span> Czy jesteś teraz gotowy, aby uwolnić wszelkie ograniczające przekonania, myśli lub postawy, które mogłyby stanąć na drodze do posiadania kariery, jakiej pragniesz?</p>
+          <div class="yn-group" data-name="krok7"></div>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 4 ================= -->
+      <section class="stage" id="stage-4">
+        <div class="stage-head"><span class="snum">4</span><h2>Otwartość na pole możliwości</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 8.</span> Czy potrafisz zacząć sobie teraz wyobrażać, że istnieje niewidzialne pole nieskończonych możliwości, w którym jest ukryta dokładnie ta okazja, której pragniesz, z Twoim imieniem na niej, czekająca tylko na wywołanie i urzeczywistnienie?</p>
+          <div class="yn-group" data-name="krok8"></div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 9.</span> Czy jesteś absolutnie gotowy i otwarty, aby ją teraz przyjąć bez zastrzeżeń i bez warunków? Czy potrafisz ją poczuć, zobaczyć, usłyszeć, posmakować i powąchać, jakby była tu właśnie teraz? Czy czujesz radość z jej posiadania w tej chwili?</p>
+          <div class="yn-group" data-name="krok9"></div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 10.</span> Skoro wyraziłeś to, czego pragniesz, powiedziałeś, dlaczego tego chcesz, otworzyłeś się na przyjęcie i zobaczyłeś, że jest to dla Ciebie dostępne — czy jesteś teraz gotów uwolnić swoje przywiązanie do tego, aby stało się to dokładnie w taki sposób, jak tego chcesz?</p>
+          <div class="yn-group" data-name="krok10"></div>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 5 ================= -->
+      <section class="stage" id="stage-5">
+        <div class="stage-head"><span class="snum">5</span><h2>Poddanie i spokój</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 11.</span> Czy całkowicie poddasz się myśli, że Twoja inteligencja duchowa, wysłuchawszy Twojej prośby, znając Twoje serce i będąc świadomą tego, czego pragnie Twoja dusza, da Ci dokładnie to, czego potrzebujesz, w precyzyjnie właściwym momencie?</p>
+          <div class="yn-group" data-name="krok11"></div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 12.</span> Kiedy zaczynasz uwalniać potrzebę posiadania dokładnie tego, o co prosiłeś, czy zauważasz, że poruszone uczucia braku i pragnienia przekształcają się w głębokie poczucie spokoju? I że bierze w Tobie górę uczucie intensywnej wdzięczności, gdy dziękujesz za okazję zawodową, o której wiesz, że Twoja inteligencja duchowa sprowadziła już w czasie i przestrzeni, gotową do wejścia w Twoją rzeczywistość?</p>
+          <div class="yn-group" data-name="krok12"></div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 13.</span> Czy jesteś gotów poczuć moc spokoju, spoczywając w pełnej i pewnej wiedzy, że Wszechświat dba o wszystkie Twoje potrzeby, oraz że jesteś bezpieczny i w pełni obdarowany?</p>
+          <p class="note" style="color:var(--rose-deep); font-weight:bold; font-style:normal; margin-top:10px;">I tak właśnie jest.</p>
+          <div class="yn-group" data-name="krok13"></div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><strong>Integracja:</strong> Weź kilka głębokich wdechów, podczas gdy Twoje ciało przyjmuje to wszystko i zaczyna dokonywać głębokich zmian na poziomie komórkowym, dostosowując się do nowej rzeczywistości, którą właśnie stworzyłeś.</p>
+          <textarea rows="3" placeholder="Notatki i przemyślenia z integracji…"></textarea>
+        </div>
+
+        <div class="signoff">
+          <div class="field"><label for="signDate">Data ukończenia</label><input id="signDate" type="date"></div>
+          <div class="field" style="flex:1;"><label for="signName">Podpis / Deklaracja</label><input id="signName" type="text" placeholder="Twój podpis"></div>
+        </div>
+      </section>
+
+      <!-- Przyciski na dole -->
+      <div class="toolbar">
+        <button class="btn primary" id="printBtn">Drukuj / Zapisz jako PDF</button>
+        <button class="btn ghost" id="clearBtn">Wyczyść arkusz</button>
+      </div>
+
+      <footer>
+        Instytut Metody Tippinga — 13 Kroków Do Twojej Nowej Kariery<br>
+        Na podstawie procesu Colina Tippinga · www.metoda-tippinga.pl
+      </footer>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  // Generowanie pigułek TAK / NIE dla pytań w krokach 4-13
+  document.querySelectorAll('.yn-group').forEach(el=>{
+    const name = el.dataset.name;
+    const fs = document.createElement('fieldset');
+    fs.className = 'pill-group';
+    const legend = document.createElement('legend');
+    legend.textContent = 'Twoja odpowiedź:';
+    fs.appendChild(legend);
+
+    const options = [
+      { val: 'tak', label: 'TAK' },
+      { val: 'nie', label: 'NIE' }
+    ];
+
+    options.forEach((opt, i)=>{
+      const id = name + '-' + opt.val;
+      const lab = document.createElement('label');
+      lab.className = 'pill';
+      lab.innerHTML = '<input type="radio" name="' + name + '" id="' + id + '" value="' + opt.val + '"><span>' + opt.label + '</span>';
+      fs.appendChild(lab);
+    });
+    el.replaceWith(fs);
+  });
+
+  // Ustawianie dzisiejszej daty domyślnie
+  const today = new Date().toISOString().split('T')[0];
+  const fData = document.getElementById('fData');
+  const signDate = document.getElementById('signDate');
+  if (fData && !fData.value) fData.value = today;
+  if (signDate && !signDate.value) signDate.value = today;
+
+  fData.addEventListener('input', () => {
+    signDate.value = fData.value;
+  });
+
+  // Tytuł i nazwy
+  const nameInput = document.getElementById('objectName');
+  const nrInput = document.getElementById('fNr');
+  
+
+  
+
+  
+  
+  
+
+  // Autosize textareas
+  function autosize(t){
+    t.style.height = 'auto';
+    t.style.height = (t.scrollHeight+2) + 'px';
+  }
+  function autosizeAll(scope){
+    (scope||document).querySelectorAll('textarea').forEach(t=>{
+      autosize(t);
+      t.addEventListener('input', ()=>autosize(t));
+    });
+  }
+  autosizeAll();
+  window.addEventListener('load', ()=> autosizeAll());
+
+  // Scroll spy + nav
+  const sections = Array.from(document.querySelectorAll('.stage'));
+  const railTabs = Array.from(document.querySelectorAll('.rail-tab'));
+  const mTabs = Array.from(document.querySelectorAll('.mrail button'));
+
+  function setActive(id){
+    railTabs.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+    mTabs.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+  }
+
+  [...railTabs, ...mTabs].forEach(b=>{
+    b.addEventListener('click', ()=>{
+      document.getElementById(b.dataset.target).scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting) setActive(e.target.id);
+    });
+  }, {rootMargin:'-20% 0px -65% 0px', threshold:0});
+
+  sections.forEach(s=> io.observe(s));
+  setActive('stage-1');
+
+  // Print
+  document.getElementById('printBtn').addEventListener('click', ()=>{  window.print(); });
+
+  // Clear
+  document.getElementById('clearBtn').addEventListener('click', ()=>{
+    if(!confirm('Wyczyścić cały arkusz? Tej operacji nie można cofnąć.')) return;
+    document.querySelectorAll('textarea').forEach(t=>{ t.value=''; autosize(t); });
+    document.querySelectorAll('input[type=text]').forEach(i=> i.value='');
+    document.querySelectorAll('input[type=radio]').forEach(i=> i.checked=false);
+    autosizeAll();
+    
+  });
+})();
+
+  // Dynamic Title Generator: TYTUŁ (SPACJA) rYYMMDDgHHMM (SPACJA MYŚLNIK SPACJA) TEMAT/IMIĘ
+  const BASE_TITLE = '13 Kroków do Twojej Nowej Kariery';
+  function pad2(n){ return String(n).padStart(2,'0'); }
+  function stampCzas(){
+    const d = new Date();
+    const rr = pad2(d.getFullYear() % 100);
+    const mm = pad2(d.getMonth() + 1);
+    const dd = pad2(d.getDate());
+    const gg = pad2(d.getHours());
+    const mi = pad2(d.getMinutes());
+    return 'r' + rr + mm + dd + 'g' + gg + mi;
+  }
+  function refreshTitle(){
+    const nameInput = document.getElementById('objectName');
+    const osoba = nameInput ? nameInput.value.trim() : '';
+    let title = BASE_TITLE + ' ' + stampCzas();
+    if(osoba) title += ' - ' + osoba;
+    document.title = title;
+  }
+  const nameInputObj = document.getElementById('objectName');
+  if(nameInputObj) nameInputObj.addEventListener('input', refreshTitle);
+  refreshTitle();
+</script>
+</body>
+</html>

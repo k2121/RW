@@ -1,0 +1,636 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>13 Kroków do Odzyskiwania Radykalnego Bogactwa r260721g1703</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680;1,9..144,500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F5EFE3;
+    --paper-deep:#ECE2CC;
+    --card:#FBF8F0;
+    --ink:#2A211B;
+    --ink-soft:#6A5D4F;
+    --rose:#A8425A;
+    --rose-deep:#7C2F42;
+    --rose-pale:#EFD9D9;
+    --sage:#6E7F5C;
+    --gold:#A9803F;
+    --line:#DCCFB2;
+    --shadow:0 1px 2px rgba(42,33,27,.06), 0 8px 24px rgba(42,33,27,.08);
+    --rail-w:84px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important; transition:none !important;}
+  }
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 12% -10%, rgba(168,66,90,.06), transparent 60%),
+      var(--paper);
+    color:var(--ink);
+    font-family:'Spectral',serif;
+    font-size:16.5px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--rose-pale); }
+  a{ color:var(--rose-deep); }
+
+  /* ---------- layout shell ---------- */
+  .shell{
+    display:grid;
+    grid-template-columns:var(--rail-w) 1fr;
+    min-height:100vh;
+  }
+  @media (max-width:860px){
+    .shell{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- vertical stage rail ---------- */
+  .rail{
+    position:sticky; top:0; align-self:start;
+    height:100vh;
+    border-right:1px solid var(--line);
+    background:var(--paper-deep);
+    display:flex; flex-direction:column;
+    padding:22px 0;
+  }
+  .rail-mark{
+    width:34px; height:34px; margin:0 auto 28px;
+    border-radius:50%;
+    background:var(--rose-deep);
+    position:relative;
+    flex:none;
+  }
+  .rail-mark::before, .rail-mark::after{
+    content:""; position:absolute; inset:7px;
+    background:var(--paper-deep);
+    border-radius:50% 50% 50% 0;
+    transform:rotate(-45deg);
+  }
+  .rail-mark::after{ display:none; }
+  .rail-tabs{ display:flex; flex-direction:column; gap:2px; flex:1; }
+  .rail-tab{
+    appearance:none; border:none; background:transparent; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    padding:16px 0;
+    color:var(--ink-soft);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:11px; letter-spacing:.14em;
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    border-left:3px solid transparent;
+    transition:color .2s, border-color .2s, background .2s;
+  }
+  .rail-tab:hover{ color:var(--ink); background:rgba(168,66,90,.06); }
+  .rail-tab.active{
+    color:var(--rose-deep);
+    border-left-color:var(--rose);
+    background:var(--card);
+    font-weight:600;
+  }
+  .rail-tab .num{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:560;
+    font-size:15px; margin-right:10px; letter-spacing:0;
+  }
+  .rail-foot{
+    writing-mode:vertical-rl; transform:rotate(180deg);
+    margin:0 auto; color:var(--ink-soft); opacity:.55;
+    font-family:'Space Grotesk',sans-serif; font-size:10px; letter-spacing:.16em;
+  }
+
+  /* mobile rail -> horizontal progress strip */
+  .mrail{ display:none; }
+  @media (max-width:860px){
+    .rail{ display:none; }
+    .mrail{
+      display:flex; position:sticky; top:0; z-index:20;
+      background:var(--paper-deep); border-bottom:1px solid var(--line);
+      overflow-x:auto; padding:10px 14px; gap:8px;
+    }
+    .mrail button{
+      appearance:none; border:1px solid var(--line); background:var(--card);
+      color:var(--ink-soft); font-family:'Space Grotesk',sans-serif;
+      font-size:11.5px; letter-spacing:.04em; white-space:nowrap;
+      padding:7px 12px; border-radius:999px; cursor:pointer;
+    }
+    .mrail button.active{ background:var(--rose-deep); color:#fff; border-color:var(--rose-deep); }
+  }
+
+  /* ---------- main column ---------- */
+  main{ min-width:0; }
+  .wrap{ max-width:760px; margin:0 auto; padding:56px 28px 90px; }
+  @media (max-width:560px){ .wrap{ padding:34px 16px 70px; } }
+
+  .eyebrow{
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--rose-deep); margin-bottom:14px;
+  }
+  h1.title{
+    font-family:'Fraunces',serif; font-weight:680; font-size:clamp(32px,5.5vw,48px);
+    line-height:1.06; margin:0 0 6px; letter-spacing:-.01em;
+  }
+  .subtitle{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:400;
+    color:var(--ink-soft); font-size:19px; margin:0 0 28px;
+  }
+
+  .intro-box{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:24px 26px; margin-bottom:28px;
+    font-size:15.5px; line-height:1.65;
+  }
+  .intro-box h3{
+    font-family:'Fraunces',serif; font-size:20px; font-weight:600; color:var(--rose-deep);
+    margin:0 0 12px;
+  }
+  .intro-box p{ margin:0 0 12px; }
+  .intro-box p:last-child{ margin-bottom:0; }
+
+  .meta-card{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+    display:grid; grid-template-columns:1fr 1fr 2fr; gap:16px 20px;
+  }
+  @media (max-width:560px){ .meta-card{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+    display:grid; grid-template-columns:1fr 1fr 2fr; gap:16px 20px;
+  } }
+  .field label{
+    display:block; font-family:'Space Grotesk',sans-serif; font-size:11px;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;
+  }
+  .field input{
+    width:100%; border:none; border-bottom:1.5px solid var(--line);
+    background:transparent; font-family:'Spectral',serif; font-size:16px;
+    color:var(--ink); padding:4px 2px 7px; outline:none;
+  }
+  .field input:focus{ border-bottom-color:var(--rose); }
+
+  .privacy{
+    font-family:'Space Grotesk',sans-serif; font-size:12.5px; color:var(--ink-soft);
+    background:transparent; border:1px dashed var(--line);
+    border-radius:10px; padding:12px 16px; margin-bottom:8px; line-height:1.55;
+  }
+  .privacy strong{ color:var(--ink); }
+
+  .toolbar{
+    display:flex; gap:10px; flex-wrap:wrap; margin:30px 0 30px;
+  }
+  .btn{
+    appearance:none; cursor:pointer; border-radius:999px;
+    font-family:'Space Grotesk',sans-serif; font-size:13px; letter-spacing:.03em;
+    padding:10px 18px; border:1.5px solid var(--rose-deep);
+  }
+  .btn.primary{ background:var(--rose-deep); color:#fff; }
+  .btn.ghost{ background:transparent; color:var(--rose-deep); }
+  .btn:hover{ filter:brightness(1.05); }
+
+  .hint{ font-family:'Spectral',serif; font-style:italic; color:var(--ink-soft); font-size:14.5px; }
+
+  /* ---------- stage sections ---------- */
+  .stage{ scroll-margin-top:18px; margin-top:54px; }
+  .stage-head{
+    display:flex; align-items:baseline; gap:14px;
+    background:var(--rose-pale); border-radius:12px;
+    padding:14px 20px; margin-bottom:22px;
+  }
+  .stage-head .snum{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:680;
+    font-size:30px; color:var(--rose-deep); line-height:1;
+  }
+  .stage-head h2{
+    font-family:'Space Grotesk',sans-serif; font-size:13.5px; letter-spacing:.1em;
+    text-transform:uppercase; margin:0; color:var(--ink);
+  }
+  .subhead{
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--ink-soft);
+    margin:34px 0 14px; padding-bottom:8px; border-bottom:1px solid var(--line);
+  }
+
+  .item{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+  }
+  .item .inum{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:560;
+    color:var(--gold); font-size:18px; margin-right:6px;
+  }
+  .item p.lead{ margin:0 0 6px; font-weight:500; }
+  .item p.note{
+    font-family:'Spectral',serif; font-style:italic; color:var(--ink-soft);
+    font-size:14.5px; margin:6px 0 14px;
+  }
+
+  textarea{
+    width:100%; resize:none; overflow:hidden;
+    border:1px solid var(--line); border-radius:10px;
+    background:#FFFDF8; padding:12px 14px;
+    font-family:'Spectral',serif; font-size:15.5px; color:var(--ink);
+    line-height:1.55; outline:none; min-height:64px;
+  }
+  textarea:focus{ border-color:var(--rose); box-shadow:0 0 0 3px rgba(168,66,90,.12); }
+
+  /* readiness / answer pills (tak, nie) */
+  fieldset.pill-group{
+    border:none; margin:14px 0 0; padding:0;
+    display:flex; flex-wrap:wrap; gap:8px; align-items:center;
+  }
+  fieldset.pill-group legend{
+    font-family:'Space Grotesk',sans-serif; font-size:10.5px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--ink-soft); margin-bottom:8px; padding:0; display:block;
+  }
+  .pill{ position:relative; display:inline-block; }
+  .pill input{ position:absolute; opacity:0; inset:0; cursor:pointer; margin:0; }
+  .pill span{
+    display:inline-block; padding:6px 18px; border-radius:999px;
+    border:1.5px solid var(--line); font-family:'Space Grotesk',sans-serif;
+    font-size:12.5px; color:var(--ink-soft); transition:all .15s; cursor:pointer;
+  }
+  .pill input:checked + span{
+    background:var(--rose-deep); border-color:var(--rose-deep); color:#fff; font-weight:500;
+  }
+  .pill input:focus-visible + span{ outline:2px solid var(--rose); outline-offset:2px; }
+
+  .affirmation{
+    background:linear-gradient(135deg, var(--rose-pale), var(--paper-deep));
+    border-radius:14px; padding:24px 26px; margin-bottom:18px;
+    font-family:'Spectral',serif; font-style:italic; font-size:16px; color:var(--ink);
+    border:1px solid var(--line);
+  }
+
+  .signoff{
+    margin-top:50px; padding-top:28px; border-top:1px solid var(--line);
+    display:flex; flex-wrap:wrap; gap:22px; align-items:flex-end; justify-content:space-between;
+  }
+  .signoff .field{ min-width:200px; }
+
+  footer{
+    margin-top:60px; padding-top:18px; border-top:1px solid var(--line);
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; color:var(--ink-soft);
+    text-align:center; line-height:1.7;
+  }
+
+  /* ---------- print ---------- */
+  @media print{
+    .rail, .mrail, .toolbar, .privacy{ display:none !important; }
+    .shell{ display:block; }
+    body{ background:#fff; }
+    .wrap{ max-width:100%; padding:0 8px; }
+    .item, .meta-card, .affirmation, .intro-box{ box-shadow:none; border:1px solid #ccc; break-inside:avoid; }
+    .stage{ break-before:page; margin-top:0; padding-top:18px; }
+    .stage:first-of-type{ break-before:auto; }
+    textarea{ border:1px solid #ccc; }
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <!-- desktop vertical rail -->
+  <nav class="rail" aria-label="Etapy procesowe">
+    <div class="rail-mark" aria-hidden="true"></div>
+    <div class="rail-tabs" id="railTabs">
+      <button class="rail-tab" data-target="stage-intro"><span class="num">i</span>Wprowadzenie</button>
+      <button class="rail-tab" data-target="stage-1"><span class="num">1</span>Kroki 1–3: Odczucie i Myśli</button>
+      <button class="rail-tab" data-target="stage-2"><span class="num">2</span>Kroki 4–7: Przekonania i Wartość</button>
+      <button class="rail-tab" data-target="stage-3"><span class="num">3</span>Kroki 8–10: Nieskończone Możliwości</button>
+      <button class="rail-tab" data-target="stage-4"><span class="num">4</span>Kroki 11–13: Oddanie i Spokój</button>
+    </div>
+    <div class="rail-foot">Instytut Metody Tippinga</div>
+  </nav>
+
+  <main>
+    <!-- mobile horizontal rail -->
+    <nav class="mrail" id="mrail" aria-label="Etapy procesowe (mobile)">
+      <button data-target="stage-intro">Wprowadzenie</button>
+      <button data-target="stage-1">Kroki 1–3</button>
+      <button data-target="stage-2">Kroki 4–7</button>
+      <button data-target="stage-3">Kroki 8–10</button>
+      <button data-target="stage-4">Kroki 11–13</button>
+    </nav>
+
+    <div class="wrap">
+      <div class="eyebrow">Instytut Metody Tippinga · Narzędzie Pracy z Pieniędzmi</div>
+      <h1 class="title">13 Kroków do Odzyskiwania Radykalnego Bogactwa</h1>
+      <p class="subtitle">Narzędzie do przyciągania dobrobytu i transformacji energii straty</p>
+
+            <div class="meta-card">
+        <div class="field"><label for="fData">Data</label><input id="fData" type="date"></div>
+        <div class="field"><label for="fGodzina">Godzina</label><input id="fGodzina" type="time"></div>
+        <div class="field wide">
+          <label for="objectName">Temat / Imię</label>
+          <input id="objectName" type="text" placeholder="Wpisz temat lub imię…">
+        </div>
+      </div>
+
+      <p class="privacy"><strong>Dane z tego arkusza nie są nigdzie przesyłane ani zapisywane.</strong> Wszystko, co wpiszesz, pozostaje wyłącznie w tej przeglądarce, na czas tej sesji — możesz wypełniać go zupełnie bezpiecznie i anonimowo.</p>
+
+      <!-- ================= INTRO SECTION ================= -->
+      <section class="stage" id="stage-intro">
+        <div class="intro-box">
+          <h3>Wprowadzenie od Colina Tippinga</h3>
+          <p>Cześć. Bardzo się cieszę, że postanowiłeś(-aś) wypróbować ten arkusz odzyskiwania radykalnego bogactwa. Jestem przekonany, że pozwoli Ci on przyciągnąć z powrotem pieniądze, które wydawały się po prostu znikać w wyniku kryzysu gospodarczego.</p>
+          <p>Używam bardzo podobnych arkuszy w mojej działalności od wielu lat, z wielkim sukcesem. Najbardziej znanym z nich jest mój arkusz radykalnego wybaczania, który również oferuję bezpłatnie. Mam także arkusze do radykalnej manifestacji, radykalnego wzmocnienia (empowerment), radykalnych pieniędzy i radykalnego odchudzania. Widzisz więc, że ten arkusz ma całkiem dobre rodowód.</p>
+          <p>Oprócz arkusza udostępniam Ci również plik audio, z którego możesz korzystać online lub pobrać go na swój odtwarzacz MP3. Nosi on tytuł „13 kroków do prawdziwego dobrobytu”. W rzeczywistości jest to słowny arkusz, pod wieloma względami podobny do wersji pisemnej, ale nadaje się do wielokrotnego słuchania każdego dnia, aby pieniądze płynęły z powrotem do Twojego życia.</p>
+          <p>Wszystko, co robisz, to opisujesz swoją sytuację, to, jak się z nią czujesz, a następnie odpowiadasz „tak” na wszystkie pozostałe pytania. To bardzo proste. I nie ma charakteru hipnotycznego, więc można go bezpiecznie odtwarzać w samochodzie.</p>
+          <p>Podobnie jak wszystkie inne arkusze, proces ten opiera się na idei, że w naszym życiu działa siła wykraczająca poza nas samych, do której docieramy poprzez naszą inteligencję duchową. Ta część naszego umysłu łączy nas z polem nieskończonych możliwości, o których istnieniu mówią wszyscy fizycy kwantowi. David Bohm, jeden z najbardziej szanowanych z nich wszystkich, nazywa to porządkiem ukrytym (<em>implicate order</em>), w którym wszystkie rzeczy, które kiedykolwiek były, są teraz i będą, są zwinięte, czekając tylko na rozwinięcie i uzewnętrznienie (<em>make explicate</em>).</p>
+          <p>Dotyczy to również pieniędzy, a tych nie brakuje. Wszystko, co musisz teraz zrobić, to użyć arkusza, aby je rozwinąć i wprowadzić do swojej rzeczywistości.</p>
+          <p>Ten arkusz to prawo przyciągania w działaniu. Po prostu pomoże Ci przyciągnąć pieniądze, których potrzebujesz. Nie musimy jednak wiedzieć, jak to działa. Nie musimy też w to wierzyć. Wszystko, co musimy zrobić, to z niego korzystać.</p>
+          <p>Więc wypełnij puste pola, zaznacz odpowiednie kratki w wyznaczonych miejscach i napisz tyle, ile chcesz. Następnie go wydrukuj. Możesz do niego wracać tak często, jak chcesz. Powodzenia. Jestem Colin Tipping.</p>
+        </div>
+      </section>
+
+      <p class="hint">Podpowiedź: Aby w pełni doświadczyć transformacji, czytaj i odpowiadaj na głos na każde pytanie.</p>
+
+      <!-- ================= STAGE 1 ================= -->
+      <section class="stage" id="stage-1">
+        <div class="stage-head"><span class="snum">1</span><h2>Część I: Odczucie i Myśli (Kroki 1–3)</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 1.</span> Proszę, wyraź na głos swoją obecną trudną sytuację finansową, w której się znajdujesz. Ile pieniędzy myślisz, że straciłeś(-aś), w jakiej formie to było i tak dalej. Po prostu powiedz, jak jest.</p>
+          <p class="note">Opisz swoją sytuację finansową szczerze i bez upiększeń.</p>
+          <textarea rows="4" placeholder="Opisz tutaj swoją sytuację finansową, stracone pieniądze, formę straty…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 2.</span> Kiedy zaczniesz naprawdę odczuwać ból po stracie tych pieniędzy, zauważ, gdzie w Twoim ciele te uczucia są najbardziej zlokalizowane. Jak to jest stracić te pieniądze? Kiedy te uczucia zaczną się pojawiać, pozwól sobie poczuć je w pełni. Nie osądzaj ich ani nie powstrzymuj. Uczucia są prawdziwe. Są Tobą i masz prawo je odczuwać.</p>
+          <p class="note">Skontaktuj się ze swoimi odczuciami w ciele.</p>
+          <textarea rows="3" placeholder="Opisz odczucia z ciała i emocje związane ze stratą…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 3.</span> Zauważ, czy z tymi uczuciami wiążą się jakieś myśli. Myśli o rzeczach takich jak pech, bycie oszukanym, okradzionym, pozbawionym czegoś, bycie ofiarą chciwości, głupoty lub niekompetencji innych ludzi i tak dalej. Bądź ze sobą szczery(-a) i nie osądzaj. Czy możesz pokochać siebie za to, że masz te myśli, które po prostu potwierdzają Twój obecny stan?</p>
+          <textarea rows="3" placeholder="Wypisz towarzyszące myśli i przekonania o sytuacji…"></textarea>
+          
+          <fieldset class="pill-group">
+            <legend>Odpowiedź / Czy możesz pokochać siebie z tymi myślami?</legend>
+            <label class="pill"><input type="radio" name="krok3" value="tak"><span>Tak</span></label>
+            <label class="pill"><input type="radio" name="krok3" value="nie"><span>Nie</span></label>
+          </fieldset>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 2 ================= -->
+      <section class="stage" id="stage-2">
+        <div class="stage-head"><span class="snum">2</span><h2>Część II: Przekonania i Wartość (Kroki 4–7)</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 4.</span> Czy uważasz, że to możliwe, iż masz w swojej podświadomości głęboko zakorzenione pewne kluczowe negatywne przekonania, które faktycznie uniemożliwiają Ci posiadanie i zatrzymanie pieniędzy?</p>
+          <fieldset class="pill-group">
+            <legend>Twoja odpowiedź:</legend>
+            <label class="pill"><input type="radio" name="krok4" value="tak"><span>Tak</span></label>
+            <label class="pill"><input type="radio" name="krok4" value="nie"><span>Nie</span></label>
+          </fieldset>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 5.</span> Czy zdajesz sobie sprawę, że skoro Twój podświadomy umysł jest nieskończenie potężniejszy niż Twój świadomy umysł, nigdy nie zdołasz zastąpić tych kluczowych negatywnych przekonań za pomocą racjonalnego umysłu i inteligencji intelektualnej, a jedynym sposobem na uwolnienie się od tyranii tych przekonań jest użycie ogromnej mocy Twojej inteligencji duchowej?</p>
+          <fieldset class="pill-group">
+            <legend>Twoja odpowiedź:</legend>
+            <label class="pill"><input type="radio" name="krok5" value="tak"><span>Tak</span></label>
+            <label class="pill"><input type="radio" name="krok5" value="nie"><span>Nie</span></label>
+          </fieldset>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 6.</span> Czy zdajesz sobie sprawę, że mogłeś(-aś) nadać pieniądzom wiele znaczeń, których one nigdy nie miały, i czy możesz zacząć otwierać się na fakt, że skoro pieniądze same w sobie nie mają żadnej samoistnej wartości, to tak naprawdę niczego nie straciłeś(-aś)?</p>
+          <fieldset class="pill-group">
+            <legend>Twoja odpowiedź:</legend>
+            <label class="pill"><input type="radio" name="krok6" value="tak"><span>Tak</span></label>
+            <label class="pill"><input type="radio" name="krok6" value="nie"><span>Nie</span></label>
+          </fieldset>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 7.</span> Zdając sobie sprawę, że same pieniądze są bezwartościowe, a ich jedyna wartość leży w tym, co można za nie kupić, czy możesz zwizualizować lub wyobrazić sobie wszystkie rzeczy, które są dla Ciebie ważne, na które realistycznie przeznaczył(a)byś te pieniądze, ale pomimo pozornej straty pozostajesz gotowy(-a) przyjąć je teraz do swojego życia i tak?</p>
+          
+          <fieldset class="pill-group" style="margin-bottom:14px;">
+            <legend>Czy pozostajesz gotowy(-a) przyjąć te rzeczy do swojego życia?</legend>
+            <label class="pill"><input type="radio" name="krok7_a" value="tak"><span>Tak</span></label>
+            <label class="pill"><input type="radio" name="krok7_a" value="nie"><span>Nie</span></label>
+          </fieldset>
+
+          <p class="note">Weź teraz chwilę lub dwie w ciągu najbliższych 30 sekund, aby powiedzieć na głos (i zapisać poniżej), na co tak naprawdę potrzebowałeś(-aś) tych pieniędzy. Podaj zarówno racjonalne, jak i emocjonalne powody, dla których takie rzeczy są dla Ciebie ważne nawet teraz. Wyklucz rzeczy, które kiedyś uważałeś(-aś) za istotne, a teraz zdajesz sobie sprawę, że mają bardzo małą rzeczywistą wartość. Bądź ze sobą szczery(-a).</p>
+          <textarea rows="4" placeholder="Wypisz cele, na które naprawdę potrzebujesz środków, wraz z powodami racjonalnymi i emocjonalnymi…"></textarea>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 3 ================= -->
+      <section class="stage" id="stage-3">
+        <div class="stage-head"><span class="snum">3</span><h2>Część III: Nieskończone Możliwości (Kroki 8–10)</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 8.</span> Czy możesz zacząć sobie teraz wyobrażać, że istnieje niewidzialne pole nieskończonych możliwości, w którym niejawnie zawarty (zwinięty) jest cały dostatek, jakiego pragniesz, w tym wszystkie pieniądze potrzebne do zadowolenia, czekające tylko na wezwanie i uzewnętrznienie (rozwinięcie)?</p>
+          <fieldset class="pill-group">
+            <legend>Twoja odpowiedź:</legend>
+            <label class="pill"><input type="radio" name="krok8" value="tak"><span>Tak</span></label>
+            <label class="pill"><input type="radio" name="krok8" value="nie"><span>Nie</span></label>
+          </fieldset>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 9a.</span> Czy jesteś teraz gotowy(-a) odpuścić potrzebę posiadania jakiejkolwiek konkretnej kwoty pieniędzy pod ręką i skupić się zamiast tego na tworzeniu znaczącego dostatku w swoim życiu, z którego pewne aspekty mogą wymagać pieniędzy, ale większość może nie wymagać?</p>
+          <fieldset class="pill-group">
+            <legend>Twoja odpowiedź:</legend>
+            <label class="pill"><input type="radio" name="krok9a" value="tak"><span>Tak</span></label>
+            <label class="pill"><input type="radio" name="krok9a" value="nie"><span>Nie</span></label>
+          </fieldset>
+
+          <p class="lead" style="margin-top:16px;"><span class="inum">Krok 9b.</span> Czy jesteś całkowicie gotowy(-a) i otwarty(-a), aby go teraz przyjąć bez zastrzeżeń i bez warunków?</p>
+          <fieldset class="pill-group">
+            <legend>Twoja odpowiedź:</legend>
+            <label class="pill"><input type="radio" name="krok9b" value="tak"><span>Tak</span></label>
+            <label class="pill"><input type="radio" name="krok9b" value="nie"><span>Nie</span></label>
+          </fieldset>
+
+          <p class="lead" style="margin-top:16px;"><span class="inum">Krok 9c.</span> Czy możesz to poczuć, zobaczyć, usłyszeć, posmakować i powąchać, jakby to było tu i teraz?</p>
+          <fieldset class="pill-group">
+            <legend>Twoja odpowiedź:</legend>
+            <label class="pill"><input type="radio" name="krok9c" value="tak"><span>Tak</span></label>
+            <label class="pill"><input type="radio" name="krok9c" value="nie"><span>Nie</span></label>
+          </fieldset>
+
+          <p class="lead" style="margin-top:16px;"><span class="inum">Krok 9d.</span> Czy możesz poczuć radość z posiadania tego w tej chwili?</p>
+          <fieldset class="pill-group">
+            <legend>Twoja odpowiedź:</legend>
+            <label class="pill"><input type="radio" name="krok9d" value="tak"><span>Tak</span></label>
+            <label class="pill"><input type="radio" name="krok9d" value="nie"><span>Nie</span></label>
+          </fieldset>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 10.</span> Teraz, gdy wyraziłeś(-aś) to, czego chcesz w swoim życiu, powiedziałeś(-aś), dlaczego tego chcesz, otworzyłeś(-aś) się na przyjęcie tego i zobaczyłeś(-aś), że jest to dla Ciebie dostępne, czy jesteś teraz gotowy(-a) odpuścić przywiązanie do tego, aby odbywało się to w jakiś konkretny sposób lub stanowiło jakąś określoną kwotę pieniędzy?</p>
+          <fieldset class="pill-group">
+            <legend>Twoja odpowiedź:</legend>
+            <label class="pill"><input type="radio" name="krok10" value="tak"><span>Tak</span></label>
+            <label class="pill"><input type="radio" name="krok10" value="nie"><span>Nie</span></label>
+          </fieldset>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 4 ================= -->
+      <section class="stage" id="stage-4">
+        <div class="stage-head"><span class="snum">4</span><h2>Część IV: Oddanie i Spokój (Kroki 11–13)</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 11.</span> Czy całkowicie poddasz się myśli, że Twoja inteligencja duchowa, wysłuchawszy Twojej prośby, znając Twoje serce i będąc świadomą tego, czego pragnie Twoja dusza, da Ci dokładnie to, czego potrzebujesz, w dokładnie tym momencie, w którym będzie Ti to potrzebne?</p>
+          <fieldset class="pill-group">
+            <legend>Twoja odpowiedź:</legend>
+            <label class="pill"><input type="radio" name="krok11" value="tak"><span>Tak</span></label>
+            <label class="pill"><input type="radio" name="krok11" value="nie"><span>Nie</span></label>
+          </fieldset>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 12.</span> Gdy zaczynasz odpuszczać potrzebę posiadania dokładnie tego, o co prosiłeś(-aś), czy zauważasz, że wzburzone uczucie straty przekształca się w głębokie poczucie spokoju, a uczucie intensywnej wdzięczności wzbiera w Tobie, gdy składasz dziękczynienie za dostatek, o którym teraz wiesz, że Twoja inteligencja duchowa już wydała go w czasie i przestrzeni, gotowego do wejścia do Twojej rzeczywistości?</p>
+          <fieldset class="pill-group">
+            <legend>Twoja odpowiedź:</legend>
+            <label class="pill"><input type="radio" name="krok12" value="tak"><span>Tak</span></label>
+            <label class="pill"><input type="radio" name="krok12" value="nie"><span>Nie</span></label>
+          </fieldset>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 13.</span> Czy jesteś gotowy(-a) poczuć moc spokoju, gdy spoczywasz w pełnej i pewnej wiedzy, że Wszechświat troszczy się o wszystkie Twoje potrzeby i że jesteś całkowicie bezpieczny(-a) i w pełni zaopatrzony(-a)?</p>
+          <fieldset class="pill-group">
+            <legend>Twoja odpowiedź:</legend>
+            <label class="pill"><input type="radio" name="krok13" value="tak"><span>Tak</span></label>
+            <label class="pill"><input type="radio" name="krok13" value="nie"><span>Nie</span></label>
+          </fieldset>
+        </div>
+
+        <div class="affirmation">
+          <p style="margin:0;"><strong>Konkluzja i Integracja:</strong> I tak właśnie jest.<br><br>Weź głęboki oddech (kilka głębokich oddechów), gdy Twoje ciało przyswaja to wszystko i zaczyna dokonywać głębokich zmian na poziomie komórkowym, dostosowując się do nowej rzeczywistości, którą właśnie stworzyłeś(-aś).</p>
+        </div>
+
+        <div class="signoff">
+          <div class="field"><label for="signDate">Data</label><input id="signDate" type="date"></div>
+          <div class="field" style="flex:1;"><label for="signName">Podpis</label><input id="signName" type="text" placeholder="Imię i nazwisko"></div>
+        </div>
+      </section>
+
+      <!-- Przyciski na dole -->
+      <div class="toolbar">
+        <button class="btn primary" id="printBtn">Drukuj / zapisz jako PDF</button>
+        <button class="btn ghost" id="clearBtn">Wyczyść arkusz</button>
+      </div>
+
+      <footer>
+        Instytut Metody Tippinga — jedyny autoryzowany oddział Institute for Radical Forgiveness Therapy &amp; Coaching, Inc.<br>
+        www.metoda-tippinga.pl · info@metoda-tippinga.pl
+      </footer>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  const nameInput = document.getElementById('objectName');
+  const nrInput = document.getElementById('fNr');
+  const fData = document.getElementById('fData');
+  const signDate = document.getElementById('signDate');
+  
+
+  
+  
+
+  
+  
+  
+
+  fData.addEventListener('input', () => {
+    signDate.value = fData.value;
+  });
+
+  // autosize textareas
+  function autosize(t){
+    t.style.height = 'auto';
+    t.style.height = (t.scrollHeight+2) + 'px';
+  }
+  function autosizeAll(scope){
+    (scope||document).querySelectorAll('textarea').forEach(t=>{
+      autosize(t);
+      t.addEventListener('input', ()=>autosize(t));
+    });
+  }
+  autosizeAll();
+  window.addEventListener('load', ()=> autosizeAll());
+
+  // scroll spy + nav
+  const sections = Array.from(document.querySelectorAll('.stage'));
+  const railTabs = Array.from(document.querySelectorAll('.rail-tab'));
+  const mTabs = Array.from(document.querySelectorAll('.mrail button'));
+
+  function setActive(id){
+    railTabs.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+    mTabs.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+  }
+
+  [...railTabs, ...mTabs].forEach(b=>{
+    b.addEventListener('click', ()=>{
+      const targetEl = document.getElementById(b.dataset.target);
+      if(targetEl){
+        targetEl.scrollIntoView({behavior:'smooth', block:'start'});
+      }
+    });
+  });
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting) setActive(e.target.id);
+    });
+  }, {rootMargin:'-20% 0px -65% 0px', threshold:0});
+
+  sections.forEach(s=> io.observe(s));
+  setActive('stage-intro');
+
+  // print
+  document.getElementById('printBtn').addEventListener('click', ()=>{  window.print(); });
+
+  // clear
+  document.getElementById('clearBtn').addEventListener('click', ()=>{
+    if(!confirm('Wyczyścić cały arkusz? Tej operacji nie można cofnąć.')) return;
+    document.querySelectorAll('textarea').forEach(t=>{ t.value=''; autosize(t); });
+    document.querySelectorAll('input[type=text], input[type=date]').forEach(i=> i.value='');
+    document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach(i=> i.checked=false);
+    autosizeAll();
+    
+  });
+})();
+
+  // Dynamic Title Generator: TYTUŁ (SPACJA) rYYMMDDgHHMM (SPACJA MYŚLNIK SPACJA) TEMAT/IMIĘ
+  const BASE_TITLE = '13 Kroków do Odzyskiwania Radykalnego Bogactwa';
+  function pad2(n){ return String(n).padStart(2,'0'); }
+  function stampCzas(){
+    const d = new Date();
+    const rr = pad2(d.getFullYear() % 100);
+    const mm = pad2(d.getMonth() + 1);
+    const dd = pad2(d.getDate());
+    const gg = pad2(d.getHours());
+    const mi = pad2(d.getMinutes());
+    return 'r' + rr + mm + dd + 'g' + gg + mi;
+  }
+  function refreshTitle(){
+    const nameInput = document.getElementById('objectName');
+    const osoba = nameInput ? nameInput.value.trim() : '';
+    let title = BASE_TITLE + ' ' + stampCzas();
+    if(osoba) title += ' - ' + osoba;
+    document.title = title;
+  }
+  const nameInputObj = document.getElementById('objectName');
+  if(nameInputObj) nameInputObj.addEventListener('input', refreshTitle);
+  refreshTitle();
+</script>
+</body>
+</html>

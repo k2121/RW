@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>13 Kroków Radykalnego Wzmocnienia r260721g1703</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680;1,9..144,500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F5EFE3;
+    --paper-deep:#ECE2CC;
+    --card:#FBF8F0;
+    --ink:#2A211B;
+    --ink-soft:#6A5D4F;
+    --rose:#A8425A;
+    --rose-deep:#7C2F42;
+    --rose-pale:#EFD9D9;
+    --sage:#6E7F5C;
+    --gold:#A9803F;
+    --line:#DCCFB2;
+    --shadow:0 1px 2px rgba(42,33,27,.06), 0 8px 24px rgba(42,33,27,.08);
+    --rail-w:84px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  body{
+    margin:0;
+    background: radial-gradient(1200px 600px at 12% -10%, rgba(168,66,90,.06), transparent 60%), var(--paper);
+    color:var(--ink);
+    font-family:'Spectral',serif;
+    font-size:16.5px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .shell{ display:grid; grid-template-columns:var(--rail-w) 1fr; min-height:100vh; }
+  @media (max-width:860px){ .shell{ grid-template-columns:1fr; } }
+
+  .rail{
+    position:sticky; top:0; align-self:start; height:100vh;
+    border-right:1px solid var(--line); background:var(--paper-deep);
+    display:flex; flex-direction:column; padding:22px 0;
+  }
+  .rail-mark{ width:34px; height:34px; margin:0 auto 28px; border-radius:50%; background:var(--rose-deep); position:relative; }
+  .rail-mark::before{ content:""; position:absolute; inset:7px; background:var(--paper-deep); border-radius:50% 50% 50% 0; transform:rotate(-45deg); }
+  
+  .rail-tabs{ display:flex; flex-direction:column; gap:2px; flex:1; }
+  .rail-tab{
+    appearance:none; border:none; background:transparent; cursor:pointer;
+    display:flex; align-items:center; justify-content:center; padding:16px 0;
+    color:var(--ink-soft); font-family:'Space Grotesk',sans-serif; font-size:11px; letter-spacing:.14em;
+    writing-mode:vertical-rl; transform:rotate(180deg); border-left:3px solid transparent; transition:0.2s;
+  }
+  .rail-tab.active{ color:var(--rose-deep); border-left-color:var(--rose); background:var(--card); font-weight:600; }
+
+  main{ min-width:0; }
+  .wrap{ max-width:800px; margin:0 auto; padding:56px 28px 90px; }
+
+  .eyebrow{ font-family:'Space Grotesk',sans-serif; font-size:11.5px; letter-spacing:.16em; text-transform:uppercase; color:var(--rose-deep); margin-bottom:14px; }
+  h1.title{ font-family:'Fraunces',serif; font-weight:680; font-size:clamp(34px,6vw,52px); line-height:1.04; margin:0 0 6px; }
+  .subtitle{ font-family:'Fraunces',serif; font-style:italic; font-weight:400; color:var(--ink-soft); font-size:19px; margin:0 0 40px; }
+
+  .intro-box{ background:var(--card); border:1px solid var(--line); border-radius:14px; padding:30px; margin-bottom:50px; box-shadow:var(--shadow); }
+  .intro-box p { margin-bottom: 1.2em; }
+
+  .stage{ scroll-margin-top:18px; margin-top:60px; }
+  .stage-head{ display:flex; align-items:baseline; gap:14px; background:var(--rose-pale); border-radius:12px; padding:14px 20px; margin-bottom:22px; }
+  .stage-head .snum{ font-family:'Fraunces',serif; font-style:italic; font-weight:680; font-size:30px; color:var(--rose-deep); line-height:1; }
+  .stage-head h2{ font-family:'Space Grotesk',sans-serif; font-size:13.5px; letter-spacing:.1em; text-transform:uppercase; margin:0; }
+
+  .item{ background:var(--card); border:1px solid var(--line); border-radius:14px; box-shadow:var(--shadow); padding:24px; margin-bottom:20px; position:relative; }
+  .item .step-label { font-family:'Space Grotesk',sans-serif; font-size:11px; text-transform:uppercase; color:var(--gold); margin-bottom:8px; display:block; }
+  .item p { margin:0; font-size:17px; }
+
+  /* Readiness pills */
+  .pills { display:flex; gap:10px; margin-top:20px; }
+  .pill { position:relative; cursor:pointer; }
+  .pill input { position:absolute; opacity:0; }
+  .pill span {
+    display:inline-block; padding:8px 20px; border-radius:999px; border:1.5px solid var(--line);
+    font-family:'Space Grotesk',sans-serif; font-size:13px; transition:0.2s; color:var(--ink-soft);
+  }
+  .pill input:checked + span { background:var(--rose-deep); border-color:var(--rose-deep); color:#fff; }
+
+  .affirmation-end {
+    background:linear-gradient(135deg, var(--rose-pale), var(--paper-deep));
+    border-radius:14px; padding:30px; margin-top:40px; font-style:italic; border:1px solid var(--line);
+  }
+
+  footer { margin-top:60px; padding-top:20px; border-top:1px solid var(--line); text-align:center; font-family:'Space Grotesk',sans-serif; font-size:12px; color:var(--ink-soft); }
+
+  .meta-card{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+    display:grid; grid-template-columns:1fr 1fr 2fr; gap:16px 20px;
+  }
+  @media (max-width:560px){ .meta-card{ grid-template-columns:1fr; } }
+  .field label{
+    display:block; font-family:'Space Grotesk',sans-serif; font-size:11px;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;
+  }
+  .field input{
+    width:100%; border:none; border-bottom:1.5px solid var(--line);
+    background:transparent; font-family:'Spectral',serif; font-size:16px;
+    color:var(--ink); padding:4px 2px 7px; outline:none;
+  }
+  .field input:focus{ border-bottom-color:var(--rose); }
+  .field.wide{ grid-column:span 1; }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <nav class="rail">
+    <div class="rail-mark"></div>
+    <div class="rail-tabs">
+      <button class="rail-tab active" onclick="location.href='#intro'">Wprowadzenie</button>
+      <button class="rail-tab" onclick="location.href='#krok1'">Kroki 1-5</button>
+      <button class="rail-tab" onclick="location.href='#krok6'">Kroki 6-10</button>
+      <button class="rail-tab" onclick="location.href='#krok11'">Kroki 11-13</button>
+    </div>
+  </nav>
+
+  <main>
+    <div class="wrap">
+      <div class="eyebrow">Audio Transkrypcja: Nagrania 42 & 44</div>
+      <h1 class="title">Technologia 13 Kroków</h1>
+      <p class="subtitle">Radykalne Wyłonienie się do Duchowej Obecności</p>
+
+      <div class="meta-card">
+        <div class="field"><label for="fData">Data</label><input id="fData" type="date"></div>
+        <div class="field"><label for="fGodzina">Godzina</label><input id="fGodzina" type="time"></div>
+        <div class="field wide">
+          <label for="objectName">Temat / Imię</label>
+          <input id="objectName" type="text" placeholder="Wpisz temat lub imię…">
+        </div>
+      </div>
+
+      <section id="intro" class="intro-box">
+        <div class="step-label">O nagraniu 42</div>
+        <p>Technologia 13 kroków powstała, gdy szukałem jeszcze szybszego sposobu na transformację energii niż wypełnianie arkusza. Niezależnie od tego, czy musimy wybaczyć, czy pogodzić się ze sobą, czy też pogodzić się z tym, co dzieje się na świecie, zawsze istnieje silny opór przed koniecznością szukania arkusza lub nawet wchodzenia do Internetu, aby go wypełnić.</p>
+        <p>Ale dzięki technologii 13 kroków jest to bardzo proste. Dzięki korzyściom płynącym z posiadania telefonów komórkowych, iPadów, iPodów i innych gadżetów, możemy korzystać z procesu zmiany energii w dowolnym momencie, mniej więcej 24 godziny na dobę, 7 dni w tygodniu i przejść przez ten proces w mniej niż 10 minut.</p>
+        <p>Choć jest on bardzo prosty, stanowi niezwykle potężny sposób na pomoc w rozwiązywaniu niepokojów i niezgody, rozpuszczaniu problemów, urzeczywistnianiu marzeń lub zarządzaniu emocjami. Stosuj go zarówno w domu, jak i w pracy, aby oczyścić swoją energię z ograniczających myśli, osądów i pomysłów, które po prostu obniżają Twoje wibracje.</p>
+        <p>Chciałbym jednak podkreślić, że nie postrzegam tego jako zamiennika arkuszy w żadnej ze strategii radykalnego życia. Moja rada jest zawsze taka: gdy pojawia się coś, co niesie ze sobą duży ładunek energii, najpierw użyj arkusza. Następnie przeprowadź kilka sesji z wykorzystaniem 13 kroków, aby dopełnić zmianę. Z drugiej strony, jeśli nie jest to poważny problem, użyj 13 kroków od razu.</p>
+        <p>Mamy tę technologię dostępną od wielu lat na płytach CD, więc jest ona sprawdzona i przetestowana. Płyty CD są nadal w sprzedaży na naszej stronie internetowej, ale tylko członkowie Radical Living mogą uzyskać do niej dostęp bezpośrednio na urządzeniach cyfrowych lub jako plik do pobrania. Wszystko, co musisz zrobić, to wysłuchać 13 pytań i odpowiedzieć „tak” głośnym, wyraźnym głosem na każde pytanie, które wymaga werbalnej odpowiedzi. Jeśli nie jesteś w sytuacji, w której możesz odpowiedzieć na pytania na głos, możesz to zrobić w myślach. Jednym ze sposobów jest wypowiedzenie cichego „tak” poprzez dotknięcie kciuka i palca wskazującego, a następnie ich puszczenie.</p>
+        <p>Proces ten nie jest ani hipnotyczny, ani nie jest medytacją, więc można go słuchać niemal wszędzie. Pamiętaj jednak, że nie jest to ćwiczenie intelektualne i nie ma w nim nic do wymyślenia ani zrozumienia. Nie przemawia on do Twojego umysłu, lecz do Twojej duchowej inteligencji. W rzeczywistości, jeśli spróbujesz to wszystko rozgryźć, prawdopodobnie tylko staniesz na drodze. Możesz to zablokować. Samo powiedzenie „tak” na każde pytanie zadziała, nawet jeśli czujesz, że wolałbyś powiedzieć „nie”. Chodzi o zaufanie, że „tak” jest właściwą odpowiedzią, nawet gdy Twój umysł wolałby powiedzieć „nie”. Twoje ciało musi poczuć rezonans słowa „tak”, gdy wypowiadasz je na głos, lub jeśli złączasz kciuk i palec wskazujący – to daje ten sam efekt.</p>
+        <p>Podobnie jak w przypadku wszystkich narzędzi z arsenału radykalnego życia, nie musisz w to wierzyć, aby zadziałało. W rzeczywistości, kiedy to robisz, najprawdopodobniej wcale nie będziesz miał ochoty się zgadzać i mówić „tak” na żadne z 13 pytań. To nie ma znaczenia. Po prostu zrób to i tak. Nawet jeśli powiesz „tak” przez zaciśnięte zęby, to i tak zadziała. Zaufaj więc temu i niech stanie się to nawykiem.</p>
+        <p>To naprawdę dobry pomysł, aby używać tego tuż przed pójściem spać – albo w związku z czymś konkretnym, co masz na myśli i co chcesz oczyścić lub rozwiązać, albo po prostu jako sposób na powrót do poznania prawdy, że wszystko, co wydarzyło się tego dnia, było doskonałe i że wszystko jest w boskim porządku. Hej, to świetna myśl do zasypiania, nie uważasz? A co powiesz na myśl, że to, co pragniesz zamanifestować, jest już w drodze do Ciebie? To też całkiem dobra myśl, nie sądzisz? Dobrze, zrób dobry użytek z tych narzędzi i powodzenia. Dziękuję za wysłuchanie.</p>
+      </section>
+
+      <section class="stage" id="krok1">
+        <div class="stage-head"><span class="snum">44</span><h2>13 Kroków Radykalnego Wzmocnienia</h2></div>
+        
+        <div class="intro-box" style="margin-bottom:30px;">
+            <p>Proces pozwalający stać się w pełni obecnym jako istota duchowa w ludzkim ciele. Program rozpocznie się za około 10 sekund, więc aby być gotowym, weź głęboki oddech i zrelaksuj się tak bardzo, jak to możliwe. Staraj się pozostać skupionym przez cały czas, a jeśli wypowiedzenie „tak” na głos nie jest możliwe tam, gdzie jesteś, zakotwicz ciche „tak”, łącząc palec wskazujący z kciukiem, a następnie puszczając go.</p>
+        </div>
+
+        <div class="item">
+          <span class="step-label">Krok 1</span>
+          <p>Jakby z punktu obserwacyjnego poza Tobą, wysoko nad Twoją głową, poświęć chwilę na zaobserwowanie siebie jako przebudzonej ludzkiej istoty. Zobacz siebie jako istotę duchową mającą duchowe doświadczenie w ludzkim ciele, która w końcu przebudziła się do rzeczywistości tego, dlaczego tu jesteś i w jakim celu.</p>
+        </div>
+
+        <div class="item">
+          <span class="step-label">Krok 2</span>
+          <p>Po ukończeniu okresu oddzielenia, na który zgodziłeś się w tym wcieleniu, poczuj radość, która płynie z uświadomienia sobie, że jesteś teraz wolny, by przeżyć resztę swojego życia, zobowiązując się do bycia najlepszym człowiekiem, jakim możesz być, w pełni przebudzonym i świadomym swojego boskiego Ja. Teraz, głośnym, wyraźnym głosem lub wewnętrznie, odpowiedz „tak” na kolejne 10 pytań.</p>
+        </div>
+
+        <div class="item">
+          <span class="step-label">Krok 3 / Pytanie 1</span>
+          <p>Patrząc wstecz na swoje życie i widząc, jak stworzyłeś wiele okazji do nauki i wzrostu, czy jesteś gotów przyznać sobie uznanie za chęć odbycia tej podróży dla wzrostu Twojej duszy i wypełnienia kontraktu z innymi podczas pobytu na planecie Ziemia?</p>
+          <div class="pills">
+            <label class="pill"><input type="radio" name="q1"><span>Tak</span></label>
+            <label class="pill"><input type="radio" name="q1"><span>Nie</span></label>
+          </div>
+        </div>
+
+        <div class="item">
+          <span class="step-label">Krok 4 / Pytanie 2</span>
+          <p>Mimo że się przebudziłeś, czy jesteś gotów dopuścić możliwość, że życie nadal będzie aranżować dla Ciebie okoliczności, które będą wyzwaniem, będą testować Twoją determinację, by pozostać przebudzonym, a na specjalne okazje kusić Cię do powrotu do krainy ofiar?</p>
+          <div class="pills">
+            <label class="pill"><input type="radio" name="q2"><span>Tak</span></label>
+            <label class="pill"><input type="radio" name="q2"><span>Nie</span></label>
+          </div>
+        </div>
+
+        <div class="item">
+          <span class="step-label">Krok 5 / Pytanie 3</span>
+          <p>Czy będziesz tolerancyjny i wybaczający wobec siebie, jeśli zdarzy się, że tymczasowo zapomnisz, kim jesteś i staniesz się nadmiernie oceniający, krytyczny lub obwiniający wobec innych, wiedząc, że to właśnie nadal oznacza bycie niedoskonałym człowiekiem, nawet jeśli jesteś przebudzony?</p>
+          <div class="pills">
+            <label class="pill"><input type="radio" name="q3"><span>Tak</span></label>
+            <label class="pill"><input type="radio" name="q3"><span>Nie</span></label>
+          </div>
+        </div>
+      </section>
+
+      <section class="stage" id="krok6">
+        <div class="item">
+          <span class="step-label">Krok 6 / Pytanie 4</span>
+          <p>Biorąc pod uwagę, że czasami możesz czuć się zdenerwowany na innych ludzi, czy będziesz zdecydowany, by – po poczuciu tych uczuć – szybko dostrzec doskonałość w danej sytuacji i sprawnie przejść do miejsca spokoju i akceptacji?</p>
+          <div class="pills">
+            <label class="pill"><input type="radio" name="q4"><span>Tak</span></label>
+            <label class="pill"><input type="radio" name="q4"><span>Nie</span></label>
+          </div>
+        </div>
+
+        <div class="item">
+          <span class="step-label">Krok 7 / Pytanie 5</span>
+          <p>Gdybyś poczuł, że chcesz, aby ktoś lub coś było inne niż jest w rzeczywistości, czy jesteś gotów przyznać, że byłbyś poza harmonią z Duchem, mając takie oczekiwania, i czy w związku z tym byłbyś gotów je porzucić?</p>
+          <div class="pills">
+            <label class="pill"><input type="radio" name="q5"><span>Tak</span></label>
+            <label class="pill"><input type="radio" name="q5"><span>Nie</span></label>
+          </div>
+        </div>
+
+        <div class="item">
+          <span class="step-label">Krok 8 / Pytanie 6</span>
+          <p>Czy jesteś teraz gotów uczynić radykalne życie swoim domyślnym stylem życia, zobowiązując się do wypełniania arkuszy, słuchania 13 kroków lub wykonywania procesu 4 kroków mniej więcej codziennie, bez względu na to, jak mały może wydawać się problem, abyś pozostał przebudzony?</p>
+          <div class="pills">
+            <label class="pill"><input type="radio" name="q6"><span>Tak</span></label>
+            <label class="pill"><input type="radio" name="q6"><span>Nie</span></label>
+          </div>
+        </div>
+
+        <div class="item">
+          <span class="step-label">Krok 9 / Pytanie 7</span>
+          <p>Czy jesteś teraz w stanie dostrzec, że jako przebudzona, świadoma duchowo ludzka istota, masz moc manifestowania życia, jakiego pragniesz, i zmieniania świata w zgodzie ze swoją misją i celem w sposób, który nie był możliwy wcześniej?</p>
+          <div class="pills">
+            <label class="pill"><input type="radio" name="q7"><span>Tak</span></label>
+            <label class="pill"><input type="radio" name="q7"><span>Nie</span></label>
+          </div>
+        </div>
+
+        <div class="item">
+          <span class="step-label">Krok 10 / Pytanie 8</span>
+          <p>Czy w związku z tym jesteś zaangażowany w rozwijanie swojej mocy manifestowania tego, co wnosi realną i prawdziwą wartość do świata, dla siebie i innych, poprzez korzystanie z narzędzi radykalnego wybaczania i radykalnej manifestacji, a tym samym podnoszenie wibracji planety?</p>
+          <div class="pills">
+            <label class="pill"><input type="radio" name="q8"><span>Tak</span></label>
+            <label class="pill"><input type="radio" name="q8"><span>Nie</span></label>
+          </div>
+        </div>
+      </section>
+
+      <section class="stage" id="krok11">
+        <div class="item">
+          <span class="step-label">Krok 11 / Pytanie 9</span>
+          <p>Czy jesteś teraz gotów przyjąć odpowiedzialność za bycie jednym z niewielu, a być może wkrótce wielu, którzy są w stanie utrzymać wysoką wibrację nawet podczas najtrudniejszych okoliczności, które mogą wydawać się katastrofalne dla wielu zaangażowanych osób, i utrzymać wysoką intencję stworzenia rezultatu, który jest dla najwyższego dobra wszystkich zainteresowanych?</p>
+          <div class="pills">
+            <label class="pill"><input type="radio" name="q9"><span>Tak</span></label>
+            <label class="pill"><input type="radio" name="q9"><span>Nie</span></label>
+          </div>
+        </div>
+
+        <div class="item">
+          <span class="step-label">Krok 12 / Pytanie 10</span>
+          <p>Czując swoją więź z każdym i wszystkim we wszechświecie, czy jesteś w stanie w pełni zaakceptować swoją zdolność jako jednego z wielu, którzy wibrują na tej samej częstotliwości, do tworzenia pokoju na świecie i czy jesteś gotów podtrzymać tę intencję teraz?</p>
+          <div class="pills">
+            <label class="pill"><input type="radio" name="q10"><span>Tak</span></label>
+            <label class="pill"><input type="radio" name="q10"><span>Nie</span></label>
+          </div>
+        </div>
+
+        <div class="item">
+          <span class="step-label">Krok 13</span>
+          <p>Na koniec, czy jesteś gotów porzucić jakiekolwiek przywiązanie do bycia przebudzonym, do czynienia zmiany, do tworzenia pokoju na świecie lub manifestowania czegokolwiek o jakimkolwiek znaczeniu, wiedząc, że poddając się temu, co jest, takie jakie jest, ufasz wszechświatowi, że zajmie się wszystkim, co musi się wydarzyć?</p>
+          <div class="pills">
+            <label class="pill"><input type="radio" name="q11"><span>Tak</span></label>
+            <label class="pill"><input type="radio" name="q11"><span>Nie</span></label>
+          </div>
+        </div>
+
+        <div class="affirmation-end">
+          <p>To koniec procesu. Nie wiem, kto napisał ten następny fragment, ale podoba mi się i pomyślałem, że będzie dobrym zakończeniem tego nagrania:</p>
+          <p style="margin-top:20px; font-weight: 500;">Na początku wiedziałeś. Potem udawałeś, że zapomniałeś. Potem udawałeś, że zapomniałeś, że zapomniałeś. Potem zapomniałeś, że udawałeś, pamiętasz? Nie możesz już udawać, że zapomniałeś. Przypomniałeś sobie to, co zawsze wiedziałeś. Pielęgnuj przebudzenie i podziel się swoim darem z kimś, kto wciąż udaje, że zapomniał.</p>
+          <p style="margin-top:20px; text-align: right; font-weight: 600;">Namaste.</p>
+        </div>
+      </section>
+
+      <footer>
+        Opracowano na podstawie nagrań Colina Tippinga. <br>
+        Wszystkie treści służą transformacji energii zgodnie z Metodą Tippinga.
+      </footer>
+    </div>
+  </main>
+</div>
+
+<script>
+  // Simple ScrollSpy implementation
+  window.addEventListener('scroll', () => {
+    const sections = document.querySelectorAll('section');
+    const tabs = document.querySelectorAll('.rail-tab');
+    let current = '';
+
+    sections.forEach(section => {
+      const sectionTop = section.offsetTop;
+      if (pageYOffset >= sectionTop - 100) {
+        current = section.getAttribute('id');
+      }
+    });
+
+    tabs.forEach(tab => {
+      tab.classList.remove('active');
+      if (tab.getAttribute('onclick').includes(current)) {
+        tab.classList.add('active');
+      }
+    });
+  });
+
+  // Adding interaction to pills
+  document.querySelectorAll('.pill input').forEach(input => {
+    input.addEventListener('change', function() {
+      const parentItem = this.closest('.item');
+      if (this.nextElementSibling.textContent === 'Tak') {
+        parentItem.style.borderLeft = '4px solid var(--sage)';
+      } else {
+        parentItem.style.borderLeft = '4px solid var(--rose)';
+      }
+    });
+  });
+
+  // Dynamic Title Generator: TYTUŁ (SPACJA) rYYMMDDgHHMM (SPACJA MYŚLNIK SPACJA) TEMAT/IMIĘ
+  const BASE_TITLE = '13 Kroków Radykalnego Wzmocnienia';
+  function pad2(n){ return String(n).padStart(2,'0'); }
+  function stampCzas(){
+    const d = new Date();
+    const rr = pad2(d.getFullYear() % 100);
+    const mm = pad2(d.getMonth() + 1);
+    const dd = pad2(d.getDate());
+    const gg = pad2(d.getHours());
+    const mi = pad2(d.getMinutes());
+    return 'r' + rr + mm + dd + 'g' + gg + mi;
+  }
+  function refreshTitle(){
+    const nameInput = document.getElementById('objectName');
+    const osoba = nameInput ? nameInput.value.trim() : '';
+    let title = BASE_TITLE + ' ' + stampCzas();
+    if(osoba) title += ' - ' + osoba;
+    document.title = title;
+  }
+  const nameInputObj = document.getElementById('objectName');
+  if(nameInputObj) nameInputObj.addEventListener('input', refreshTitle);
+  refreshTitle();
+</script>
+</body>
+</html>

@@ -1,0 +1,521 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>13 Kroków do Radykalnego Przebudzenia r260721g1703</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680;1,9..144,500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F5EFE3;
+    --paper-deep:#ECE2CC;
+    --card:#FBF8F0;
+    --ink:#2A211B;
+    --ink-soft:#6A5D4F;
+    --rose:#A8425A;
+    --rose-deep:#7C2F42;
+    --rose-pale:#EFD9D9;
+    --sage:#6E7F5C;
+    --gold:#A9803F;
+    --line:#DCCFB2;
+    --shadow:0 1px 2px rgba(42,33,27,.06), 0 8px 24px rgba(42,33,27,.08);
+    --rail-w:84px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important; transition:none !important;}
+  }
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 12% -10%, rgba(168,66,90,.06), transparent 60%),
+      var(--paper);
+    color:var(--ink);
+    font-family:'Spectral',serif;
+    font-size:16.5px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--rose-pale); }
+  a{ color:var(--rose-deep); }
+
+  /* ---------- layout shell ---------- */
+  .shell{
+    display:grid;
+    grid-template-columns:var(--rail-w) 1fr;
+    min-height:100vh;
+  }
+  @media (max-width:860px){
+    .shell{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- vertical stage rail ---------- */
+  .rail{
+    position:sticky; top:0; align-self:start;
+    height:100vh;
+    border-right:1px solid var(--line);
+    background:var(--paper-deep);
+    display:flex; flex-direction:column;
+    padding:22px 0;
+  }
+  .rail-mark{
+    width:34px; height:34px; margin:0 auto 28px;
+    border-radius:50%;
+    background:var(--rose-deep);
+    position:relative;
+    flex:none;
+  }
+  .rail-mark::before, .rail-mark::after{
+    content:""; position:absolute; inset:7px;
+    background:var(--paper-deep);
+    border-radius:50% 50% 50% 0;
+    transform:rotate(-45deg);
+  }
+  .rail-mark::after{ display:none; }
+  .rail-tabs{ display:flex; flex-direction:column; gap:2px; flex:1; }
+  .rail-tab{
+    appearance:none; border:none; background:transparent; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    padding:16px 0;
+    color:var(--ink-soft);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:11px; letter-spacing:.14em;
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    border-left:3px solid transparent;
+    transition:color .2s, border-color .2s, background .2s;
+  }
+  .rail-tab:hover{ color:var(--ink); background:rgba(168,66,90,.06); }
+  .rail-tab.active{
+    color:var(--rose-deep);
+    border-left-color:var(--rose);
+    background:var(--card);
+    font-weight:600;
+  }
+  .rail-tab .num{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:560;
+    font-size:15px; margin-right:10px; letter-spacing:0;
+  }
+  .rail-foot{
+    writing-mode:vertical-rl; transform:rotate(180deg);
+    margin:0 auto; color:var(--ink-soft); opacity:.55;
+    font-family:'Space Grotesk',sans-serif; font-size:10px; letter-spacing:.16em;
+  }
+
+  /* mobile rail -> horizontal progress strip */
+  .mrail{ display:none; }
+  @media (max-width:860px){
+    .rail{ display:none; }
+    .mrail{
+      display:flex; position:sticky; top:0; z-index:20;
+      background:var(--paper-deep); border-bottom:1px solid var(--line);
+      overflow-x:auto; padding:10px 14px; gap:8px;
+    }
+    .mrail button{
+      appearance:none; border:1px solid var(--line); background:var(--card);
+      color:var(--ink-soft); font-family:'Space Grotesk',sans-serif;
+      font-size:11.5px; letter-spacing:.04em; white-space:nowrap;
+      padding:7px 12px; border-radius:999px; cursor:pointer;
+    }
+    .mrail button.active{ background:var(--rose-deep); color:#fff; border-color:var(--rose-deep); }
+  }
+
+  /* ---------- main column ---------- */
+  main{ min-width:0; }
+  .wrap{ max-width:760px; margin:0 auto; padding:56px 28px 90px; }
+  @media (max-width:560px){ .wrap{ padding:34px 16px 70px; } }
+
+  .eyebrow{
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--rose-deep); margin-bottom:14px;
+  }
+  h1.title{
+    font-family:'Fraunces',serif; font-weight:680; font-size:clamp(34px,6vw,52px);
+    line-height:1.04; margin:0 0 6px; letter-spacing:-.01em;
+  }
+  .subtitle{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:400;
+    color:var(--ink-soft); font-size:19px; margin:0 0 28px;
+  }
+
+  .intro-box{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:24px 28px; margin-bottom:34px;
+  }
+  .intro-box p{
+    margin:0 0 14px; font-size:16px; line-height:1.65; color:var(--ink);
+  }
+  .intro-box p:last-child{ margin-bottom:0; }
+
+  .privacy{
+    font-family:'Space Grotesk',sans-serif; font-size:12.5px; color:var(--ink-soft);
+    background:transparent; border:1px dashed var(--line);
+    border-radius:10px; padding:12px 16px; margin-bottom:28px; line-height:1.55;
+  }
+  .privacy strong{ color:var(--ink); }
+
+  .toolbar{
+    display:flex; gap:10px; flex-wrap:wrap; margin:30px 0 30px;
+  }
+  .btn{
+    appearance:none; cursor:pointer; border-radius:999px;
+    font-family:'Space Grotesk',sans-serif; font-size:13px; letter-spacing:.03em;
+    padding:10px 18px; border:1.5px solid var(--rose-deep);
+  }
+  .btn.primary{ background:var(--rose-deep); color:#fff; }
+  .btn.ghost{ background:transparent; color:var(--rose-deep); }
+  .btn:hover{ filter:brightness(1.05); }
+
+  .hint{ font-family:'Spectral',serif; font-style:italic; color:var(--ink-soft); font-size:14.5px; margin-bottom:24px; }
+
+  /* ---------- stage sections ---------- */
+  .stage{ scroll-margin-top:18px; margin-top:54px; }
+  .stage-head{
+    display:flex; align-items:baseline; gap:14px;
+    background:var(--rose-pale); border-radius:12px;
+    padding:14px 20px; margin-bottom:22px;
+  }
+  .stage-head .snum{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:680;
+    font-size:30px; color:var(--rose-deep); line-height:1;
+  }
+  .stage-head h2{
+    font-family:'Space Grotesk',sans-serif; font-size:13.5px; letter-spacing:.1em;
+    text-transform:uppercase; margin:0; color:var(--ink);
+  }
+
+  .item{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+  }
+  .item .inum{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:560;
+    color:var(--gold); font-size:18px; margin-right:6px;
+  }
+  .item p.lead{ margin:0 0 6px; font-weight:500; font-size:17px; }
+  .item p.note{
+    font-family:'Spectral',serif; font-style:italic; color:var(--ink-soft);
+    font-size:14.5px; margin:6px 0 14px;
+  }
+
+  /* readiness pills */
+  fieldset.readiness{
+    border:none; margin:14px 0 0; padding:0;
+    display:flex; flex-wrap:wrap; gap:8px;
+  }
+  fieldset.readiness legend{
+    font-family:'Space Grotesk',sans-serif; font-size:10.5px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--ink-soft); margin-bottom:8px; padding:0;
+  }
+  .pill{ position:relative; }
+  .pill input{ position:absolute; opacity:0; inset:0; cursor:pointer; margin:0; }
+  .pill span{
+    display:inline-block; padding:7px 18px; border-radius:999px;
+    border:1.5px solid var(--line); font-family:'Space Grotesk',sans-serif;
+    font-size:13px; color:var(--ink-soft); transition:all .15s; font-weight:500;
+  }
+  .pill input:checked + span{
+    background:var(--rose-deep); border-color:var(--rose-deep); color:#fff;
+  }
+  .pill input:focus-visible + span{ outline:2px solid var(--rose); outline-offset:2px; }
+
+  .invocation-card{
+    background:linear-gradient(135deg, var(--rose-pale), var(--paper-deep));
+    border-radius:14px; padding:26px 28px; margin-bottom:18px;
+    font-family:'Spectral',serif; font-size:16.5px; color:var(--ink);
+    border:1px solid var(--line); line-height:1.7;
+  }
+  .invocation-card p{ margin:0 0 12px; }
+  .invocation-card p:last-child{ margin-bottom:0; }
+
+  footer{
+    margin-top:60px; padding-top:18px; border-top:1px solid var(--line);
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; color:var(--ink-soft);
+    text-align:center; line-height:1.7;
+  }
+
+  @media print{
+    .rail, .mrail, .toolbar, .privacy{ display:none !important; }
+    .shell{ display:block; }
+    body{ background:#fff; }
+    .wrap{ max-width:100%; padding:0 8px; }
+    .item, .intro-box, .invocation-card{ box-shadow:none; border:1px solid #ccc; break-inside:avoid; }
+    .stage{ break-before:page; margin-top:0; padding-top:18px; }
+    .stage:first-of-type{ break-before:auto; }
+  }
+
+  .meta-card{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+    display:grid; grid-template-columns:1fr 1fr 2fr; gap:16px 20px;
+  }
+  @media (max-width:560px){ .meta-card{ grid-template-columns:1fr; } }
+  .field label{
+    display:block; font-family:'Space Grotesk',sans-serif; font-size:11px;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;
+  }
+  .field input{
+    width:100%; border:none; border-bottom:1.5px solid var(--line);
+    background:transparent; font-family:'Spectral',serif; font-size:16px;
+    color:var(--ink); padding:4px 2px 7px; outline:none;
+  }
+  .field input:focus{ border-bottom-color:var(--rose); }
+  .field.wide{ grid-column:span 1; }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <!-- desktop vertical rail -->
+  <nav class="rail" aria-label="Nawigacja procesu">
+    <div class="rail-mark" aria-hidden="true"></div>
+    <div class="rail-tabs" id="railTabs">
+      <button class="rail-tab" data-target="stage-intro"><span class="num">0</span>Wprowadzenie</button>
+      <button class="rail-tab" data-target="stage-kroki"><span class="num">13</span>13 Kroków</button>
+      <button class="rail-tab" data-target="stage-wezwanie"><span class="num">★</span>Wezwanie</button>
+    </div>
+    <div class="rail-foot">Instytut Metody Tippinga</div>
+  </nav>
+
+  <main>
+    <!-- mobile horizontal rail -->
+    <nav class="mrail" id="mrail" aria-label="Nawigacja procesu (mobile)">
+      <button data-target="stage-intro">0 · Wprowadzenie</button>
+      <button data-target="stage-kroki">13 Kroków</button>
+      <button data-target="stage-wezwanie">Wezwanie</button>
+    </nav>
+
+    <div class="wrap">
+      <div class="eyebrow">Radykalne Wybaczanie · Metoda Tippinga</div>
+      <h1 class="title">13 Kroków do Radykalnego Przebudzenia</h1>
+      <p class="subtitle">Szybki proces transformacji energii</p>
+
+      <div class="meta-card">
+        <div class="field"><label for="fData">Data</label><input id="fData" type="date"></div>
+        <div class="field"><label for="fGodzina">Godzina</label><input id="fGodzina" type="time"></div>
+        <div class="field wide">
+          <label for="objectName">Temat / Imię</label>
+          <input id="objectName" type="text" placeholder="Wpisz temat lub imię…">
+        </div>
+      </div>
+
+      <!-- ================= INTRO SECTION ================= -->
+      <section class="stage" id="stage-intro" style="margin-top:0;">
+        <div class="stage-head"><span class="snum">0</span><h2>Wprowadzenie do Technologii 13 Kroków</h2></div>
+        
+        <div class="intro-box">
+          <p>Technologia 13 Kroków powstała, gdy szukałem jeszcze szybszego sposobu na transformację energii niż wypełnianie arkusza. Niezależnie od tego, czy musimy przebaczyć, pogodzić się ze sobą, czy zaakceptować to, co dzieje się na świecie, zawsze pojawia się silny opór przed szukaniem arkusza lub wchodzeniem do sieci, by go wypełnić. Jednak dzięki technologii 13 Kroków jest to niezwykle proste.</p>
+          <p>Dzięki dostępności telefonów komórkowych, iPadów, iPodów i innych tego typu urządzeń możemy korzystać z procesu transformacji energii w dowolnym momencie – mniej więcej przez całą dobę, 7 dni w tygodniu. Cały proces można przejść w czasie krótszym niż 10 minut.</p>
+          <p>Choć jest to bardzo prosta metoda, stanowi niezwykle potężny sposób na rozwiązywanie poirytowania i konfliktów, rozpuszczanie problemów, urzeczywistnianie marzeń czy zarządzanie swoimi emocjami. Stosuj ją zarówno w domu, jak i w pracy, aby utrzymać czystą energię, wolną od ograniczających myśli, osądów i przekonań, które po prostu obniżają Twoje wibracje.</p>
+          <p>Chciałbym jednak podkreślić: nie uważam tej metody za zamiennik dla arkuszy w żadnej ze strategii Radykalnego Życia. Moja rada zawsze brzmi: gdy pojawia się coś, co niesie ze sobą ładunek emocjonalny, najpierw użyj arkusza, a następnie wykonaj kilka sesji z wykorzystaniem 13 Kroków, aby dopełnić zmianę. Jeśli natomiast nie jest to duży problem, jak najbardziej od razu zastosuj 13 Kroków.</p>
+          <p>Mamy tę technologię dostępną od wielu lat na płytach CD, więc jest wypróbowana i ma potwierdzoną skuteczność. Płyty CD są nadal w sprzedaży na naszej stronie internetowej, ale tylko członkowie Radykalnego Życia mają do nich bezpośredni dostęp na urządzeniach cyfrowych lub w formie plików do pobrania.</p>
+          <p>Wszystko, co musisz zrobić, to wysłuchać 13 pytań i odpowiedzieć na głos, wyraźnym głosem „tak” na każde pytanie, które wymaga odpowiedzi ustnej. Jeśli nie jesteś w miejscu, w którym możesz odpowiedzieć na głos, możesz zrobić to wewnętrznie. Jednym ze sposobów jest ciche „tak” połączone z dotknięciem kciukiem palca wskazującego i zwolnieniem uścisku.</p>
+          <p>Ten proces nie jest ani hipnozą, ani medytacją, więc można go słuchać właściwie wszędzie. Pamiętaj jednak, że nie jest to ćwiczenie intelektualne i nie ma w nim niczego do rozstrzygania ani zrozumienia. Przemawia on nie do Twojego umysłu, lecz do Twojej duchowej inteligencji. W rzeczywistości, jeśli będziesz próbować wszystkiego dociec, prawdopodobnie tylko staniesz na drodze i możesz to zablokować. Samo mówienie „tak” na każde pytanie wykona swoją pracę – nawet jeśli czujesz, że wolisz powiedzieć „nie”. To kwestia zaufania, że „tak” jest właściwą odpowiedzią, nawet gdy Twój umysł wolałby odpowiedzieć „nie”. Twoje ciało musi jednak poczuć rezonans słowa „tak”, gdy wypowiadasz je na głos (lub gdy stykasz palec z kciukiem, co daje ten sam efekt).</p>
+          <p>Tak jak w przypadku wszystkich narzędzi z arsenału Radykalnego Życia, nie musisz w to wierzyć, aby zadziałało. W rzeczywistości, kiedy to robisz, najprawdopodobniej wcale nie będziesz mieć ochoty na zgadzanie się i mówienie „tak” na którekolwiek z 13 pytań, ale to nie ma znaczenia. Zrób to tak czy inaczej. Czasem mówisz „tak” przez zaciśnięte zęby, a to i tak działa dokładnie tak samo. Zaufaj więc temu i niech stanie się to Twoim nawykiem.</p>
+          <p>To naprawdę świetny pomysł, aby stosować tę metodę tuż przed pójściem spać – albo w konkretnej sprawie, która chodzi Ci po głowie i którą chcesz oczyścić lub rozwiązać, albo po prostu jako sposób na powrót do prawdy: że wszystko, co wydarzyło się tego dnia, było doskonałe i że wszystko jest w Boskim Porządku. To wspaniała myśl na sen, nie uważasz? A co powiesz na myśl, że to, co pragniesz urzeczywistnić, jest już w drodze do Ciebie? To też całkiem niezła myśl, zgodzisz się?</p>
+          <p>Rób dobry użytek z tych narzędzi i powodzenia! Dziękuję za uwagę.</p>
+        </div>
+      </section>
+
+      <p class="privacy"><strong>Wskazówka dotycząca interakcji:</strong> Podczas przechodzenia przez poniższe kroki wybierz odpowiednią pigułkę: <strong>Tak</strong> lub <strong>Nie</strong> (zgodnie z instrukcją, zalecana odpowiedź to „Tak”).</p>
+
+      <!-- ================= 13 STEPS SECTION ================= -->
+      <section class="stage" id="stage-kroki">
+        <div class="stage-head"><span class="snum">13</span><h2>Proces 13 Kroków do Radykalnego Przebudzenia</h2></div>
+
+        <!-- Step 1 -->
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 1.</span>Poświęć chwilę lub dwie, aby uświadomić sobie siebie jako odrębną, pojedynczą istotę — ludzką istotę całkowicie oddzieloną od wszystkich i wszystkiego wokół Ciebie.</p>
+          <p class="note">Mimo że masz świadomość samego siebie, wszystko inne jest doświadczane jako będące „tam na zewnątrz” — fizycznie, psychicznie i emocjonalnie oddalone od Ciebie i niepoznawalne. Jesteś w istocie samotny i odłączony od wszystkiego innego w wszechświecie. Gdy uświadamiasz sobie tę samotność, poczuj ból tej wielkości oddzielenia i poczuj go teraz w pełni.</p>
+        </div>
+
+        <!-- Step 2 -->
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 2.</span>Gdy zaczynasz dotykać tego intensywnego bólu powiązanego z byciem całkowicie oddzielonym od każdego i wszystkiego, i zupełnie samotnym wewnątrz siebie, zauważ, w którym miejscu swojego ciała odczuwasz go najbardziej.</p>
+          <p class="note">Jeśli to możliwe, połóż rękę w tym miejscu, w którym wydaje się być najbardziej zlokalizowany. Lub skieruj tam swoją uwagę, jeśli nie możesz do niego sięgnąć.</p>
+          <p style="font-weight:600; color:var(--rose-deep); margin-top:10px;">Dobrze. Teraz donośnym, wyraźnym głosem odpowiedz „tak” na następujące pytania:</p>
+        </div>
+
+        <!-- Step 3 -->
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 3.</span>Czy jesteś gotowy/gotowa rozważyć możliwość, że jako istota duchowa faktycznie wybrałeś/wybrałaś przyjęcie fizycznego ciała w ludzkiej formie z intencją doświadczenia iluzji oddzielenia — przeciwieństwa jedności — w takim stopniu, aby w pełni uświadomić sobie rzeczywistość jedności?</p>
+          <div class="rgroup" data-name="krok3"></div>
+        </div>
+
+        <!-- Step 4 -->
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 4.</span>Wybierając tę konkretną lekcję, konieczne było, abyś nie pamiętał/nie pamiętała niczego z tej umowy do czasu, aż doświadczysz takiej ilości bólu oddzielenia, na jaką się zapisałeś/zapisałaś. Wtedy powoli zaczniesz pamiętać i budzić się do rzeczywistości tego, kim naprawdę jesteś. A zatem pytanie brzmi: czy jesteś teraz gotowy/gotowa przebudzić się do prawdy, że w rzeczywistości wszyscy jesteśmy jednością, w pełni połączeni ze sobą nawzajem i ze wszystkim innym w całym wszechświecie?</p>
+          <div class="rgroup" data-name="krok4"></div>
+        </div>
+
+        <!-- Step 5 -->
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 5.</span>Gdy spoglądasz wstecz na swoje własne życie, czy budzisz się do faktu, że poradziłeś/poradziłaś sobie niezwykle dobrze w kreowaniu wielu wspaniałych okazji do odczuwania wielu różnych form oddzielenia, takich jak porzucenie, odrzucenie, zdrada, wszelkiego rodzaju przemoc, śmierć i zniszczenie, wojny oraz inne tego typu możliwości?</p>
+          <div class="rgroup" data-name="krok5"></div>
+        </div>
+
+        <!-- Step 6 -->
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 6.</span>Ponownie, gdy spoglądasz wstecz na doświadczenia, które stworzyłeś/stworzyłaś, aby poczuć ból oddzielenia, czy budzisz się do faktu, że ludzie, którzy dali Ci te doświadczenia — rodzice, rodzeństwo, nauczyciele, złodzieje, małżonkowie, szefowie i wszyscy inni, którzy wyglądali na Twoich wrogów — byli w rzeczywistości duszami, z którymi zawarłeś/zawarłaś umowę przed swoim wcieleniem, aby to oni dali Ci te doświadczenia?</p>
+          <div class="rgroup" data-name="krok6"></div>
+        </div>
+
+        <!-- Step 7 -->
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 7.</span>Czy jesteś w stanie poczuć wdzięczność wobec tych dusz za dostarczenie Ci tak cennych okazji do odczucia bólu oddzielenia, mimo że być może zrobili to ogromnym kosztem dla samych siebie?</p>
+          <div class="rgroup" data-name="krok7"></div>
+        </div>
+
+        <!-- Step 8 -->
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 8.</span>Czy jesteś już wystarczająco przebudzony/przebudzona, aby dostrzec, że wszystko, co kiedykolwiek wydarzyło się w Twojej przeszłości, wszystko, co dzieje się z Tobą teraz, i wszystko, co wydarzy się w przyszłości, jest celowe i doskonałe, ponieważ dało Ci szansę na doświadczenie konkretnej formy oddzielenia?</p>
+          <div class="rgroup" data-name="krok8"></div>
+        </div>
+
+        <!-- Step 9 -->
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 9.</span>Ponownie, gdy spoglądasz wstecz na swoje życie, czy jesteś w stanie przywołać w pamięci te wszystkie drobne impulsy, znaki i sygnały, które otrzymywałeś/otrzymywałaś od swojej Wyższej Jaźni tuż przed tym, jak zacząłeś/zaczęłaś się budzić, jak również pewne książki, warsztaty i doświadczenia, które wywarły wpływ na ten proces?</p>
+          <div class="rgroup" data-name="krok9"></div>
+        </div>
+
+        <!-- Step 10 -->
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 10.</span>Gdy budzisz się coraz bardziej i bardziej, czy dostrzegasz, że Twoje życie zaczyna być w mniejszym stopniu kierowane strachem, potrzebą kontroli i innymi sprawami ego, a w większym stopniu miłością, zaufaniem, akceptacją i troską o innych?</p>
+          <div class="rgroup" data-name="krok10"></div>
+        </div>
+
+        <!-- Step 11 -->
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 11.</span>Czy jesteś teraz gotowy/gotowa podjąć wysiłek, aby pozostać przebudzonym/przebudzoną poprzez praktykowanie Radykalnego Wybaczania jako stylu życia, i że ilekroć poczujesz, że wciąga Cię z powrotem w świadomość ofiary, sięgniesz po wsparcie do tych, którzy sami są przebudzeni?</p>
+          <div class="rgroup" data-name="krok11"></div>
+        </div>
+
+        <!-- Step 12 -->
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 12.</span>Czy jesteś teraz gotowy/gotowa zaufać, że wszechświat zaspokoi wszystkie Twoje potrzeby dokładnie w tym momencie, w którym będą one potrzebne, i że możesz użyć narzędzi Radykalnego Urzeczywistniania, aby prosić o to, czego potrzebujesz?</p>
+          <div class="rgroup" data-name="krok12"></div>
+        </div>
+
+        <!-- Step 13 intro -->
+        <div class="item">
+          <p class="lead"><span class="inum">Krok 13.</span>Zakończmy po prostu wezwaniem Radykalnego Wybaczania. Powiedz je ze mną na głos, jeśli możesz.</p>
+        </div>
+      </section>
+
+      <!-- ================= INVOCATION SECTION ================= -->
+      <section class="stage" id="stage-wezwanie">
+        <div class="stage-head"><span class="snum">★</span><h2>Wezwanie Radykalnego Wybaczania</h2></div>
+
+        <div class="invocation-card">
+          <p>Obyśmy wszyscy stali pewnie w wiedzy i poczuciu komfortu, że wszystkie rzeczy są teraz, zawsze były i na zawsze będą w Boskim Porządku, rozwijając się zgodnie z Boskim Planem.</p>
+          <p>I obyśmy prawdziwie poddali się tej prawdzie, niezależnie od tego, czy ją rozumiemy, czy nie.</p>
+          <p>Obyśmy również prosili o wsparcie w świadomości, w odczuwaniu naszego połączenia z Boską częścią nas samych, z każdym i ze wszystkim, abyśmy mogli prawdziwie powiedzieć i poczuć: <strong>Jesteśmy jednością</strong>.</p>
+          <p>I tak właśnie jest.</p>
+        </div>
+
+        <p class="hint" style="text-align:center; font-size:16px; margin-top:20px;">I to jest koniec procesu 13 Kroków do Radykalnego Przebudzenia.</p>
+      </section>
+
+      <!-- Toolbar buttons -->
+      <div class="toolbar">
+        <button class="btn primary" id="printBtn">Drukuj / zapisz jako PDF</button>
+        <button class="btn ghost" id="resetBtn">Wyczyszczenie zaznaczeń</button>
+      </div>
+
+      <footer>
+        Instytut Metody Tippinga — jedyny autoryzowany oddział Institute for Radical Forgiveness Therapy &amp; Coaching, Inc.<br>
+        13 Kroków do Radykalnego Przebudzenia
+      </footer>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  const OPTIONS = ["Tak", "Nie"];
+
+  // Build pill selector for binary questions
+  document.querySelectorAll('.rgroup').forEach(el=>{
+    const name = el.dataset.name;
+    const fs = document.createElement('fieldset');
+    fs.className = 'readiness';
+    const legend = document.createElement('legend');
+    legend.textContent = 'Twoja odpowiedź:';
+    fs.appendChild(legend);
+    OPTIONS.forEach((opt,i)=>{
+      const id = name+'-'+i;
+      const lab = document.createElement('label');
+      lab.className = 'pill';
+      lab.innerHTML = '<input type="radio" name="'+name+'" id="'+id+'" value="'+opt+'"><span>'+opt+'</span>';
+      fs.appendChild(lab);
+    });
+    el.replaceWith(fs);
+  });
+
+  // Scroll spy + navigation
+  const sections = Array.from(document.querySelectorAll('.stage'));
+  const railTabs = Array.from(document.querySelectorAll('.rail-tab'));
+  const mTabs = Array.from(document.querySelectorAll('.mrail button'));
+  
+  function setActive(id){
+    railTabs.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+    mTabs.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+  }
+  
+  [...railTabs, ...mTabs].forEach(b=>{
+    b.addEventListener('click', ()=>{
+      const target = document.getElementById(b.dataset.target);
+      if(target) target.scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting) setActive(e.target.id);
+    });
+  }, {rootMargin:'-20% 0px -65% 0px', threshold:0});
+
+  sections.forEach(s=> io.observe(s));
+
+  // Print button
+  document.getElementById('printBtn').addEventListener('click', ()=>{
+    window.print();
+  });
+
+  // Reset button
+  document.getElementById('resetBtn').addEventListener('click', ()=>{
+    if(!confirm('Wyczyścić wszystkie wybrane odpowiedzi?')) return;
+    document.querySelectorAll('input[type=radio]').forEach(i=> i.checked = false);
+  });
+})();
+
+  // Dynamic Title Generator: TYTUŁ (SPACJA) rYYMMDDgHHMM (SPACJA MYŚLNIK SPACJA) TEMAT/IMIĘ
+  const BASE_TITLE = '13 Kroków do Radykalnego Przebudzenia';
+  function pad2(n){ return String(n).padStart(2,'0'); }
+  function stampCzas(){
+    const d = new Date();
+    const rr = pad2(d.getFullYear() % 100);
+    const mm = pad2(d.getMonth() + 1);
+    const dd = pad2(d.getDate());
+    const gg = pad2(d.getHours());
+    const mi = pad2(d.getMinutes());
+    return 'r' + rr + mm + dd + 'g' + gg + mi;
+  }
+  function refreshTitle(){
+    const nameInput = document.getElementById('objectName');
+    const osoba = nameInput ? nameInput.value.trim() : '';
+    let title = BASE_TITLE + ' ' + stampCzas();
+    if(osoba) title += ' - ' + osoba;
+    document.title = title;
+  }
+  const nameInputObj = document.getElementById('objectName');
+  if(nameInputObj) nameInputObj.addEventListener('input', refreshTitle);
+  refreshTitle();
+</script>
+</body>
+</html>

@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>13 Kroków Radykalnego SamoWybaczania r260721g1703</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680;1,9..144,500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F5EFE3;
+    --paper-deep:#ECE2CC;
+    --card:#FBF8F0;
+    --ink:#2A211B;
+    --ink-soft:#6A5D4F;
+    --rose:#A8425A;
+    --rose-deep:#7C2F42;
+    --rose-pale:#EFD9D9;
+    --sage:#6E7F5C;
+    --gold:#A9803F;
+    --line:#DCCFB2;
+    --shadow:0 1px 2px rgba(42,33,27,.06), 0 8px 24px rgba(42,33,27,.08);
+    --rail-w:84px;
+  }
+  *{box-sizing:border-box;}
+  body{
+    margin:0;
+    background: radial-gradient(1200px 600px at 12% -10%, rgba(168,66,90,.06), transparent 60%), var(--paper);
+    color:var(--ink);
+    font-family:'Spectral',serif;
+    font-size:17px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  .wrap{ max-width:800px; margin:0 auto; padding:40px 20px; }
+  
+  .header-box { text-align: center; margin-bottom: 50px; }
+  .eyebrow{
+    font-family:'Space Grotesk',sans-serif; font-size:12px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--rose-deep); margin-bottom:10px;
+  }
+  h1{
+    font-family:'Fraunces',serif; font-weight:680; font-size:clamp(30px,5vw,48px);
+    line-height:1.1; margin:0;
+  }
+  
+  .intro-section {
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+    padding: 30px; margin-bottom: 40px; box-shadow: var(--shadow);
+  }
+  h2 { font-family: 'Fraunces', serif; font-style: italic; color: var(--rose-deep); font-size: 24px; }
+
+  .step-card {
+    background: var(--card); border: 1px solid var(--line); border-radius: 16px;
+    padding: 25px; margin-bottom: 20px; box-shadow: var(--shadow);
+    transition: transform 0.2s;
+  }
+  .step-card:hover { transform: translateY(-2px); }
+  .step-num {
+    font-family: 'Fraunces', serif; font-style: italic; font-weight: 680;
+    font-size: 22px; color: var(--gold); margin-bottom: 10px; display: block;
+  }
+
+  /* Pigułki Tak/Nie */
+  .pill-container {
+    display: flex; gap: 12px; margin-top: 15px;
+  }
+  .pill { position: relative; cursor: pointer; }
+  .pill input { position: absolute; opacity: 0; }
+  .pill span {
+    display: inline-block; padding: 8px 24px; border-radius: 999px;
+    border: 1.5px solid var(--line); font-family: 'Space Grotesk', sans-serif;
+    font-size: 14px; color: var(--ink-soft); transition: all 0.2s;
+  }
+  .pill input:checked + span.tak { background: var(--sage); border-color: var(--sage); color: white; }
+  .pill input:checked + span.nie { background: var(--rose-deep); border-color: var(--rose-deep); color: white; }
+
+  .invocation {
+    background: linear-gradient(135deg, var(--rose-pale), var(--paper-deep));
+    border-radius: 16px; padding: 35px; border: 1px solid var(--line);
+    font-style: italic; margin-top: 50px;
+  }
+  
+  footer {
+    text-align: center; margin-top: 60px; padding: 20px;
+    font-family: 'Space Grotesk', sans-serif; font-size: 12px; color: var(--ink-soft);
+  }
+
+  @media print { .no-print { display: none; } }
+
+  .meta-card{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+    display:grid; grid-template-columns:1fr 1fr 2fr; gap:16px 20px;
+  }
+  @media (max-width:560px){ .meta-card{ grid-template-columns:1fr; } }
+  .field label{
+    display:block; font-family:'Space Grotesk',sans-serif; font-size:11px;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;
+  }
+  .field input{
+    width:100%; border:none; border-bottom:1.5px solid var(--line);
+    background:transparent; font-family:'Spectral',serif; font-size:16px;
+    color:var(--ink); padding:4px 2px 7px; outline:none;
+  }
+  .field input:focus{ border-bottom-color:var(--rose); }
+  .field.wide{ grid-column:span 1; }
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  <div class="header-box">
+    <div class="eyebrow">Transkrypcja Audio 42 & 43</div>
+    <h1>13 Kroków Radykalnego SamoWybaczania</h1>
+    <p style="font-family: 'Fraunces', serif; font-style: italic;">Metoda Colina Tippinga</p>
+  </div>
+
+  <div class="meta-card">
+    <div class="field"><label for="fData">Data</label><input id="fData" type="date"></div>
+    <div class="field"><label for="fGodzina">Godzina</label><input id="fGodzina" type="time"></div>
+    <div class="field wide">
+      <label for="objectName">Temat / Imię</label>
+      <input id="objectName" type="text" placeholder="Wpisz temat lub imię…">
+    </div>
+  </div>
+
+  <!-- SEKCJA 42: WPROWADZENIE -->
+  <section class="intro-section">
+    <h2>Nagranie 42: Wprowadzenie</h2>
+    <p>Technologia 13 kroków powstała, gdy szukałem jeszcze szybszego sposobu na transformację energii niż wypełnianie arkusza. Niezależnie od tego, czy potrzebujemy wybaczyć komuś, czy pogodzić się z samym sobą, czy też pogodzić się z tym, co dzieje się na świecie, zawsze pojawia się silny opór przed koniecznością znalezienia arkusza, a nawet wejściem do internetu, aby go wypełnić.</p>
+    <p>Jednak dzięki technologii 13 kroków jest to bardzo łatwe. Korzystając z telefonów komórkowych, iPadów, iPodów i innych tego typu gadżetów, możemy poddać się procesowi przesunięcia energii w dowolnym momencie – właściwie 24 godziny na dobę, 7 dni w tygodniu. Cały proces trwa mniej niż 10 minut.</p>
+    <p>Choć jest to proces bardzo prosty, stanowi niezwykle potężny sposób na rozwiązanie problemów, niepokoju i sporów, na rozpuszczanie problemów, manifestowanie marzeń czy zarządzanie emocjami. Używaj go zarówno w domu, jak i w pracy, aby oczyszczać swoją energię z ograniczających myśli, osądów i idei, które po prostu obniżają twoje wibracje.</p>
+    <p>Chciałbym jednak podkreślić: nie uważam tego za zamiennik arkusza Radykalnego Wybaczania. Moja rada jest zawsze taka: gdy pojawia się coś, co niesie ze sobą duży ładunek energii, najpierw użyj arkusza, a potem wykonaj kilka sesji 13 kroków, aby dopełnić proces zmiany. Z drugiej strony, jeśli problem nie jest wielki, możesz od razu użyć 13 kroków.</p>
+    <p>Mamy tę technologię dostępną od wielu lat na płytach CD, więc jest ona sprawdzona i wiemy, że działa. Wszystko, co musisz zrobić, to wysłuchać 13 pytań i odpowiedzieć „TAK” głośnym, wyraźnym głosem na każde pytanie, które wymaga werbalnej odpowiedzi. Jeśli nie jesteś w sytuacji, w której możesz odpowiedzieć na głos, możesz zrobić to wewnętrznie. Jednym ze sposobów jest ciche „tak” poprzez złączenie kciuka i palca wskazującego, a następnie ich rozluźnienie.</p>
+    <p>Proces ten nie jest ani hipnotyczny, ani nie jest medytacją, więc można go słuchać niemal wszędzie. Pamiętaj jednak, że nie jest to ćwiczenie intelektualne. Tu nie ma nic do rozumienia ani do rozgryzania. Proces ten nie przemawia do twojego umysłu, lecz do twojej duchowej inteligencji. W rzeczywistości, jeśli będziesz próbował to zrozumieć, możesz tylko przeszkodzić. Po prostu mówiąc „tak” na każde pytanie, wykonasz zadanie – nawet jeśli czujesz, że wolałbyś powiedzieć „nie”.</p>
+    <p>To kwestia zaufania, że „tak” jest właściwą odpowiedzią, nawet gdy twój umysł chciałby powiedzieć „nie”. Twoje ciało musi poczuć rezonans słowa „tak”, gdy wypowiadasz je na głos. Podobnie jak ze wszystkimi narzędziami Radykalnego Wybaczania, nie musisz w to wierzyć, aby to zadziałało. Ufaj procesowi i pozwól, by stał się nawykiem. To świetny pomysł, by używać go przed snem, aby oczyścić umysł lub po prostu wrócić do prawdy, że wszystko, co wydarzyło się tego dnia, było doskonałe. Czyż to nie wspaniała myśl na zakończenie dnia?</p>
+  </section>
+
+  <!-- SEKCJA 43: 13 KROKÓW -->
+  <section>
+    <div class="header-box">
+      <h2>Nagranie 43: Proces 13 Kroków</h2>
+      <p>Przygotuj się, weź głęboki oddech i zrelaksuj się.</p>
+    </div>
+
+    <div class="step-card">
+      <span class="step-num">Krok 1</span>
+      <p>Opisz lub przywołaj w umyśle sytuację, przez którą się obwiniasz, czujesz się winny lub która sprawia, że jesteś dla siebie surowy.</p>
+    </div>
+
+    <div class="step-card">
+      <span class="step-num">Krok 2</span>
+      <p>Uświadom sobie uczucia, jakie żywisz w związku z tą sytuacją. Gdy tylko poczujesz emocję, wskaż miejsce w ciele, gdzie jest ona najbardziej odczuwalna. Pozwól popłynąć łzom, jeśli tego potrzebujesz.</p>
+    </div>
+
+    <div class="step-card">
+      <span class="step-num">Krok 3</span>
+      <p>Nawet jeśli nie rozumiesz jak i dlaczego, czy jesteś gotów przyjąć możliwość, że ta sytuacja ma swój cel i że twoja Wyższa Jaźń stworzyła ją dla twojego duchowego wzrostu?</p>
+      <div class="pill-container">
+        <label class="pill"><input type="radio" name="q3"> <span class="tak">Tak</span></label>
+        <label class="pill"><input type="radio" name="q3"> <span class="nie">Nie</span></label>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <span class="step-num">Krok 4</span>
+      <p>Czy zdajesz sobie sprawę, że twoje zdenerwowanie jest bezpośrednim odzwierciedleniem czegoś, co wymaga uzdrowienia, i że nawet jeśli jeszcze tego nie widzisz, to uzdrawiające przesłanie jest zawarte w tej sytuacji?</p>
+      <div class="pill-container">
+        <label class="pill"><input type="radio" name="q4"> <span class="tak">Tak</span></label>
+        <label class="pill"><input type="radio" name="q4"> <span class="nie">Nie</span></label>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <span class="step-num">Krok 5</span>
+      <p>Mimo że chcesz być odpowiedzialny za swoje działania w świecie ludzkim, czy jesteś gotów porzucić potrzebę osądzania siebie lub swoich czynów jako dobrych lub złych, właściwych lub niewłaściwych? Czy możesz po prostu pozwolić tej sytuacji być taką, jaka jest, bez przypisywania jej ocen?</p>
+      <div class="pill-container">
+        <label class="pill"><input type="radio" name="q5"> <span class="tak">Tak</span></label>
+        <label class="pill"><input type="radio" name="q5"> <span class="nie">Nie</span></label>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <span class="step-num">Krok 6</span>
+      <p>Czy potrafisz otworzyć się na myśl, że to, jaki byłeś, jaki jesteś teraz i wszystko, co zrobiłeś, jest całkowicie celowe w wielkim planie wszechświata? Czy to, co w sobie osądzasz, może być dokładnie tym, czego wymaga boski plan?</p>
+      <div class="pill-container">
+        <label class="pill"><input type="radio" name="q6"> <span class="tak">Tak</span></label>
+        <label class="pill"><input type="radio" name="q6"> <span class="nie">Nie</span></label>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <span class="step-num">Krok 7</span>
+      <p>Czy jesteś gotów przyjąć, że być może pełnisz rolę uzdrawiającego anioła dla kogoś innego? Czy możesz poczuć wdzięczność tej osoby za to, co dla niej robisz, nawet jeśli wiąże się to z twoim dyskomfortem?</p>
+      <div class="pill-container">
+        <label class="pill"><input type="radio" name="q7"> <span class="tak">Tak</span></label>
+        <label class="pill"><input type="radio" name="q7"> <span class="nie">Nie</span></label>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <span class="step-num">Krok 8</span>
+      <p>Czy jesteś otwarty na ideę, że przyciągnąłeś tę osobę lub sytuację do swojego życia i podświadomie oboje otrzymujecie to, czego potrzebujecie, aby uwolnić się od uzależnienia od bycia ofiarą i odzyskać swoją moc?</p>
+      <div class="pill-container">
+        <label class="pill"><input type="radio" name="q8"> <span class="tak">Tak</span></label>
+        <label class="pill"><input type="radio" name="q8"> <span class="nie">Nie</span></label>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <span class="step-num">Krok 9</span>
+      <p>Czy jesteś gotów docenić siebie za udział w tym procesie i podziękować drugiej osobie za bycie twoim nauczycielem (uzdrawiającym aniołem)?</p>
+      <div class="pill-container">
+        <label class="pill"><input type="radio" name="q9"> <span class="tak">Tak</span></label>
+        <label class="pill"><input type="radio" name="q9"> <span class="nie">Nie</span></label>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <span class="step-num">Krok 10</span>
+      <p>Czy uznajesz teraz, że poprzez gotowość do dostrzeżenia doskonałości w tej sytuacji, w rzeczywistości wybaczyłeś sobie i tej drugiej osobie?</p>
+      <div class="pill-container">
+        <label class="pill"><input type="radio" name="q10"> <span class="tak">Tak</span></label>
+        <label class="pill"><input type="radio" name="q10"> <span class="nie">Nie</span></label>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <span class="step-num">Krok 11</span>
+      <p>Zauważ, czy uczucia, które miałeś na początku, zaczęły słabnąć. Czy czujesz teraz boską miłość kryjącą się za tą sytuacją? Skinij głową na „Tak”.</p>
+      <div class="pill-container">
+        <label class="pill"><input type="radio" name="q11"> <span class="tak">Tak</span></label>
+        <label class="pill"><input type="radio" name="q11"> <span class="nie">Nie</span></label>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <span class="step-num">Krok 12</span>
+      <p>Zauważ, czy myśli związane z tymi uczuciami straciły swój ładunek emocjonalny. Czy czujesz ulgę? Skinij głową na „Tak”.</p>
+      <div class="pill-container">
+        <label class="pill"><input type="radio" name="q12"> <span class="tak">Tak</span></label>
+        <label class="pill"><input type="radio" name="q12"> <span class="nie">Nie</span></label>
+      </div>
+    </div>
+
+    <div class="step-card">
+      <span class="step-num">Krok 13</span>
+      <p>Radykalne Wybaczanie to zawsze zmiana perspektywy i energii. Poczuj teraz głęboką akceptację dla siebie. Weź trzy głębokie oddechy, integrując tę zmianę w każdej komórce swojego ciała.</p>
+      <div class="pill-container">
+        <label class="pill"><input type="radio" name="q13"> <span class="tak">Tak</span></label>
+        <label class="pill"><input type="radio" name="q13"> <span class="nie">Nie</span></label>
+      </div>
+    </div>
+
+    <!-- INWOKACJA -->
+    <div class="invocation">
+      <span class="step-num">Inwokacja Radykalnego Wybaczania</span>
+      <p>„Obyśmy wszyscy trwali w wiedzy i komforcie, że wszystkie rzeczy są teraz, zawsze były i zawsze będą w boskim porządku, rozwijając się zgodnie z boskim planem.”</p>
+      <p>„I obyśmy prawdziwie poddali się tej prawdzie, niezależnie od tego, czy ją rozumiemy, czy nie. Prosimy również o wspierającą świadomość w odczuwaniu naszego połączenia z boską częścią nas, ze wszystkimi i ze wszystkim, abyśmy mogli naprawdę powiedzieć i poczuć: Jesteśmy Jednością.”</p>
+      <p>Weź głęboki oddech. Dobrym pomysłem może być zapisanie w dzienniku tego, co się dla ciebie pojawiło po zakończeniu tego procesu.</p>
+    </div>
+  </section>
+
+  <footer>
+    &copy; Instytut Metody Tippinga | www.metoda-tippinga.pl
+  </footer>
+</div>
+
+<script>
+  // Skrypt JS do prostej interakcji - podświetlanie ukończonych kroków
+  document.querySelectorAll('.pill input').forEach(radio => {
+    radio.addEventListener('change', (e) => {
+      const card = e.target.closest('.step-card');
+      if (e.target.nextElementSibling.classList.contains('tak')) {
+        card.style.borderColor = 'var(--sage)';
+        card.style.background = '#f0f7f0';
+      } else {
+        card.style.borderColor = 'var(--rose)';
+        card.style.background = '#fcf5f5';
+      }
+    });
+  });
+
+  // Dynamic Title Generator: TYTUŁ (SPACJA) rYYMMDDgHHMM (SPACJA MYŚLNIK SPACJA) TEMAT/IMIĘ
+  const BASE_TITLE = '13 Kroków Radykalnego SamoWybaczania';
+  function pad2(n){ return String(n).padStart(2,'0'); }
+  function stampCzas(){
+    const d = new Date();
+    const rr = pad2(d.getFullYear() % 100);
+    const mm = pad2(d.getMonth() + 1);
+    const dd = pad2(d.getDate());
+    const gg = pad2(d.getHours());
+    const mi = pad2(d.getMinutes());
+    return 'r' + rr + mm + dd + 'g' + gg + mi;
+  }
+  function refreshTitle(){
+    const nameInput = document.getElementById('objectName');
+    const osoba = nameInput ? nameInput.value.trim() : '';
+    let title = BASE_TITLE + ' ' + stampCzas();
+    if(osoba) title += ' - ' + osoba;
+    document.title = title;
+  }
+  const nameInputObj = document.getElementById('objectName');
+  if(nameInputObj) nameInputObj.addEventListener('input', refreshTitle);
+  refreshTitle();
+</script>
+
+</body>
+</html>

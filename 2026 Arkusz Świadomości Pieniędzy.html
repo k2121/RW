@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Arkusz Świadomości Pieniędzy - r260721g1512 - Radykalne Wybaczanie</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,560;0,9..144,680;1,9..144,500&family=Spectral:ital,wght@0,400;0,500;0,600;1,400;1,500&family=Space+Grotesk:wght@400;500;600&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --paper:#F5EFE3;
+    --paper-deep:#ECE2CC;
+    --card:#FBF8F0;
+    --ink:#2A211B;
+    --ink-soft:#6A5D4F;
+    --rose:#A8425A;
+    --rose-deep:#7C2F42;
+    --rose-pale:#EFD9D9;
+    --sage:#6E7F5C;
+    --gold:#A9803F;
+    --line:#DCCFB2;
+    --shadow:0 1px 2px rgba(42,33,27,.06), 0 8px 24px rgba(42,33,27,.08);
+    --rail-w:84px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important; transition:none !important;}
+  }
+  body{
+    margin:0;
+    background:
+      radial-gradient(1200px 600px at 12% -10%, rgba(168,66,90,.06), transparent 60%),
+      var(--paper);
+    color:var(--ink);
+    font-family:'Spectral',serif;
+    font-size:16.5px;
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  ::selection{ background:var(--rose-pale); }
+  a{ color:var(--rose-deep); }
+
+  /* ---------- layout shell ---------- */
+  .shell{
+    display:grid;
+    grid-template-columns:var(--rail-w) 1fr;
+    min-height:100vh;
+  }
+  @media (max-width:860px){
+    .shell{ grid-template-columns:1fr; }
+  }
+
+  /* ---------- vertical stage rail ---------- */
+  .rail{
+    position:sticky; top:0; align-self:start;
+    height:100vh;
+    border-right:1px solid var(--line);
+    background:var(--paper-deep);
+    display:flex; flex-direction:column;
+    padding:22px 0;
+  }
+  .rail-mark{
+    width:34px; height:34px; margin:0 auto 28px;
+    border-radius:50%;
+    background:var(--rose-deep);
+    position:relative;
+    flex:none;
+  }
+  .rail-mark::before, .rail-mark::after{
+    content:""; position:absolute; inset:7px;
+    background:var(--paper-deep);
+    border-radius:50% 50% 50% 0;
+    transform:rotate(-45deg);
+  }
+  .rail-mark::after{ display:none; }
+  .rail-tabs{ display:flex; flex-direction:column; gap:2px; flex:1; }
+  .rail-tab{
+    appearance:none; border:none; background:transparent; cursor:pointer;
+    display:flex; align-items:center; justify-content:center;
+    padding:16px 0;
+    color:var(--ink-soft);
+    font-family:'Space Grotesk',sans-serif;
+    font-size:11px; letter-spacing:.14em;
+    writing-mode:vertical-rl;
+    transform:rotate(180deg);
+    border-left:3px solid transparent;
+    transition:color .2s, border-color .2s, background .2s;
+  }
+  .rail-tab:hover{ color:var(--ink); background:rgba(168,66,90,.06); }
+  .rail-tab.active{
+    color:var(--rose-deep);
+    border-left-color:var(--rose);
+    background:var(--card);
+    font-weight:600;
+  }
+  .rail-tab .num{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:560;
+    font-size:15px; margin-right:10px; letter-spacing:0;
+  }
+  .rail-foot{
+    writing-mode:vertical-rl; transform:rotate(180deg);
+    margin:0 auto; color:var(--ink-soft); opacity:.55;
+    font-family:'Space Grotesk',sans-serif; font-size:10px; letter-spacing:.16em;
+  }
+
+  /* mobile rail -> horizontal progress strip */
+  .mrail{ display:none; }
+  @media (max-width:860px){
+    .rail{ display:none; }
+    .mrail{
+      display:flex; position:sticky; top:0; z-index:20;
+      background:var(--paper-deep); border-bottom:1px solid var(--line);
+      overflow-x:auto; padding:10px 14px; gap:8px;
+    }
+    .mrail button{
+      appearance:none; border:1px solid var(--line); background:var(--card);
+      color:var(--ink-soft); font-family:'Space Grotesk',sans-serif;
+      font-size:11.5px; letter-spacing:.04em; white-space:nowrap;
+      padding:7px 12px; border-radius:999px; cursor:pointer;
+    }
+    .mrail button.active{ background:var(--rose-deep); color:#fff; border-color:var(--rose-deep); }
+  }
+
+  /* ---------- main column ---------- */
+  main{ min-width:0; }
+  .wrap{ max-width:760px; margin:0 auto; padding:56px 28px 90px; }
+  @media (max-width:560px){ .wrap{ padding:34px 16px 70px; } }
+
+  .eyebrow{
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; letter-spacing:.16em;
+    text-transform:uppercase; color:var(--rose-deep); margin-bottom:14px;
+  }
+  h1.title{
+    font-family:'Fraunces',serif; font-weight:680; font-size:clamp(30px,5vw,46px);
+    line-height:1.04; margin:0 0 6px; letter-spacing:-.01em;
+  }
+  .subtitle{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:400;
+    color:var(--ink-soft); font-size:19px; margin:0 0 28px;
+  }
+
+  .meta-card{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+    display:grid; grid-template-columns:1fr 1fr; gap:16px 20px;
+  }
+  @media (max-width:560px){ .meta-card{ grid-template-columns:1fr; } }
+  .field label{
+    display:block; font-family:'Space Grotesk',sans-serif; font-size:11px;
+    letter-spacing:.1em; text-transform:uppercase; color:var(--ink-soft); margin-bottom:6px;
+  }
+  .field input{
+    width:100%; border:none; border-bottom:1.5px solid var(--line);
+    background:transparent; font-family:'Spectral',serif; font-size:16px;
+    color:var(--ink); padding:4px 2px 7px; outline:none;
+  }
+  .field input:focus{ border-bottom-color:var(--rose); }
+
+  .privacy{
+    font-family:'Space Grotesk',sans-serif; font-size:12.5px; color:var(--ink-soft);
+    background:transparent; border:1px dashed var(--line);
+    border-radius:10px; padding:12px 16px; margin-bottom:8px; line-height:1.55;
+  }
+  .privacy strong{ color:var(--ink); }
+
+  .toolbar{
+    display:flex; gap:10px; flex-wrap:wrap; margin:30px 0 30px;
+  }
+  .btn{
+    appearance:none; cursor:pointer; border-radius:999px;
+    font-family:'Space Grotesk',sans-serif; font-size:13px; letter-spacing:.03em;
+    padding:10px 18px; border:1.5px solid var(--rose-deep);
+  }
+  .btn.primary{ background:var(--rose-deep); color:#fff; }
+  .btn.ghost{ background:transparent; color:var(--rose-deep); }
+  .btn:hover{ filter:brightness(1.05); }
+
+  .hint{ font-family:'Spectral',serif; font-style:italic; color:var(--ink-soft); font-size:14.5px; }
+
+  /* ---------- stage sections ---------- */
+  .stage{ scroll-margin-top:18px; margin-top:54px; }
+  .stage-head{
+    display:flex; align-items:baseline; gap:14px;
+    background:var(--rose-pale); border-radius:12px;
+    padding:14px 20px; margin-bottom:22px;
+  }
+  .stage-head .snum{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:680;
+    font-size:30px; color:var(--rose-deep); line-height:1;
+  }
+  .stage-head h2{
+    font-family:'Space Grotesk',sans-serif; font-size:13.5px; letter-spacing:.1em;
+    text-transform:uppercase; margin:0; color:var(--ink);
+  }
+  .subhead{
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; letter-spacing:.12em;
+    text-transform:uppercase; color:var(--ink-soft);
+    margin:34px 0 14px; padding-bottom:8px; border-bottom:1px solid var(--line);
+  }
+
+  .item{
+    background:var(--card); border:1px solid var(--line); border-radius:14px;
+    box-shadow:var(--shadow); padding:22px 24px; margin-bottom:18px;
+  }
+  .item .inum{
+    font-family:'Fraunces',serif; font-style:italic; font-weight:560;
+    color:var(--gold); font-size:18px; margin-right:6px;
+  }
+  .item p.lead{ margin:0 0 6px; }
+  .item p.note{
+    font-family:'Spectral',serif; font-style:italic; color:var(--ink-soft);
+    font-size:14.5px; margin:6px 0 14px;
+  }
+  .name-fill{
+    border-bottom:1.5px dotted var(--rose); color:var(--rose-deep); font-style:normal;
+    padding:0 2px;
+  }
+
+  textarea{
+    width:100%; resize:none; overflow:hidden;
+    border:1px solid var(--line); border-radius:10px;
+    background:#FFFDF8; padding:12px 14px;
+    font-family:'Spectral',serif; font-size:15.5px; color:var(--ink);
+    line-height:1.55; outline:none; min-height:64px;
+  }
+  textarea:focus{ border-color:var(--rose); box-shadow:0 0 0 3px rgba(168,66,90,.12); }
+
+  /* readiness pills */
+  fieldset.readiness{
+    border:none; margin:14px 0 0; padding:0;
+    display:flex; flex-wrap:wrap; gap:8px;
+  }
+  fieldset.readiness legend{
+    font-family:'Space Grotesk',sans-serif; font-size:10.5px; letter-spacing:.1em;
+    text-transform:uppercase; color:var(--ink-soft); margin-bottom:8px; padding:0;
+  }
+  .pill{ position:relative; }
+  .pill input{ position:absolute; opacity:0; inset:0; cursor:pointer; margin:0; }
+  .pill span{
+    display:inline-block; padding:7px 14px; border-radius:999px;
+    border:1.5px solid var(--line); font-family:'Space Grotesk',sans-serif;
+    font-size:12.5px; color:var(--ink-soft); transition:all .15s;
+  }
+  .pill input:checked + span{
+    background:var(--rose-deep); border-color:var(--rose-deep); color:#fff;
+  }
+  .pill input:focus-visible + span{ outline:2px solid var(--rose); outline-offset:2px; }
+
+  /* person list rows (for items 5 and 6) */
+  .person-row{
+    display:grid; grid-template-columns:1fr; gap:8px;
+    padding:10px 0; border-top:1px dashed var(--line);
+  }
+  .person-row:first-of-type{ border-top:none; }
+  .person-row input[type=text]{
+    width:100%; border:none; border-bottom:1.5px dotted var(--rose);
+    background:transparent; font-family:'Spectral',serif; font-size:15.5px;
+    color:var(--ink); padding:4px 2px; outline:none;
+  }
+  .person-row input[type=text]:focus{ border-bottom-style:solid; border-bottom-color:var(--rose); }
+
+  .affirmation{
+    background:linear-gradient(135deg, var(--rose-pale), var(--paper-deep));
+    border-radius:14px; padding:24px 26px; margin-bottom:18px;
+    font-family:'Spectral',serif; font-style:italic; font-size:16px; color:var(--ink);
+    border:1px solid var(--line);
+  }
+  .affirmation .inum{ font-style:normal; }
+
+  .signoff{
+    margin-top:50px; padding-top:28px; border-top:1px solid var(--line);
+    display:flex; flex-wrap:wrap; gap:22px; align-items:flex-end; justify-content:space-between;
+  }
+  .signoff .field{ min-width:200px; }
+
+  footer{
+    margin-top:60px; padding-top:18px; border-top:1px solid var(--line);
+    font-family:'Space Grotesk',sans-serif; font-size:11.5px; color:var(--ink-soft);
+    text-align:center; line-height:1.7;
+  }
+  footer a{ color:var(--ink-soft); }
+
+  /* ---------- print ---------- */
+  @media print{
+    .rail, .mrail, .toolbar, .privacy{ display:none !important; }
+    .shell{ display:block; }
+    body{ background:#fff; }
+    .wrap{ max-width:100%; padding:0 8px; }
+    .item, .meta-card, .affirmation{ box-shadow:none; border:1px solid #ccc; break-inside:avoid; }
+    .stage{ break-before:page; margin-top:0; padding-top:18px; }
+    .stage:first-of-type{ break-before:auto; }
+    textarea{ border:1px solid #ccc; }
+  }
+</style>
+</head>
+<body>
+
+<div class="shell">
+  <!-- desktop vertical rail -->
+  <nav class="rail" aria-label="Etapy arkusza">
+    <div class="rail-mark" aria-hidden="true"></div>
+    <div class="rail-tabs" id="railTabs">
+      <button class="rail-tab" data-target="stage-1"><span class="num">1</span>Sytuacja i emocje</button>
+      <button class="rail-tab" data-target="stage-2"><span class="num">2</span>Przekonania o pieniądzach</button>
+      <button class="rail-tab" data-target="stage-3"><span class="num">3</span>Wybaczanie modelom</button>
+      <button class="rail-tab" data-target="stage-4"><span class="num">4</span>Wzorce i energia</button>
+      <button class="rail-tab" data-target="stage-5"><span class="num">5</span>Neutralność i przepływ</button>
+      <button class="rail-tab" data-target="stage-6"><span class="num">6</span>Obfitość i kreacja</button>
+      <button class="rail-tab" data-target="stage-7"><span class="num">7</span>Przeformułowanie i oddanie</button>
+    </div>
+    <div class="rail-foot">Colin Tipping &amp; Godfrey O'Flaherty</div>
+  </nav>
+
+  <main>
+    <!-- mobile horizontal rail -->
+    <nav class="mrail" id="mrail" aria-label="Etapy arkusza (mobile)">
+      <button data-target="stage-1">1 · Sytuacja i emocje</button>
+      <button data-target="stage-2">2 · Przekonania</button>
+      <button data-target="stage-3">3 · Modelarze</button>
+      <button data-target="stage-4">4 · Wzorce</button>
+      <button data-target="stage-5">5 · Neutralność</button>
+      <button data-target="stage-6">6 · Obfitość</button>
+      <button data-target="stage-7">7 · Przeformułowanie</button>
+    </nav>
+
+    <div class="wrap">
+      <div class="eyebrow">Colin Tipping's Radical Empowerment Program</div>
+      <h1 class="title">Arkusz Świadomości Pieniędzy</h1>
+      <p class="subtitle">Radical Forgiveness Money Consciousness Worksheet</p>
+
+      <div class="meta-card">
+        <div class="field"><label for="fData">Data</label><input id="fData" type="date"></div>
+        <div class="field"><label for="fNr">Arkusz nr</label><input id="fNr" type="text" placeholder="np. 1"></div>
+        <div class="field"><label for="fSign">Podpis</label><input id="fSign" type="text" placeholder="Imię i nazwisko"></div>
+      </div>
+
+      <p class="privacy"><strong>Dane z tego arkusza nie są nigdzie przesyłane ani zapisywane.</strong> Wszystko, co wpiszesz, pozostaje wyłącznie w tej przeglądarce, na czas tej sesji — możesz wypełniać go zupełnie bezpiecznie i anonimowo.</p>
+
+      <p class="hint">Podpowiedź: aby w pełni utrwalić transformację, mów na głos wszystko, co zapisujesz.</p>
+
+      <!-- ================= STAGE 1 ================= -->
+      <section class="stage" id="stage-1">
+        <div class="stage-head"><span class="snum">1</span><h2>Sytuacja i emocje</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">1.</span>Moja obecna sytuacja finansowa, którą pragnę zmienić, to:</p>
+          <textarea rows="4" placeholder="Opisz swoją obecną sytuację finansową…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">2.</span>Moje emocje związane z tą sytuacją w tej chwili to: (Wpisz swoje prawdziwe uczucia w tym polu).</p>
+          <textarea rows="4" placeholder="Opisz swoje prawdziwe uczucia…"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">3.</span>Kocham siebie za to, że mam te uczucia. Moje uczucia są doskonałą informacją zwrotną. Moje uczucia są wskaźnikiem tego, jak wielkie znaczenie przypisuję pieniądzom.</p>
+          <div class="rgroup" data-name="r3"></div>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 2 ================= -->
+      <section class="stage" id="stage-2">
+        <div class="stage-head"><span class="snum">2</span><h2>Ograniczające przekonania o pieniądzach</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">4.</span>Zauważam, że oddaję pieniądzom moc, której one nie mają, przypisując im następujące restrykcyjne myśli, przekonania lub założenia na temat pieniędzy – zarówno ogólne, jak i wynikające z obecnej sytuacji. Są to:</p>
+          <textarea rows="5" placeholder="Wypisz restrykcyjne myśli i przekonania o pieniądzach…"></textarea>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 3 ================= -->
+      <section class="stage" id="stage-3">
+        <div class="stage-head"><span class="snum">3</span><h2>Wybaczenie modelom i nauczycielom</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">5.</span>Jestem gotów(-a) wybaczyć tym, którzy modelowali lub uczyli mnie tych negatywnych powiązań z pieniądzami, i postanawiam zrobić arkusz Radykalnego Wybaczania następującym osobom w ciągu 24 godzin od wypełnienia tego arkusza, aby transformować tę energię:</p>
+          <div class="person-row"><input type="text" placeholder="a) Osoba 1…"></div>
+          <div class="person-row"><input type="text" placeholder="b) Osoba 2…"></div>
+          <div class="person-row"><input type="text" placeholder="c) Osoba 3…"></div>
+          <div class="person-row"><input type="text" placeholder="d) Osoba 4…"></div>
+          <div class="rgroup" data-name="r5" style="margin-top:16px;"></div>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 4 ================= -->
+      <section class="stage" id="stage-4">
+        <div class="stage-head"><span class="snum">4</span><h2>Wzorce i prawo przyciągania</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">6.</span>Jestem gotów(-a) dostrzec, że z miłością stworzyłem(-am) ten problem finansowy dla samego siebie / samej siebie jako okazję do nauki i rozwoju oraz (jeśli są w to zaangażowane inne osoby) przyciągnąłem(-ęłam) poprzez Prawo Przyciągania następujące osoby (anioły uzdrawiające pojawiające się jako wrogowie) do tego dramatu, aby mocno rezonowały moje problemy:</p>
+          <div class="person-row"><input type="text" placeholder="a) Osoba 1…"></div>
+          <div class="person-row"><input type="text" placeholder="b) Osoba 2…"></div>
+          <div class="person-row"><input type="text" placeholder="c) Osoba 3…"></div>
+          <div class="person-row"><input type="text" placeholder="d) Osoba 4…"></div>
+          <p class="note" style="margin-top:14px;">Dziękuję im za błogosławienie mnie w ten sposób i mocno postanawiam zrobić arkusz Radykalnego Wybaczania każdej z tych osób w ciągu 24 godzin, aby transformować tę energię.</p>
+          <div class="rgroup" data-name="r6" style="margin-top:16px;"></div>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 5 ================= -->
+      <section class="stage" id="stage-5">
+        <div class="stage-head"><span class="snum">5</span><h2>Neutralność energii pieniądza</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">7.</span>Teraz uświadamiam sobie, że pieniądze są neutralne, nie mają własnej mocy ani inherentnej wartości. To po prostu energia, więc teraz uwalniam potrzebę posiadania racji co do znaczeń, które przypisałem(-am) pieniądzom, jak zaznaczono w Punkcie Czwartym, a ponieważ nie ma ich niedoboru, otwieram się na swobodny przepływ pieniędzy w moim życiu.</p>
+          <div class="rgroup" data-name="r7"></div>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 6 ================= -->
+      <section class="stage" id="stage-6">
+        <div class="stage-head"><span class="snum">6</span><h2>Obfitość i otwartość na przyjmowanie</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">8.</span>Teraz uświadamiam sobie, że odmawiałem(-am) miłości sobie i innym, wyobrażając sobie, że pieniądze były lub są problemem, i teraz potwierdzam swoje silne przekonanie, że Wszechświat jest miejscem całkowitej obfitości i że nie ma niedoboru czegokolwiek.</p>
+          <p class="note" style="text-align:right; font-style:italic; margin-top:8px;">— Godfrey O'Flaherty</p>
+          <div class="rgroup" data-name="r8"></div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">9.</span>Teraz widzę siebie w podwyższonym stanie otwartości na przyjmowanie pieniędzy i na rozwiązanie tego problemu w najbardziej doskonały sposób dla wszystkich zainteresowanych.</p>
+          <div class="rgroup" data-name="r9"></div>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">10.</span>Teraz uświadamiam sobie, że jestem kimś, kto poprzez prawo przyciągania może przyciągnąć do swojego życia wszystko, czego potrzebuję. Postanawiam teraz (zakładając, że jest to konieczne), zrobić arkusz Radykalnej Manifestacji, aby stworzyć następujące rzeczy:</p>
+          <textarea rows="4" placeholder="Wypisz to, co pragniesz zamanifestować…"></textarea>
+          <div class="rgroup" data-name="r10" style="margin-top:16px;"></div>
+        </div>
+      </section>
+
+      <!-- ================= STAGE 7 ================= -->
+      <section class="stage" id="stage-7">
+        <div class="stage-head"><span class="snum">7</span><h2>Przeformułowanie i oddanie</h2></div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">11.</span>Jestem teraz gotów(-a) i chętny(-a) przeformułować sytuację opisaną w Punkcie #1 w kategoriach perspektywy Radykalnego Wybaczania i paradygmatu metafizycznego, który mówi, że wszystko jest w Boskim porządku. (Spróbuj dokonać przeformułowania).</p>
+          <textarea rows="5" placeholder="„Teraz rozpoznaję, że…”"></textarea>
+        </div>
+
+        <div class="item">
+          <p class="lead"><span class="inum">12.</span>Teraz oddaję to mojej własnej Inteligencji Duchowej i poddaję się Duchowi ze świadomością i komfortem, że wszystko jest w porządku, a to, co widziałem(-am) jako problem, było czystym błędnym postrzeganiem z mojej strony. Już to rozwiązałem(-am), recognizing (uznając), że jestem obficie zaopatrzony(-a) przez cały czas. Wszelkie idee niedoboru lub braku, których się trzymałem(-am), uświadamiam sobie teraz, że nie mają żadnej ważności ani mocy, i nie przyznaję im żadnej.</p>
+          <div class="rgroup" data-name="r12"></div>
+        </div>
+
+        <div class="affirmation">
+          <p style="margin:0;"><span class="inum">13.</span> Teraz uświadamiam sobie, że pieniądze nie były problemem. Nie mam żadnych problemów z pieniędzmi. Czymkolwiek był prawdziwy problem, oddałem(-am) go Duchowi i mam niewzruszoną wiarę, że Duch zajmie się nim dla mnie. Dziękuję. I tak właśnie jest!</p>
+        </div>
+        <div class="rgroup" data-name="r13" style="margin-top:12px;"></div>
+
+        <div class="signoff">
+          <div class="field"><label for="signDate">Data</label><input id="signDate" type="date"></div>
+          <div class="field" style="flex:1;"><label for="signName">Podpis</label><input id="signName" type="text" placeholder="Imię i nazwisko"></div>
+        </div>
+      </section>
+
+      <!-- Przyciski na dole -->
+      <div class="toolbar">
+        <button class="btn primary" id="printBtn">Drukuj / zapisz jako PDF</button>
+        <button class="btn ghost" id="clearBtn">Wyczyść arkusz</button>
+      </div>
+
+      <footer>
+        Colin Tipping's Radical Empowerment Program · Money Consciousness Worksheet<br>
+        Godfrey O'Flaherty &amp; Colin Tipping<br>
+        www.metoda-tippinga.pl
+      </footer>
+    </div>
+  </main>
+</div>
+
+<script>
+(function(){
+  const READY_OPTS = ["gotowość","otwartość","sceptycyzm","brak gotowości"];
+
+  // build readiness pill groups
+  document.querySelectorAll('.rgroup').forEach(el=>{
+    const name = el.dataset.name;
+    const fs = document.createElement('fieldset');
+    fs.className = 'readiness';
+    const legend = document.createElement('legend');
+    legend.textContent = 'Mój poziom gotowości:';
+    fs.appendChild(legend);
+    READY_OPTS.forEach((opt,i)=>{
+      const id = name+'-'+i;
+      const lab = document.createElement('label');
+      lab.className = 'pill';
+      lab.innerHTML = '<input type="radio" name="'+name+'" id="'+id+'"><span>'+opt+'</span>';
+      fs.appendChild(lab);
+    });
+    el.replaceWith(fs);
+  });
+
+  const fData = document.getElementById('fData');
+  const signDate = document.getElementById('signDate');
+  const fSign = document.getElementById('fSign');
+  const signName = document.getElementById('signName');
+
+  fData.addEventListener('input', () => {
+    if(signDate) signDate.value = fData.value;
+  });
+  
+  if(fSign && signName) {
+    fSign.addEventListener('input', () => {
+      signName.value = fSign.value;
+    });
+  }
+
+  // autosize textareas
+  function autosize(t){
+    t.style.height = 'auto';
+    t.style.height = (t.scrollHeight+2) + 'px';
+  }
+  function autosizeAll(scope){
+    (scope||document).querySelectorAll('textarea').forEach(t=>{
+      autosize(t);
+      t.addEventListener('input', ()=>autosize(t));
+    });
+  }
+  autosizeAll();
+  window.addEventListener('load', ()=> autosizeAll());
+
+  // scroll spy + nav
+  const sections = Array.from(document.querySelectorAll('.stage'));
+  const railTabs = Array.from(document.querySelectorAll('.rail-tab'));
+  const mTabs = Array.from(document.querySelectorAll('.mrail button'));
+  function setActive(id){
+    railTabs.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+    mTabs.forEach(b=> b.classList.toggle('active', b.dataset.target===id));
+  }
+  [...railTabs, ...mTabs].forEach(b=>{
+    b.addEventListener('click', ()=>{
+      document.getElementById(b.dataset.target).scrollIntoView({behavior:'smooth', block:'start'});
+    });
+  });
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting) setActive(e.target.id);
+    });
+  }, {rootMargin:'-20% 0px -65% 0px', threshold:0});
+  sections.forEach(s=> io.observe(s));
+  setActive('stage-1');
+
+  // dynamiczny tytuł strony
+  const nrInput = document.getElementById('fNr');
+  const nameInput = document.getElementById('fSign') || document.getElementById('objectName') || document.getElementById('fOsoba');
+  const BASE_TITLE = 'Arkusz Świadomości Pieniędzy';
+  function pad2(n){ return String(n).padStart(2,'0'); }
+  function stampCzas(){
+    const d = new Date();
+    const rr = pad2(d.getFullYear() % 100);
+    const mm = pad2(d.getMonth()+1);
+    const dd = pad2(d.getDate());
+    const gg = pad2(d.getHours());
+    const mi = pad2(d.getMinutes());
+    return 'r'+rr+mm+dd+'g'+gg+mi;
+  }
+  function padNr(nr){
+    return /^\d+$/.test(nr) ? nr.padStart(3,'0') : nr;
+  }
+  function refreshTitle(){
+    const nr = nrInput ? nrInput.value.trim() : '';
+    const osoba = nameInput ? nameInput.value.trim() : '';
+    let title = BASE_TITLE + ' - ' + stampCzas();
+    if(nr) title += ' nr' + padNr(nr);
+    if(osoba) title += ' - ' + osoba;
+    document.title = title;
+  }
+  if(nameInput) nameInput.addEventListener('input', refreshTitle);
+  if(nrInput) nrInput.addEventListener('input', refreshTitle);
+  refreshTitle();
+
+  // print
+  document.getElementById('printBtn').addEventListener('click', ()=>{ refreshTitle(); window.print(); });
+
+  // clear
+  document.getElementById('clearBtn').addEventListener('click', ()=>{
+    if(!confirm('Wyczyścić cały arkusz? Tej operacji nie można cofnąć.')) return;
+    document.querySelectorAll('textarea').forEach(t=>{ t.value=''; autosize(t); });
+    document.querySelectorAll('input[type=text], input[type=date]').forEach(i=> i.value='');
+    document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach(i=> i.checked=false);
+    autosizeAll();
+  });
+})();
+</script>
+</body>
+</html>
