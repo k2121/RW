@@ -1,0 +1,331 @@
+=== 2026 Arkusz Radykalnego Wybaczania.html === (Total flagged: 32)
+  Line  379: Telling              | Context: 1  1. Opowiadanie historii (Telling the story)
+  Line  400: feelings             | Context: 2  2. Odczuwanie emocji (Feeling the feelings)
+  Line  401: Acknowledging        | Context: Uznanie własnego człowieczeństwa (Acknowledging my own humanness)
+  Line  401: own                  | Context: Uznanie własnego człowieczeństwa (Acknowledging my own humanness)
+  Line  401: humanness            | Context: Uznanie własnego człowieczeństwa (Acknowledging my own humanness)
+  Line  424: Collapsing           | Context: 3  3. Porzucanie historii (Collapsing the story)
+  Line  443: Reframing            | Context: 4  4. Zmiana perspektywy (Reframing the story)
+  Line  444: opening              | Context: Teraz otwarcie na nową perspektywę (Now opening to a reframe)
+  Line  444: reframe              | Context: Teraz otwarcie na nową perspektywę (Now opening to a reframe)
+  Line  451: Noticing             | Context: Zauważenie wzorca i dostrzeżenie w nim perfekcji (Noticing a pattern and seeing the perfection in it)
+  Line  451: pattern              | Context: Zauważenie wzorca i dostrzeżenie w nim perfekcji (Noticing a pattern and seeing the perfection in it)
+  Line  451: seeing               | Context: Zauważenie wzorca i dostrzeżenie w nim perfekcji (Noticing a pattern and seeing the perfection in it)
+  Line  451: perfection           | Context: Zauważenie wzorca i dostrzeżenie w nim perfekcji (Noticing a pattern and seeing the perfection in it)
+  Line  451: it                   | Context: Zauważenie wzorca i dostrzeżenie w nim perfekcji (Noticing a pattern and seeing the perfection in it)
+  Line  488: Integrating          | Context: 5  5. Integracja zmiany (Integrating the shift)
+  Line  495: statement            | Context: Oświadczenie nowej perspektywy (The reframe statement)
+  Line  524: Radical              | Context: ★  Radykalna Akceptacja (Radical Acceptance)
+  Line  524: Acceptance           | Context: ★  Radykalna Akceptacja (Radical Acceptance)
+  Line  541: AGREE                | Context: ZGADZAM SIĘ (AGREE)
+  Line  542: DISAGREE             | Context: NIE ZGADZAM SIĘ (DISAGREE)
+  Line  600: radicalforgiveness   | Context: © 2007 Colin Tipping: Nie do ponownej publikacji, ale proszę kserować i dzielić się z innymi. Aby pobrać kopie, odwiedź stronę www.radicalforgiveness.com
+
+=== 37 13 Kroków Do Radykalnej Manifestacji.html === (Total flagged: 1)
+  Line  291: Radical              | Context: Mamy tę technologię dostępną od wielu lat na płytach CD, więc jest ona wypróbowana w czasie i ma udowodnione działanie. Płyty CD są nadal w sprzedaży na naszej stronie internetowej, ale tylko członkowie Radical Living mogą uzyskać do niej bezpośredni dostęp na urządzeniach cyfrowych lub do pobrania.
+
+=== 33 13 Kroków do Odzyskiwania Radykalnego Bogactwa.html === (Total flagged: 8)
+  Line  344: empowerment          | Context: Używam bardzo podobnych arkuszy w mojej działalności od wielu lat, z wielkim sukcesem. Najbardziej znanym z nich jest mój arkusz radykalnego wybaczania, który również oferuję bezpłatnie. Mam także arkusze do radykalnej manifestacji, radykalnego wzmocnienia (empowerment), radykalnych pieniędzy i radykalnego odchudzania. Widzisz więc, że ten arkusz ma całkiem dobre rodowód.
+  Line  347: Bohm                 | Context: Podobnie jak wszystkie inne arkusze, proces ten opiera się na idei, że w naszym życiu działa siła wykraczająca poza nas samych, do której docieramy poprzez naszą inteligencję duchową. Ta część naszego umysłu łączy nas z polem nieskończonych możliwości, o których istnieniu mówią wszyscy fizycy kwantowi. David Bohm, jeden z najbardziej szanowanych z nich wszystkich, nazywa to porządkiem ukrytym ( implicate order ), w którym wszystkie rzeczy, które kiedykolwiek były, są teraz i będą, są zwinięte, czekając tylko na rozwinięcie i uzewnętrznienie ( make explicate ).
+  Line  347: implicate            | Context: Podobnie jak wszystkie inne arkusze, proces ten opiera się na idei, że w naszym życiu działa siła wykraczająca poza nas samych, do której docieramy poprzez naszą inteligencję duchową. Ta część naszego umysłu łączy nas z polem nieskończonych możliwości, o których istnieniu mówią wszyscy fizycy kwantowi. David Bohm, jeden z najbardziej szanowanych z nich wszystkich, nazywa to porządkiem ukrytym ( implicate order ), w którym wszystkie rzeczy, które kiedykolwiek były, są teraz i będą, są zwinięte, czekając tylko na rozwinięcie i uzewnętrznienie ( make explicate ).
+  Line  347: explicate            | Context: Podobnie jak wszystkie inne arkusze, proces ten opiera się na idei, że w naszym życiu działa siła wykraczająca poza nas samych, do której docieramy poprzez naszą inteligencję duchową. Ta część naszego umysłu łączy nas z polem nieskończonych możliwości, o których istnieniu mówią wszyscy fizycy kwantowi. David Bohm, jeden z najbardziej szanowanych z nich wszystkich, nazywa to porządkiem ukrytym ( implicate order ), w którym wszystkie rzeczy, które kiedykolwiek były, są teraz i będą, są zwinięte, czekając tylko na rozwinięcie i uzewnętrznienie ( make explicate ).
+  Line  530: Institute            | Context: Instytut Metody Tippinga — jedyny autoryzowany oddział Institute for Radical Forgiveness Therapy & Coaching, Inc.
+  Line  530: Radical              | Context: Instytut Metody Tippinga — jedyny autoryzowany oddział Institute for Radical Forgiveness Therapy & Coaching, Inc.
+  Line  530: Forgiveness          | Context: Instytut Metody Tippinga — jedyny autoryzowany oddział Institute for Radical Forgiveness Therapy & Coaching, Inc.
+  Line  530: Therapy              | Context: Instytut Metody Tippinga — jedyny autoryzowany oddział Institute for Radical Forgiveness Therapy & Coaching, Inc.
+
+=== 23 13 Kroków do Radykalnej Transformacji.html === (Total flagged: 1)
+  Line  444: practicalnej         | Context: Krok 11. Jeśli istnieje okazja do zaoferowania practicalnej pomocy w celu złagodzenia bólu i cierpienia, czy jesteś gotów to zrobić, skupiając swoją świadomość wyłącznie na pokoju i miłości?
+
+=== 17 13 Kroków do Radykalnego Przebudzenia.html === (Total flagged: 4)
+  Line  431: Institute            | Context: Instytut Metody Tippinga — jedyny autoryzowany oddział Institute for Radical Forgiveness Therapy & Coaching, Inc.
+  Line  431: Radical              | Context: Instytut Metody Tippinga — jedyny autoryzowany oddział Institute for Radical Forgiveness Therapy & Coaching, Inc.
+  Line  431: Forgiveness          | Context: Instytut Metody Tippinga — jedyny autoryzowany oddział Institute for Radical Forgiveness Therapy & Coaching, Inc.
+  Line  431: Therapy              | Context: Instytut Metody Tippinga — jedyny autoryzowany oddział Institute for Radical Forgiveness Therapy & Coaching, Inc.
+
+=== 2026 Arkusz Świadomości Pieniędzy.html === (Total flagged: 15)
+  Line  331: Radical              | Context: Colin Tipping's Radical Empowerment Program
+  Line  331: Empowerment          | Context: Colin Tipping's Radical Empowerment Program
+  Line  333: Forgiveness          | Context: Radical Forgiveness Money Consciousness Worksheet
+  Line  333: Money                | Context: Radical Forgiveness Money Consciousness Worksheet
+  Line  333: Consciousness        | Context: Radical Forgiveness Money Consciousness Worksheet
+  Line  333: Worksheet            | Context: Radical Forgiveness Money Consciousness Worksheet
+  Line  380: pieniądzami          | Context: 5. Jestem gotów(-a) wybaczyć tym, którzy modelowali lub uczyli mnie tych negatywnych powiązań z pieniądzami, i postanawiam zrobić arkusz Radykalnego Wybaczania następującym osobom w ciągu 24 godzin od wypełnienia tego arkusza, aby transformować tę energię:
+  Line  394: ęłam                 | Context: 6. Jestem gotów(-a) dostrzec, że z miłością stworzyłem(-am) ten problem finansowy dla samego siebie / samej siebie jako okazję do nauki i rozwoju oraz (jeśli są w to zaangażowane inne osoby) przyciągnąłem(-ęłam) poprzez Prawo Przyciągania następujące osoby (anioły uzdrawiające pojawiające się jako wrogowie) do tego dramatu, aby mocno rezonowały moje problemy:
+  Line  446: recognizing          | Context: 12. Teraz oddaję to mojej własnej Inteligencji Duchowej i poddaję się Duchowi ze świadomością i komfortem, że wszystko jest w porządku, a to, co widziałem(-am) jako problem, było czystym błędnym postrzeganiem z mojej strony. Już to rozwiązałem(-am), recognizing (uznając), że jestem obficie zaopatrzony(-a) przez cały czas. Wszelkie idee niedoboru lub braku, których się trzymałem(-am), uświadamiam sobie teraz, że nie mają żadnej ważności ani mocy, i nie przyznaję im żadnej.
+
+=== 2026 Arkusz Radykalnej Manifestacji.html === (Total flagged: 30)
+  Line  308: FRADICALS            | Context: FRADICALS · The Radical Manifestation Worksheet
+  Line  308: Radical              | Context: FRADICALS · The Radical Manifestation Worksheet
+  Line  308: Manifestation        | Context: FRADICALS · The Radical Manifestation Worksheet
+  Line  308: Worksheet            | Context: FRADICALS · The Radical Manifestation Worksheet
+  Line  348: ych                  | Context: 4. Powód(-ody), dla którego(-ych) pragnę przyciągnąć/stworzyć tę „rzecz”, to/są...
+  Line  353: Transosobowe         | Context: % Transosobowe (z korzyścią dla innych)
+  Line  390: it                   | Context: np. podekscytowanie, wdzięczność, radość, szczęście itp. (Jeśli jeszcze tego nie czujesz, udawaj, aż to osiągniesz — „fake it 'til you make it”).
+  Line  390: til                  | Context: np. podekscytowanie, wdzięczność, radość, szczęście itp. (Jeśli jeszcze tego nie czujesz, udawaj, aż to osiągniesz — „fake it 'til you make it”).
+  Line  390: you                  | Context: np. podekscytowanie, wdzięczność, radość, szczęście itp. (Jeśli jeszcze tego nie czujesz, udawaj, aż to osiągniesz — „fake it 'til you make it”).
+  Line  454: This                 | Context: This worksheet is a revised version of the original one published in 2006 and the numbering may be different.
+  Line  454: is                   | Context: This worksheet is a revised version of the original one published in 2006 and the numbering may be different.
+  Line  454: revised              | Context: This worksheet is a revised version of the original one published in 2006 and the numbering may be different.
+  Line  454: of                   | Context: This worksheet is a revised version of the original one published in 2006 and the numbering may be different.
+  Line  454: original             | Context: This worksheet is a revised version of the original one published in 2006 and the numbering may be different.
+  Line  454: published            | Context: This worksheet is a revised version of the original one published in 2006 and the numbering may be different.
+  Line  454: numbering            | Context: This worksheet is a revised version of the original one published in 2006 and the numbering may be different.
+  Line  454: may                  | Context: This worksheet is a revised version of the original one published in 2006 and the numbering may be different.
+  Line  454: different            | Context: This worksheet is a revised version of the original one published in 2006 and the numbering may be different.
+  Line  455: Done                 | Context: It is Done!
+
+=== 2026 Arkusz Radykalnego Samowybaczania.html === (Total flagged: 16)
+  Line  344: Institute            | Context: Institute for Radical Forgiveness
+  Line  344: Radical              | Context: Institute for Radical Forgiveness
+  Line  344: Forgiveness          | Context: Institute for Radical Forgiveness
+  Line  358: Therapy              | Context: Institute for Radical Forgiveness Therapy & Coaching · Narzędzie dla Samowybaczania
+  Line  358: Samowybaczania       | Context: Institute for Radical Forgiveness Therapy & Coaching · Narzędzie dla Samowybaczania
+  Line  423: widzili              | Context: 6. Gdy naprawdę badam, jak się ze sobą czuję, uświadamiam sobie, że u podłoża mojego wstydu leży przekonanie lub zestaw przekonań na mój temat, które nie są prawdziwe. Moje samosądy opierały się na tym, co inni, a zwłaszcza moi rodzice, widzili we mnie i czego mnie o mnie nauczyli. Na przykład:
+  Line  495: integrytywnością     | Context: 18. Teraz uświadamiam sobie, że to, czego doświadczałem (moja historia o tym, jak sam siebie wiktymizowałem), było precyzyjnym odzwierciedleniem mojej nieznajomości prawdy. Rozumiem teraz, że gdyby udało mi się ujrzeć duchowy szerszy obraz, ujrzałbym naprawdę, jak to wszystko się składa w całość, i że wszystko jest rzeczywiście doskonałe. Jednocześnie jestem gotów wziąć odpowiedzialność za swoje czyny w tym ludzkim świecie. Rozumiem również, że im bardziej postępuję w tym świecie z integrytywnością i z miłością w sercu, tym większe prawdopodobieństwo, że będę w zgodzie ze Światem Boskiej Prawdy. Mogę zmienić swoją dawną autodestrukcyjną „rzeczywistość”, po prostu będąc gotowym spojrzeć na siebie w świetle prawdy. Na przykład, widzę siebie teraz jako...
+  Line  513: kogogoś              | Context: 21. Notatka do kogogoś, kogo zraniłem lub na kogo w jakiś sposób wpłynęedzie negatywnie:
+  Line  513: wpłynęedzie          | Context: 21. Notatka do kogogoś, kogo zraniłem lub na kogo w jakiś sposób wpłynęedzie negatywnie:
+  Line  539: Samowybaczanie       | Context: Oparte na książkach „Radykalne Wybaczanie” oraz „Radykalne Samowybaczanie” autorstwa Colina Tippinga.
+  Line  540: IIRFL                | Context: ©2000-09 Colin Tipping IIRFL 2019. Wszelkie prawa zastrzeżone.
+  Line  541: radicalforgiveness   | Context: www.radicalforgiveness.org
+
+=== 44 13 Kroków Radykalnego Wzmocnienia.html === (Total flagged: 1)
+  Line  188: Radical              | Context: Mamy tę technologię dostępną od wielu lat na płytach CD, więc jest ona sprawdzona i przetestowana. Płyty CD są nadal w sprzedaży na naszej stronie internetowej, ale tylko członkowie Radical Living mogą uzyskać do niej dostęp bezpośrednio na urządzeniach cyfrowych lub jako plik do pobrania. Wszystko, co musisz zrobić, to wysłuchać 13 pytań i odpowiedzieć „tak” głośnym, wyraźnym głosem na każde pytanie, które wymaga werbalnej odpowiedzi. Jeśli nie jesteś w sytuacji, w której możesz odpowiedzieć na pytania na głos, możesz to zrobić w myślach. Jednym ze sposobów jest wypowiedzenie cichego „tak” poprzez dotknięcie kciuka i palca wskazującego, a następnie ich puszczenie.
+
+=== 43 13 Kroków Radykalnego SamoWybaczania.html === (Total flagged: 3)
+  Line  117: Samowybaczania       | Context: 13 Kroków Radykalnego Samowybaczania
+  Line  233: Skinij               | Context: Zauważ, czy uczucia, które miałeś na początku, zaczęły słabnąć. Czy czujesz teraz boską miłość kryjącą się za tą sytuacją? Skinij głową na „Tak”.
+
+=== 39 13 Kroków do Nowej Kariery.html === (Total flagged: 1)
+  Line  202: Radical              | Context: Mamy tę technologię dostępną od wielu lat na płytach CD, więc jest ona sprawdzona w czasie i ma potwierdzoną skuteczność. Płyty CD są nadal w sprzedaży na naszej stronie internetowej, ale tylko członkowie Radical Living mają do nich dostęp bezpośrednio na urządzeniach cyfrowych lub jako pliki do pobrania. Wszystko, co musisz zrobić, to wysłuchać 13 pytań i odpowiedzieć „tak” głośnym, wyraźnym głosem na każde pytanie, które wymaga werbalnej odpowiedzi. Jeśli nie jesteś w sytuacji, w której możesz odpowiedzieć na głos, możesz zrobić to wewnętrznie. Jednym ze sposobów jest wypowiedzenie cichego „tak” poprzez dotknięcie kciukiem i palcem wskazującym, a następnie ich rozluźnienie.
+
+=== 38 13 Kroków Do Radykalnej Manifestacji Pieniędzy.html === (Total flagged: 1)
+  Line  144: Radical              | Context: Mamy tę technologię dostępną od wielu lat na CD, więc jest sprawdzona w czasie i udowodniono jej działanie. Płyty CD są nadal w sprzedaży na naszej stronie, ale tylko członkowie Radical Living mogą uzyskać do niej dostęp bezpośrednio na urządzeniach cyfrowych lub jako plik do pobrania. Jedyne co musisz zrobić, to wysłuchać 13 pytań i odpowiedzieć „tak” głośnym, wyraźnym głosem na każde pytanie, które wymaga odpowiedzi werbalnej.
+
+=== 32 13 Kroków do Twojej Nowej Kariery.html === (Total flagged: 4)
+  Line  320: empowerment          | Context: Jak już wspominałem wcześniej, sam od wielu lat z wielkim sukcesem stosuję bardzo podobne arkusze w swoim biznesie. Najbardziej znanym z nich jest mój internetowy arkusz Radykalnego Wybaczania, który również udostępniam bezpłatnie. Posiadam także arkusze do radykalnej manifestacji, radykalnego wzmocnienia (empowerment), radykalnych pieniędzy oraz radykalnego odchudzania. Jak więc widzisz, ten konkretny arkusz ma naprawdę doskonałe rodowód i historię skuteczności.
+  Line  323: Bohm                 | Context: Podobnie jak wszystkie inne arkusze, proces ten opiera się na idei, że w naszym życiu działa aktywna siła przekraczająca nas samych, do której uzyskujemy dostęp poprzez naszą inteligencję duchową. Ta część naszego umysłu łączy nas z polem nieskończonych możliwości, o którym mówią wszyscy fizycy kwantowi, że istnieje. David Bohm, jeden z najbardziej szanowanych fizyków, nazywa je „porządkiem ukrytym” (implicate order), w którym wszystkie rzeczy, które kiedykolwiek były, są teraz i będą, są zwinięte i ukryte, czekając tylko na to, by stać się jawnymi (explicate). Dotyczy to również Twojej nowej pracy. Hurra! Wszystko, co musisz teraz zrobić, to użyć tego arkusza, aby ją rozwinąć i sprowadzić do rzeczywistości.
+  Line  323: implicate            | Context: Podobnie jak wszystkie inne arkusze, proces ten opiera się na idei, że w naszym życiu działa aktywna siła przekraczająca nas samych, do której uzyskujemy dostęp poprzez naszą inteligencję duchową. Ta część naszego umysłu łączy nas z polem nieskończonych możliwości, o którym mówią wszyscy fizycy kwantowi, że istnieje. David Bohm, jeden z najbardziej szanowanych fizyków, nazywa je „porządkiem ukrytym” (implicate order), w którym wszystkie rzeczy, które kiedykolwiek były, są teraz i będą, są zwinięte i ukryte, czekając tylko na to, by stać się jawnymi (explicate). Dotyczy to również Twojej nowej pracy. Hurra! Wszystko, co musisz teraz zrobić, to użyć tego arkusza, aby ją rozwinąć i sprowadzić do rzeczywistości.
+  Line  323: explicate            | Context: Podobnie jak wszystkie inne arkusze, proces ten opiera się na idei, że w naszym życiu działa aktywna siła przekraczająca nas samych, do której uzyskujemy dostęp poprzez naszą inteligencję duchową. Ta część naszego umysłu łączy nas z polem nieskończonych możliwości, o którym mówią wszyscy fizycy kwantowi, że istnieje. David Bohm, jeden z najbardziej szanowanych fizyków, nazywa je „porządkiem ukrytym” (implicate order), w którym wszystkie rzeczy, które kiedykolwiek były, są teraz i będą, są zwinięte i ukryte, czekając tylko na to, by stać się jawnymi (explicate). Dotyczy to również Twojej nowej pracy. Hurra! Wszystko, co musisz teraz zrobić, to użyć tego arkusza, aby ją rozwinąć i sprowadzić do rzeczywistości.
+
+=== 16 13 Kroków do Radykalnego Wybaczania.html === (Total flagged: 4)
+  Line  330: Radical              | Context: Mamy tę technologię dostępną od wielu lat na płytach CD, jest więc sprawdzona przez czas i ma potwierdzoną skuteczność. Płyty CD są nadal w sprzedaży na naszej stronie internetowej, ale tylko członkowie Radical Living mogą uzyskać do nich bezpośredni dostęp na urządzeniach cyfrowych lub w formie plików do pobrania.
+  Line  412: Skinij               | Context: Krok 11.  Wskaż, kiedy uczucia, które miałeś/miałaś na początku, zaczęły ustępować. Skinij głową „TAK”, aby potwierdzić, że to się stało i że zaczynasz teraz odczuwać boską miłość przepływającą przez tę pozorną sytuację.
+
+=== RW.html === (Total flagged: 97)
+  Line   63: SamoWybaczania       | Context: 🎧1️⃣3️⃣👣Radykalnego SamoWybaczania
+  Line  318: name                 | Context: <textarea id="opis" name="opis" rows="1"
+  Line  318: rows                 | Context: <textarea id="opis" name="opis" rows="1"
+  Line  319: cols                 | Context: cols="50" readonly>
+  Line  319: readonly             | Context: cols="50" readonly>
+  Line  349: uzzwN                | Context: <a href="https://www.youtube.com/watch?v=Bc5uzzwN4hw" target="_blank"
+  Line  349: hw                   | Context: <a href="https://www.youtube.com/watch?v=Bc5uzzwN4hw" target="_blank"
+  Line  350: card                 | Context: class="youtube-link-card"
+  Line  351: items                | Context: style="align-items:center;gap:14px;padding:10px 14px 10px 10px;
+  Line  352: radius               | Context: border:1px solid #ddd;border-radius:12px;background:#fff;
+  Line  353: decoration           | Context: text-decoration:none;">
+  Line  353: none                 | Context: text-decoration:none;">
+  Line  355: img                  | Context: <img src="https://img.youtube.com/vi/Bc5uzzwN4hw/mqdefault.jpg"
+  Line  355: mqdefault            | Context: <img src="https://img.youtube.com/vi/Bc5uzzwN4hw/mqdefault.jpg"
+  Line  356: object               | Context: alt="miniaturka" style="width:120px;height:67px;object-fit:cover;border-radius:6px;display:block;">
+  Line  358: rgba                 | Context: <div style="width:30px;height:30px;background:rgba(255,0,0,0.88);border-radius:50%;
+  Line  361: bottom               | Context: border-bottom:6px solid transparent;border-left:10px solid white;margin-left:2px;">
+  Line  370: rysRY                | Context: <a href="https://www.youtube.com/watch?v=t9rysRY1cKY" target="_blank"
+  Line  370: cKY                  | Context: <a href="https://www.youtube.com/watch?v=t9rysRY1cKY" target="_blank"
+  Line  397: collapse             | Context: <table style="text-align: center; width: 100%; border-collapse: collapse;"
+  Line  398: cellpadding          | Context: border="1" cellpadding="2" cellspacing="2">
+  Line  398: cellspacing          | Context: border="1" cellpadding="2" cellspacing="2">
+  Line  402: underline            | Context: style="font-weight: bold; text-decoration: underline;">Napis
+  Line  409: italic               | Context: style="color: rgb(255, 0, 0); font-style: italic;">Dokonaj
+  Line  466: Tippingów            | Context: Tippingów, obejmuje (a) kilkuminutowe wprowadzenie dla
+  Line  502: Institute            | Context: Radykalnego Wybaczania (Institute for Radical Forgiveness Therapy and
+  Line  502: Radical              | Context: Radykalnego Wybaczania (Institute for Radical Forgiveness Therapy and
+  Line  502: Forgiveness          | Context: Radykalnego Wybaczania (Institute for Radical Forgiveness Therapy and
+  Line  502: Therapy              | Context: Radykalnego Wybaczania (Institute for Radical Forgiveness Therapy and
+  Line  510: Unterman             | Context: Unterman i Deanna Horscht, projektant graficzny z firmy Online
+  Line  510: Deanna               | Context: Unterman i Deanna Horscht, projektant graficzny z firmy Online
+  Line  510: Horscht              | Context: Unterman i Deanna Horscht, projektant graficzny z firmy Online
+  Line  511: Urbas                | Context: Creative, Deborah Hill, oraz researcher, Diana Urbas.
+  Line  518: Polish               | Context: Copyright © for the Polish edition by
+  Line  518: edition              | Context: Copyright © for the Polish edition by
+  Line  522: YAZI                 | Context: Wydawca: YAZI Projects
+  Line  522: Projects             | Context: Wydawca: YAZI Projects
+  Line  569: Indigo               | Context: style="font-weight: bold; font-style: italic; color: Indigo;">RADYKALNEGO
+  Line  718: server               | Context: python -m http.server
+  Line  720: localhost            | Context: http://localhost:8000/index.html
+  Line  799: png                  | Context: <img src="Czakry dla początkujących - David Pond =ReadEra.png"
+
+=== 2026 Arkusz Transformacji Światowej.html === (Total flagged: 7)
+  Line  332: Radical              | Context: Radical Forgiveness · Godfrey O'Flaherty
+  Line  332: Forgiveness          | Context: Radical Forgiveness · Godfrey O'Flaherty
+  Line  395: MANIFESTATION        | Context: RADICAL FORGIVENESS MANIFESTATION
+  Line  422: odzwierciedlenieniem | Context: 10. Uświadamiam sobie teraz także, że to, co działo się „tam na zewnątrz”, było odzwierciedlenieniem czegoś, co wymaga lub wymagało uzdrowienia we mnie. To, co może to dla mnie odzwierciedlać, to – lub było to:
+  Line  457: radicalforgiveness   | Context: www.radicalforgiveness.com
+
+=== arkusz =-założenia radykalnego wybaczania.html === (Total flagged: 3)
+  Line  375: Swiat                | Context: Swiat Ludzkości
+  Line  455: zprojektowaliśmy     | Context: Ilekroć denerwujemy się na inną osobę (lub organizację), rezonuje w nas coś, co potępiliśmy w sobie i  zaparliśmy się ,  stłumiliśmy  i  zprojektowaliśmy  na tę osobę lub rzecz.
+
+=== arkusz - ankieta.html === (Total flagged: 0)
+
+=== arkusz radykalnego odzyskiwania bogactwa.html === (Total flagged: 7)
+  Line  385: szczegstyle          | Context: Więc w polu numer jeden opisz swoją historię. Nikt nie musi tego widzieć, więc wpisz wszystkie szczegstyle dotyczące straty i tego, co według Ciebie oznacza to dla Twojego przyszłego stylu życia, emerytury, czesnego dla dzieci, inwestycji, posiadanych nieruchomości, ewentualnego bankructwa itp. Nie powstrzymuj się! Wyrzuć z siebie złość i frustrację. Powiedz, jak jest. Pozwól sobie na luksus użalania się nad sobą i naprawdę poczuj, jak wielki pech Cię spotkał i jak bardzo zostałeś pokrzywdzony przez system.
+  Line  462: it                   | Context: To stwierdzenie może wydawać się naciągane, ale nie musisz w nie od razu wierzyć. Działa tu zasada „udawaj, aż to osiągniesz” (fake it 'til you make it) — po prostu wypowiedz to na głos i kontynuuj.
+  Line  462: til                  | Context: To stwierdzenie może wydawać się naciągane, ale nie musisz w nie od razu wierzyć. Działa tu zasada „udawaj, aż to osiągniesz” (fake it 'til you make it) — po prostu wypowiedz to na głos i kontynuuj.
+  Line  462: you                  | Context: To stwierdzenie może wydawać się naciągane, ale nie musisz w nie od razu wierzyć. Działa tu zasada „udawaj, aż to osiągniesz” (fake it 'til you make it) — po prostu wypowiedz to na głos i kontynuuj.
+  Line  541: radicalforgiveness   | Context: Copyright © Colin Tipping | Kontakt: support@radicalforgiveness.com — www.colintipping.com
+  Line  541: colintipping         | Context: Copyright © Colin Tipping | Kontakt: support@radicalforgiveness.com — www.colintipping.com
+
+=== arkusz radykalnej manifestacji pieniędzy.html === (Total flagged: 0)
+
+=== arkusz oceny relacji.html === (Total flagged: 32)
+  Line  483: Expanding            | Context: Niniejszy kwestionariusz jest bezpośrednio powiązany z treścią książki  „Rozkwitając w miłości. Podręcznik radykalnego życia”  ( Expanding in Love, A Handbook for Radical Living ). Stanowi on zarazem samodzielne narzędzie, które pozwala ocenić kondycję Twojego związku jako wstęp do szczerych rozmów z partnerem o tym, co oboje możecie zrobić, aby uzdrowić relację lub pozwolić jej odejść.
+  Line  483: Love                 | Context: Niniejszy kwestionariusz jest bezpośrednio powiązany z treścią książki  „Rozkwitając w miłości. Podręcznik radykalnego życia”  ( Expanding in Love, A Handbook for Radical Living ). Stanowi on zarazem samodzielne narzędzie, które pozwala ocenić kondycję Twojego związku jako wstęp do szczerych rozmów z partnerem o tym, co oboje możecie zrobić, aby uzdrowić relację lub pozwolić jej odejść.
+  Line  483: Handbook             | Context: Niniejszy kwestionariusz jest bezpośrednio powiązany z treścią książki  „Rozkwitając w miłości. Podręcznik radykalnego życia”  ( Expanding in Love, A Handbook for Radical Living ). Stanowi on zarazem samodzielne narzędzie, które pozwala ocenić kondycję Twojego związku jako wstęp do szczerych rozmów z partnerem o tym, co oboje możecie zrobić, aby uzdrowić relację lub pozwolić jej odejść.
+  Line  483: Radical              | Context: Niniejszy kwestionariusz jest bezpośrednio powiązany z treścią książki  „Rozkwitając w miłości. Podręcznik radykalnego życia”  ( Expanding in Love, A Handbook for Radical Living ). Stanowi on zarazem samodzielne narzędzie, które pozwala ocenić kondycję Twojego związku jako wstęp do szczerych rozmów z partnerem o tym, co oboje możecie zrobić, aby uzdrowić relację lub pozwolić jej odejść.
+  Line  499: Storge               | Context: 1  Eros i Storge: Analiza Poziomów Miłości
+  Line  501: storgicznej          | Context: Oceń poziom miłości romantycznej (Eros) oraz miłości przyjacielskiej/storgicznej (Storge) na osi czasu relacji. Wprowadź liczby od 1 do 100.
+  Line  505: bezpamiętna          | Context: Skala 1 - 100 (gdzie 1 = wstręt/niechęć, a 100 = całkowite zauroczenie / bezpamiętna miłość)
+  Line  544: Philia               | Context: Przypomnienie o naturze miłości storgicznej („Storge”):  Jest to jeden z czterech rodzajów miłości zdefiniowanych przez Starożytnych Greków (Agape, Eros, Philia, Storge). Miłość storgiczna to głęboka więź i przyjaźń wyrastająca z poczucia bliskości, zażyłości i wzajemnego przyzwyczajenia. Miłość Eros może rozwinąć się z tej przyjaźni, ale zachodzi też proces odwrotny – Storge może rosnąć, gdy namiętność (Eros) słabnie. Czasami nazywa się ją miłością braterską/siostrzaną. Taki związek charakteryzuje się intymnością, zrozumieniem i przyjaźnią, ale może mu brakować pasji. Możesz wtedy mieć poczucie, że relacja utknęła w martwym punkcie i donikąd nie zmierza.
+  Line  544: storgiczna           | Context: Przypomnienie o naturze miłości storgicznej („Storge”):  Jest to jeden z czterech rodzajów miłości zdefiniowanych przez Starożytnych Greków (Agape, Eros, Philia, Storge). Miłość storgiczna to głęboka więź i przyjaźń wyrastająca z poczucia bliskości, zażyłości i wzajemnego przyzwyczajenia. Miłość Eros może rozwinąć się z tej przyjaźni, ale zachodzi też proces odwrotny – Storge może rosnąć, gdy namiętność (Eros) słabnie. Czasami nazywa się ją miłością braterską/siostrzaną. Taki związek charakteryzuje się intymnością, zrozumieniem i przyjaźnią, ale może mu brakować pasji. Możesz wtedy mieć poczucie, że relacja utknęła w martwym punkcie i donikąd nie zmierza.
+  Line  548: Storgicznie          | Context: 1.3. Jak ja się czuję (Storgicznie / Przyjacielsko) wobec mojego partnera
+  Line  625: Dissatisfaction      | Context: 3  Poziom Niezadowolenia (Dissatisfaction Level)
+  Line  625: Level                | Context: 3  Poziom Niezadowolenia (Dissatisfaction Level)
+  Line  671: storgiczne           | Context: Bardzo go/ją lubiłem(-am), czułem(-am), że będzie dobrym współmałżonkiem i będziemy szczęśliwi (podejście storgiczne).
+  Line  714: Breakdown            | Context: W większości przypadków (Wykres A) miłość romantyczna (Eros) zaczyna się wysoko, lecz z czasem słabnie, ustępując miejsca powoli rosnącej miłości przyjacielskiej (Storge). W innych wypadkach (Wykres B), przyjaźń może ulec załamaniu (Breakdown) doprowadzając do kryzysu lub rozwodu, po którym, jeśli walka nie była zbyt wyniszczająca, poczucie sympatii może powrócić.
+  Line  728: bezpamiętnie         | Context: Nadal jestem całkowicie zauroczony(-a) i bezpamiętnie zakochany(-a) w swoim partnerze.
+  Line  984: Reconciliation       | Context: Wskazówka autora:  Jeśli wykonujesz to ćwiczenie z myślą o ratowaniu związku lub pojednaniu po rozstaniu czy tymczasowej separacji, gorąco polecam również arkusz  „Radykalne Pojednanie – Instrument uzdrawiania bliskich relacji”  (Radical Reconciliation Worksheet). Te dwa arkusze doskonale się uzupełniają.
+  Line  984: Worksheet            | Context: Wskazówka autora:  Jeśli wykonujesz to ćwiczenie z myślą o ratowaniu związku lub pojednaniu po rozstaniu czy tymczasowej separacji, gorąco polecam również arkusz  „Radykalne Pojednanie – Instrument uzdrawiania bliskich relacji”  (Radical Reconciliation Worksheet). Te dwa arkusze doskonale się uzupełniają.
+  Line 1006: Relationship         | Context: Na podstawie kwestionariusza „Relationship Assessment Questionnaire” z książki „Expanding in Love” Colina Tippinga.
+  Line 1006: Assessment           | Context: Na podstawie kwestionariusza „Relationship Assessment Questionnaire” z książki „Expanding in Love” Colina Tippinga.
+  Line 1006: Questionnaire        | Context: Na podstawie kwestionariusza „Relationship Assessment Questionnaire” z książki „Expanding in Love” Colina Tippinga.
+
+=== arkusz humenergy.html === (Total flagged: 7)
+  Line  286: Work                 | Context: System Q-Work
+  Line  316: Telling              | Context: 1  Opowiedzenie historii (Telling the Story)
+  Line  338: Feelings             | Context: 2  Poczucie uczuć (Feeling the Feelings)
+  Line  358: Collapsing           | Context: 3  Demontaż historii (Collapsing the Story)
+  Line  395: Reframing            | Context: 4  Zmiana perspektywy (Reframing the Story)
+  Line  421: Integrating          | Context: 5  Integracja zmiany (Integrating the Shift)
+
+=== arkusz radykalnej samoakceptacji.html === (Total flagged: 4)
+  Line  496: Institute            | Context: Instytut Metody Tippinga — jedyny autoryzowany oddział Institute for Radical Forgiveness Therapy & Coaching, Inc.
+  Line  496: Radical              | Context: Instytut Metody Tippinga — jedyny autoryzowany oddział Institute for Radical Forgiveness Therapy & Coaching, Inc.
+  Line  496: Forgiveness          | Context: Instytut Metody Tippinga — jedyny autoryzowany oddział Institute for Radical Forgiveness Therapy & Coaching, Inc.
+  Line  496: Therapy              | Context: Instytut Metody Tippinga — jedyny autoryzowany oddział Institute for Radical Forgiveness Therapy & Coaching, Inc.
+
+=== arkusz radykalnej manifestacji marzeń.html === (Total flagged: 0)
+
+=== arkusz wybaczania sobie.html === (Total flagged: 6)
+  Line  350: SamoWybaczania       | Context: Arkusz Radykalnego SamoWybaczania
+  Line  524: Samowybaczanie       | Context: 14. Cenię swoją gotowość do tego, żeby zrozumieć swój błędny sposób postrzegania, i błogosławię siebie za to, że dałam/em sobie szansę, by zastosować Radykalne Samowybaczanie.
+  Line  586: Institute            | Context: Instytut Metody Tippinga — jedyny autoryzowany oddział Institute for Radical Forgiveness Therapy & Coaching, Inc.
+  Line  586: Radical              | Context: Instytut Metody Tippinga — jedyny autoryzowany oddział Institute for Radical Forgiveness Therapy & Coaching, Inc.
+  Line  586: Forgiveness          | Context: Instytut Metody Tippinga — jedyny autoryzowany oddział Institute for Radical Forgiveness Therapy & Coaching, Inc.
+  Line  586: Therapy              | Context: Instytut Metody Tippinga — jedyny autoryzowany oddział Institute for Radical Forgiveness Therapy & Coaching, Inc.
+
+=== arkusz świadomości pieniądza.html === (Total flagged: 31)
+  Line  346: Willing              | Context: Chętny(-a) / Gotowy(-a) (Willing)
+  Line  348: Skeptical            | Context: Sceptyczny(-a) (Skeptical)
+  Line  349: Unwilling            | Context: Niechętny(-a) (Unwilling)
+  Line  512: Radical              | Context: Ten arkusz jest integralną częścią Programu Radykalnego Wzmocnienia (The Radical Empowerment Program) autorstwa Colina Tippinga.
+  Line  512: Empowerment          | Context: Ten arkusz jest integralną częścią Programu Radykalnego Wzmocnienia (The Radical Empowerment Program) autorstwa Colina Tippinga.
+  Line  513: Global               | Context: Opublikowane przez Global 13 Publications, Inc. © Colin Tipping, 2006 · Zmodyfikowano 2/3/09
+  Line  513: Publications         | Context: Opublikowane przez Global 13 Publications, Inc. © Colin Tipping, 2006 · Zmodyfikowano 2/3/09
+
+=== arkusz radykalnej transformacji wydarzeń światowych.html === (Total flagged: 17)
+  Line  323: it                   | Context: Moim własnym sposobem na poradzenie sobie z tym dylematem jest utwierdzenie się w przekonaniu, które wynika z doświadczenia: kiedy w naszym własnym życiu dochodzi do zdarzeń, w których czujemy się ofiarami, sytuacja zawsze zmienia się na lepsze, a my odczuwamy większy spokój, gdy tylko używamy narzędzi pomagających nam otworzyć się na możliwość, że wszystko dzieje się z jakiegoś powodu. Nawet jeśli używamy ich na zasadzie „udawaj, aż to poczujesz” (fake-it-til-we-make-it) – to i tak działa.
+  Line  323: til                  | Context: Moim własnym sposobem na poradzenie sobie z tym dylematem jest utwierdzenie się w przekonaniu, które wynika z doświadczenia: kiedy w naszym własnym życiu dochodzi do zdarzeń, w których czujemy się ofiarami, sytuacja zawsze zmienia się na lepsze, a my odczuwamy większy spokój, gdy tylko używamy narzędzi pomagających nam otworzyć się na możliwość, że wszystko dzieje się z jakiegoś powodu. Nawet jeśli używamy ich na zasadzie „udawaj, aż to poczujesz” (fake-it-til-we-make-it) – to i tak działa.
+  Line  334: Telling              | Context: 1  Opowieść i emocje (Telling the Story & Feelings)
+  Line  334: Feelings             | Context: 1  Opowieść i emocje (Telling the Story & Feelings)
+  Line  391: Action               | Context: 2  Działanie w świecie fizycznym (Action in the World)
+  Line  391: World                | Context: 2  Działanie w świecie fizycznym (Action in the World)
+  Line  403: Invocation           | Context: 3  Inwokacja Ducha (The Invocation)
+  Line  420: Reframing            | Context: 4  Nowa perspektywa (Reframing)
+  Line  424: You                  | Context: Mówisz to, nawet jeśli w to nie wierzysz. Udawaj, aż poczujesz (Fake it ’til You Make It).
+  Line  442: Integration          | Context: 5  Integracja i pokój (Integration & Peace)
+  Line  474: Events               | Context: Arkusz Transformacji Wydarzeń na Świecie (World Events Worksheet)
+  Line  474: Worksheet            | Context: Arkusz Transformacji Wydarzeń na Świecie (World Events Worksheet)
+
+=== arkusz radykalnego pojednania.html === (Total flagged: 14)
+  Line  331: Venting              | Context: 1  Wentylowanie i Wyrzucenie Żalu (Venting)
+  Line  342: Feel                 | Context: 2  Moje i Twoje Uczucia (How We Feel)
+  Line  346: loathing             | Context: Na skali od 1 do 100, gdzie 1 = nienawiść/odraza (loathing), a 100 = całkowite bezpamiętne zakoczenie (Totally Besotted).
+  Line  346: bezpamiętne          | Context: Na skali od 1 do 100, gdzie 1 = nienawiść/odraza (loathing), a 100 = całkowite bezpamiętne zakoczenie (Totally Besotted).
+  Line  346: zakoczenie           | Context: Na skali od 1 do 100, gdzie 1 = nienawiść/odraza (loathing), a 100 = całkowite bezpamiętne zakoczenie (Totally Besotted).
+  Line  346: Totally              | Context: Na skali od 1 do 100, gdzie 1 = nienawiść/odraza (loathing), a 100 = całkowite bezpamiętne zakoczenie (Totally Besotted).
+  Line  346: Besotted             | Context: Na skali od 1 do 100, gdzie 1 = nienawiść/odraza (loathing), a 100 = całkowite bezpamiętne zakoczenie (Totally Besotted).
+  Line  407: bezpamiętnie         | Context: Wciąż jestem w Tobie całkowicie i bezpamiętnie zakochany(-a).
+  Line  421: Demandy              | Context: 4  Oczekiwania, Demandy i Rezygnacja
+  Line  440: CAKOWICIE            | Context: 7. Żądania, oczekiwania, osądy, potrzeby i założenia, z których jestem CAKOWICIE gotów/gotowa teraz zrezygnować, aby się pojednać, to:
+  Line  464: Reframing            | Context: 5  Przeformułowanie i Nowa Umowa (Reframing & Deal)
+  Line  521: Covenant             | Context: 12.  Przymierze (Covenant):
+
+=== arkusz manifestacji relacji.html === (Total flagged: 5)
+  Line  456: Breakers             | Context: Krok 6.  Czego kategorycznie NIE będę tolerować (Deal Breakers):
+  Line  509: Spirit               | Context: 5  Całkowite Przekazanie Sile Wyższej (Spirit)
+  Line  521: Surrendera           | Context: Krok 8.  Deklaracja Całkowitego Odpuszczenia i Surrendera:
+  Line  551: Radical              | Context: Opracowano na podstawie metody Tippinga (Radical Manifestation) · Formularz Przyciągania Idealnego Partnera
+  Line  551: Manifestation        | Context: Opracowano na podstawie metody Tippinga (Radical Manifestation) · Formularz Przyciągania Idealnego Partnera
+
+=== arkusz manifestacji kariery.html === (Total flagged: 22)
+  Line  372: outrage              | Context: Oburzenie (outrage)
+  Line  373: grief                | Context: Żal / Żałoba (grief)
+  Line  374: anger                | Context: Złość (anger)
+  Line  375: deprivation          | Context: Poczucie braku (deprivation)
+  Line  376: expectation          | Context: Oczekiwanie (expectation)
+  Line  377: entitlement          | Context: Poczucie roszczenia (entitlement)
+  Line  378: longing              | Context: Tęsknota (longing)
+  Line  379: hope                 | Context: Nadzieja (hope)
+  Line  381: need                 | Context: Potrzeba (need)
+  Line  382: empathy              | Context: Empatia (empathy)
+  Line  383: righteousness        | Context: Poczucie własnej racji (righteousness)
+  Line  384: fear                 | Context: Strach (fear)
+  Line  385: sadness              | Context: Smutek (sadness)
+  Line  386: shame                | Context: Wstyd (shame)
+  Line  387: guilt                | Context: Wina (guilt)
+  Line  388: helplessness         | Context: Beznadziejność / Bezsilność (helplessness)
+  Line  476: intelligence         | Context: Nazywam to wykonaniem „obejścia inteligencji duchowej” (spiritual intelligence bypass). Zamiast spędzać miesiące na przeprogramowywaniu podświadomości, uznajemy te myśli i zostawiamy je, oddając sprawę Wyższemu Ja.
+  Line  508: Radical              | Context: Opracowano na podstawie metody  Radical New Career Manifestation Program  autorstwa Colina Tippinga.
+  Line  508: Career               | Context: Opracowano na podstawie metody  Radical New Career Manifestation Program  autorstwa Colina Tippinga.
+  Line  508: Manifestation        | Context: Opracowano na podstawie metody  Radical New Career Manifestation Program  autorstwa Colina Tippinga.
+  Line  509: radicalforgiveness   | Context: Wszelkie pytania i informacje o sukcesach programu prosimy kierować na adres:  support@radicalforgiveness.com  lub odwiedzić  www.colintipping.com .
+  Line  509: colintipping         | Context: Wszelkie pytania i informacje o sukcesach programu prosimy kierować na adres:  support@radicalforgiveness.com  lub odwiedzić  www.colintipping.com .
+
+=== arkusz granic.html === (Total flagged: 0)
+
+=== arkusz akceptacji innych.html === (Total flagged: 3)
+  Line  397: Radical              | Context: Na podstawie formularza „Radical Acceptance” — The Tipping Method (Metoda Tippinga)
+  Line  397: Acceptance           | Context: Na podstawie formularza „Radical Acceptance” — The Tipping Method (Metoda Tippinga)
+  Line  397: Method               | Context: Na podstawie formularza „Radical Acceptance” — The Tipping Method (Metoda Tippinga)
+
+=== arkusz 4 kroki =emerge'n'see process.html === (Total flagged: 8)
+  Line  410: przeramować          | Context: a)  W tym miejscu próbujemy zmienić perspektywę (przeramować historię), otwierając się na myśl, że skoro nasze Wyższe Ja stworzyło tę sytuację (jak powiedziano w Kroku Pierwszym), to nasze życie rozwija się dokładnie tak, jak powinno, i wszystko pozostaje w Boskim Porządku. Jest to dokładnie to, czego pragniemy i potrzebujemy na drodze ewolucji naszej duszy. Nie dzieje się nic złego i nie ma nic do wybaczania.  (Kluczowym słowem jest tutaj GOTOWOŚĆ / CHĘĆ. Wymagana jest jedynie niewielka ilość gotowości, by otworzyć się na tę ewentualność).
+  Line  412: zli                  | Context: b)  Ten krok prosi również, abyśmy dopuścili możliwość, że przyciągnęliśmy ludzi, na których jesteśmy zli, specjalnie po to, aby dostarczyli nam tego konkretnego doświadczenia. Robią nam te rzeczy, ponieważ nasza dusza i ich dusza zawarły kontrakt, by zrobić to dla siebie nawzajem. W rzeczywistości nie są oni zatem naszymi wrogami, lecz naszymi „uzdrawiającymi aniołami” – bez nich nie mielibyśmy przecież możliwości wzrastania ani uzdrowienia tych rdzennych, negatywnych przekonań.
+  Line  438: wyprojektowałeś      | Context: Ten krok oferuje Ci również możliwość dostrzeżenia, że to, co widzisz i czego nienawidzisz w innych ludziach, jest dokładnie tym, czego nie znosisz w sobie i czemu zaprzeczyłeś/aś, stłumiłeś/aś to i wyprojektowałeś/aś na nich.
+  Line  442: If                   | Context: Niewygodna prawda: JEŚLI TO WIDZISZ U KOGOŚ, TO MASZ TO W SOBIE! (If you spot it; you got it!)
+  Line  442: you                  | Context: Niewygodna prawda: JEŚLI TO WIDZISZ U KOGOŚ, TO MASZ TO W SOBIE! (If you spot it; you got it!)
+  Line  442: it                   | Context: Niewygodna prawda: JEŚLI TO WIDZISZ U KOGOŚ, TO MASZ TO W SOBIE! (If you spot it; you got it!)
+
+=== arkusz - sygnały somatyczne.html === (Total flagged: 27)
+  Line  292: Lateral              | Context: 1  Asymetria Ciała: Strona Lewa a Prawa (Body Lateral Bias)
+  Line  310: Kappasa              | Context: 2  Syndromy Ciała według Johna Kappasa (Body Syndromes)
+  Line  310: Syndromes            | Context: 2  Syndromy Ciała według Johna Kappasa (Body Syndromes)
+  Line  315: Crying               | Context: 3.  Syndrom Płaczu (The Crying Syndrome)
+  Line  315: Syndrome             | Context: 3.  Syndrom Płaczu (The Crying Syndrome)
+  Line  322: Responsibility       | Context: 4.  Syndrom Odpowiedzialności (The Responsibility Syndrome)
+  Line  329: Sexual               | Context: 5.  Syndrom Frustracji Seksualnej i Poczucia Winy (Sexual Frustration and Guilt Syndrome)
+  Line  329: Frustration          | Context: 5.  Syndrom Frustracji Seksualnej i Poczucia Winy (Sexual Frustration and Guilt Syndrome)
+  Line  329: Guilt                | Context: 5.  Syndrom Frustracji Seksualnej i Poczucia Winy (Sexual Frustration and Guilt Syndrome)
+  Line  331: promiskuituizmu      | Context: Przyczyna:  Frustracja seksualna, poczucie winy związane z seksem na tle religijnym, poczucie winy z powodu niewierności/promiskuituizmu, poczucie seksualnej nieadekwatności, lęk przed atakiem seksualnym. Objawy: skurcze brzucha, zaparcia, nadkwasota, bolesne miesiączki, infekcje pęcherza/pochwy, bóle prostaty/jąder, problemy z nerkami.
+  Line  336: Fight                | Context: 6.  Syndrom Walki lub Sięgania (Fight or Reaching Syndrome)
+  Line  336: Reaching             | Context: 6.  Syndrom Walki lub Sięgania (Fight or Reaching Syndrome)
+  Line  343: Flight               | Context: 7.  Syndrom Ucieczki (Flight Syndrome)
+  Line  358: Myss                 | Context: 3  Historie w Czakrach według Caroline Myss (Stories in the Chakras)
+  Line  358: Chakras              | Context: 3  Historie w Czakrach według Caroline Myss (Stories in the Chakras)
+  Line  380: Throat               | Context: Czakra Gardła (Throat) · Jasnoniebieski
+  Line  388: Heart                | Context: Czakra Serca (Heart) · Zielony
+  Line  396: Plexus               | Context: Splot Słoneczny (Solar Plexus) · Żółty
+  Line  397: kodependencja        | Context: Lęk i zastraszenie. Zaufanie, poczucie własnej wartości. Osobista moc, pewność siebie i honor. Dbanie o siebie i innych. Współuzależnienie (kodependencja). Wrażliwość na krytykę.
+  Line  404: Sacral               | Context: Czakra Sakralna (Sacral) · Pomarańczowy
+

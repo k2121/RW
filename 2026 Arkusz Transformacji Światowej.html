@@ -367,11 +367,11 @@
           <p class="lead"><span class="inum">3.</span>Zauważam swoje automatyczne, odruchowe reakcje na tę sytuację, takie jak:</p>
           <div class="checkbox-grid" id="reactionsGrid"></div>
           <p class="note" style="margin-top:14px;">Napisz tutaj o tych, które właśnie zaznaczyłeś, oraz o wszelkich innych, które przyszły Ci do głowy.</p>
-          <textarea rows="4" placeholder="Opisz swoje odruchowe reakcje…"></textarea>
+          <textarea id="reactionsText" rows="4" placeholder="Opisz swoje odruchowe reakcje…"></textarea>
         </div>
 
         <div class="item">
-          <p class="lead"><span class="inum">4.</span>Gdybyśmy miał(-a) nieskończoną moc i autorytet nad tą sytuacją, zrobiłbym(-abym)...</p>
+          <p class="lead"><span class="inum">4.</span>Gdybyś miał(-a) nieskończoną moc i autorytet nad tą sytuacją, zrobiłbym(-abym)...</p>
           <p class="note">Fantazjuj tak mocno, jak chcesz, i nie cenzuruj swoich myśli. Jeśli uważasz, że ludzie są winni, uwzględnij wszelkie mroczne, negatywne myśli, które mogą krążyć w Twoim umyśle.</p>
           <textarea rows="5" placeholder="Twoje fantazje i myśli bez cenzury…"></textarea>
         </div>
@@ -382,7 +382,7 @@
         <div class="stage-head"><span class="snum">3</span><h2>Działania praktyczne i Manifestacja</h2></div>
 
         <div class="item">
-          <p class="lead"><span class="inum">5.</span>Mimo moich początkowych uczuć: <span style="font-style:italic; color:var(--rose-deep);">(Pobierz z punktu 2)</span><br>Oraz moich początkowych odruchowych reakcji: <span style="font-style:italic; color:var(--rose-deep);">(Pobierz z punktu 3)</span><br>Działania, jakie mogę podjąć, które mogłyby wnieść praktyczną różnicę, to...</p>
+          <p class="lead"><span class="inum">5.</span>Mimo moich początkowych uczuć: <span id="step2Val" style="font-style:italic; font-weight:600; color:var(--rose-deep);">(Pobierz z punktu 2)</span><br>Oraz moich początkowych odruchowych reakcji: <span id="step3Val" style="font-style:italic; font-weight:600; color:var(--rose-deep);">(Pobierz z punktu 3)</span><br>Działania, jakie mogę podjąć, które mogłyby wnieść praktyczną różnicę, to...</p>
           <p class="note">(np. wysłać pieniądze; pomóc; napisać list; zgłosić się jako wolontariusz; zostać sygnalistą; protestować itp. Uwaga: Równie dobrze może to być nic.)</p>
           <textarea rows="4" placeholder="Wprowadź praktyczne działania…"></textarea>
         </div>
@@ -419,7 +419,7 @@
         </div>
 
         <div class="item">
-          <p class="lead"><span class="inum">10.</span>Uświadamiam sobie teraz także, że to, co działo się „tam na zewnątrz”, było odzwierciedlenieniem czegoś, co wymaga lub wymagało uzdrowienia we mnie. To, co może to dla mnie odzwierciedlać, to – lub było to:</p>
+          <p class="lead"><span class="inum">10.</span>Uświadamiam sobie teraz także, że to, co działo się „tam na zewnątrz”, było odzwierciedleniem czegoś, co wymaga lub wymagało uzdrowienia we mnie. To, co może to dla mnie odzwierciedlać, to – lub było to:</p>
           <textarea rows="4" placeholder="Wpisz, co to odzwierciedla w Tobie…"></textarea>
         </div>
       </section>
@@ -433,7 +433,7 @@
         </div>
 
         <div class="item">
-          <p class="lead"><span class="inum">12.</span>Jestem teraz wycentrowany i uwolniłem potrzebę dalszego odczuwania tego, co czułem w punkcie 2 powyżej.</p>
+          <p class="lead"><span class="inum">12.</span>Jestem teraz wycentrowany i uwolniłem potrzebę dalszego odczuwania tego, co czułem w punkcie 2 powyżej <span id="step2Val12" style="font-style:italic; font-weight:600; color:var(--rose-deep);"></span>.</p>
         </div>
 
         <div class="manifestation-box" style="text-align:center; font-size:18px; font-weight:600;">
@@ -514,6 +514,57 @@
     reactionsGrid.appendChild(lab);
   });
 
+  // przepisywanie wartości z punktu 2 i 3 do punktu 5 (oraz 12)
+  function updateStepValues(){
+    // Krok 2: Uczucia
+    const selectedFeelings = [];
+    document.querySelectorAll('#feelingsGrid input[type="checkbox"]:checked').forEach(chk => {
+      if(chk.id === 'f-other') {
+        const otherVal = document.getElementById('f-other-text')?.value.trim();
+        if(otherVal) selectedFeelings.push(otherVal);
+        else selectedFeelings.push('inne uczucia');
+      } else {
+        const labelText = chk.closest('label')?.querySelector('span')?.textContent.trim();
+        if(labelText) selectedFeelings.push(labelText);
+      }
+    });
+    const step2Text = selectedFeelings.length > 0 ? selectedFeelings.join(', ') : '(brak zaznaczonych uczuć w punkcie 2)';
+
+    // Krok 3: Automatyczne reakcje
+    const selectedReactions = [];
+    document.querySelectorAll('#reactionsGrid input[type="checkbox"]:checked').forEach(chk => {
+      const labelText = chk.closest('label')?.querySelector('span')?.textContent.trim();
+      if(labelText) selectedReactions.push(labelText);
+    });
+    const reactionsTextVal = document.getElementById('reactionsText')?.value.trim();
+    
+    let step3Text = '';
+    if(selectedReactions.length > 0 && reactionsTextVal){
+      step3Text = selectedReactions.join(', ') + ' (' + reactionsTextVal + ')';
+    } else if(selectedReactions.length > 0){
+      step3Text = selectedReactions.join(', ');
+    } else if(reactionsTextVal){
+      step3Text = reactionsTextVal;
+    } else {
+      step3Text = '(brak zaznaczonych reakcji w punkcie 3)';
+    }
+
+    const s2Span = document.getElementById('step2Val');
+    if(s2Span) s2Span.textContent = step2Text;
+
+    const s3Span = document.getElementById('step3Val');
+    if(s3Span) s3Span.textContent = step3Text;
+
+    const s2Span12 = document.getElementById('step2Val12');
+    if(s2Span12) s2Span12.textContent = selectedFeelings.length > 0 ? ' (' + step2Text + ')' : '';
+  }
+
+  document.getElementById('feelingsGrid')?.addEventListener('change', updateStepValues);
+  document.getElementById('feelingsGrid')?.addEventListener('input', updateStepValues);
+  document.getElementById('reactionsGrid')?.addEventListener('change', updateStepValues);
+  document.getElementById('reactionsText')?.addEventListener('input', updateStepValues);
+  updateStepValues();
+
   // dynamiczny tytuł strony
   const nrInput = document.getElementById('fNr');
   const nameInput = document.getElementById('objectName') || document.getElementById('fOsoba') || document.getElementById('fSign');
@@ -588,6 +639,7 @@
     document.querySelectorAll('input[type=text], input[type=date]').forEach(i=> { if(i.id!=='fNr' && i.id!=='objectName') i.value=''; });
     document.querySelectorAll('input[type=radio], input[type=checkbox]').forEach(i=> i.checked=false);
     autosizeAll();
+    updateStepValues();
   });
 })();
 </script>
